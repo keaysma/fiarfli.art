@@ -1,0 +1,39 @@
+---
+// Component Imports
+import Counter from '../components/Counter.vue'
+import Hero from '../components/Hero.vue'
+import Nav from '../components/Nav.vue'
+
+
+// Full Astro Component Syntax:
+// https://docs.astro.build/core-concepts/astro-components/
+---
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Raquel Bumgarner</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <style>
+      html,
+      body {
+        font-family: system-ui;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <!-- <Counter client:visible>
+        <h1>Hello, Vue!</h1>
+      </Counter> -->
+      <Hero client:visible/>
+      <Nav client:visible/>
+    </main>
+  </body>
+</html>

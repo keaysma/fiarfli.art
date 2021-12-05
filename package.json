@@ -1,0 +1,21 @@
+{
+  "name": "@example/framework-vue",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "devDependencies": {
+    "astro": "^0.21.10",
+    "node-sass": "^6.0.1",
+    "sass-loader": "^12.3.0"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.36",
+    "@fortawesome/free-solid-svg-icons": "^5.15.4",
+    "@fortawesome/vue-fontawesome": "^3.0.0-5"
+  }
+}
