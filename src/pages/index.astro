@@ -1,13 +1,16 @@
 ---
 // Component Imports
 import Counter from '../components/Counter.vue'
-import Hero from '../components/hero/Frog.vue'
-import Nav from '../components/nav/Basic.vue'
+import Hero from '../components/hero/WitchFixed.vue'
+import Nav from '../components/nav/VerticalAlt.vue'
 
-
-// Full Astro Component Syntax:
-// https://docs.astro.build/core-concepts/astro-components/
+import About from '../components/about/BasicAlt.vue'
+import Art from '../components/art/FlexGallery.vue'
+import Commissions from '../components/commissions/Basic.vue'
+import ContactMe from '../components/contact-me/Basic.vue'
+import MadeWithLove from '../components/footer/made-with-love.vue'
 ---
+
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -20,20 +23,53 @@ import Nav from '../components/nav/Basic.vue'
         font-family: system-ui;
         margin: 0;
         padding: 0;
+
+        scroll-behavior: smooth;
       }
       body {
         margin: 0;
         padding: 0;
       }
+      main {
+        display: flex;
+        flex-direction: row;
+        width: 100vw;
+      }
+      a {
+        text-decoration: none;
+        color: white;
+      }
+      .content {
+        width: calc(100vw - 200px);
+        z-index: 20;
+
+        /* background: black; */
+      }
+      @media only screen and (max-width: 768px) {
+        .content {
+          width: 100vw;
+          padding-left: 0;
+        }
+      }
+      .background {
+        background: #FFF1ED;
+        /* background: linear-gradient(165deg, lightblue, pink, #fffee1); */
+      }
     </style>
   </head>
   <body>
+    <Hero client:visible/>
     <main>
-      <!-- <Counter client:visible>
-        <h1>Hello, Vue!</h1>
-      </Counter> -->
-      <Hero client:visible/>
       <Nav client:visible/>
+      <div class="content">
+        <section class="background">
+          <About client:visible/>
+          <Art client:visible/>
+          <Commissions client:visible/>
+          <ContactMe client:visible/>
+          <MadeWithLove client:visible/>
+        </section>
+      </div>
     </main>
   </body>
 </html>
