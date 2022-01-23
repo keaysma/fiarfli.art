@@ -1,0 +1,1 @@
+.page{display:flex;flex-direction:column;width:100%;min-height:300vh;margin:0}.page .content{margin:200px 225px;position:sticky;top:200px;text-shadow:1px 1px 3px #0004}@media only screen and (max-width: 650px){.page{width:100%;min-height:300vh;margin:0}.page .content{margin:50px 10vw;position:sticky;top:100px;text-shadow:1px 1px 3px #0004}}

@@ -1,0 +1,110 @@
+{
+    "$schema": {
+        "blocks": [
+            {
+                "name": "...",
+                "content": [
+                    {
+                        "path" : "/art/...",
+                        "width": ["full", "1/3", "2/3"],
+                        "height": ["1", "2", "3"],
+                        "fit": ["cover", "contain"],
+                        "img-height": ["full", "1/3", "2/3"],
+                        "title": "...",
+                        "desc": "...",
+                        "date": "YYYY-MM-DD"
+                    }
+                ]
+            }
+        ]
+    },
+    "blocks" : [
+        {
+            "name": "Overview",
+            "content": [
+                {
+                    "path": "/art/froggo.png",
+                    "width": "1/2",
+                    "height": "3",
+
+                    "fit": "cover",
+
+                    "title": "Froggo",
+                    "desc": "This is Raquel's Froggo",
+                    "date": "2022-22-1"
+                },
+                {
+                    "path": "/art/blue_peony.png",
+                    "width": "1/2",
+                    "height": "3",
+                    
+                    "fit": "cover",
+
+                    "title": "Blue Peony",
+                    "desc": "Raquel isn't writing these, in fact, this is the Michael. I love Raquel's art.",
+                    "date": "2022-22-1"
+                },
+                {
+                    "path": "/art/starry cloud backdrop.png",
+                    "width": "1/3",
+                    "height": "1",
+                    
+                    "fit": "cover",
+
+                    "title": "Starry Cloud Backdrop",
+                    "desc": "These are the wonderful stars",
+                    "date": "2022-22-1"
+                },
+                {
+                    "path": "/art/Gaius and Skitty.png",
+                    "width": "1/3",
+                    "height": "1",
+                    
+                    "fit": "contain",
+
+                    "title": "Gaius and Skitty",
+                    "desc": "Wooof",
+                    "date": "2022-22-1"
+                },
+                {
+                    "path": "/art/Illustration flip.png",
+                    "width": "1/3",
+                    "height": "1",
+                    
+                    "fit": "cover",
+
+                    "title": "Illustration (flip)",
+                    "desc": "Raquel likes boba",
+                    "date": "2022-22-1"
+                },
+                {
+                    "path": "/art/Hangin.png",
+                    "width": "full",
+                    "height": "3",
+                    
+                    "fit": "cover",
+
+                    "title": "Hangin",
+                    "desc": "We...",
+                    "date": "2022-22-1"
+                }
+            ]
+        },
+        {
+            "name": "Illustrations",
+            "content": [
+                {
+                    "path": "/art/Illustration4.png",
+                    "width": "full",
+                    "height": "6",
+                    
+                    "fit": "cover",
+
+                    "title": "\"Illustration4\"",
+                    "desc": "NoVa",
+                    "date": "2022-22-1"
+                }
+            ]
+        }
+    ]
+}
