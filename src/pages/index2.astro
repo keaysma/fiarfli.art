@@ -1,0 +1,51 @@
+---
+// Component Imports
+import Counter from '../components/Counter.vue'
+import Hero from '../components/hero/Witch.vue'
+import Nav from '../components/nav/Vertical.vue'
+
+import About from '../components/about/Basic.vue'
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Raquel Bumgarner</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <style>
+      html,
+      body {
+        font-family: system-ui;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      main {
+        width: calc(100vw - 250px);
+        padding-left: 250px;
+      }
+      @media only screen and (max-width: 768px) {
+        main {
+          width: 100vw;
+          padding-left: 0;
+        }
+      }
+      .gradient {
+        background: linear-gradient(165deg, lightblue, pink, #fffee1);
+      }
+    </style>
+  </head>
+  <body>
+    <Nav client:visible/>
+    <main>
+      <Hero client:visible/>
+      <section class="gradient">
+        <About client:visible/>
+      </section>
+    </main>
+  </body>
+</html>
