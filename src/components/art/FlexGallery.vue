@@ -2,13 +2,13 @@
     <div id="art" class="page">
         <div class="art-content">
             <h1>Art</h1>
-            <div v-for="(block, blockIndex) in blocks" :key="blockIndex" class="art-section">
+            <div v-for="(block, blockIndex) in blocks" :key="blockIndex" class="art-section" :id="`art-${block.name}`">
                 <h2>{{ block.name }}</h2>
                 <div class="art-container">
                     <div
                         v-for="(content, contentIndex) in block.content" :key="contentIndex"
                         v-bind:class="`width-${content.width} height-${content.height}`"
-                        @click="setIsGalleryOpen(true);setGallerySettings({blockIndex,contentIndex})"
+                        @click="setGallerySettings({blockIndex,contentIndex});setIsGalleryOpen(true)"
                     >
                         <img 
                             v-bind:src="content.path"
@@ -19,19 +19,20 @@
             </div>
         </div>
     </div>
-    <div v-if="isGalleryOpen" class="gallery" v-on:click.self="setIsGalleryOpen(false)">
-        <button class="gallery-fullscreen" @click="setIsGalleryOpen(true)">
-            <font-awesome-icon :icon="faExpandArrowsAlt" size="3x" />
+    <!-- <div v-if="isGalleryOpen" class="gallery" v-on:click.self="closeGallery()"> -->
+    <div class="gallery" :class="{open: isGalleryOpen}" v-on:click.self="closeGallery()">
+        <button class="gallery-icon gallery-go-fullscreen" @click="setIsGalleryFullscreen(true)">
+            <font-awesome-icon :icon="faExpandArrowsAlt" size="2x" />
         </button>
-        <button class="gallery-thumb" @click="setIsGalleryOpen(false)">
-            <font-awesome-icon :icon="faTimes" size="4x" />
+        <button class="gallery-icon gallery-thumb" @click="closeGallery()">
+            <font-awesome-icon :icon="faTimes" size="2x" />
         </button>
 
-        <button class="gallery-left" @click="galleryPrevious()">
-            <font-awesome-icon :icon="faChevronLeft" size="3x" />
+        <button class="gallery-bar gallery-left" @click="galleryPrevious()">
+            <font-awesome-icon :icon="faChevronLeft" size="2x" />
         </button>
-        <button class="gallery-right" @click="galleryNext()">
-            <font-awesome-icon :icon="faChevronRight" size="3x" />
+        <button class="gallery-bar gallery-right" @click="galleryNext()">
+            <font-awesome-icon :icon="faChevronRight" size="2x" />
         </button>
 
         <div class="gallery-content">
@@ -48,37 +49,93 @@
                 </div>
             </div>
         </div>
+
+        <div v-if="isGalleryFullscreen" class="gallery-fullscreen">
+            <button class="" @click="setIsGalleryFullscreen(false)">
+                <font-awesome-icon :icon="faCompressArrowsAlt" size="2x" />
+            </button>
+
+            <img
+                v-bind:src="blocks?.[gallerySettings?.blockIndex]?.content?.[gallerySettings?.contentIndex]?.path"
+            />
+        </div>
     </div>
 </template>
 
 <script>
 import { ref, onMounted, getCurrentInstance } from 'vue';
+
+import state from '../state';
+
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { faTimes, faExpandArrowsAlt, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { faTimes, faExpandArrowsAlt, faCompressArrowsAlt, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
 export default {
     created () {
-        fetch(`/art/index.json`).then(res => res.json())
-        .then(({blocks}) => {
-            this.blocks = [
-                ... blocks
-            ]
-        })
-        .catch((e) => {
-            console.log(e)
+        onMounted(() => {
+            fetch(`/art/index.json`).then(res => res.json())
+            .then(({blocks}) => {
+                state.blocks = [
+                    ... blocks
+                ]
+            })
+            .catch((e) => {
+                console.log(e)
+            })
+
+            window.addEventListener('keydown', (e) => {
+                //console.log({key: e.key})
+                //console.log({this: this})
+
+                if (e.key === 'Escape') {
+                    if(this.isGalleryFullscreen === false)
+                        state.isGalleryOpen = false
+
+                    this.isGalleryFullscreen = false
+                }
+
+                if (e.key === 'f') {
+                    if(state.isGalleryOpen === true)
+                        this.isGalleryFullscreen = !this.isGalleryFullscreen
+                }
+
+                if (e.key === 'ArrowLeft') {
+                    this.galleryPrevious()
+                }
+
+                if (e.key === 'ArrowRight') {
+                    this.galleryNext()
+                }
+
+            })
         })
     },
 
     setup () {
-        const isGalleryOpen = ref(false);
-        const setIsGalleryOpen = (value) => (isGalleryOpen.value = value);
+        const isGalleryFullscreen = ref(false);
+        const setIsGalleryFullscreen = (value) => {
+            isGalleryFullscreen.value = value
+        };
+
+        //const isGalleryOpen = ref(false);
+        const setIsGalleryOpen = (value) => {
+            state.isGalleryOpen = value
+        };
+        const closeGallery = () => {
+            state.isGalleryOpen = false
+            isGalleryFullscreen.value = false
+        }
 
         const gallerySettings = ref({});
         const setGallerySettings = (value) => (gallerySettings.value = value);
 
         return {
-            isGalleryOpen,
+            isGalleryFullscreen,
+            setIsGalleryFullscreen,
+
+            //isGalleryOpen,
             setIsGalleryOpen,
+            closeGallery,
 
             gallerySettings,
             setGallerySettings,
@@ -87,27 +144,26 @@ export default {
 
     methods: {
         galleryPrevious(){
-            console.log(`previous`)
-            console.log({ gallerySettings: this.gallerySettings })
+            //console.log(`previous`)
+            //console.log({ gallerySettings: this.gallerySettings })
 
             let newContentIndex = (this?.gallerySettings?.contentIndex ?? 0) - 1
             let newBlockIndex = (this?.gallerySettings?.blockIndex ?? 0)
 
             if(newContentIndex < 0){
-                newContentIndex = 0
+                newBlockIndex -= 1
 
-                if(newBlockIndex > 0){
-                    newBlockIndex -= 1
-                    newContentIndex = this?.blocks?.[newBlockIndex]?.content?.length - 1
-                }else{
+                if(newBlockIndex < 0){
                     newBlockIndex = this?.blocks?.length - 1
                 }
+
+                newContentIndex = this?.blocks?.[newBlockIndex]?.content?.length - 1
             }
 
-            console.log({
+            /*console.log({
                 newContentIndex,
                 newBlockIndex
-            })
+            })*/
 
             this.gallerySettings = {
                 contentIndex: newContentIndex,
@@ -116,8 +172,8 @@ export default {
         },
 
         galleryNext(){
-            console.log(`next`)
-            console.log({ gallerySettings: this.gallerySettings })
+            //console.log(`next`)
+            //console.log({ gallerySettings: this.gallerySettings })
 
             let newContentIndex = (this?.gallerySettings?.contentIndex ?? 0) + 1
             let newBlockIndex = (this?.gallerySettings?.blockIndex ?? 0)
@@ -132,18 +188,22 @@ export default {
                 }
             }
 
-            console.log({
+            /*console.log({
                 newContentIndex,
                 newBlockIndex
-            })
+            })*/
 
-            console.log(this?.blocks?.[newBlockIndex]?.content?.[newContentIndex])
+            //console.log(this?.blocks?.[newBlockIndex]?.content?.[newContentIndex])
 
             this.gallerySettings = {
                 contentIndex: newContentIndex,
                 blockIndex: newBlockIndex
             }
         }
+    },
+    computed: {
+        blocks(){ return state?.blocks },
+        isGalleryOpen(){ return state?.isGalleryOpen }
     },
 
     components: {
@@ -152,16 +212,16 @@ export default {
 
     data () {
         return {
-            faTimes, faExpandArrowsAlt, faChevronLeft, faChevronRight,
+            faTimes, faExpandArrowsAlt, faCompressArrowsAlt, faChevronLeft, faChevronRight,
 
-            blocks: [],
+            //blocks: [],
         }
     }
 }
 </script>
 
 <style lang="scss">
-.page {
+#art.page {
     display: flex;
     flex-direction: column;
 
@@ -181,6 +241,16 @@ export default {
 
     .art-section {
         margin: 0 0 50px 0;
+
+        h2 {
+            position: sticky;
+            top: 0px;
+
+            padding: 5px 0px;
+
+            backdrop-filter: blur(14px);
+            text-shadow: 0 0 10px #FFF2F3;
+        }
     }
 
     .art-container {
@@ -276,72 +346,69 @@ export default {
     background: #000D;
     backdrop-filter: blur(8px);
 
-    .gallery-thumb {
+    transition: opacity 0.15s;
+
+    opacity: 0;
+    &:not(.open){
+        pointer-events: none;
+    }
+
+    &.open {
+        opacity: 1;
+    }
+    
+    .gallery-icon {
         position: fixed;
 
         width: 50px;
         height: 50px;
 
-        top: 50px;
-        right: 50px;
+        z-index: 20;
 
         margin: 0;
         padding: 0;
-
+        
         border: none;
+
         color: white;
         background: transparent;
     }
 
-    .gallery-fullscreen {
+    .gallery-bar {
         position: fixed;
 
-        width: 50px;
-        height: 50px;
+        width: 150px;
+        height: 100vh;
 
-        top: 50px;
-        right: 150px;
+        top: 0;
+
+        z-index: 10;
 
         margin: 0;
         padding: 0;
-
+        
         border: none;
+
         color: white;
         background: transparent;
+    }
+
+    .gallery-thumb {
+        top: 25px;
+        right: 25px;
+    }
+
+    .gallery-go-fullscreen {
+        top: 25px;
+        right: 100px;
     }
 
     .gallery-left {
-        position: fixed;
-
-        width: 50px;
-        height: 50px;
-
-        top: 50%;
-        left: 50px;
-
-        margin: 0;
-        padding: 0;
-
-        border: none;
-        color: white;
-        background: transparent;
+        left: 0px;
     }
 
     .gallery-right {
-        position: fixed;
-
-        width: 50px;
-        height: 50px;
-
-        top: 50%;
-        right: 50px;
-
-        margin: 0;
-        padding: 0;
-
-        border: none;
-        color: white;
-        background: transparent;
+        right: 0px;
     }
 
     .gallery-content {
@@ -383,12 +450,50 @@ export default {
             }
         }
     }
+
+    .gallery-fullscreen {
+        position: fixed;
+
+        width: 100vw;
+        height: 100vh;
+        
+        z-index: 40;
+
+        top: 0;
+        left: 0;
+
+        background: black;
+
+        button {
+            position: fixed;
+
+            top: 25px;
+            right: 25px;
+            
+            border: none;
+
+            color: white;
+            background: transparent;
+
+            mix-blend-mode: difference;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+
+            z-index: 50;
+
+            object-fit: contain;
+
+        }
+    }
 }
 
-@media only screen and (max-width: 650px) {
-    .page {
+@media only screen and (max-width: 768px) {
+    #art.page {
         width: 100%;
-        min-height: 300vh;
+        //min-height: 300vh;
 
         margin: 0;
 
@@ -401,9 +506,68 @@ export default {
             text-shadow: 1px 1px 3px #0004;
         }
 
+        .art-section {
+            h2 {
+                position: initial;
+            }
+        }
+
         .art-container {
             &>div {
                 width: 100% !important;
+            }
+        }
+    }
+
+    .gallery {
+        .gallery-bar {
+            width: 50px;
+            height: 50px;
+
+            top: 25px;
+        }
+
+        .gallery-left {
+            left: 25px;
+        }
+
+        .gallery-right {
+            left: 125px;
+        }
+
+        .gallery-content {
+            width: clamp(200px, 100vw, 100%);
+            height: 50vh;
+
+            margin: 100px 0;
+            padding: 0;
+
+            img {
+                width: 100%;
+                height: 100%;
+
+                margin: 0;
+                padding: 0;
+
+                object-fit: cover;
+            }
+
+            .gallery-text {
+                margin: 25px;
+
+                .gallery-header {
+                    flex-direction: column;
+
+                    h1 {
+                        margin: 25px 0 0 0;
+                    }
+
+                    h2 {
+                        margin: 0;
+
+                        font-size: 0.5rem;
+                    }
+                }
             }
         }
     }

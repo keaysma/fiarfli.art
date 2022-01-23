@@ -20,7 +20,7 @@ export default {
 </script>
 
 <style lang="scss">
-.page {
+#commissions.page {
     display: flex;
     flex-direction: column;
 
@@ -41,15 +41,15 @@ export default {
     }
 }
 
-@media only screen and (max-width: 650px) {
-    .page {
+@media only screen and (max-width: 768px) {
+    #commissions.page {
         width: 100%;
         min-height: 100vh;
 
         margin: 0;
 
         .text-content {
-            margin: 100px 10vw;
+            margin: 100px 35px;
             //position: sticky;
             //top: 100px;
 

@@ -20,19 +20,18 @@ export default {
 </script>
 
 <style lang="scss">
-.page {
+#about.page {
     display: flex;
     flex-direction: column;
 
     width: 100%;
-    min-height: 100vh;
 
     margin: 0;
 
     //background: white;
 
     .text-content {
-        margin: 200px 200px;
+        margin: 200px 200px 50px;
         //position: sticky;
         top: 200px;
 
@@ -41,15 +40,15 @@ export default {
     }
 }
 
-@media only screen and (max-width: 650px) {
-    .page {
+@media only screen and (max-width: 768px) {
+    #about.page {
         width: 100%;
-        min-height: 100vh;
+        height: 500px;
 
         margin: 0;
 
         .text-content {
-            margin: 100px 10vw;
+            margin: 100px 35px;
             //position: sticky;
             //top: 100px;
 

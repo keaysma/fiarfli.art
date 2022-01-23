@@ -7,19 +7,29 @@
             <div class="nav-links">
                 <a v-bind:class="`nav-link ${navSection === 0 ? `selected` : ``}`" @click="setMobileOpen(false)" href="#!">Home</a>
                 <a v-bind:class="`nav-link ${navSection === 1 ? `selected` : ``}`" @click="setMobileOpen(false)" href="#about">About</a>
-                <a v-bind:class="`nav-link ${navSection === 2 ? `selected` : ``}`" @click="setMobileOpen(false)" href="#art">Art</a>
+                <a v-bind:class="`nav-link ${navSection === 2 ? `selected` : ``}`" @click="setMobileOpen(false)" href="#art" id="art-link">Art</a>
                 <div class="sub-links" v-if="navSection === 2">
-                    <a class="nav-link">Illustration</a>
-                    <a class="nav-link">Animation</a>
+                    <a 
+                        v-for="(block, blockIndex) in blocks" 
+                        :key="blockIndex" class="nav-link" 
+                        :class="{selected: navArtSubsection === blockIndex}" 
+                        :href="`#art-${block.name}`"
+                        @click="setMobileOpen(false)"
+                    >
+                        {{ block.name }}
+                    </a>
                 </div>
                 <a v-bind:class="`nav-link ${navSection === 3 ? `selected` : ``}`" @click="setMobileOpen(false)" href="#commissions">Commissions</a>
                 <a v-bind:class="`nav-link ${navSection === 4 ? `selected` : ``}`" @click="setMobileOpen(false)" href="#contact-me">Contact Me</a>
             </div>
         </div>
     </div>
-    <div class="mobile-navbar">
-        <div class="mobile-nav-signature blended">
-            <a>Raquel</a>
+    <div v-if="!isGalleryOpen" class="mobile-navbar">
+        <div class="mobile-nav-signature">
+            <img
+                class="mobile-nav-signature"
+                src="/Raquel-signature.svg"
+            />
         </div>
         <button class="thumb blended" @click="setMobileOpen(true)" v-if="!isMobileOpen">
             <font-awesome-icon :icon="faBars" />
@@ -32,6 +42,8 @@
 
 <script>
 import { ref } from 'vue';
+
+import state from '../state';
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { faChessQueen, faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
@@ -50,12 +62,18 @@ export default {
     data () {
         return {
             faChessQueen, faBars, faTimes,
-            navSection: 0
+            navSection: 0,
+            navArtSubsection: 0
         }
     },
 
     components: {
         FontAwesomeIcon
+    },
+
+    computed: {
+        blocks(){ return state?.blocks },
+        isGalleryOpen(){ return state?.isGalleryOpen }
     },
 
     mounted () {
@@ -66,20 +84,39 @@ export default {
     },
     methods: {
         handleScroll (event) {
-            let scroll = document.documentElement.scrollTop
-            let height = document.documentElement.clientHeight
-            let section = Math.round(scroll/height)
+            const scrollTop = document.documentElement.scrollTop
+
+            const pageElementDistance = [
+                ... document.getElementsByClassName('hero'), 
+                ... document.getElementsByClassName('page')
+            ].map(e => {
+                let dist = e.offsetTop - scrollTop
+                
+                //bias the page above us
+                if (dist < 0)
+                    dist /= 2
+                
+                return Math.abs(dist)
+            })
+
+            const minDistance = Math.min(... pageElementDistance)
+            const section = pageElementDistance.indexOf(minDistance)
+
+            const artSectionElementDistance = [
+                ... document.getElementsByClassName('art-section'),
+            ].map(e => Math.abs(e.offsetTop - scrollTop))
+            const artSubsection = artSectionElementDistance.indexOf(Math.min(... artSectionElementDistance))
             
             /*
             console.log({
-                scroll,
-                height,
-                section,
-                var: this.navSection
+                pageElementDistance,
+                minDistance,
+                section
             })
             */
 
             this.navSection = section
+            this.navArtSubsection = artSubsection
         }
   }
 }
@@ -132,10 +169,24 @@ export default {
             display: flex;
             flex-direction: column;
 
-            filter: brightness(2.2);
+            width: 100px;
+
+            margin: 0 0px 0 auto;
+            padding: 0 0px 0 0;
+
+            background: #0001;
+            border: 1px dashed #0002;
+            border-radius: 10px 0 10px 10px;
+
+            text-decoration: none;
+            filter: brightness(1.2);
 
             .nav-link {
                 font-size: 0.75rem;
+
+                &.selected {
+                    filter: brightness(0.2);
+                }
             }
         }
     }
@@ -159,10 +210,18 @@ export default {
             text-decoration: none;
         }
 
+        &#art-link.selected {
+            margin-bottom: 0;
+            border: 1px dashed #0003;
+            border-bottom: 0;
+            border-radius: 5px 5px 0 0;
+            background: #0001;
+        }
+
         color: #534957;
 
         margin: 5px 0 5px auto;
-        padding: 0;
+        padding: 0 10px;
 
         font-size: 1.33rem;
         //text-shadow: 1px 1px #8888;
@@ -252,11 +311,14 @@ export default {
         padding-top: 25px;
 
         //background: #0002;
-        background: linear-gradient(165deg, #ADD8E6A0, #FFC0CBF0, #fffee190);
-        backdrop-filter: blur(10px);
+        //background: linear-gradient(165deg, #ADD8E6F0, #FFC0CBF0, #fffee1F0);
+        backdrop-filter: blur(100px);
+
+        transition: opacity 0.15s;
 
         &:not(.mobile-open) {
-            display: none;
+            opacity: 0;
+            pointer-events: none;
         }
 
         .nav-content {
@@ -278,6 +340,13 @@ export default {
                 display: flex;
                 flex-direction: column;
 
+                width: 90vw;
+
+                margin: 0 25px 0 -15px;
+                padding: 0 0 0 15px;
+
+                border-top-right-radius: 10px;
+
                 filter: brightness(1.5);
 
                 .nav-link {
@@ -287,6 +356,13 @@ export default {
         }
 
         .nav-link {
+            &#art-link.selected {
+                margin-bottom: 0;
+                border: 1px solid transparent;
+                border-radius: 5px 5px 0 0;
+                background: transparent;
+            }
+
             margin: 5px 20px;
 
             font-size: 3rem;

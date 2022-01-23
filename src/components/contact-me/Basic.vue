@@ -16,19 +16,19 @@ export default {
 </script>
 
 <style lang="scss">
-.page {
+#contact-me.page {
     display: flex;
     flex-direction: column;
 
     width: 100%;
-    min-height: 100vh;
+    //min-height: 100vh;
 
     margin: 0;
 
     //background: white;
 
     .text-content {
-        margin: 200px 200px;
+        margin: 200px 200px 400px;
         //position: sticky;
         top: 200px;
 
@@ -37,15 +37,15 @@ export default {
     }
 }
 
-@media only screen and (max-width: 650px) {
-    .page {
+@media only screen and (max-width: 768px) {
+    #contact-me.page {
         width: 100%;
-        min-height: 100vh;
+        min-height: 50vh;
 
         margin: 0;
 
         .text-content {
-            margin: 100px 10vw;
+            margin: 100px 35px 350px;
             //position: sticky;
             //top: 100px;
 

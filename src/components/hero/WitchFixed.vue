@@ -110,7 +110,7 @@ export default {
     }
 }
 
-@media only screen and (max-width: 650px) {
+@media only screen and (max-width: 768px) {
     .hero {
         .content {
             display: none;
