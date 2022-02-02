@@ -45,6 +45,8 @@ export default {
     .hero-image {
         position: fixed;
 
+        top: 0px;
+
         z-index: 0;
 
         width: 100%;

@@ -5,22 +5,22 @@
                 <a>Raquel</a>
             </div>
             <div class="nav-links">
-                <a v-bind:class="`nav-link ${navSection === 0 ? `selected` : ``}`" @click="setMobileOpen(false)" href="#!">Home</a>
-                <a v-bind:class="`nav-link ${navSection === 1 ? `selected` : ``}`" @click="setMobileOpen(false)" href="#about">About</a>
-                <a v-bind:class="`nav-link ${navSection === 2 ? `selected` : ``}`" @click="setMobileOpen(false)" href="#art" id="art-link">Art</a>
+                <a v-bind:class="`nav-link ${navSection === 0 ? `selected` : ``}`" @click="closeMobileMenu()" href="#!">Home</a>
+                <a v-bind:class="`nav-link ${navSection === 1 ? `selected` : ``}`" @click="closeMobileMenu()" href="#about">About</a>
+                <a v-bind:class="`nav-link ${navSection === 2 ? `selected` : ``}`" @click="closeMobileMenu()" href="#art" id="art-link">Art</a>
                 <div class="sub-links" v-if="navSection === 2">
                     <a 
                         v-for="(block, blockIndex) in blocks" 
                         :key="blockIndex" class="nav-link" 
                         :class="{selected: navArtSubsection === blockIndex}" 
                         :href="`#art-${block.name}`"
-                        @click="setMobileOpen(false)"
+                        @click="closeMobileMenu()"
                     >
                         {{ block.name }}
                     </a>
                 </div>
-                <a v-bind:class="`nav-link ${navSection === 3 ? `selected` : ``}`" @click="setMobileOpen(false)" href="#commissions">Commissions</a>
-                <a v-bind:class="`nav-link ${navSection === 4 ? `selected` : ``}`" @click="setMobileOpen(false)" href="#contact-me">Contact Me</a>
+                <a v-bind:class="`nav-link ${navSection === 3 ? `selected` : ``}`" @click="closeMobileMenu()" href="#commissions">Commissions</a>
+                <a v-bind:class="`nav-link ${navSection === 4 ? `selected` : ``}`" @click="closeMobileMenu()" href="#contact-me">Contact Me</a>
             </div>
         </div>
     </div>
@@ -31,10 +31,10 @@
                 src="/Raquel-signature.svg"
             />
         </div>
-        <button class="thumb blended" @click="setMobileOpen(true)" v-if="!isMobileOpen">
+        <button class="thumb blended" @click="openMobileMenu()" v-if="!isMobileOpen">
             <font-awesome-icon :icon="faBars" />
         </button>
-        <button class="thumb blended" @click="setMobileOpen(false)" v-if="isMobileOpen">
+        <button class="thumb blended" @click="closeMobileMenu()" v-if="isMobileOpen">
             <font-awesome-icon :icon="faTimes" />
         </button>
     </div>
@@ -48,14 +48,47 @@ import state from '../state';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { faChessQueen, faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
 
+const pageThreshold = 101
+
+const indexOfSmallestNegativeValue = (list) => {
+    let res = 0
+    let minDistance = pageThreshold
+    for(const idx in list){
+        const elementDistance = list[idx]
+        if(elementDistance < pageThreshold){
+            if(minDistance === pageThreshold || elementDistance > minDistance){
+                minDistance = elementDistance
+                res = idx
+            }
+        }
+    }
+
+    return Number(res)
+}
+
 export default {
     setup () {
         const isMobileOpen = ref(false);
         const setMobileOpen = (value) => (isMobileOpen.value = value);
 
+        const openMobileMenu = () => {
+            isMobileOpen.value = true;
+            document.body.style.overflow = 'hidden'
+
+        }
+
+        const closeMobileMenu = () => {
+            isMobileOpen.value = false;
+            document.body.style.overflow = 'scroll'
+
+        }
+
         return {
             isMobileOpen,
-            setMobileOpen
+            //setMobileOpen,
+
+            openMobileMenu,
+            closeMobileMenu
         }
     },
     
@@ -93,19 +126,21 @@ export default {
                 let dist = e.offsetTop - scrollTop
                 
                 //bias the page above us
-                if (dist < 0)
-                    dist /= 2
+                //if (dist < 0)
+                //    dist /= 2
                 
-                return Math.abs(dist)
+                return dist //Math.abs(dist)
             })
 
-            const minDistance = Math.min(... pageElementDistance)
-            const section = pageElementDistance.indexOf(minDistance)
+            //const minDistance = Math.min(... pageElementDistance)
+            //const section = pageElementDistance.indexOf(minDistance)
+            const section = indexOfSmallestNegativeValue(pageElementDistance)
 
             const artSectionElementDistance = [
                 ... document.getElementsByClassName('art-section'),
-            ].map(e => Math.abs(e.offsetTop - scrollTop))
-            const artSubsection = artSectionElementDistance.indexOf(Math.min(... artSectionElementDistance))
+            ].map(e => e.offsetTop - scrollTop)
+            //const artSubsection = artSectionElementDistance.indexOf(Math.min(... artSectionElementDistance))
+            const artSubsection = indexOfSmallestNegativeValue(artSectionElementDistance)
             
             /*
             console.log({
@@ -114,6 +149,11 @@ export default {
                 section
             })
             */
+
+           console.log({
+               artSectionElementDistance,
+               artSubsection
+           })
 
             this.navSection = section
             this.navArtSubsection = artSubsection
@@ -229,8 +269,9 @@ export default {
 }
 
 .blended {
-    filter: invert(1);
-    mix-blend-mode:exclusion;
+    //filter: invert(1);
+    //mix-blend-mode: difference;
+    color: #ecc4f2;
 }
 
 .mobile-navbar {

@@ -35,7 +35,7 @@
             <font-awesome-icon :icon="faChevronRight" size="2x" />
         </button>
 
-        <div class="gallery-content">
+        <div class="gallery-content" v-on:touchstart="touchStart" v-on:touchend="touchEnd">
             <img
                 v-bind:src="blocks?.[gallerySettings?.blockIndex]?.content?.[gallerySettings?.contentIndex]?.path"
             />
@@ -67,13 +67,15 @@ import { ref, onMounted, getCurrentInstance } from 'vue';
 
 import state from '../state';
 
+import indexData from '../../../public/art/index.json'
+
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { faTimes, faExpandArrowsAlt, faCompressArrowsAlt, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
 export default {
     created () {
         onMounted(() => {
-            fetch(`/art/index.json`).then(res => res.json())
+            /*fetch(`/art/index.json`).then(res => res.json())
             .then(({blocks}) => {
                 state.blocks = [
                     ... blocks
@@ -81,7 +83,7 @@ export default {
             })
             .catch((e) => {
                 console.log(e)
-            })
+            })*/
 
             window.addEventListener('keydown', (e) => {
                 //console.log({key: e.key})
@@ -112,6 +114,8 @@ export default {
     },
 
     setup () {
+        state.blocks = [ ... indexData.blocks ]
+        
         const isGalleryFullscreen = ref(false);
         const setIsGalleryFullscreen = (value) => {
             isGalleryFullscreen.value = value
@@ -120,14 +124,18 @@ export default {
         //const isGalleryOpen = ref(false);
         const setIsGalleryOpen = (value) => {
             state.isGalleryOpen = value
+            document.body.style.overflow = 'hidden'
         };
         const closeGallery = () => {
             state.isGalleryOpen = false
             isGalleryFullscreen.value = false
+            document.body.style.overflow = 'auto'
         }
 
         const gallerySettings = ref({});
         const setGallerySettings = (value) => (gallerySettings.value = value);
+
+        const touchStartEvent = ref();
 
         return {
             isGalleryFullscreen,
@@ -143,6 +151,24 @@ export default {
     },
 
     methods: {
+        touchStart (touchEvent) {
+            //console.log({touchEvent})
+            this.touchStartEvent = touchEvent;
+        },
+
+        touchEnd (touchEvent) {
+            //console.log({touchEvent})
+            
+            const xMove = touchEvent?.changedTouches?.[0]?.screenX - this.touchStartEvent?.changedTouches?.[0]?.screenX;
+            //console.log(xMove)
+
+            if(xMove >= 50)
+                this.galleryPrevious()
+
+            if(xMove <= -50)
+                this.galleryNext()
+        },
+
         galleryPrevious(){
             //console.log(`previous`)
             //console.log({ gallerySettings: this.gallerySettings })
@@ -214,7 +240,7 @@ export default {
         return {
             faTimes, faExpandArrowsAlt, faCompressArrowsAlt, faChevronLeft, faChevronRight,
 
-            //blocks: [],
+            //blocks: [ ... indexData.blocks ],
         }
     }
 }
@@ -271,6 +297,12 @@ export default {
             margin: 0 auto;
 
             background: #E6E4D5AA;
+
+            transition: filter 0.15s;
+
+            &:hover, &:focus {
+                filter: brightness(0.85);
+            }
 
             &.width-1\/3 {
                 width: 33.33%

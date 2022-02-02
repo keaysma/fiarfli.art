@@ -9,6 +9,8 @@ import Art from '../components/art/FlexGallery.vue'
 import Commissions from '../components/commissions/Basic.vue'
 import ContactMe from '../components/contact-me/Basic.vue'
 import MadeWithLove from '../components/footer/made-with-love.vue'
+
+import state from '../components/state';
 ---
 
 <html lang="en">
@@ -57,7 +59,7 @@ import MadeWithLove from '../components/footer/made-with-love.vue'
       }
     </style>
   </head>
-  <body>
+  <body class="">
     <Hero client:visible/>
     <main>
       <Nav client:visible/>
