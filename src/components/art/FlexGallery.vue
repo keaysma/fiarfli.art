@@ -67,7 +67,8 @@ import { ref, onMounted, getCurrentInstance } from 'vue';
 
 import state from '../state';
 
-import indexData from '../../../public/art/index.json'
+//import indexData from '../../../public/art/index.json'
+import indexData from '../index.json'
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { faTimes, faExpandArrowsAlt, faCompressArrowsAlt, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
@@ -115,7 +116,7 @@ export default {
 
     setup () {
         state.blocks = [ ... indexData.blocks ]
-        
+
         const isGalleryFullscreen = ref(false);
         const setIsGalleryFullscreen = (value) => {
             isGalleryFullscreen.value = value

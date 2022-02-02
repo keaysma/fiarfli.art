@@ -150,10 +150,12 @@ export default {
             })
             */
 
+           /*
            console.log({
                artSectionElementDistance,
                artSubsection
            })
+           */
 
             this.navSection = section
             this.navArtSubsection = artSubsection
