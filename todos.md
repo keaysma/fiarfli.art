@@ -7,9 +7,14 @@
 [x] Image gallery is compiled, does not dynamically access index.json
 [x] Fix mobile nav sub-nav
 [x] Rework nav locator algo
+[x] Deploy on push to master for Vercel
+
+[x] Add swipe to gallery fullscreen
+[ ] Rework scroll lock, it's janky
+[ ] Add config for mobile browser color, use the pink color
+[ ] Favorite pokemon on site
+[ ] Change gallery from flexbox to css grid
 
 [ ] Get artist statement from Raquel
-[ ] Add config for mobile browser color, use the pink color
 [ ] Add contact me functionality, ship to email
-[x] Deploy on push to master for Vercel
 [ ] Flask app that pushes to master

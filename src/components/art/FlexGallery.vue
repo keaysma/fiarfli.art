@@ -50,7 +50,7 @@
             </div>
         </div>
 
-        <div v-if="isGalleryFullscreen" class="gallery-fullscreen">
+        <div v-if="isGalleryFullscreen" class="gallery-fullscreen" v-on:touchstart="touchStart" v-on:touchend="touchEnd">
             <button class="" @click="setIsGalleryFullscreen(false)">
                 <font-awesome-icon :icon="faCompressArrowsAlt" size="2x" />
             </button>
@@ -91,8 +91,10 @@ export default {
                 //console.log({this: this})
 
                 if (e.key === 'Escape') {
-                    if(this.isGalleryFullscreen === false)
+                    if(this.isGalleryFullscreen === false){
                         state.isGalleryOpen = false
+                        document.body.style.overflow = 'auto'
+                    }
 
                     this.isGalleryFullscreen = false
                 }
