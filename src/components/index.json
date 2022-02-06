@@ -6,10 +6,15 @@
                 "content": [
                     {
                         "path" : "/art/...",
-                        "width": ["full", "1/3", "2/3"],
+                        "width": [
+                            "1", 
+                            "1/2",
+                            "1/3", "2/3", 
+                            "1/6", "2/6", "3/6", "4/6", "5/6"
+                        ],
                         "height": ["1", "2", "3"],
+                        "max-height": "###px",
                         "fit": ["cover", "contain"],
-                        "img-height": ["full", "1/3", "2/3"],
                         "title": "...",
                         "desc": "...",
                         "date": "YYYY-MM-DD"
@@ -24,8 +29,8 @@
             "content": [
                 {
                     "path": "/art/froggo.png",
-                    "width": "1/2",
-                    "height": "3",
+                    "width": "4/6",
+                    "height": "1",
 
                     "fit": "cover",
 
@@ -34,42 +39,9 @@
                     "date": "2022-22-1"
                 },
                 {
-                    "path": "/art/blue_peony.png",
-                    "width": "1/2",
-                    "height": "3",
-                    
-                    "fit": "cover",
-
-                    "title": "Blue Peony",
-                    "desc": "Raquel isn't writing these, in fact, this is the Michael. I love Raquel's art.",
-                    "date": "2022-22-1"
-                },
-                {
-                    "path": "/art/starry cloud backdrop.png",
-                    "width": "1/3",
-                    "height": "1",
-                    
-                    "fit": "cover",
-
-                    "title": "Starry Cloud Backdrop",
-                    "desc": "These are the wonderful stars",
-                    "date": "2022-22-1"
-                },
-                {
-                    "path": "/art/Gaius and Skitty.png",
-                    "width": "1/3",
-                    "height": "1",
-                    
-                    "fit": "contain",
-
-                    "title": "Gaius and Skitty",
-                    "desc": "Wooof",
-                    "date": "2022-22-1"
-                },
-                {
                     "path": "/art/Illustration flip.png",
-                    "width": "1/3",
-                    "height": "1",
+                    "width": "2/6",
+                    "height": "2",
                     
                     "fit": "cover",
 
@@ -78,9 +50,42 @@
                     "date": "2022-22-1"
                 },
                 {
+                    "path": "/art/Gaius and Skitty.png",
+                    "width": "2/6",
+                    "height": "2",
+                    
+                    "fit": "contain",
+
+                    "title": "Gaius and Skitty",
+                    "desc": "Wooof",
+                    "date": "2022-22-1"
+                },
+                {
+                    "path": "/art/starry cloud backdrop.png",
+                    "width": "2/6",
+                    "height": "2",
+                    
+                    "fit": "cover",
+
+                    "title": "Starry Cloud Backdrop",
+                    "desc": "These are the wonderful stars",
+                    "date": "2022-22-1"
+                },
+                {
+                    "path": "/art/blue_peony.png",
+                    "width": "2/6",
+                    "height": "1",
+                    
+                    "fit": "contain",
+
+                    "title": "Blue Peony",
+                    "desc": "Raquel isn't writing these, in fact, this is the Michael. I love Raquel's art.",
+                    "date": "2022-22-1"
+                },
+                {
                     "path": "/art/Hangin.png",
-                    "width": "full",
-                    "height": "3",
+                    "width": "1",
+                    "height": "1",
                     
                     "fit": "cover",
 
@@ -95,7 +100,7 @@
             "content": [
                 {
                     "path": "/art/Illustration4.png",
-                    "width": "full",
+                    "width": "1",
                     "height": "6",
                     
                     "fit": "cover",

@@ -1,1 +1,0 @@
-/* empty css                                              */import{_ as e}from"./plugin-vue_export-helper.21dcd24c.js";import{o as s,d as t,e as o}from"./vendor.060e3b1e.js";const c={},r={class:"hero"},_=o("img",{class:"hero-image",src:"/witch_girl_jump.png"},null,-1),a=[_];function n(i,p,d,l,h,m){return s(),t("div",r,a)}var v=e(c,[["render",n]]);export{v as default};

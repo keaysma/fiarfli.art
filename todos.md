@@ -10,11 +10,15 @@
 [x] Deploy on push to master for Vercel
 
 [x] Add swipe to gallery fullscreen
-[ ] Rework scroll lock, it's janky
+[x] Change gallery from flexbox to css grid
+[x] Move fullscreen marker to be on top of the display image
+
 [ ] Add config for mobile browser color, use the pink color
 [ ] Favorite pokemon on site
-[ ] Change gallery from flexbox to css grid
 
 [ ] Get artist statement from Raquel
 [ ] Add contact me functionality, ship to email
 [ ] Flask app that pushes to master
+
+# Maybe
+[ ] Rework scroll lock, it's janky

@@ -7,7 +7,7 @@
                 <div class="art-container">
                     <div
                         v-for="(content, contentIndex) in block.content" :key="contentIndex"
-                        v-bind:class="`width-${content.width} height-${content.height}`"
+                        v-bind:style="{gridArea: `span ${content.itemHeight} / span ${content.itemWidth}`}"
                         @click="setGallerySettings({blockIndex,contentIndex});setIsGalleryOpen(true)"
                     >
                         <img 
@@ -19,11 +19,12 @@
             </div>
         </div>
     </div>
-    <!-- <div v-if="isGalleryOpen" class="gallery" v-on:click.self="closeGallery()"> -->
+
+    <!-- Gallery -->
     <div class="gallery" :class="{open: isGalleryOpen}" v-on:click.self="closeGallery()">
-        <button class="gallery-icon gallery-go-fullscreen" @click="setIsGalleryFullscreen(true)">
+        <!-- <button class="gallery-icon gallery-go-fullscreen" @click="setIsGalleryFullscreen(true)">
             <font-awesome-icon :icon="faExpandArrowsAlt" size="2x" />
-        </button>
+        </button> -->
         <button class="gallery-icon gallery-thumb" @click="closeGallery()">
             <font-awesome-icon :icon="faTimes" size="2x" />
         </button>
@@ -36,9 +37,16 @@
         </button>
 
         <div class="gallery-content" v-on:touchstart="touchStart" v-on:touchend="touchEnd">
-            <img
-                v-bind:src="blocks?.[gallerySettings?.blockIndex]?.content?.[gallerySettings?.contentIndex]?.path"
-            />
+            <div class="image-container hover-focus">
+                <img
+                    v-bind:src="blocks?.[gallerySettings?.blockIndex]?.content?.[gallerySettings?.contentIndex]?.path"
+                />
+                <div class="button-container" @click="setIsGalleryFullscreen(true)">
+                    <button class="">
+                        <font-awesome-icon :icon="faExpandArrowsAlt" size="4x" />
+                    </button>
+                </div>
+            </div>
             <div class="gallery-text">
                 <div class="gallery-header">
                     <h1>{{ blocks?.[gallerySettings?.blockIndex]?.content?.[gallerySettings?.contentIndex]?.title }}</h1>
@@ -50,6 +58,7 @@
             </div>
         </div>
 
+        <!-- Fullscreen Gallery -->
         <div v-if="isGalleryFullscreen" class="gallery-fullscreen" v-on:touchstart="touchStart" v-on:touchend="touchEnd">
             <button class="" @click="setIsGalleryFullscreen(false)">
                 <font-awesome-icon :icon="faCompressArrowsAlt" size="2x" />
@@ -117,7 +126,49 @@ export default {
     },
 
     setup () {
-        state.blocks = [ ... indexData.blocks ]
+        const gridCols = 6
+        const indexDataBlocks = [ ... indexData.blocks ].map(((section) => {
+            let currentRow = 0
+            let currentCol = 0
+
+            const newContent = section.content.map(item => {
+                const { width : widthFr, height : heightFr } = item
+                const itemWidth = (eval(widthFr) * gridCols)
+
+                /*if(currentCol + itemWidth > gridCols){
+                    currentCol = 0
+                    currentRow += 1
+                }
+
+                const colStart = currentCol
+                const rowStart = currentRow
+
+                const colEnd = currentCol + Number(itemWidth)
+                const rowEnd = currentRow + heightFr
+
+                currentCol += itemWidth*/
+
+                const itemHeight = eval(heightFr)
+
+                /*console.log({
+                    itemWidth, widthFr, rowStart, rowEnd, colStart, colEnd, currentRow, currentCol
+                })*/
+
+                return {
+                    //rowStart, rowEnd,
+                    //colStart, colEnd,
+                    itemWidth, itemHeight,
+                    ... item
+                }
+            })
+
+            section.content = newContent
+            return section
+        }))
+
+        //console.log({ indexDataBlocks })
+
+        state.blocks = indexDataBlocks
 
         const isGalleryFullscreen = ref(false);
         const setIsGalleryFullscreen = (value) => {
@@ -283,19 +334,15 @@ export default {
     }
 
     .art-container {
-        display: flex;
-        
-        flex-direction: row;
-        flex-wrap: wrap;
-
-
-        //border: 1px solid black;
-        //border-radius: 25px;
+        display: grid;
+        grid-template-rows: auto minmax(0, 150px);
+        grid-template-columns: repeat(6, 1fr);
 
         &>div {
-            min-width: 150px;
-            max-width: 100%;
-            height: 300px;
+            width: 100%;
+            height: 100%;
+
+            justify-self: center;
 
             margin: 0 auto;
 
@@ -305,38 +352,6 @@ export default {
 
             &:hover, &:focus {
                 filter: brightness(0.85);
-            }
-
-            &.width-1\/3 {
-                width: 33.33%
-            }
-            &.width-1\/2 {
-                width: 50%
-            }
-            &.width-2\/3 {
-                width: 66.66%
-            }
-            &.width-full {
-                width: 100%;
-            }
-
-            &.height-1 {
-                height: 150px;
-            }
-            &.height-2 {
-                height: 200px;
-            }
-            &.height-3 {
-                height: 250px;
-            }
-            &.height-4 {
-                height: 300px;
-            }
-            &.height-5 {
-                height: 350px;
-            }
-            &.height-6 {
-                height: 400px;
             }
 
             img {
@@ -351,18 +366,6 @@ export default {
                 }
                 &.fit-cover {
                     object-fit: cover;
-                }
-
-                &.img-height-1\/3 {
-                    height: 50%;
-                    padding-top: 16%;
-                }
-                &.img-height-2\/3 {
-                    height: 66%;
-                    padding-top: 7%;
-                }
-                &.img-height-full {
-                    height: 100%;
                 }
             }
         }
@@ -455,11 +458,45 @@ export default {
 
         margin: 150px auto;
 
-        img {
+        &>div.image-container, img {
             width: 100%;
             height: 100%;
 
             object-fit: contain;
+
+            //transition: all 1s;
+
+            .button-container {
+                position: relative;
+
+                top: -100%;
+
+                width: 100%;
+                height: 100%;
+
+                button {
+                    position: absolute;
+
+                    width: 80px;
+                    height: 80px;
+                    
+                    top: calc(50% - 40px);
+                    left: calc(50% - 40px);
+                    margin: auto;
+
+                    color: #FFFF;
+                    background: #0008;
+                    border: none;
+                    border-radius: 50px;
+
+                    opacity: 0;
+                    transition: opacity 0.15s;
+                }
+
+                &:hover>button {
+                    opacity: 1;
+                }
+            }
         }
 
         .gallery-text {
@@ -522,6 +559,12 @@ export default {
             object-fit: contain;
 
         }
+    }
+}
+
+.hover-focus{
+    &:hover, &:focus {
+        filter: brightness(0.95);
     }
 }
 
