@@ -42,29 +42,37 @@ import state from '../components/state';
         color: white;
       }
       .content {
-        width: calc(100vw - 200px);
-        z-index: 20;
-
-        /* background: black; */
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        z-index: 10;
+      }
+      .page-content {
+        width: calc(100% - 45px);
+        margin: 0;
+        padding: 0;
       }
       @media only screen and (max-width: 768px) {
         .content {
           width: 100vw;
           padding-left: 0;
         }
+        .page-content {
+          width: 100%;
+        }
       }
       .background {
-        background: #FFF1ED;
-        /* background: linear-gradient(165deg, lightblue, pink, #fffee1); */
+        /* background: #FFF1ED; */
+        background: linear-gradient(165deg, lightblue, pink, #fffee1);
       }
     </style>
   </head>
   <body class="">
     <Hero client:visible/>
-    <main>
-      <Nav client:visible/>
-      <div class="content">
-        <section class="background">
+    <main class="">
+      <div class="background content">
+        <Nav client:visible/>
+        <section class="page-content">
           <About client:visible/>
           <Art client:visible/>
           <Commissions client:visible/>

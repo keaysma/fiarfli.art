@@ -21,17 +21,12 @@ export default {
     flex-direction: column;
 
     width: 100%;
-    //min-height: 100vh;
+    height: 95vh;
 
-    margin: 0;
-
-    //background: white;
+    justify-content: center;
 
     .text-content {
-        margin: 200px 200px 400px;
-        //position: sticky;
-        top: 200px;
-
+        margin: -50px 250px 0;
         color: #534957;
         text-shadow: 1px 1px 3px #53495744;
     }
@@ -40,12 +35,12 @@ export default {
 @media only screen and (max-width: 768px) {
     #contact-me.page {
         width: 100%;
-        min-height: 50vh;
+        height: 95vh;
 
         margin: 0;
 
         .text-content {
-            margin: 100px 35px 350px;
+            margin: 100px 35px;
             //position: sticky;
             //top: 100px;
 

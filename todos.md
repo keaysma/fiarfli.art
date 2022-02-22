@@ -16,9 +16,11 @@
 [ ] Add config for mobile browser color, use the pink color
 [ ] Favorite pokemon on site
 
-[ ] Get artist statement from Raquel
+[x] Get artist statement from Raquel
 [ ] Add contact me functionality, ship to email
 [ ] Flask app that pushes to master
 
+[ ] Look in to SEO
+
 # Maybe
-[ ] Rework scroll lock, it's janky
+[x] Rework scroll lock, it's janky

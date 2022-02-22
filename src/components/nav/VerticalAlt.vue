@@ -1,14 +1,15 @@
 <template>
-    <div class="nav gradient" :class="{ 'mobile-open' : isMobileOpen }">
+    <div class="nav gradient" :class="{ 'mobile-open' : isMobileMenuOpen }">
         <div class="nav-content">
             <div class="nav-signature">
-                <a>Raquel</a>
+                <!-- <a>Raquel</a> -->
             </div>
             <div class="nav-links">
-                <a v-bind:class="`nav-link ${navSection === 0 ? `selected` : ``}`" @click="closeMobileMenu()" href="#!">Home</a>
-                <a v-bind:class="`nav-link ${navSection === 1 ? `selected` : ``}`" @click="closeMobileMenu()" href="#about">About</a>
-                <a v-bind:class="`nav-link ${navSection === 2 ? `selected` : ``}`" @click="closeMobileMenu()" href="#art" id="art-link">Art</a>
-                <div class="sub-links" v-if="navSection === 2">
+                <nav-link-thumb name="Home" href="#!" :icon="faHome" />
+                <nav-link-thumb name="About" href="#about" :icon="faAddressCard" />
+                <nav-link-thumb name="Art" href="#art" :icon="faPalette" />
+                <!-- <a v-bind:class="`nav-link ${navSection === 2 ? `selected` : ``}`" @click="closeMobileMenu()" href="#art" id="art-link"><font-awesome-icon :icon="faPalette" /></a> -->
+                <!-- <div class="sub-links" v-if="navSection === 2">
                     <a 
                         v-for="(block, blockIndex) in blocks" 
                         :key="blockIndex" class="nav-link" 
@@ -18,9 +19,11 @@
                     >
                         {{ block.name }}
                     </a>
-                </div>
-                <a v-bind:class="`nav-link ${navSection === 3 ? `selected` : ``}`" @click="closeMobileMenu()" href="#commissions">Commissions</a>
-                <a v-bind:class="`nav-link ${navSection === 4 ? `selected` : ``}`" @click="closeMobileMenu()" href="#contact-me">Contact Me</a>
+                </div> -->
+                <nav-link-thumb name="Commissions" href="#commissions" :icon="faCommentsDollar" />
+                <nav-link-thumb name="Contact Me" href="#contact-me" :icon="faAddressBook" />
+                
+                <!-- <a v-bind:class="`nav-link ${navSection === 4 ? `selected` : ``}`" @click="closeMobileMenu()" href="#contact-me"><font-awesome-icon :icon="faAddressBook" /></a> -->
             </div>
         </div>
     </div>
@@ -31,10 +34,10 @@
                 src="/Raquel-signature.svg"
             />
         </div>
-        <button class="thumb blended" @click="openMobileMenu()" v-if="!isMobileOpen">
+        <button class="thumb blended" @click="openMobileMenu()" v-if="!isMobileMenuOpen">
             <font-awesome-icon :icon="faBars" />
         </button>
-        <button class="thumb blended" @click="closeMobileMenu()" v-if="isMobileOpen">
+        <button class="thumb blended" @click="closeMobileMenu()" v-if="isMobileMenuOpen">
             <font-awesome-icon :icon="faTimes" />
         </button>
     </div>
@@ -45,8 +48,10 @@ import { ref } from 'vue';
 
 import state from '../state';
 
+import NavLinkThumb from './NavLinkThumb.vue';
+
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { faChessQueen, faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faChessQueen, faBars, faTimes, faHome, faAddressCard, faPalette, faCommentsDollar, faAddressBook } from '@fortawesome/free-solid-svg-icons';
 
 const pageThreshold = 101
 
@@ -68,25 +73,19 @@ const indexOfSmallestNegativeValue = (list) => {
 
 export default {
     setup () {
-        const isMobileOpen = ref(false);
-        const setMobileOpen = (value) => (isMobileOpen.value = value);
-
         const openMobileMenu = () => {
-            isMobileOpen.value = true;
+            state.isMobileMenuOpen = true;
             document.body.style.overflow = 'hidden'
 
         }
 
         const closeMobileMenu = () => {
-            isMobileOpen.value = false;
+            state.isMobileMenuOpen = false;
             document.body.style.overflow = 'scroll'
 
         }
 
         return {
-            isMobileOpen,
-            //setMobileOpen,
-
             openMobileMenu,
             closeMobileMenu
         }
@@ -94,19 +93,21 @@ export default {
     
     data () {
         return {
-            faChessQueen, faBars, faTimes,
+            faChessQueen, faBars, faTimes, faHome, faAddressCard, faPalette, faCommentsDollar, faAddressBook,
             navSection: 0,
             navArtSubsection: 0
         }
     },
 
     components: {
+        NavLinkThumb,
         FontAwesomeIcon
     },
 
     computed: {
         blocks(){ return state?.blocks },
-        isGalleryOpen(){ return state?.isGalleryOpen }
+        isGalleryOpen(){ return state?.isGalleryOpen },
+        isMobileMenuOpen(){ return state?.isMobileMenuOpen }
     },
 
     mounted () {
@@ -166,23 +167,15 @@ export default {
 
 <style lang="scss">
 .nav {
-    //position: sticky;
-    //display: flex;
-    //justify-content: center;
+    position: sticky;
 
-    z-index: 10;
+    z-index: 20;
 
-    //top: 10px;
 
-    //height: 100vw;
-    width: 200px;
+    width: 25px;
 
-    margin: 0;
+    margin: 10px;
     padding: 0;
-
-    background: linear-gradient(135deg, #B2DEED, pink, #fffee1);
-    //background: #0008;
-    //color:white;
 
     backdrop-filter: blur(5px);
 
@@ -191,7 +184,7 @@ export default {
         display: flex;
         flex-direction: column;
 
-        top: 200px;
+        top: 20vw;
         margin: 50px 0;
     }
 
@@ -205,7 +198,8 @@ export default {
         display: flex;
         flex-direction: column;
 
-        margin: 5px auto 0;
+        margin: 0px 5px 0;
+
 
         .sub-links {
             display: flex;
@@ -232,42 +226,6 @@ export default {
             }
         }
     }
-
-    .nav-link {
-        &::before {
-            content: '';
-        }
-
-        &::after {
-            content: '';
-        }
-
-        &::before, &::after {
-            color: #8882;
-
-            font-weight: 200;
-        }
-
-        &:not(.selected){
-            text-decoration: none;
-        }
-
-        &#art-link.selected {
-            margin-bottom: 0;
-            border: 1px dashed #0003;
-            border-bottom: 0;
-            border-radius: 5px 5px 0 0;
-            background: #0001;
-        }
-
-        color: #534957;
-
-        margin: 5px 0 5px auto;
-        padding: 0 10px;
-
-        font-size: 1.33rem;
-        //text-shadow: 1px 1px #8888;
-    }
 }
 
 .blended {
@@ -281,7 +239,7 @@ export default {
     position: fixed;
     
     width: 100%;
-    height: 80px;
+    height: 60px;
 
     top: 0;
 
@@ -295,12 +253,11 @@ export default {
     display: none;
     position: fixed;
 
-    top: 20px;
+    top: 10px;
     left: 20px;
     z-index: 20;
 
-    //width: 50px;
-    height: 50px;
+    height: 40px;
 
     background: none;
     border: none;
@@ -318,7 +275,7 @@ export default {
     display: none;
     position: fixed;
 
-    top: 15px;
+    top: 5px;
     right: 20px;
     z-index: 20;
 
@@ -350,11 +307,12 @@ export default {
 
         z-index: 30;
 
-        margin-top: 0;
+        margin: 0;
         padding-top: 25px;
+        padding-left: 10px;
 
         //background: #0002;
-        //background: linear-gradient(165deg, #ADD8E6F0, #FFC0CBF0, #fffee1F0);
+        background: linear-gradient(165deg, #ADD8E6A0, #FFC0CBA0, #fffee1A0);
         backdrop-filter: blur(100px);
 
         transition: opacity 0.15s;
@@ -405,12 +363,6 @@ export default {
                 border-radius: 5px 5px 0 0;
                 background: transparent;
             }
-
-            margin: 5px 20px;
-
-            font-size: 3rem;
-
-            //color: white;
         }
     }
 

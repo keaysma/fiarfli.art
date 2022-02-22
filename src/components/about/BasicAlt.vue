@@ -3,11 +3,11 @@
         <div class="text-content">
             <h1>About Me</h1>
             <p>
-                Lungo to go spoon trifecta robusta beans cappuccino. Eu cultivar, doppio arabica, foam, to go brewed foam con panna galão. Crema coffee caramelization coffee mocha breve redeye coffee. Cortado id carajillo blue mountain sit and ristretto grounds skinny.
+                I am a Latina multimedia illustrator, animator, and comic artist, and I often utilizing both digital and traditional materials. My traditional work is mixed media on paper, utilizing colored pencils, markers, or watercolor, while my digital art employs programs such as Clip Studio Paint and Blender. No matter what medium, my art often features ethereal characters and lush natural landscapes. 
             </p>
-            <br/><br/>
+            <br/>
             <p>
-                Single shot, bar  sweet body macchiato, steamed barista espresso black sugar. Medium cinnamon, galão caramelization, variety bar  americano doppio cinnamon coffee. Chicory filter id, single shot breve siphon, body as rich acerbic instant. Extra  con panna at, milk chicory french press id iced.
+                I have drawn all my life and have come to see color relationships as a way to aid narrative storytelling and strengthen the mood of a work. I draw because the process and the end result of colorful visuals and a cute dreamy aesthetic is rewarding to me, but also because I think art can transform the world around us. I’ve felt how rewarding more representation in media of characters who look or talk like me or occupy the spaces between different cultures like I do; my goal is to create works that allow others to experience that euphoria of their presence in the world being seen, heard, and celebrated.
             </p>
         </div>
     </div>
@@ -31,7 +31,7 @@ export default {
     //background: white;
 
     .text-content {
-        margin: 200px 200px 50px;
+        margin: 225px 125px 225px;
         //position: sticky;
         top: 200px;
 
@@ -43,7 +43,7 @@ export default {
 @media only screen and (max-width: 768px) {
     #about.page {
         width: 100%;
-        height: 500px;
+        //height: 100vh;
 
         margin: 0;
 

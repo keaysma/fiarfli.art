@@ -381,6 +381,8 @@ export default {
     top: 0;
     left: 0;
 
+    z-index: 999;
+
     background: #000D;
     backdrop-filter: blur(8px);
 
