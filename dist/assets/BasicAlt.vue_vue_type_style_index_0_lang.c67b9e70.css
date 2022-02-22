@@ -1,0 +1,1 @@
+#about.page{display:flex;flex-direction:column;width:100%;margin:0}#about.page .text-content{margin:225px 125px;top:200px;color:#534957;text-shadow:1px 1px 3px #53495744}@media only screen and (max-width: 768px){#about.page{width:100%;margin:0}#about.page .text-content{margin:100px 35px;text-shadow:1px 1px 3px #0004}}
