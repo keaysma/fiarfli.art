@@ -3,7 +3,10 @@ import { reactive } from 'vue'
 const state = reactive?.({
   isGalleryOpen: false,
   isMobileMenuOpen: false,
-  blocks: []
+  blocks: [],
+
+  mediaContentNames: [],
+  mediaContent: {}
 })
 
 export default state

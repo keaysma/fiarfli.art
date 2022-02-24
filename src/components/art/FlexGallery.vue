@@ -11,8 +11,14 @@
                         @click="setGallerySettings({blockIndex,contentIndex});setIsGalleryOpen(true)"
                     >
                         <img 
+                            v-if="!mediaContentNames.includes(content.path)"
                             v-bind:src="content.path"
                             v-bind:class="`fit-${content.fit} img-height-${content[`img-height`] ?? `full`}`"
+                        />
+                        <img 
+                            v-if="mediaContentNames.includes(content.path)"
+                            v-bind:class="`fit-${content.fit} img-height-${content[`img-height`] ?? `full`}`"
+                            v-bind:style="{backgroundImage: `url(${mediaContent[content.path].base64})`, backgroundSize: content.fit}"
                         />
                     </div>
                 </div>
@@ -39,7 +45,12 @@
         <div class="gallery-content" v-on:touchstart="touchStart" v-on:touchend="touchEnd">
             <div class="image-container hover-focus">
                 <img
+                    v-if="!mediaContentNames.includes(blocks?.[gallerySettings?.blockIndex]?.content?.[gallerySettings?.contentIndex]?.path)"
                     v-bind:src="blocks?.[gallerySettings?.blockIndex]?.content?.[gallerySettings?.contentIndex]?.path"
+                />
+                <img 
+                    v-if="mediaContentNames.includes(blocks?.[gallerySettings?.blockIndex]?.content?.[gallerySettings?.contentIndex]?.path)"
+                    v-bind:style="{backgroundImage: `url(${mediaContent[blocks?.[gallerySettings?.blockIndex]?.content?.[gallerySettings?.contentIndex]?.path].base64})`}"
                 />
                 <div class="button-container" @click="setIsGalleryFullscreen(true)">
                     <button class="">
@@ -65,7 +76,12 @@
             </button>
 
             <img
+                v-if="!mediaContentNames.includes(blocks?.[gallerySettings?.blockIndex]?.content?.[gallerySettings?.contentIndex]?.path)"
                 v-bind:src="blocks?.[gallerySettings?.blockIndex]?.content?.[gallerySettings?.contentIndex]?.path"
+            />
+            <img 
+                v-if="mediaContentNames.includes(blocks?.[gallerySettings?.blockIndex]?.content?.[gallerySettings?.contentIndex]?.path)"
+                v-bind:style="{backgroundImage: `url(${mediaContent[blocks?.[gallerySettings?.blockIndex]?.content?.[gallerySettings?.contentIndex]?.path].base64})`}"
             />
         </div>
     </div>
@@ -227,6 +243,9 @@ export default {
     
     computed: {
         blocks(){ return state?.blocks },
+        mediaContentNames(){ return state?.mediaContentNames },
+        mediaContent(){ return state?.mediaContent },
+
         isGalleryOpen(){ return state?.isGalleryOpen }
     },
 
@@ -302,6 +321,8 @@ export default {
 
                 margin: 0 auto;
 
+                background-repeat: no-repeat;
+                background-position: center;
 
                 &.fit-contain {
                     object-fit: contain;
@@ -408,6 +429,10 @@ export default {
 
             object-fit: contain;
 
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+
             //transition: all 1s;
 
             .button-container {
@@ -456,6 +481,8 @@ export default {
                 h2 {
                     margin: 25px 15px 0 15px;
 
+                    line-height: 2.75rem;
+
                     color: #C4C2BE;
                 }
             }
@@ -501,7 +528,9 @@ export default {
             z-index: 50;
 
             object-fit: contain;
-
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
         }
     }
 }

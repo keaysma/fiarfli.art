@@ -6,13 +6,15 @@
                 <div class="section-name">
                     <input :value="block.name" v-on:input="updateSectionName($event, blockIndex)" />
                     <div class="arrows">
-                        <div><FontAwesomeIcon :icon="faArrowUp" /></div>
-                        <div><FontAwesomeIcon :icon="faArrowDown" /></div>
+                        <div @click="moveSectionUp(blockIndex)"><FontAwesomeIcon :icon="faArrowUp" /></div>
+                        <div @click="moveSectionDown(blockIndex)"><FontAwesomeIcon :icon="faArrowDown" /></div>
+                        <div @click="deleteSection(blockIndex)"><FontAwesomeIcon :icon="faTrash" style="color: red;" /></div>
                     </div>
                 </div>
                 <div class="art-container">
                     <div v-for="(content, contentIndex) in block.content" :key="contentIndex" class="art-piece">
-                        <img v-bind:src="content.path"/>
+                        <img v-if="!mediaContentNames.includes(content.path)" v-bind:src="content.path"/>
+                        <img v-if="mediaContentNames.includes(content.path)" v-bind:style="{backgroundImage: `url(${mediaContent[content.path].base64})`}"/>
                         <div class="text-content">
                             <label for="name">Name</label>
                             <input name="name" :value="content.title" v-on:input="handleContentPropertyUpdate($event, blockIndex, contentIndex, 'title')" />
@@ -26,17 +28,18 @@
                             <br/>
                             <input :value="content.width" v-on:input="handleContentPropertyUpdate($event, blockIndex, contentIndex, 'width')" />
                             <input :value="content.height" v-on:input="handleContentPropertyUpdate($event, blockIndex, contentIndex, 'height')" />
+                            <input :value="content.fit" v-on:input="handleContentPropertyUpdate($event, blockIndex, contentIndex, 'fit')" />
                         </div>
                         <div class="arrows">
-                            <div><FontAwesomeIcon :icon="faArrowUp" /></div>
-                            <div><FontAwesomeIcon :icon="faArrowDown" /></div>
-                            <div><FontAwesomeIcon :icon="faTrash" /></div>
+                            <div @click="moveContentUp(blockIndex, contentIndex)"><FontAwesomeIcon :icon="faArrowUp" /></div>
+                            <div @click="moveContentDown(blockIndex, contentIndex)"><FontAwesomeIcon :icon="faArrowDown" /></div>
+                            <div @click="deleteContent(blockIndex, contentIndex)"><FontAwesomeIcon :icon="faTrash" style="color: red;" /></div>
                         </div>
                     </div>
-                    <p>NEW ART</p>
+                    <button class="new" @click="addContent(blockIndex)">NEW ART <FontAwesomeIcon :icon="faPlus" /></button>
                 </div>
             </div>
-            <p>NEW SECTION</p>
+            <button class="new" @click="addSection()">NEW SECTION <FontAwesomeIcon :icon="faPlus" /></button>
         </div>
         
         <div class="page-nav">
@@ -76,7 +79,7 @@ import { ref } from 'vue';
 import state from '../state';
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { faArrowUp, faArrowDown, faArrowRight, faTrash, faSpinner, faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faArrowUp, faArrowDown, faArrowRight, faTrash, faSpinner, faCheck, faTimes, faPlus } from '@fortawesome/free-solid-svg-icons';
 
 export default {
     setup() {
@@ -89,7 +92,7 @@ export default {
 
         return {
             uploadState,
-            
+
             token, setToken
         }
     },
@@ -114,10 +117,130 @@ export default {
             state.blocks[blockIndex].content[contentIndex][property] = event.target.value
         },
 
+        moveSectionUp (id) {
+            console.log(`move ${id} up`)
+
+            if(id < 1)
+                return
+
+            const element = state.blocks.splice(id, 1)
+            state.blocks.splice(id - 1, 0, ... element)
+        },
+
+        moveSectionDown (id) {
+            console.log(`move ${id} down`)
+
+            if(id >= state.blocks.length - 1)
+                return
+
+            const element = state.blocks.splice(id, 1)
+            state.blocks.splice(id + 1, 0, ... element)
+        },
+
+        addSection () {
+            state.blocks.push({
+                name: "New Section",
+                content: []
+            })
+        },
+
+        deleteSection (id) {
+            state.blocks.splice(id, 1)
+        },
+
+        moveContentUp (blockId, contentId) {
+            console.log(`move ${blockId} ${contentId} up`)
+
+            if(blockId === 0 && contentId === 0)
+                return
+
+            if(contentId === 0){
+                const element = state.blocks[blockId].content.splice(contentId, 1)
+                state.blocks[blockId - 1].content.push(... element)
+            }else{
+                const element = state.blocks[blockId].content.splice(contentId, 1)
+                state.blocks[blockId].content.splice(contentId - 1, 0, ... element)
+            }
+        },
+
+        moveContentDown (blockId, contentId) {
+            console.log(`move ${blockId} ${contentId} down`)
+
+            if(blockId === state.blocks.length - 1 && contentId === state.blocks[state.blocks.length - 1].content.length - 1)
+                return
+
+            if(contentId === state.blocks[blockId].content.length - 1){
+                const element = state.blocks[blockId].content.splice(contentId, 1)
+                state.blocks[blockId + 1].content.unshift(... element)
+            }else{
+                const element = state.blocks[blockId].content.splice(contentId, 1)
+                state.blocks[blockId].content.splice(contentId + 1, 0, ... element)
+            }
+        },
+
+        readFileBytes : async (file) => new Promise((res, rej) => {
+            const reader = new FileReader()
+            reader.readAsText(file, 'UTF-8')
+            reader.onload = () => res(reader.result)
+            reader.onerror = error => rej(error)
+        }),
+        readFileBase64 : async (file) => new Promise((res, rej) => {
+            const reader = new FileReader()
+            reader.readAsDataURL(file)
+            reader.onload = () => res(reader.result)
+            reader.onerror = error => rej(error)
+        }),
+
+        // the chungus
+        addContent (blockId) {
+            const _tempFileInput = document.createElement('input')
+            _tempFileInput.type = 'file'
+
+            _tempFileInput.onchange = event => { 
+                const file = event.target.files[0]
+                const filename = event.target.files[0].name
+                const path = `/art/${filename}`
+
+                const now = new Date()
+                const date = `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}`
+
+                Promise.all([this.readFileBytes(file), this.readFileBase64(file)])
+                    .then(([fileContents, base64FileContents]) => {
+                        console.log({ filename, path, fileContents, base64FileContents })
+                        state.mediaContent[path] = {
+                            utf8: fileContents,
+                            base64: base64FileContents
+                        }
+                        state.mediaContentNames = Object.keys(state.mediaContent)
+
+                        state.blocks[blockId].content.push({
+                            path, date,
+                            width: "6",
+                            height: "1",
+                            fit: "cover",
+                            title: "New Masterpiece",
+                            desc: "This is some new art by Raquel",
+                        })
+
+                        console.log({
+                            mediaContentNames: state.mediaContentNames,
+                            meidaContent: state.mediaContent
+                        })
+                    })
+            }
+
+            _tempFileInput.click()
+        },
+
+        deleteContent (blockId, contentId) {
+            state.blocks[blockId].content.splice(contentId, 1)
+        },
+
         submitChanges() {
             const payload = {
                 token: this.token,
-                blocks: [ ... state.blocks ]
+                blocks: [ ... state.blocks ],
+                content: Object.entries(state.mediaContent).map(([ name, values ]) => ({ name, content: values.utf8 }))
             }
 
             console.log(`${import.meta.env.PUBLIC_BACKEND}/api/grid`)
@@ -131,7 +254,7 @@ export default {
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    data: JSON.stringify(payload)
+                    body: JSON.stringify(payload)
                 }
             )
                 .then(res => this.uploadState = res.ok ? "success" : "error")
@@ -142,11 +265,14 @@ export default {
 
     computed: {
         blocks(){ return state?.blocks },
+        mediaContentNames(){ return state?.mediaContentNames },
+        mediaContent(){ return state?.mediaContent },
+        
     },
 
     data () {
         return {
-            faArrowUp, faArrowDown, faArrowRight, faTrash, faSpinner, faCheck, faTimes
+            faArrowUp, faArrowDown, faArrowRight, faTrash, faSpinner, faCheck, faTimes, faPlus
         }
     }
 }
@@ -162,11 +288,32 @@ export default {
     margin: 0;
     padding: 0;
 
-    color: white;
-    background: gray;
+    color: floralwhite;
+    background: linear-gradient(pink, skyblue);
 
     .content {
+        margin-bottom: 25px;
         padding: 0 10px;
+
+        h2 {
+            padding: 5px;
+
+            background: gray;
+            border-radius: 5px;
+        }
+
+        button.new {
+            width: 100%;
+
+            padding: 25px;
+
+            color: white;
+            background: green;
+
+            box-shadow: none;
+            border: none;
+            border-radius: 5px;
+        }
     }
 
     .section-name {
@@ -176,7 +323,20 @@ export default {
         .arrows {
             display: flex;
             flex-direction: row;
+
+            &>*{
+                margin: 0 10px;
+            }
         }
+    }
+
+    .art-section {
+        padding: 15px;
+        margin: 10px 0;
+
+        background: #777;
+        border: 1px dashed gray;
+        border-radius: 5px;
     }
 
     .art-piece {
@@ -193,6 +353,9 @@ export default {
             width: 20%;
 
             object-fit: contain;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
         }
 
         .text-content {
@@ -239,7 +402,7 @@ export default {
         margin: 0;
         padding: 0;
 
-        background: orange;
+        background: beige;
 
         input {
             height: 20px;
@@ -247,6 +410,9 @@ export default {
             max-width: 250px;
 
             margin: auto 10px;
+            padding: 0 0 0 10px;
+            border: 1px solid slategray;
+            border-radius: 25px;
         }
 
         .button-bar {
@@ -268,7 +434,7 @@ export default {
                 margin: 0 25px;
                 padding: 5px 5px 20px 10px;
 
-                box-shadow: 0px 0px 5px 1px orchid;
+                box-shadow: 0px 0px 5px 1px darkgrey;
                 border: none;
                 border-radius: 25px;
 
