@@ -1,0 +1,51 @@
+---
+// Component Imports
+import Art from '../components/art/FlexGallery.vue'
+import Panel from '../components/admin/Panel.vue'
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Administration</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <style>
+      html,
+      body {
+        font-family: system-ui;
+        margin: 0;
+        padding: 0;
+
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      main {
+        display: flex;
+        flex-direction: row;
+        width: 100vw;
+      }
+      main #admin:not(.maximized) {
+          width: 40vw;
+      }
+      main #admin.maximized {
+          width: 70vw;
+      }
+      a {
+        text-decoration: none;
+        color: white;
+      }
+    </style>
+  </head>
+  <body class="">
+    <main class="">
+        <Panel client:visible/>
+        <div style="width: 60%; height: 100vh; overflow: scroll;">
+            <Art client:visible/>
+        </div>
+    </main>
+  </body>
+</html>

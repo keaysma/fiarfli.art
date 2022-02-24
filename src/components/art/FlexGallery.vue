@@ -7,7 +7,7 @@
                 <div class="art-container">
                     <div
                         v-for="(content, contentIndex) in block.content" :key="contentIndex"
-                        v-bind:style="{gridArea: `span ${content.itemHeight} / span ${content.itemWidth}`}"
+                        v-bind:style="{gridArea: `span ${content.height} / span ${content.width}`}"
                         @click="setGallerySettings({blockIndex,contentIndex});setIsGalleryOpen(true)"
                     >
                         <img 
@@ -85,16 +85,6 @@ import { faTimes, faExpandArrowsAlt, faCompressArrowsAlt, faChevronLeft, faChevr
 export default {
     created () {
         onMounted(() => {
-            /*fetch(`/art/index.json`).then(res => res.json())
-            .then(({blocks}) => {
-                state.blocks = [
-                    ... blocks
-                ]
-            })
-            .catch((e) => {
-                console.log(e)
-            })*/
-
             window.addEventListener('keydown', (e) => {
                 //console.log({key: e.key})
                 //console.log({this: this})
@@ -128,31 +118,10 @@ export default {
     setup () {
         const gridCols = 6
         const indexDataBlocks = [ ... indexData.blocks ].map(((section) => {
-            let currentRow = 0
-            let currentCol = 0
-
             const newContent = section.content.map(item => {
                 const { width : widthFr, height : heightFr } = item
                 const itemWidth = (eval(widthFr) * gridCols)
-
-                /*if(currentCol + itemWidth > gridCols){
-                    currentCol = 0
-                    currentRow += 1
-                }
-
-                const colStart = currentCol
-                const rowStart = currentRow
-
-                const colEnd = currentCol + Number(itemWidth)
-                const rowEnd = currentRow + heightFr
-
-                currentCol += itemWidth*/
-
                 const itemHeight = eval(heightFr)
-
-                /*console.log({
-                    itemWidth, widthFr, rowStart, rowEnd, colStart, colEnd, currentRow, currentCol
-                })*/
 
                 return {
                     //rowStart, rowEnd,
@@ -166,16 +135,13 @@ export default {
             return section
         }))
 
-        //console.log({ indexDataBlocks })
-
-        state.blocks = indexDataBlocks
+        state.blocks = indexData.blocks
 
         const isGalleryFullscreen = ref(false);
         const setIsGalleryFullscreen = (value) => {
             isGalleryFullscreen.value = value
         };
 
-        //const isGalleryOpen = ref(false);
         const setIsGalleryOpen = (value) => {
             state.isGalleryOpen = value
             document.body.style.overflow = 'hidden'
@@ -195,7 +161,6 @@ export default {
             isGalleryFullscreen,
             setIsGalleryFullscreen,
 
-            //isGalleryOpen,
             setIsGalleryOpen,
             closeGallery,
 
@@ -206,15 +171,11 @@ export default {
 
     methods: {
         touchStart (touchEvent) {
-            //console.log({touchEvent})
             this.touchStartEvent = touchEvent;
         },
 
         touchEnd (touchEvent) {
-            //console.log({touchEvent})
-            
             const xMove = touchEvent?.changedTouches?.[0]?.screenX - this.touchStartEvent?.changedTouches?.[0]?.screenX;
-            //console.log(xMove)
 
             if(xMove >= 50)
                 this.galleryPrevious()
@@ -224,9 +185,6 @@ export default {
         },
 
         galleryPrevious(){
-            //console.log(`previous`)
-            //console.log({ gallerySettings: this.gallerySettings })
-
             let newContentIndex = (this?.gallerySettings?.contentIndex ?? 0) - 1
             let newBlockIndex = (this?.gallerySettings?.blockIndex ?? 0)
 
@@ -240,11 +198,6 @@ export default {
                 newContentIndex = this?.blocks?.[newBlockIndex]?.content?.length - 1
             }
 
-            /*console.log({
-                newContentIndex,
-                newBlockIndex
-            })*/
-
             this.gallerySettings = {
                 contentIndex: newContentIndex,
                 blockIndex: newBlockIndex
@@ -252,9 +205,6 @@ export default {
         },
 
         galleryNext(){
-            //console.log(`next`)
-            //console.log({ gallerySettings: this.gallerySettings })
-
             let newContentIndex = (this?.gallerySettings?.contentIndex ?? 0) + 1
             let newBlockIndex = (this?.gallerySettings?.blockIndex ?? 0)
 
@@ -268,19 +218,13 @@ export default {
                 }
             }
 
-            /*console.log({
-                newContentIndex,
-                newBlockIndex
-            })*/
-
-            //console.log(this?.blocks?.[newBlockIndex]?.content?.[newContentIndex])
-
             this.gallerySettings = {
                 contentIndex: newContentIndex,
                 blockIndex: newBlockIndex
             }
         }
     },
+    
     computed: {
         blocks(){ return state?.blocks },
         isGalleryOpen(){ return state?.isGalleryOpen }
@@ -293,8 +237,6 @@ export default {
     data () {
         return {
             faTimes, faExpandArrowsAlt, faCompressArrowsAlt, faChevronLeft, faChevronRight,
-
-            //blocks: [ ... indexData.blocks ],
         }
     }
 }
