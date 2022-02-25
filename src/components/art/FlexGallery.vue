@@ -481,7 +481,7 @@ export default {
                 h2 {
                     margin: 25px 15px 0 15px;
 
-                    line-height: 2.75rem;
+                    line-height: 1.75rem;
 
                     color: #C4C2BE;
                 }

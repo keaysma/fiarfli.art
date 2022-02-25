@@ -26,9 +26,29 @@
                             <textarea name="desc" :value="content.desc" v-on:input="handleContentPropertyUpdate($event, blockIndex, contentIndex, 'desc')" />
                             
                             <br/>
-                            <input :value="content.width" v-on:input="handleContentPropertyUpdate($event, blockIndex, contentIndex, 'width')" />
-                            <input :value="content.height" v-on:input="handleContentPropertyUpdate($event, blockIndex, contentIndex, 'height')" />
-                            <input :value="content.fit" v-on:input="handleContentPropertyUpdate($event, blockIndex, contentIndex, 'fit')" />
+                            
+                            <label for="width">Width</label>
+                            <select name="width" :value="content.width" v-on:input="handleContentPropertyUpdate($event, blockIndex, contentIndex, 'width')">
+                                <option value="1">1/6</option>
+                                <option value="2">2/6</option>
+                                <option value="3">3/6</option>
+                                <option value="4">4/6</option>
+                                <option value="5">5/6</option>
+                                <option value="6">full</option>
+                            </select>
+
+                            <label for="height">Height</label>
+                            <select name="height" :value="content.height" v-on:input="handleContentPropertyUpdate($event, blockIndex, contentIndex, 'height')">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select>
+
+                            <label for="fit">Image Fit</label>
+                            <select name="fit" :value="content.fit" v-on:input="handleContentPropertyUpdate($event, blockIndex, contentIndex, 'fit')">
+                                <option value="contain">Contain</option>
+                                <option value="cover">Cover</option>
+                            </select>
                         </div>
                         <div class="arrows">
                             <div @click="moveContentUp(blockIndex, contentIndex)"><FontAwesomeIcon :icon="faArrowUp" /></div>
@@ -240,7 +260,7 @@ export default {
             const payload = {
                 token: this.token,
                 blocks: [ ... state.blocks ],
-                content: Object.entries(state.mediaContent).map(([ name, values ]) => ({ name, content: values.utf8 }))
+                content: Object.entries(state.mediaContent).map(([ name, values ]) => ({ name, content: values.base64.split(',')[1] }))
             }
 
             console.log(`${import.meta.env.PUBLIC_BACKEND}/api/grid`)
