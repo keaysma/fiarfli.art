@@ -8,30 +8,30 @@
                 </p>
             </div>
             <div v-if="contactFormEnabled" class="contact-form">
-                <form>
+                <form action="mailto:raquel@fiarfli.art" method="get" enctype="text/plain">
                     <div class="form-group">
                         <div class="field-group">
-                            <label for="name">Name</label>
                             <input type="text" name="name" />
+                            <label for="name">Name</label>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="field-group">
+                            <input type="text" name="subject" autocomplete="off" />
                             <label for="subject">Subject</label>
-                            <input type="text" name="subject" />
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="field-group">
-                            <label for="message">Message</label>
-                            <textarea name="message" />
+                            <textarea name="body"></textarea>
+                            <label for="body">Message</label>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <button class="submit-button">swoosh</button>
+                        <button class="submit-button">send it! <font-awesome-icon :icon="faPaperPlane" /></button>
                     </div>
                 </form>
             </div>
@@ -42,14 +42,29 @@
 <script>
 import state from '../state'
 import { contact, contactFormEnabled } from '../content.json'
+
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
+
 export default {
-    data: () => ({ contactFormEnabled }),
     setup () {
         if(!state.contact)
             state.contact = contact
+
+        if(state.contactFormEnabled === undefined)
+            state.contactFormEnabled = contactFormEnabled
     },
     computed: {
-        contact () { return state?.contact }
+        contact () { return state?.contact },
+        contactFormEnabled () { return state?.contactFormEnabled }
+    },
+    components: {
+        FontAwesomeIcon
+    },
+    data () {
+        return {
+            faPaperPlane
+        }
     }
 }
 </script>
@@ -100,6 +115,45 @@ export default {
         }
 
         .contact-form {
+            .submit-button {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-evenly;
+                align-items: center;
+
+                margin-left: auto;
+                margin-top: 10px;
+                padding: 10px;
+
+                color: slateblue;
+                background: transparent;
+
+                border: 2px solid slateblue;
+                border-radius: 5px;
+
+                transition: all 0.25s cubic-bezier(0.075, 0.82, 0.165, 1);
+
+                &>* {
+                    margin: 0 5px;
+                }
+
+                &:hover, &:focus {
+                    color: white;
+
+                    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+                    background-size: 400% 400%;
+
+                    animation: gradient 1s infinite;
+                }
+
+                @keyframes gradient {
+                    0%{background-position:0% 0%;       transform: scale(1);}
+                    25%{background-position:100% 0%;     transform: scale(1.1)  rotate(-10deg);}
+                    50%{background-position:100% 100%;  transform: scale(1.4)   rotate(10deg);}
+                    75%{background-position:0% 100%;    transform: scale(1);}
+                }
+            }
+
             .form-group {
                 display: flex;
                 flex-direction: row;
@@ -107,19 +161,60 @@ export default {
 
             .field-group {
                 display: flex;
-                flex-direction: column;
+                flex-direction: column-reverse;
+
+                margin: 10px 0;
 
                 label {
-                    
+                    width: 100px;
+                    margin-left: 5px;
+
+                    color: slateblue;
+
+                    transition: all 0.25s cubic-bezier(0.075, 0.82, 0.165, 1);
+
+                    //transform: translate(5px, 10px);
                 }
 
                 input {
                     height: 30px;
                 }
 
+                textarea {
+                    height: 150px;
+                }
+
                 input, textarea {
-                    border: 2px solid slateblue;
+                    padding: 5px;
+                    border-width: 2px;
+                    border-style: solid;
+                    border-color: slateblue;
                     border-radius: 5px;
+
+                    background: transparent;
+
+                    transition: all 0.2s;
+
+                    &:focus {
+                        outline: none;
+                        // border-radius: 4px;
+                        // border-image: linear-gradient(pink, blue) 1;
+                        border: solid 1px transparent;
+                        border-radius: 5px;
+                        background-image: linear-gradient(#FFFD, #FFFD), 
+                                            linear-gradient(135deg, pink, blue);
+                        background-origin: border-box;
+                        background-clip: content-box, border-box;
+
+                        +label {
+                            transform: scale(1.25) rotate(-20deg) translate(-20px, -20px);
+
+                            background: linear-gradient(45deg, pink, blue);
+                            -webkit-background-clip: text;
+                            background-clip: text;
+                            -webkit-text-fill-color: transparent;
+                        }
+                    }
                 }
             }
         }

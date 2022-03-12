@@ -24,6 +24,15 @@
                     v-model="contact" 
                     @input="setState('contact', $event)"
                 />
+                <input 
+                    type="checkbox" 
+                    id="contact-form-enabled" 
+                    class="check" 
+                    name="contact-form-enabled" 
+                    v-model="contactFormEnabled" 
+                    @input="setStateCheckbox('contactFormEnabled', $event)"
+                />
+                <label for="contact-form-enabled" class="check-label">Enable Form</label><br>
             </div>
 
             <div v-if="currentPage==='gallery'">
@@ -146,6 +155,7 @@ const {
     about,
     commissions,
     contact,
+    contactFormEnabled,
     ... otherContent
 } = contentData;
 
@@ -162,11 +172,13 @@ export default {
             about : stateAbout,
             commissions : stateCommissions,
             contact : stateContact,
+            contactFormEnabled : stateContactFormEnabled
         } = state;
 
         state.about = stateCommissions || about
         state.commissions = stateAbout || commissions
         state.contact = stateContact || contact
+        state.contactFormEnabled = stateContactFormEnabled || contactFormEnabled
 
         return {
             uploadState,
@@ -323,12 +335,18 @@ export default {
             state[stateName] = event.target.value
         },
 
+        setStateCheckbox(stateName, event) {
+            //console.log({ event, content: event.target.checked })
+            state[stateName] = event.target.checked
+        },
+
         submitChanges() {
 
             const {
                 about,
                 commissions,
                 contact,
+                contactFormEnabled,
 
                 blocks,
                 mediaContent
@@ -341,7 +359,8 @@ export default {
                     ... otherContent,
                     about,
                     commissions,
-                    contact
+                    contact,
+                    contactFormEnabled
                 },
 
                 blocks: [ ... blocks ],
@@ -373,6 +392,7 @@ export default {
         about(){ return state?.about },
         commissions(){ return state?.commissions },
         contact(){ return state?.contact },
+        contactFormEnabled(){ return state?.contactFormEnabled },
         mediaContentNames(){ return state?.mediaContentNames },
         mediaContent(){ return state?.mediaContent },
         currentPage(){ return state?.adminCurrentPage }
@@ -411,6 +431,10 @@ export default {
         .feature-text {
             width: 99%;
             height: 75vh;
+        }
+
+        .check, .check-label {
+            color: black;
         }
 
         h2 {

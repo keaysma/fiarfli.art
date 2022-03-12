@@ -13,6 +13,7 @@ const state = reactive?.({
   about: undefined,
   commissions: undefined,
   contact: undefined,
+  contactFormEnabled: undefined
 })
 
 export default state
