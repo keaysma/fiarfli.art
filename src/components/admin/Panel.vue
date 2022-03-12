@@ -2,91 +2,125 @@
     <div id="admin" class="page">
         <div class="content">
             <h2>Admin panel</h2>
-            <div v-for="(block, blockIndex) in blocks" :key="blockIndex" class="art-section" :id="`art-${block.name}`">
-                <div class="section-name">
-                    <input :value="block.name" v-on:input="updateSectionName($event, blockIndex)" />
-                    <div class="arrows">
-                        <div @click="moveSectionUp(blockIndex)"><FontAwesomeIcon :icon="faArrowUp" /></div>
-                        <div @click="moveSectionDown(blockIndex)"><FontAwesomeIcon :icon="faArrowDown" /></div>
-                        <div @click="deleteSection(blockIndex)"><FontAwesomeIcon :icon="faTrash" style="color: red;" /></div>
-                    </div>
-                </div>
-                <div class="art-container">
-                    <div v-for="(content, contentIndex) in block.content" :key="contentIndex" class="art-piece">
-                        <img v-if="!mediaContentNames.includes(content.path)" v-bind:src="content.path"/>
-                        <img v-if="mediaContentNames.includes(content.path)" v-bind:style="{backgroundImage: `url(${mediaContent[content.path].base64})`}"/>
-                        <div class="text-content">
-                            <label for="name">Name</label>
-                            <input name="name" :value="content.title" v-on:input="handleContentPropertyUpdate($event, blockIndex, contentIndex, 'title')" />
-                            
-                            <label for="date">Date</label>
-                            <input name="date" :value="content.date" v-on:input="handleContentPropertyUpdate($event, blockIndex, contentIndex, 'date')" />
-                            
-                            <label for="desc">Description</label>
-                            <textarea name="desc" :value="content.desc" v-on:input="handleContentPropertyUpdate($event, blockIndex, contentIndex, 'desc')" />
-                            
-                            <br/>
-                            
-                            <label for="width">Width</label>
-                            <select name="width" :value="content.width" v-on:input="handleContentPropertyUpdate($event, blockIndex, contentIndex, 'width')">
-                                <option value="1">1/6</option>
-                                <option value="2">2/6</option>
-                                <option value="3">3/6</option>
-                                <option value="4">4/6</option>
-                                <option value="5">5/6</option>
-                                <option value="6">full</option>
-                            </select>
-
-                            <label for="height">Height</label>
-                            <select name="height" :value="content.height" v-on:input="handleContentPropertyUpdate($event, blockIndex, contentIndex, 'height')">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                            </select>
-
-                            <label for="fit">Image Fit</label>
-                            <select name="fit" :value="content.fit" v-on:input="handleContentPropertyUpdate($event, blockIndex, contentIndex, 'fit')">
-                                <option value="contain">Contain</option>
-                                <option value="cover">Cover</option>
-                            </select>
-                        </div>
-                        <div class="arrows">
-                            <div @click="moveContentUp(blockIndex, contentIndex)"><FontAwesomeIcon :icon="faArrowUp" /></div>
-                            <div @click="moveContentDown(blockIndex, contentIndex)"><FontAwesomeIcon :icon="faArrowDown" /></div>
-                            <div @click="deleteContent(blockIndex, contentIndex)"><FontAwesomeIcon :icon="faTrash" style="color: red;" /></div>
-                        </div>
-                    </div>
-                    <button class="new" @click="addContent(blockIndex)">NEW ART <FontAwesomeIcon :icon="faPlus" /></button>
-                </div>
+            <div v-if="currentPage==='about'">
+                <textarea 
+                    class="feature-text"
+                    v-model="about" 
+                    @input="setState('about', $event)"
+                />
             </div>
-            <button class="new" @click="addSection()">NEW SECTION <FontAwesomeIcon :icon="faPlus" /></button>
+
+            <div v-if="currentPage==='commissions'">
+                <textarea 
+                    class="feature-text"
+                    v-model="commissions" 
+                    @input="setState('commissions', $event)"
+                />
+            </div>
+
+            <div v-if="currentPage==='contactme'">
+                <textarea 
+                    class="feature-text"
+                    v-model="contact" 
+                    @input="setState('contact', $event)"
+                />
+            </div>
+
+            <div v-if="currentPage==='gallery'">
+                <div v-for="(block, blockIndex) in blocks" :key="blockIndex" class="art-section" :id="`art-${block.name}`">
+                    <div class="section-name">
+                        <input :value="block.name" v-on:input="updateSectionName($event, blockIndex)" />
+                        <div class="arrows">
+                            <div @click="moveSectionUp(blockIndex)"><FontAwesomeIcon :icon="faArrowUp" /></div>
+                            <div @click="moveSectionDown(blockIndex)"><FontAwesomeIcon :icon="faArrowDown" /></div>
+                            <div @click="deleteSection(blockIndex)"><FontAwesomeIcon :icon="faTrash" style="color: red;" /></div>
+                        </div>
+                    </div>
+                    <div class="art-container">
+                        <div v-for="(content, contentIndex) in block.content" :key="contentIndex" class="art-piece">
+                            <img v-if="!mediaContentNames.includes(content.path)" v-bind:src="content.path"/>
+                            <img v-if="mediaContentNames.includes(content.path)" v-bind:style="{backgroundImage: `url(${mediaContent[content.path].base64})`}"/>
+                            <div class="text-content">
+                                <label for="name">Name</label>
+                                <input name="name" :value="content.title" v-on:input="handleContentPropertyUpdate($event, blockIndex, contentIndex, 'title')" />
+                                
+                                <label for="date">Date</label>
+                                <input name="date" :value="content.date" v-on:input="handleContentPropertyUpdate($event, blockIndex, contentIndex, 'date')" />
+                                
+                                <label for="desc">Description</label>
+                                <textarea name="desc" :value="content.desc" v-on:input="handleContentPropertyUpdate($event, blockIndex, contentIndex, 'desc')" />
+                                
+                                <br/>
+                                
+                                <label for="width">Width</label>
+                                <select name="width" :value="content.width" v-on:input="handleContentPropertyUpdate($event, blockIndex, contentIndex, 'width')">
+                                    <option value="1">1/6</option>
+                                    <option value="2">2/6</option>
+                                    <option value="3">3/6</option>
+                                    <option value="4">4/6</option>
+                                    <option value="5">5/6</option>
+                                    <option value="6">full</option>
+                                </select>
+
+                                <label for="height">Height</label>
+                                <select name="height" :value="content.height" v-on:input="handleContentPropertyUpdate($event, blockIndex, contentIndex, 'height')">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                </select>
+
+                                <label for="fit">Image Fit</label>
+                                <select name="fit" :value="content.fit" v-on:input="handleContentPropertyUpdate($event, blockIndex, contentIndex, 'fit')">
+                                    <option value="contain">Contain</option>
+                                    <option value="cover">Cover</option>
+                                </select>
+                            </div>
+                            <div class="arrows">
+                                <div @click="moveContentUp(blockIndex, contentIndex)"><FontAwesomeIcon :icon="faArrowUp" /></div>
+                                <div @click="moveContentDown(blockIndex, contentIndex)"><FontAwesomeIcon :icon="faArrowDown" /></div>
+                                <div @click="deleteContent(blockIndex, contentIndex)"><FontAwesomeIcon :icon="faTrash" style="color: red;" /></div>
+                            </div>
+                        </div>
+                        <button class="new" @click="addContent(blockIndex)">NEW ART <FontAwesomeIcon :icon="faPlus" /></button>
+                    </div>
+                </div>
+                <button class="new" @click="addSection()">NEW SECTION <FontAwesomeIcon :icon="faPlus" /></button>
+            </div>
         </div>
         
         <div class="page-nav">
-            <input type="password" placeholder="github token" @input="setToken" />
-            <div class="button-bar">
-                <div v-if="uploadState=='unsubmitted'">
-                    <button class="submit" @click="submitChanges()">
-                            Submit <div><FontAwesomeIcon :icon="faArrowRight" /></div>
-                    </button>
-                </div>
-                <div v-if="uploadState=='submitted'">
-                    <button class="submit">
-                            uploading
-                            <div><FontAwesomeIcon :icon="faSpinner" /></div>
-                    </button>
-                </div>
-                <div v-if="uploadState=='success'">
-                    <button class="submit">
-                            done
-                            <div><FontAwesomeIcon :icon="faCheck" /></div>
-                    </button>
-                </div>
-                <div v-if="uploadState=='error'">
-                    <button class="submit">
-                            error
-                            <div><FontAwesomeIcon :icon="faTimes" /></div>
-                    </button>
+            <div class="control-nav">
+                <button @click="setCurrentPage('about')">about</button>
+                <button @click="setCurrentPage('gallery')">art</button>
+                <button @click="setCurrentPage('commissions')">commissions</button>
+                <button @click="setCurrentPage('contactme')">contact me</button>
+            </div>
+            <div class="control-content">
+                <input type="password" placeholder="github token" @input="setToken" />
+                <div class="button-bar">
+                    <div v-if="uploadState=='unsubmitted'">
+                        <button class="submit" @click="submitChanges()">
+                                Submit <div><FontAwesomeIcon :icon="faArrowRight" /></div>
+                        </button>
+                    </div>
+                    <div v-if="uploadState=='submitted'">
+                        <button class="submit">
+                                uploading
+                                <div><FontAwesomeIcon :icon="faSpinner" /></div>
+                        </button>
+                    </div>
+                    <div v-if="uploadState=='success'">
+                        <button class="submit">
+                                done
+                                <div><FontAwesomeIcon :icon="faCheck" /></div>
+                        </button>
+                    </div>
+                    <div v-if="uploadState=='error'">
+                        <button class="submit">
+                                error
+                                <div><FontAwesomeIcon :icon="faTimes" /></div>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -97,9 +131,23 @@
 import { ref } from 'vue';
 
 import state from '../state';
+/*import {
+    about,
+    commissions,
+    contact,
+} from '../content.json';*/
+
+import contentData from '../content.json'
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { faArrowUp, faArrowDown, faArrowRight, faTrash, faSpinner, faCheck, faTimes, faPlus } from '@fortawesome/free-solid-svg-icons';
+
+const {
+    about,
+    commissions,
+    contact,
+    ... otherContent
+} = contentData;
 
 export default {
     setup() {
@@ -109,6 +157,16 @@ export default {
         const setToken = (event) => {
             token.value = event.target.value
         };
+
+        const { 
+            about : stateAbout,
+            commissions : stateCommissions,
+            contact : stateContact,
+        } = state;
+
+        state.about = stateCommissions || about
+        state.commissions = stateAbout || commissions
+        state.contact = stateContact || contact
 
         return {
             uploadState,
@@ -132,13 +190,13 @@ export default {
         },
 
         handleContentPropertyUpdate(event, blockIndex, contentIndex, property) {
-            console.log({ event, blockIndex, contentIndex, property })
+            //console.log({ event, blockIndex, contentIndex, property })
 
             state.blocks[blockIndex].content[contentIndex][property] = event.target.value
         },
 
         moveSectionUp (id) {
-            console.log(`move ${id} up`)
+            //console.log(`move ${id} up`)
 
             if(id < 1)
                 return
@@ -148,7 +206,7 @@ export default {
         },
 
         moveSectionDown (id) {
-            console.log(`move ${id} down`)
+            //console.log(`move ${id} down`)
 
             if(id >= state.blocks.length - 1)
                 return
@@ -169,7 +227,7 @@ export default {
         },
 
         moveContentUp (blockId, contentId) {
-            console.log(`move ${blockId} ${contentId} up`)
+            //console.log(`move ${blockId} ${contentId} up`)
 
             if(blockId === 0 && contentId === 0)
                 return
@@ -184,7 +242,7 @@ export default {
         },
 
         moveContentDown (blockId, contentId) {
-            console.log(`move ${blockId} ${contentId} down`)
+            //console.log(`move ${blockId} ${contentId} down`)
 
             if(blockId === state.blocks.length - 1 && contentId === state.blocks[state.blocks.length - 1].content.length - 1)
                 return
@@ -226,7 +284,7 @@ export default {
 
                 Promise.all([this.readFileBytes(file), this.readFileBase64(file)])
                     .then(([fileContents, base64FileContents]) => {
-                        console.log({ filename, path, fileContents, base64FileContents })
+                        //console.log({ filename, path, fileContents, base64FileContents })
                         state.mediaContent[path] = {
                             utf8: fileContents,
                             base64: base64FileContents
@@ -242,10 +300,10 @@ export default {
                             desc: "This is some new art by Raquel",
                         })
 
-                        console.log({
+                        /*console.log({
                             mediaContentNames: state.mediaContentNames,
                             meidaContent: state.mediaContent
-                        })
+                        })*/
                     })
             }
 
@@ -256,11 +314,38 @@ export default {
             state.blocks[blockId].content.splice(contentId, 1)
         },
 
+        setCurrentPage(page) {
+            state.adminCurrentPage = page
+        },
+
+        setState(stateName, event) {
+            //console.log({ event, content: event.target.value })
+            state[stateName] = event.target.value
+        },
+
         submitChanges() {
+
+            const {
+                about,
+                commissions,
+                contact,
+
+                blocks,
+                mediaContent
+            } = state
+
             const payload = {
                 token: this.token,
-                blocks: [ ... state.blocks ],
-                content: Object.entries(state.mediaContent).map(([ name, values ]) => ({ name, content: values.base64.split(',')[1] }))
+
+                content : {
+                    ... otherContent,
+                    about,
+                    commissions,
+                    contact
+                },
+
+                blocks: [ ... blocks ],
+                media: Object.entries(mediaContent).map(([ name, values ]) => ({ name, content: values.base64.split(',')[1] }))
             }
 
             console.log(`${import.meta.env.PUBLIC_BACKEND}/api/grid`)
@@ -285,8 +370,12 @@ export default {
 
     computed: {
         blocks(){ return state?.blocks },
+        about(){ return state?.about },
+        commissions(){ return state?.commissions },
+        contact(){ return state?.contact },
         mediaContentNames(){ return state?.mediaContentNames },
         mediaContent(){ return state?.mediaContent },
+        currentPage(){ return state?.adminCurrentPage }
         
     },
 
@@ -305,6 +394,10 @@ export default {
     height: 100vh;
     overflow: scroll;
 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
     margin: 0;
     padding: 0;
 
@@ -314,6 +407,11 @@ export default {
     .content {
         margin-bottom: 25px;
         padding: 0 10px;
+
+        .feature-text {
+            width: 99%;
+            height: 75vh;
+        }
 
         h2 {
             padding: 5px;
@@ -411,18 +509,33 @@ export default {
         position: sticky;
 
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
+
+        flex: none;
 
         bottom: 0;
         left: 0;
 
         width: 100%;
-        height: 50px;
+        height: 75px;
 
         margin: 0;
         padding: 0;
 
         background: beige;
+
+        .control-nav {
+            margin: 5px 5px 10px 5px;
+
+            button {
+                margin: 0 5px;
+            }
+        }
+
+        .control-content {
+            display: flex;
+            flex-direction: row;
+        }
 
         input {
             height: 20px;

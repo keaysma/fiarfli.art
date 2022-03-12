@@ -1,7 +1,7 @@
 ---
 // Component Imports
-import Art from '../components/art/FlexGallery.vue'
 import Panel from '../components/admin/Panel.vue'
+import View from '../components/admin/View.vue'
 ---
 
 <html lang="en">
@@ -43,9 +43,7 @@ import Panel from '../components/admin/Panel.vue'
   <body class="">
     <main class="">
         <Panel client:visible/>
-        <div style="width: 60%; height: 100vh; overflow: scroll;">
-            <Art client:visible/>
-        </div>
+        <View client:visible/>
     </main>
   </body>
 </html>

@@ -18,7 +18,7 @@
 
 [x] Get artist statement from Raquel
 [ ] Add contact me functionality, ship to email
-[ ] Flask app that pushes to master
+[x] Rails app that pushes to master
 
 [ ] Look in to SEO
 

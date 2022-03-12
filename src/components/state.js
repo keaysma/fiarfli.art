@@ -6,7 +6,13 @@ const state = reactive?.({
   blocks: [],
 
   mediaContentNames: [],
-  mediaContent: {}
+  mediaContent: {},
+
+  adminCurrentPage: 'gallery', //about, gallery, commission, contactme
+
+  about: undefined,
+  commissions: undefined,
+  contact: undefined,
 })
 
 export default state

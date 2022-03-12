@@ -29,7 +29,16 @@ module.exports = {
               }
             }
           ]
-        }
+        },
+        {
+          test: /\.txt$/,
+          use: {
+            loader: 'raw-loader',
+            options: {
+              esModule: false,
+            },
+          },
+        },
       ]
     },
     // plugin omitted

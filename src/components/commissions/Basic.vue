@@ -2,20 +2,24 @@
     <div id="commissions" class="page">
         <div class="text-content">
             <h1>Commissions</h1>
-            <p>
-                Lungo to go spoon trifecta robusta beans cappuccino. Eu cultivar, doppio arabica, foam, to go brewed foam con panna galão. Crema coffee caramelization coffee mocha breve redeye coffee. Cortado id carajillo blue mountain sit and ristretto grounds skinny.
-            </p>
-            <br/><br/>
-            <p>
-                Single shot, bar  sweet body macchiato, steamed barista espresso black sugar. Medium cinnamon, galão caramelization, variety bar  americano doppio cinnamon coffee. Chicory filter id, single shot breve siphon, body as rich acerbic instant. Extra  con panna at, milk chicory french press id iced.
-            </p>
+            <p>{{ commissions }}</p>
         </div>
     </div>
 </template>
 
 <script>
+import state from '../state'
+
+import { commissions } from '../content.json'
+
 export default {
-    
+    setup () {
+        if(!state.commissions)
+            state.commissions = commissions
+    },
+    computed: {
+        commissions () { return state?.commissions }
+    }
 }
 </script>
 
@@ -38,6 +42,10 @@ export default {
 
         color: #534957;
         text-shadow: 1px 1px 3px #53495744;
+
+        p {
+            white-space: break-spaces;
+        }
     }
 }
 

@@ -132,25 +132,6 @@ export default {
     },
 
     setup () {
-        const gridCols = 6
-        const indexDataBlocks = [ ... indexData.blocks ].map(((section) => {
-            const newContent = section.content.map(item => {
-                const { width : widthFr, height : heightFr } = item
-                const itemWidth = (eval(widthFr) * gridCols)
-                const itemHeight = eval(heightFr)
-
-                return {
-                    //rowStart, rowEnd,
-                    //colStart, colEnd,
-                    itemWidth, itemHeight,
-                    ... item
-                }
-            })
-
-            section.content = newContent
-            return section
-        }))
-
         state.blocks = indexData.blocks
 
         const isGalleryFullscreen = ref(false);
