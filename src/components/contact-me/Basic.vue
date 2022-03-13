@@ -91,11 +91,12 @@ export default {
 
         &.split-page {
             .text-content {
-                flex: 0.45;
+                flex: 0.4;
+
             }
 
             .contact-form {
-                flex: 0.45;
+                flex: 0.55;
 
                 &, form, .form-group, .field-group {
                     width: 100%;
@@ -129,7 +130,7 @@ export default {
                 background: transparent;
 
                 border: 2px solid slateblue;
-                border-radius: 5px;
+                border-radius: 15px;
 
                 transition: all 0.25s cubic-bezier(0.075, 0.82, 0.165, 1);
 
@@ -140,15 +141,29 @@ export default {
                 &:hover, &:focus {
                     color: white;
 
-                    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-                    background-size: 400% 400%;
+                    //background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+                    //background-size: 400% 400%;
 
-                    animation: gradient 1s infinite;
+                    animation: gradient 2s infinite, pulse 0.75s infinite;
                 }
 
                 @keyframes gradient {
-                    0%{background-position:0% 0%;       transform: scale(1);}
-                    25%{background-position:100% 0%;     transform: scale(1.1)  rotate(-10deg);}
+                      0%{background-color: red;}
+                     25%{background-color: rgb(0, 255, 0);}
+                     50%{background-color: rgb(255, 0, 255);}
+                     75%{background-color: rgb(0, 255, 255);}
+                    100%{background-color: rgb(255, 0, 179);}
+                }
+
+                @keyframes pulse {
+                    0%{transform: scale(1);}
+                    50%{transform: scale(1.25);}
+                    100%{transform: scale(1);}
+                }
+
+                @keyframes gradient1 {
+                     0%{background-position:0% 0%;      transform: scale(1);}
+                    25%{background-position:100% 0%;    transform: scale(1.1)   rotate(-10deg);}
                     50%{background-position:100% 100%;  transform: scale(1.4)   rotate(10deg);}
                     75%{background-position:0% 100%;    transform: scale(1);}
                 }
@@ -181,11 +196,11 @@ export default {
                 }
 
                 textarea {
-                    height: 150px;
+                    height: 250px;
                 }
 
                 input, textarea {
-                    padding: 5px;
+                    padding: 3px;
                     border-width: 2px;
                     border-style: solid;
                     border-color: slateblue;
@@ -209,7 +224,7 @@ export default {
                         +label {
                             transform: scale(1.25) rotate(-20deg) translate(-20px, -20px);
 
-                            background: linear-gradient(45deg, pink, blue);
+                            background: linear-gradient(135deg, pink, blue);
                             -webkit-background-clip: text;
                             background-clip: text;
                             -webkit-text-fill-color: transparent;
