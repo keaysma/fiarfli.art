@@ -288,7 +288,7 @@ export default {
 
             margin: 0 auto;
 
-            background: #E6E4D5AA;
+            //background: #E6E4D5AA;
 
             transition: filter 0.15s;
 

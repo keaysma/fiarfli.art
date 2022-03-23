@@ -13,14 +13,22 @@
 [x] Change gallery from flexbox to css grid
 [x] Move fullscreen marker to be on top of the display image
 
-[ ] Add config for mobile browser color, use the pink color
-[ ] Favorite pokemon on site
+[x] Rework scroll lock, it's janky
 
 [x] Get artist statement from Raquel
-[ ] Add contact me functionality, ship to email
+[x] Add contact me functionality, ship to email
 [x] Rails app that pushes to master
 
+[ ] Add support for videos in gallery
+[ ] Add file size limit
+[ ] Filter out unused and just-uploaded files before submit
+[ ] Customizable background color
+
+
+[ ] Add config for mobile browser color, use the pink color
+[ ] Favorite pokemon on site
 [ ] Look in to SEO
 
 # Maybe
-[x] Rework scroll lock, it's janky
+[ ] Add browser storage-based intermediary save functionality
+[ ] Add auto-conversion for png/jpg to webp
