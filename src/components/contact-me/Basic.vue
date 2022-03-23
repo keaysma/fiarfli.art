@@ -143,16 +143,25 @@ export default {
 
                     //background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
                     //background-size: 400% 400%;
+                    //animation: gradient 2s infinite;
 
-                    animation: gradient 2s infinite, pulse 0.75s infinite;
+                    animation: gradient2 3s infinite, pulse 1s infinite;
                 }
 
-                @keyframes gradient {
-                      0%{background-color: red;}
-                     25%{background-color: rgb(0, 255, 0);}
-                     50%{background-color: rgb(255, 0, 255);}
-                     75%{background-color: rgb(0, 255, 255);}
-                    100%{background-color: rgb(255, 0, 179);}
+                @keyframes gradient2 {
+                      0%{background: linear-gradient(90deg, #adc1e6, #caade6);}
+                     15%{background: linear-gradient(90deg, #c4c0ff, #edc0ff);}
+                     40%{background: linear-gradient(90deg, #ffc0cb, #ffdec0);}
+                     65%{background: linear-gradient(90deg, #ebe784, #ebe784);}
+                    100%{background: linear-gradient(90deg, #adc1e6, #caade6);}
+                }
+
+                @keyframes gradient1 {
+                      0%{background-color: #adc1e6;}
+                     15%{background-color: #c4c0ff;}
+                     40%{background-color: #ffc0cb;}
+                     65%{background-color: #ebe784;}
+                    100%{background-color: #adc1e6;}
                 }
 
                 @keyframes pulse {
@@ -161,7 +170,7 @@ export default {
                     100%{transform: scale(1);}
                 }
 
-                @keyframes gradient1 {
+                @keyframes gradient {
                      0%{background-position:0% 0%;      transform: scale(1);}
                     25%{background-position:100% 0%;    transform: scale(1.1)   rotate(-10deg);}
                     50%{background-position:100% 100%;  transform: scale(1.4)   rotate(10deg);}

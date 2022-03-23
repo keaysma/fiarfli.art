@@ -50,6 +50,12 @@
                             <img v-if="!mediaContentNames.includes(content.path)" v-bind:src="content.path"/>
                             <img v-if="mediaContentNames.includes(content.path)" v-bind:style="{backgroundImage: `url(${mediaContent[content.path].base64})`}"/>
                             <div class="text-content">
+                                <label for="url">URL</label>
+                                <div class="url-input">
+                                    <input name="url" :value="content.path" v-on:input="handleContentPropertyUpdate($event, blockIndex, contentIndex, 'path')" />
+                                    <button @click="uploadContent(blockIndex, contentIndex)"><FontAwesomeIcon :icon="faUpload"/></button>
+                                </div>
+
                                 <label for="name">Name</label>
                                 <input name="name" :value="content.title" v-on:input="handleContentPropertyUpdate($event, blockIndex, contentIndex, 'title')" />
                                 
@@ -149,7 +155,7 @@ import state from '../state';
 import contentData from '../content.json'
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { faArrowUp, faArrowDown, faArrowRight, faTrash, faSpinner, faCheck, faTimes, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faArrowUp, faArrowDown, faArrowRight, faTrash, faSpinner, faCheck, faTimes, faPlus, faUpload } from '@fortawesome/free-solid-svg-icons';
 
 const {
     about,
@@ -268,6 +274,21 @@ export default {
             }
         },
 
+        addContent (blockId) {
+            const now = new Date()
+            const date = `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}`
+
+            state.blocks[blockId].content.push({
+                date,
+                path: "",
+                width: "6",
+                height: "1",
+                fit: "cover",
+                title: "New Masterpiece",
+                desc: "This is some new art by Raquel",
+            })
+        },
+
         readFileBytes : async (file) => new Promise((res, rej) => {
             const reader = new FileReader()
             reader.readAsText(file, 'UTF-8')
@@ -282,7 +303,7 @@ export default {
         }),
 
         // the chungus
-        addContent (blockId) {
+        uploadContent (blockId, contentId) {
             const _tempFileInput = document.createElement('input')
             _tempFileInput.type = 'file'
 
@@ -290,9 +311,6 @@ export default {
                 const file = event.target.files[0]
                 const filename = event.target.files[0].name
                 const path = `/art/${filename}`
-
-                const now = new Date()
-                const date = `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}`
 
                 Promise.all([this.readFileBytes(file), this.readFileBase64(file)])
                     .then(([fileContents, base64FileContents]) => {
@@ -303,14 +321,8 @@ export default {
                         }
                         state.mediaContentNames = Object.keys(state.mediaContent)
 
-                        state.blocks[blockId].content.push({
-                            path, date,
-                            width: "6",
-                            height: "1",
-                            fit: "cover",
-                            title: "New Masterpiece",
-                            desc: "This is some new art by Raquel",
-                        })
+                        //TODO bind to content
+                        state.blocks[blockId].content[contentId].path = path
 
                         /*console.log({
                             mediaContentNames: state.mediaContentNames,
@@ -401,7 +413,7 @@ export default {
 
     data () {
         return {
-            faArrowUp, faArrowDown, faArrowRight, faTrash, faSpinner, faCheck, faTimes, faPlus
+            faArrowUp, faArrowDown, faArrowRight, faTrash, faSpinner, faCheck, faTimes, faPlus, faUpload
         }
     }
 }
@@ -510,6 +522,15 @@ export default {
             &>*{
                 margin: 0;
                 padding: 0;
+            }
+
+            .url-input {
+                display: flex;
+                flex-direction: row;
+
+                input {
+                    flex: 1;
+                }
             }
         }
 
