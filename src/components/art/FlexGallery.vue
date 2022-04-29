@@ -10,16 +10,7 @@
                         v-bind:style="{gridArea: `span ${content.height} / span ${content.width}`}"
                         @click="setGallerySettings({blockIndex,contentIndex});setIsGalleryOpen(true)"
                     >
-                        <img 
-                            v-if="!mediaContentNames.includes(content.path)"
-                            v-bind:src="content.path"
-                            v-bind:class="`fit-${content.fit} img-height-${content[`img-height`] ?? `full`}`"
-                        />
-                        <img 
-                            v-if="mediaContentNames.includes(content.path)"
-                            v-bind:class="`fit-${content.fit} img-height-${content[`img-height`] ?? `full`}`"
-                            v-bind:style="{backgroundImage: `url(${mediaContent[content.path].base64})`, backgroundSize: content.fit}"
-                        />
+                        <content v-bind:content="content" :displayIcon="true" :useColor="true"/>
                     </div>
                 </div>
             </div>
@@ -44,19 +35,7 @@
 
         <div class="gallery-content" v-on:touchstart="touchStart" v-on:touchend="touchEnd">
             <div class="image-container hover-focus">
-                <img
-                    v-if="!mediaContentNames.includes(blocks?.[gallerySettings?.blockIndex]?.content?.[gallerySettings?.contentIndex]?.path)"
-                    v-bind:src="blocks?.[gallerySettings?.blockIndex]?.content?.[gallerySettings?.contentIndex]?.path"
-                />
-                <img 
-                    v-if="mediaContentNames.includes(blocks?.[gallerySettings?.blockIndex]?.content?.[gallerySettings?.contentIndex]?.path)"
-                    v-bind:style="{backgroundImage: `url(${mediaContent[blocks?.[gallerySettings?.blockIndex]?.content?.[gallerySettings?.contentIndex]?.path].base64})`}"
-                />
-                <div class="button-container" @click="setIsGalleryFullscreen(true)">
-                    <button class="">
-                        <font-awesome-icon :icon="faExpandArrowsAlt" size="4x" />
-                    </button>
-                </div>
+                <content v-bind:content="blocks?.[gallerySettings?.blockIndex]?.content?.[gallerySettings?.contentIndex]" :controls="true" />
             </div>
             <div class="gallery-text">
                 <div class="gallery-header">
@@ -71,18 +50,7 @@
 
         <!-- Fullscreen Gallery -->
         <div v-if="isGalleryFullscreen" class="gallery-fullscreen" v-on:touchstart="touchStart" v-on:touchend="touchEnd">
-            <button class="" @click="setIsGalleryFullscreen(false)">
-                <font-awesome-icon :icon="faCompressArrowsAlt" size="2x" />
-            </button>
-
-            <img
-                v-if="!mediaContentNames.includes(blocks?.[gallerySettings?.blockIndex]?.content?.[gallerySettings?.contentIndex]?.path)"
-                v-bind:src="blocks?.[gallerySettings?.blockIndex]?.content?.[gallerySettings?.contentIndex]?.path"
-            />
-            <img 
-                v-if="mediaContentNames.includes(blocks?.[gallerySettings?.blockIndex]?.content?.[gallerySettings?.contentIndex]?.path)"
-                v-bind:style="{backgroundImage: `url(${mediaContent[blocks?.[gallerySettings?.blockIndex]?.content?.[gallerySettings?.contentIndex]?.path].base64})`}"
-            />
+            <content v-bind:content="blocks?.[gallerySettings?.blockIndex]?.content?.[gallerySettings?.contentIndex]" :controls="true" :fullscreen="true"/>
         </div>
     </div>
 </template>
@@ -92,11 +60,11 @@ import { ref, onMounted, getCurrentInstance } from 'vue';
 
 import state from '../state';
 
-//import indexData from '../../../public/art/index.json'
 import indexData from '../index.json'
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { faTimes, faExpandArrowsAlt, faCompressArrowsAlt, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import Content from './Content.vue'
 
 export default {
     created () {
@@ -116,7 +84,7 @@ export default {
 
                 if (e.key === 'f') {
                     if(state.isGalleryOpen === true)
-                        this.isGalleryFullscreen = !this.isGalleryFullscreen
+                        state.isGalleryFullscreen = !state.isGalleryFullscreen
                 }
 
                 if (e.key === 'ArrowLeft') {
@@ -134,9 +102,8 @@ export default {
     setup () {
         state.blocks = indexData.blocks
 
-        const isGalleryFullscreen = ref(false);
         const setIsGalleryFullscreen = (value) => {
-            isGalleryFullscreen.value = value
+            state.isGalleryFullscreen = value
         };
 
         const setIsGalleryOpen = (value) => {
@@ -145,7 +112,7 @@ export default {
         };
         const closeGallery = () => {
             state.isGalleryOpen = false
-            isGalleryFullscreen.value = false
+            state.isGalleryFullscreen = false
             document.body.style.overflow = 'auto'
         }
 
@@ -155,7 +122,6 @@ export default {
         const touchStartEvent = ref();
 
         return {
-            isGalleryFullscreen,
             setIsGalleryFullscreen,
 
             setIsGalleryOpen,
@@ -227,11 +193,13 @@ export default {
         mediaContentNames(){ return state?.mediaContentNames },
         mediaContent(){ return state?.mediaContent },
 
-        isGalleryOpen(){ return state?.isGalleryOpen }
+        isGalleryOpen(){ return state?.isGalleryOpen },
+        isGalleryFullscreen(){ return state?.isGalleryFullscreen },
     },
 
     components: {
-        FontAwesomeIcon
+        FontAwesomeIcon,
+        Content
     },
 
     data () {
@@ -288,29 +256,10 @@ export default {
 
             margin: 0 auto;
 
-            //background: #E6E4D5AA;
-
             transition: filter 0.15s;
 
             &:hover, &:focus {
                 filter: brightness(0.85);
-            }
-
-            img {
-                width: 100%;
-                height: 100%;
-
-                margin: 0 auto;
-
-                background-repeat: no-repeat;
-                background-position: center;
-
-                &.fit-contain {
-                    object-fit: contain;
-                }
-                &.fit-cover {
-                    object-fit: cover;
-                }
             }
         }
     }
@@ -328,7 +277,7 @@ export default {
     z-index: 999;
 
     background: #000D;
-    backdrop-filter: blur(8px);
+    backdrop-filter: blur(20px);
 
     transition: opacity 0.15s;
 
@@ -413,46 +362,12 @@ export default {
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center;
-
-            //transition: all 1s;
-
-            .button-container {
-                position: relative;
-
-                top: -100%;
-
-                width: 100%;
-                height: 100%;
-
-                button {
-                    position: absolute;
-
-                    width: 80px;
-                    height: 80px;
-                    
-                    top: calc(50% - 40px);
-                    left: calc(50% - 40px);
-                    margin: auto;
-
-                    color: #FFFF;
-                    background: #0008;
-                    border: none;
-                    border-radius: 50px;
-
-                    opacity: 0;
-                    transition: opacity 0.15s;
-                }
-
-                &:hover>button {
-                    opacity: 1;
-                }
-            }
         }
 
         .gallery-text {
             .gallery-header {
                 display: flex;
-                flex-direction: row;
+                flex-direction: column;
 
                 h1 {
                     margin: 25px 0 0 0;
@@ -460,11 +375,11 @@ export default {
                 }
 
                 h2 {
-                    margin: 25px 15px 0 15px;
+                    margin: 0;
 
-                    line-height: 1.75rem;
-
-                    color: #C4C2BE;
+                    line-height: 0.9rem;
+                    font-size: 1rem;
+                    color: #61605e;
                 }
             }
             .gallery-body {
@@ -487,20 +402,6 @@ export default {
         left: 0;
 
         background: black;
-
-        button {
-            position: fixed;
-
-            top: 25px;
-            right: 25px;
-            
-            border: none;
-
-            color: white;
-            background: transparent;
-
-            mix-blend-mode: difference;
-        }
 
         img {
             width: 100%;

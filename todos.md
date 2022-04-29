@@ -19,11 +19,16 @@
 [x] Add contact me functionality, ship to email
 [x] Rails app that pushes to master
 
-[ ] Add support for videos in gallery
+[x] Add support for videos in gallery
+[x] Customizable background color for gallery items
+
+[ ] Embedded links (<div><iframe/></div>)
+
 [ ] Add file size limit
 [ ] Filter out unused and just-uploaded files before submit
-[ ] Customizable background color
 
+[ ] Skills section
+[ ] Downloadable Resume
 
 [ ] Add config for mobile browser color, use the pink color
 [ ] Favorite pokemon on site

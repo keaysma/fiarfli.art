@@ -2,6 +2,7 @@ import { reactive } from 'vue'
 
 const state = reactive?.({
   isGalleryOpen: false,
+  isGalleryFullscreen: false,
   isMobileMenuOpen: false,
   blocks: [],
 

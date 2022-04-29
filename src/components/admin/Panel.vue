@@ -47,8 +47,7 @@
                     </div>
                     <div class="art-container">
                         <div v-for="(content, contentIndex) in block.content" :key="contentIndex" class="art-piece">
-                            <img v-if="!mediaContentNames.includes(content.path)" v-bind:src="content.path"/>
-                            <img v-if="mediaContentNames.includes(content.path)" v-bind:style="{backgroundImage: `url(${mediaContent[content.path].base64})`}"/>
+                            <content v-bind:content="content"/>
                             <div class="text-content">
                                 <label for="url">URL</label>
                                 <div class="url-input">
@@ -89,6 +88,12 @@
                                     <option value="contain">Contain</option>
                                     <option value="cover">Cover</option>
                                 </select>
+
+                                <label for="bg-color">Background Color</label>
+                                <div class="color-picker">
+                                    <input name="bg-color" type="color" v-on:input="handleContentPropertyUpdate($event, blockIndex, contentIndex, 'color')"/>
+                                    <button v-on:click="handleContentPropertyReset(blockIndex, contentIndex, 'color')">x</button>
+                                </div>
                             </div>
                             <div class="arrows">
                                 <div @click="moveContentUp(blockIndex, contentIndex)"><FontAwesomeIcon :icon="faArrowUp" /></div>
@@ -146,13 +151,9 @@
 import { ref } from 'vue';
 
 import state from '../state';
-/*import {
-    about,
-    commissions,
-    contact,
-} from '../content.json';*/
-
 import contentData from '../content.json'
+
+import Content from '../art/Content.vue'
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { faArrowUp, faArrowDown, faArrowRight, faTrash, faSpinner, faCheck, faTimes, faPlus, faUpload } from '@fortawesome/free-solid-svg-icons';
@@ -194,7 +195,8 @@ export default {
     },
 
     components: {
-        FontAwesomeIcon
+        FontAwesomeIcon,
+        Content
     },
 
     methods: {
@@ -208,9 +210,13 @@ export default {
         },
 
         handleContentPropertyUpdate(event, blockIndex, contentIndex, property) {
-            //console.log({ event, blockIndex, contentIndex, property })
+            //console.log({ event, blockIndex, contentIndex, property, value: event.target.value })
 
             state.blocks[blockIndex].content[contentIndex][property] = event.target.value
+        },
+
+        handleContentPropertyReset(blockIndex, contentIndex, property) {
+            delete state.blocks[blockIndex].content[contentIndex][property]
         },
 
         moveSectionUp (id) {
@@ -324,10 +330,12 @@ export default {
                         //TODO bind to content
                         state.blocks[blockId].content[contentId].path = path
 
-                        /*console.log({
+                        console.log({
                             mediaContentNames: state.mediaContentNames,
                             meidaContent: state.mediaContent
-                        })*/
+                        })
+
+                        //console.log({ test: state.mediaContent?.[state.blocks[blockId].content[contentId].path]?.base64 })
                     })
             }
 
@@ -436,7 +444,7 @@ export default {
     color: floralwhite;
     background: linear-gradient(pink, skyblue);
 
-    .content {
+    &>.content {
         margin-bottom: 25px;
         padding: 0 10px;
 
@@ -503,8 +511,10 @@ export default {
         border-radius: 5px;
         
 
-        img {
+        .content {
             width: 20%;
+
+            margin: auto 0;
 
             object-fit: contain;
             background-size: contain;
@@ -522,6 +532,17 @@ export default {
             &>*{
                 margin: 0;
                 padding: 0;
+            }
+
+            .color-picker {
+                display: flex;
+
+                button {
+                    border-radius: 5px;
+
+                    color: white;
+                    background: red;
+                }
             }
 
             .url-input {
