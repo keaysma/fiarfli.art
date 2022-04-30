@@ -235,6 +235,7 @@ export default {
         h2 {
             position: sticky;
             top: 0px;
+            z-index: 11;
 
             padding: 5px 0px;
 
