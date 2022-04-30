@@ -47,12 +47,25 @@
                     </div>
                     <div class="art-container">
                         <div v-for="(content, contentIndex) in block.content" :key="contentIndex" class="art-piece">
-                            <content v-bind:content="content"/>
+                            <content v-if="(content.type || 'link') === 'link'" v-bind:content="content"/>
                             <div class="text-content">
-                                <label for="url">URL</label>
-                                <div class="url-input">
-                                    <input name="url" :value="content.path" v-on:input="handleContentPropertyUpdate($event, blockIndex, contentIndex, 'path')" />
-                                    <button @click="uploadContent(blockIndex, contentIndex)"><FontAwesomeIcon :icon="faUpload"/></button>
+                                <label for="type">Type</label>
+                                <select name="type" :value="content.type || 'link'" v-on:input="handleContentPropertyUpdate($event, blockIndex, contentIndex, 'type')">
+                                    <option value="link">link</option>
+                                    <option value="iframe">iframe</option>
+                                    <option value="contained">Tumblr's bullshit</option>
+                                </select>
+
+                                <div v-if="(content.type || 'link') === 'link'">
+                                    <label for="url">URL</label>
+                                    <div class="url-input">
+                                        <input name="url" :value="content.path" v-on:input="handleContentPropertyUpdate($event, blockIndex, contentIndex, 'path')" />
+                                        <button @click="uploadContent(blockIndex, contentIndex)"><FontAwesomeIcon :icon="faUpload"/></button>
+                                    </div>
+                                </div>
+                                <div v-else class="html-input">
+                                    <label for="html">HTML</label>
+                                    <textarea name="html" :value="content.html" v-on:input="handleContentPropertyUpdate($event, blockIndex, contentIndex, 'html')" />
                                 </div>
 
                                 <label for="name">Name</label>
@@ -551,6 +564,17 @@ export default {
 
                 input {
                     flex: 1;
+                }
+            }
+
+            .html-input {
+                display: flex;
+                flex-direction: column;
+
+                textarea {
+                    height: 200px;
+
+                    resize: vertical;
                 }
             }
         }

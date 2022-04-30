@@ -1,5 +1,5 @@
 <template>
-    <div class="content">
+    <div v-if="(content?.type || 'link') === 'link'" class="content">
         <template v-if="content?.path?.match?.(videoRegex)">
             <video 
                 :controls="controls"
@@ -33,6 +33,8 @@
         <button v-if="fullscreen" class="close-fullscreen" @click="setIsGalleryFullscreen(false)">
             <font-awesome-icon :icon="faCompressArrowsAlt" size="2x" />
         </button>
+    </div>
+    <div v-else v-html="content?.html" class="iframe">
     </div>
 </template>
 
@@ -118,10 +120,19 @@ export default {
         mix-blend-mode: difference;
     }
 
-    .content {
+    .content, .iframe {
         position: relative;
         height: 100%;
         width: 100%;
+    }
+
+    .iframe {
+        display: flex;
+        justify-content: center;
+
+        &>* {
+            width: 100%;
+        }
     }
 
     .button-container {
