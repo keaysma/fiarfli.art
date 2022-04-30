@@ -91,7 +91,7 @@
 
                                 <label for="bg-color">Background Color</label>
                                 <div class="color-picker">
-                                    <input name="bg-color" type="color" v-on:input="handleContentPropertyUpdate($event, blockIndex, contentIndex, 'color')"/>
+                                    <input name="bg-color" type="color" :value="content.color" v-on:input="handleContentPropertyUpdate($event, blockIndex, contentIndex, 'color')"/>
                                     <button v-on:click="handleContentPropertyReset(blockIndex, contentIndex, 'color')">x</button>
                                 </div>
                             </div>
