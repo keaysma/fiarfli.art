@@ -15,7 +15,7 @@
         <template v-else>
             <img 
                 v-if="!mediaContentNames.includes(content?.path) && !content?.path?.match?.(videoRegex)"
-                v-bind:src="content?.path"
+                v-bind:src="useThumbnail ? content?.thumbnail || content?.path : content?.path"
                 v-bind:class="`fit-${content?.fit} img-height-${content?.[`img-height`] ?? `full`}`"
                 v-bind:style="{backgroundColor: useColor && content?.color || '#0000'}"
             />
@@ -50,7 +50,8 @@ export default {
         controls: Boolean,
         displayIcon: Boolean,
         fullscreen: Boolean,
-        useColor: Boolean
+        useColor: Boolean,
+        useThumbnail: Boolean,
     },
 
     components: {

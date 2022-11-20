@@ -10,7 +10,7 @@
                         v-bind:style="{gridArea: `span ${content.height} / span ${content.width}`}"
                         @click="setGallerySettings({blockIndex,contentIndex});setIsGalleryOpen(true)"
                     >
-                        <content v-bind:content="content" :displayIcon="true" :useColor="true"/>
+                        <content v-bind:content="content" :displayIcon="true" :useColor="true" :useThumbnail="true"/>
                     </div>
                 </div>
             </div>
