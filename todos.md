@@ -22,7 +22,8 @@
 [x] Add support for videos in gallery
 [x] Customizable background color for gallery items
 
-[ ] Embedded links (<div><iframe/></div>)
+[x] Embedded links (<div><iframe/></div>)
+[x] Automated WebP
 
 [ ] Add file size limit
 [ ] Filter out unused and just-uploaded files before submit
@@ -32,7 +33,7 @@
 
 [ ] Add config for mobile browser color, use the pink color
 [ ] Favorite pokemon on site
-[ ] Look in to SEO
+[ ] Look into SEO
 
 # Maybe
 [ ] Add browser storage-based intermediary save functionality
