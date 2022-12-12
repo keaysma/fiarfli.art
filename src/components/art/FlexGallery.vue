@@ -81,37 +81,39 @@ export default {
       console.debug(`FlexGallery::created::onMounted`, location.hash);
 
       const hashPath = location.hash.slice(1);
-      console.debug({
-        hashPath,
-        setIsGalleryOpen: this.setIsGalleryOpen,
-        blocks: this.blocks,
-      });
+      if(hashPath.length > 1){
+        console.debug({
+            hashPath,
+            setIsGalleryOpen: this.setIsGalleryOpen,
+            blocks: this.blocks,
+        });
 
-      // Select gallery item by hashPath
-      // Find blockIndex, contentIndex
-      const blockIndex = this.blocks.findIndex((block) =>
-        block.content.find((content) => 
-          this.getShortcutFromTitle(content.title) === hashPath
-        )
-      );
-
-      console.debug({ blockIndex });
-
-      if (blockIndex > -1) {
-        const contentIndex = this.blocks[blockIndex].content.findIndex(
-          (content) => this.getShortcutFromTitle(content.title) === hashPath
+        // Select gallery item by hashPath
+        // Find blockIndex, contentIndex
+        const blockIndex = this.blocks.findIndex((block) =>
+            block.content.find((content) => 
+            this.getShortcutFromTitle(content.title) === hashPath
+            )
         );
 
-        if (contentIndex > -1) {
-          console.log(`Found content with path ${hashPath}`, {
-            blockIndex,
-            contentIndex,
-          });
+        console.debug({ blockIndex });
 
-          document.getElementById('art').scrollIntoView();
+        if (blockIndex > -1) {
+            const contentIndex = this.blocks[blockIndex].content.findIndex(
+            (content) => this.getShortcutFromTitle(content.title) === hashPath
+            );
 
-          this.setGallerySettings({ blockIndex, contentIndex });
-          this.setIsGalleryOpen(true);
+            if (contentIndex > -1) {
+            console.log(`Found content with path ${hashPath}`, {
+                blockIndex,
+                contentIndex,
+            });
+
+            document.getElementById('art').scrollIntoView();
+
+            this.setGallerySettings({ blockIndex, contentIndex });
+            this.setIsGalleryOpen(true);
+            }
         }
       }
 
@@ -209,7 +211,7 @@ export default {
         const shortcutUrl = `${location.host}/#${shortcut}`
         console.debug(`getShortcutLink`, shortcutUrl)
 
-        if(navigator.clipboard){
+        if(!navigator.clipboard){
             console.warn('Clipboard is not enabled, link cannot be copied')
             return
         }
