@@ -7,8 +7,9 @@
                 <div class="art-container">
                     <div
                         v-for="(content, contentIndex) in block.content" :key="contentIndex"
-                        v-bind:style="{gridArea: `span ${content.height} / span ${content.width}`, gridGap: `5px`}"
-                        @click="setGallerySettings({blockIndex,contentIndex});setIsGalleryOpen(true)"
+                        v-bind:style="{gridArea: `span ${content.height} / span ${content.width}`}"
+                        v-bind:class="content.type"
+                        @click="setGallerySettings({blockIndex,contentIndex});setIsGalleryOpen(content.type)"
                     >
                         <content v-bind:content="content" :displayIcon="true" :useColor="true" :useThumbnail="true"/>
                     </div>
@@ -81,39 +82,39 @@ export default {
       console.debug(`FlexGallery::created::onMounted`, location.hash);
 
       const hashPath = location.hash.slice(1);
-      if(hashPath.length > 1){
+      if (hashPath.length > 1) {
         console.debug({
-            hashPath,
-            setIsGalleryOpen: this.setIsGalleryOpen,
-            blocks: this.blocks,
+          hashPath,
+          setIsGalleryOpen: this.setIsGalleryOpen,
+          blocks: this.blocks,
         });
 
         // Select gallery item by hashPath
         // Find blockIndex, contentIndex
         const blockIndex = this.blocks.findIndex((block) =>
-            block.content.find((content) => 
-            this.getShortcutFromTitle(content.title) === hashPath
-            )
+          block.content.find(
+            (content) => this.getShortcutFromTitle(content.title) === hashPath
+          )
         );
 
         console.debug({ blockIndex });
 
         if (blockIndex > -1) {
-            const contentIndex = this.blocks[blockIndex].content.findIndex(
+          const contentIndex = this.blocks[blockIndex].content.findIndex(
             (content) => this.getShortcutFromTitle(content.title) === hashPath
-            );
+          );
 
-            if (contentIndex > -1) {
+          if (contentIndex > -1) {
             console.log(`Found content with path ${hashPath}`, {
-                blockIndex,
-                contentIndex,
+              blockIndex,
+              contentIndex,
             });
 
-            document.getElementById('art').scrollIntoView();
+            document.getElementById("art").scrollIntoView();
 
             this.setGallerySettings({ blockIndex, contentIndex });
-            this.setIsGalleryOpen(true);
-            }
+            this.setIsGalleryOpen();
+          }
         }
       }
 
@@ -154,9 +155,11 @@ export default {
     };
 
     // TODO: Use TypeScript :(((
-    const setIsGalleryOpen = (value /* boolean */) => {
-      state.isGalleryOpen = value;
-      document.body.style.overflow = "hidden";
+    const setIsGalleryOpen = (value /* string: link | iframe |contained */) => {
+      if (!value || value === "link") {
+        state.isGalleryOpen = true;
+        document.body.style.overflow = "hidden";
+      }
     };
     const closeGallery = () => {
       state.isGalleryOpen = false;
@@ -208,15 +211,17 @@ export default {
 
     // Gets the full path to a shortcut
     getShortcutLink(shortcut /* string */) {
-        const shortcutUrl = `${location.host}/#${shortcut}`
-        console.debug(`getShortcutLink`, shortcutUrl)
+      const shortcutUrl = `${location.host}/#${shortcut}`;
+      console.debug(`getShortcutLink`, shortcutUrl);
 
-        if(!navigator.clipboard){
-            console.warn('Clipboard is not enabled, link cannot be copied')
-            return
-        }
+      if (!navigator.clipboard) {
+        console.warn("Clipboard is not enabled, link cannot be copied");
+        return;
+      }
 
-        navigator.clipboard.writeText(shortcutUrl).then(() => console.debug('copied'))
+      navigator.clipboard
+        .writeText(shortcutUrl)
+        .then(() => console.debug("copied"));
     },
 
     galleryPrevious() {
@@ -334,6 +339,7 @@ export default {
     display: grid;
     grid-template-rows: auto minmax(0, 150px);
     grid-template-columns: repeat(6, 1fr);
+    gap: 5px;
 
     & > div {
       width: 100%;
@@ -345,8 +351,8 @@ export default {
 
       transition: filter 0.15s;
 
-      &:hover,
-      &:focus {
+      &:hover:not(.iframe, .contained),
+      &:focus:not(.iframe, .contained) {
         filter: brightness(0.85);
       }
     }
@@ -472,16 +478,16 @@ export default {
         }
 
         .gallery-title {
-            display: flex;
-            flex-direction: row;
-            align-items: flex-end;
+          display: flex;
+          flex-direction: row;
+          align-items: flex-end;
 
-            a {
-                font-size: 10px;
-                color: blue;
+          a {
+            font-size: 10px;
+            color: blue;
 
-                margin: 0 0 10px 5px;
-            }
+            margin: 0 0 10px 5px;
+          }
         }
       }
       .gallery-body {
