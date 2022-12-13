@@ -3,7 +3,7 @@
         <div class="image-guard" />
         <img 
             class="hero-image"
-            src="/witch_girl_jump.png"
+            src="/witch_girl_jump_thumbnail.webp"
         />
 
         <div class="content">
