@@ -1,6 +1,6 @@
 {
-  "name": "@example/framework-vue",
-  "version": "0.0.1",
+  "name": "fiarfli.art",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "astro dev",
@@ -10,15 +10,17 @@
     "check": "astro check"
   },
   "devDependencies": {
-    "astro": "^0.23.0",
+    "astro": "^1.2.2",
     "node-sass": "^6.0.1",
     "sass-loader": "^12.3.0"
   },
   "dependencies": {
+    "@astrojs/vue": "^1.2.2",
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
     "@fortawesome/free-regular-svg-icons": "^6.0.0",
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
     "@fortawesome/vue-fontawesome": "^3.0.0-5",
-    "sass": "^1.49.8"
+    "sass": "^1.49.8",
+    "vue": "^3.2.45"
   }
 }
