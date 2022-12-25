@@ -75,7 +75,7 @@ export default {
     flex-direction: column;
 
     width: 100%;
-    height: 95vh;
+    //height: 95vh;
 
     justify-content: center;
 
@@ -87,7 +87,7 @@ export default {
         
         width: 80%;
         
-        margin: -50px auto 0;
+        margin: 0px auto 20px;
 
         &.split-page {
             .text-content {

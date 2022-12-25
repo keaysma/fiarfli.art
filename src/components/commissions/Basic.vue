@@ -57,7 +57,8 @@ export default {
         margin: 0;
 
         .text-content {
-            margin: 100px 35px;
+            font-size: 1rem;
+            margin: 50px 35px;
             //position: sticky;
             //top: 100px;
 

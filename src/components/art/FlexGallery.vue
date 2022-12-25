@@ -553,6 +553,7 @@ export default {
 
     .art-section {
       h2 {
+        font-size: 1.5rem;
         position: initial;
       }
     }

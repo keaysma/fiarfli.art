@@ -147,7 +147,7 @@ export default {
         display: none;
       }
       .text-block {
-        font-size: 1.35rem;
+        font-size: 1.15rem;
         text-align: center;
 
         width: calc(100% - 50px);
@@ -158,7 +158,7 @@ export default {
       }
     }
     .image-guard {
-      background: linear-gradient(#000 45%, #0008 60%, #0003 85%);
+      background: linear-gradient(#000 50%, #0008 65%, #0003 85%);
     }
   }
 }

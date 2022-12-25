@@ -285,7 +285,7 @@ export default {
     background: none;
     border: none;
 
-    font-size: 2rem;
+    font-size: 1.25rem;
 
     //filter: invert(1);
     //mix-blend-mode: exclusion;
