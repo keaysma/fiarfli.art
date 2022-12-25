@@ -108,7 +108,7 @@ export default {
             margin: 0;
 
             color: #534957;
-            text-shadow: 1px 1px 3px #53495744;
+            text-shadow: 1px 1px 1px #d389a7f4;
 
             h2, p {
                 white-space: break-spaces;

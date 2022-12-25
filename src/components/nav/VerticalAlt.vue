@@ -6,7 +6,7 @@
             </div>
             <div class="nav-links">
                 <nav-link-thumb name="Home" href="#!" :icon="faHome" />
-                <nav-link-thumb name="About" href="#about" :icon="faAddressCard" />
+                <!-- <nav-link-thumb name="About" href="#about" :icon="faAddressCard" /> -->
                 <nav-link-thumb name="Art" href="#art" :icon="faPalette" />
                 <!-- <a v-bind:class="`nav-link ${navSection === 2 ? `selected` : ``}`" @click="closeMobileMenu()" href="#art" id="art-link"><font-awesome-icon :icon="faPalette" /></a> -->
                 <!-- <div class="sub-links" v-if="navSection === 2">

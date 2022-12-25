@@ -1,10 +1,8 @@
 ---
 // Component Imports
-import Counter from '../components/Counter.vue'
-import Hero from '../components/hero/WitchFixed.vue'
+import Hero from '../components/hero/Skitty.vue'
 import Nav from '../components/nav/VerticalAlt.vue'
 
-import About from '../components/about/BasicAlt.vue'
 import Art from '../components/art/FlexGallery.vue'
 import Commissions from '../components/commissions/Basic.vue'
 import ContactMe from '../components/contact-me/Basic.vue'
@@ -20,9 +18,12 @@ import state from '../components/state';
     <title>Raquel Bumgarner</title>
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <style>
+      @import url('https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&family=Nanum+Pen+Script&display=swap');
+
       html,
       body {
-        font-family: system-ui;
+        font-family: 'Nanum Pen Script', 'Gloria Hallelujah';
+        font-size: 1.5rem;
         margin: 0;
         padding: 0;
 
@@ -73,7 +74,6 @@ import state from '../components/state';
       <div class="background content">
         <Nav client:visible/>
         <section class="page-content">
-          <About client:visible/>
           <Art client:visible/>
           <Commissions client:visible/>
           <ContactMe client:visible/>

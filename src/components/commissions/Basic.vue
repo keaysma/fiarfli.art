@@ -36,12 +36,12 @@ export default {
     //background: white;
 
     .text-content {
-        margin: 200px 200px;
+        margin: 20px 200px 20px 200px;
         //position: sticky;
         top: 200px;
 
         color: #534957;
-        text-shadow: 1px 1px 3px #53495744;
+        text-shadow: 1px 1px 1px #d389a7f4;
 
         p {
             white-space: break-spaces;

@@ -1,7 +1,7 @@
 <template lang="">
     <div id="art" class="page">
         <div class="art-content">
-            <h1>Art</h1>
+            <!-- <h1>Art</h1> -->
             <div v-for="(block, blockIndex) in blocks" :key="blockIndex" class="art-section" :id="`art-${block.name}`">
                 <h2>{{ block.name }}</h2>
                 <div class="art-container">
@@ -311,13 +311,15 @@ export default {
 
   margin: 0;
 
+  overflow: hidden;
+
   .art-content {
     margin: 75px 125px;
     //position: sticky;
     top: 200px;
 
     color: #534957;
-    text-shadow: 1px 1px 3px #53495744;
+    text-shadow: 1px 1px 1px #d389a7f4;
   }
 
   .art-section {
@@ -483,10 +485,11 @@ export default {
           align-items: flex-end;
 
           a {
-            font-size: 10px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 15px;
             color: blue;
 
-            margin: 0 0 10px 5px;
+            margin: 0 0 25px 5px;
           }
         }
       }
