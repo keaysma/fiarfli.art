@@ -23,18 +23,19 @@
 [x] Customizable background color for gallery items
 
 [x] Embedded links (<div><iframe/></div>)
-[x] Automated WebP
+[x] Add auto-conversion for png/jpg to webp
 
-[ ] Add file size limit
+[x] Email sending API
+
+[x] Add file size limit
 [ ] Filter out unused and just-uploaded files before submit
 
 [ ] Skills section
 [ ] Downloadable Resume
 
 [ ] Add config for mobile browser color, use the pink color
-[ ] Favorite pokemon on site
 [ ] Look into SEO
 
 # Maybe
 [ ] Add browser storage-based intermediary save functionality
-[ ] Add auto-conversion for png/jpg to webp
+[ ] Favorite pokemon on site

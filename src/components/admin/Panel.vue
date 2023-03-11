@@ -334,6 +334,14 @@ export default {
                 Promise.all([this.readFileBytes(file), this.readFileBase64(file)])
                     .then(([fileContents, base64FileContents]) => {
                         //console.log({ filename, path, fileContents, base64FileContents })
+                        console.log(`fileContents`, fileContents.length)
+
+                        if(fileContents.length > (2 * 1048576 /* MiB */)){
+                            console.error("TOO BIG OF A FILE")
+                            state.blocks[blockId].content[contentId].path = "ERROR TOO BIG, talk to Michael for upload"
+                            return
+                        }
+
                         state.mediaContent[path] = {
                             utf8: fileContents,
                             base64: base64FileContents
@@ -385,6 +393,9 @@ export default {
                 mediaContent
             } = state
 
+            // Gather in-use content from blocks
+            const usedContent = []
+
             const payload = {
                 token: this.token,
 
@@ -397,7 +408,9 @@ export default {
                 },
 
                 blocks: [ ... blocks ],
-                media: Object.entries(mediaContent).map(([ name, values ]) => ({ name, content: values.base64.split(',')[1] }))
+                media: Object.entries(mediaContent)
+                            .filter(() => true) // filter out content that is not used
+                            .map(([ name, values ]) => ({ name, content: values.base64.split(',')[1] }))
             }
 
             console.log(`${import.meta.env.PUBLIC_BACKEND}/api/grid`)
