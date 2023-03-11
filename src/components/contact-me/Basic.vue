@@ -8,30 +8,41 @@
                 </p>
             </div>
             <div v-if="contactFormEnabled" class="contact-form">
-                <form action="mailto:raquel@fiarfli.art" method="get" enctype="text/plain">
+                <form action="javascript:void(0);" @submit="submitMessage()">
                     <div class="form-group">
                         <div class="field-group">
-                            <input type="text" name="name" />
+                            <input type="text" name="name" v-model="name" required/>
                             <label for="name">Name</label>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="field-group">
-                            <input type="text" name="subject" autocomplete="off" />
+                            <input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" name="email" v-model="email" required/>
+                            <label for="email">Email</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="field-group">
+                            <input type="text" name="subject" autocomplete="off" v-model="subject" required/>
                             <label for="subject">Subject</label>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="field-group">
-                            <textarea name="body"></textarea>
+                            <textarea name="body" v-model="body" required></textarea>
                             <label for="body">Message</label>
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <button class="submit-button">send it! <font-awesome-icon :icon="faPaperPlane" /></button>
+                    <div class="form-group submit-group">
+                        <button v-if="submitState === 'unsubmitted'" class="submit-button" type="submit">send it! <font-awesome-icon :icon="faPaperPlane" /></button>
+                        <span v-else-if="submitState === 'submitted'" class="submitted-text">sending...</span>
+                        <span v-else-if="submitState === 'success'" class="success-text">sent 🕊️</span>
+                        <span v-else-if="submitState === 'error'" class="error-text"><span>MEOW!!!</span> 🙀 (failed, try again later)</span>
+                        <span v-else class="">"MEOW." -- Raquel</span>
                     </div>
                 </form>
             </div>
@@ -40,6 +51,8 @@
 </template>
 
 <script>
+import { ref } from 'vue';
+
 import state from '../state'
 import { contact, contactFormEnabled } from '../content.json'
 
@@ -53,6 +66,62 @@ export default {
 
         if(state.contactFormEnabled === undefined)
             state.contactFormEnabled = contactFormEnabled
+
+        const submitState = ref('unsubmitted')
+        const name = ref('')
+        const email = ref('')
+        const subject = ref('')
+        const body = ref('')
+
+        const clearForm = () => {
+            name.value = ''
+            email.value = ''
+            subject.value = ''
+            body.value = ''
+        }
+
+        return {
+            submitState, name, email, subject, body, clearForm
+        }
+    },
+    methods: {
+        submitMessage () {
+            if(this.submitState !== 'unsubmitted') return 
+            
+            const {
+                name, email, subject, body, clearForm
+            } = this
+
+            const payload = {
+                name, email, subject, body
+            }
+
+            console.log(`/api/mail`, { ... payload })
+
+            this.submitState = "submitted"
+
+            fetch(
+                `${import.meta.env.PUBLIC_BACKEND}/api/mail`,
+                {
+                    method: `POST`,
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(payload)
+                }
+            )
+                .then(res => {
+                    this.submitState = res.ok ? "success" : "error"
+                    //clearForm()
+                })
+                .catch(err => {
+                    this.submitState = "error"
+                })
+                .finally(() => {
+                    if(this.submitState !== "success")
+                        setTimeout(() => this.submitState = "unsubmitted", 3000)
+                })
+        }
     },
     computed: {
         contact () { return state?.contact },
@@ -181,6 +250,38 @@ export default {
             .form-group {
                 display: flex;
                 flex-direction: row;
+            }
+
+            .submit-group {
+                justify-content: end;
+            }
+
+            .submitted-text {
+                background: -webkit-linear-gradient(135deg, blue, pink);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+
+            .success-text {
+                background: -webkit-linear-gradient(275deg, blue, pink);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+
+            .error-text {
+                span {
+                    position: absolute;
+                    color: red;
+                    animation: shake 0.2s infinite;
+                }
+
+                @keyframes shake {
+                     0%{transform: translate(-90px, 0) rotate(320deg);}
+                    25%{transform: translate(-80px, 0) rotate(340deg);}
+                    50%{transform: translate(-90px, 0) rotate(330deg);}
+                    75%{transform: translate(-100px, 0) rotate(320deg);}
+                    100%{transform: translate(-90px, 0) rotate(310deg);}
+                }
             }
 
             .field-group {
