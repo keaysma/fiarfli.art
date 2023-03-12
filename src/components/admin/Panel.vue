@@ -394,7 +394,13 @@ export default {
             } = state
 
             // Gather in-use content from blocks
-            const usedContent = []
+            const usedContent = blocks.map(
+                ({ content }) => content.map(
+                    ({ path }) => path
+                )
+            ).flat()
+
+            console.log({ usedContent })
 
             const payload = {
                 token: this.token,
@@ -409,14 +415,13 @@ export default {
 
                 blocks: [ ... blocks ],
                 media: Object.entries(mediaContent)
-                            .filter(() => true) // filter out content that is not used
+                            .filter(([ name ]) => usedContent.includes(name)) // filter out content that is not used
                             .map(([ name, values ]) => ({ name, content: values.base64.split(',')[1] }))
             }
 
             console.log(`${import.meta.env.PUBLIC_BACKEND}/api/grid`)
             console.log({ payload })
 
-            this.uploadState = "submitted"
             fetch(
                 `${import.meta.env.PUBLIC_BACKEND}/api/grid`,
                 {
@@ -430,6 +435,7 @@ export default {
                 .then(res => this.uploadState = res.ok ? "success" : "error")
                 .catch(err => this.uploadState = "error")
                 .finally(() => setTimeout(() => this.uploadState = "unsubmitted", 3000))
+            this.uploadState = "submitted"
         }
     },
 

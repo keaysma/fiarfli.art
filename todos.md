@@ -28,7 +28,7 @@
 [x] Email sending API
 
 [x] Add file size limit
-[ ] Filter out unused and just-uploaded files before submit
+[x] Filter out unused and just-uploaded files before submit
 
 [ ] Skills section
 [ ] Downloadable Resume
