@@ -415,7 +415,8 @@ export default {
 
                 blocks: [ ... blocks ],
                 media: Object.entries(mediaContent)
-                            .filter(([ name ]) => usedContent.includes(name)) // filter out content that is not used
+                            .filter(([ name ]) => true) // filter out content that is not used
+                            //.filter(([ name ]) => usedContent.includes(name)) // filter out content that is not used - this is not working
                             .map(([ name, values ]) => ({ name, content: values.base64.split(',')[1] }))
             }
 
