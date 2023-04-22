@@ -195,8 +195,8 @@ export default {
             contactFormEnabled : stateContactFormEnabled
         } = state;
 
-        state.about = stateCommissions || about
-        state.commissions = stateAbout || commissions
+        state.about = stateAbout || about
+        state.commissions = stateCommissions || commissions
         state.contact = stateContact || contact
         state.contactFormEnabled = stateContactFormEnabled || contactFormEnabled
 
