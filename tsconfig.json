@@ -1,3 +1,16 @@
 {
-  "moduleResolution": "node"
+  "target": "ESNext",
+  "lib": "ESNext",
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "allowJs": true,
+    "strict": false,
+
+    "baseUrl": "src",
+    "paths": {
+      "@/*": ["*"]
+    }
+  }
 }
