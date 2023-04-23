@@ -59,7 +59,7 @@
     </div>
 </template>
 
-<script>
+<script lang="ts">
 import { ref, onMounted, getCurrentInstance } from "vue";
 
 import state from "../state";

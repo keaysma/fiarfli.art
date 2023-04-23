@@ -2,25 +2,13 @@
     <div id="commissions" class="page">
         <div class="text-content">
             <h1>Commissions</h1>
-            <p>{{ commissions }}</p>
+            <p>{{ state.commissions }}</p>
         </div>
     </div>
 </template>
 
-<script>
-import state from '../state'
-
-import { commissions } from '../content.json'
-
-export default {
-    setup () {
-        if(!state.commissions)
-            state.commissions = commissions
-    },
-    computed: {
-        commissions () { return state?.commissions }
-    }
-}
+<script setup lang="ts">
+import state from '@/components/state'
 </script>
 
 <style lang="scss">
