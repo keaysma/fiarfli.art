@@ -60,7 +60,7 @@
 </template>
 
 <script>
-import { ref, onMounted, getCurrentInstance } from "vue";
+import { ref, onMounted, onUnmounted, getCurrentInstance } from "vue";
 
 import state from "../state";
 
@@ -78,6 +78,33 @@ import Content from "./Content.vue";
 
 export default {
   created() {
+    const keyboardListener = (e) => {
+      //console.log({key: e.key})
+      //console.log({this: this})
+
+      if (e.key === "Escape") {
+        if (state.isGalleryFullscreen === false) {
+          state.isGalleryOpen = false;
+          document.body.style.overflow = "auto";
+        }
+
+        state.isGalleryFullscreen = false;
+      }
+
+      if (e.key === "f") {
+        if (state.isGalleryOpen === true)
+          state.isGalleryFullscreen = !state.isGalleryFullscreen;
+      }
+
+      if (e.key === "ArrowLeft") {
+        this.galleryPrevious();
+      }
+
+      if (e.key === "ArrowRight") {
+        this.galleryNext();
+      }
+    }
+    
     onMounted(() => {
       console.debug(`FlexGallery::created::onMounted`, location.hash);
 
@@ -118,32 +145,11 @@ export default {
         }
       }
 
-      window.addEventListener("keydown", (e) => {
-        //console.log({key: e.key})
-        //console.log({this: this})
+      window.addEventListener("keydown", keyboardListener);
+    });
 
-        if (e.key === "Escape") {
-          if (this.isGalleryFullscreen === false) {
-            state.isGalleryOpen = false;
-            document.body.style.overflow = "auto";
-          }
-
-          this.isGalleryFullscreen = false;
-        }
-
-        if (e.key === "f") {
-          if (state.isGalleryOpen === true)
-            state.isGalleryFullscreen = !state.isGalleryFullscreen;
-        }
-
-        if (e.key === "ArrowLeft") {
-          this.galleryPrevious();
-        }
-
-        if (e.key === "ArrowRight") {
-          this.galleryNext();
-        }
-      });
+    onUnmounted(() => {
+      window.removeEventListener("keydown", keyboardListener);
     });
   },
 
@@ -343,7 +349,7 @@ export default {
     grid-template-columns: repeat(6, 1fr);
     gap: 5px;
 
-    & > div {
+    &>div {
       width: 100%;
       height: 100%;
 
@@ -378,6 +384,7 @@ export default {
   transition: opacity 0.15s;
 
   opacity: 0;
+
   &:not(.open) {
     pointer-events: none;
   }
@@ -449,7 +456,7 @@ export default {
 
     margin: 150px auto;
 
-    & > div.image-container,
+    &>div.image-container,
     img {
       width: 100%;
       height: 100%;
@@ -493,6 +500,7 @@ export default {
           }
         }
       }
+
       .gallery-body {
         margin: 0;
 
@@ -529,6 +537,7 @@ export default {
 }
 
 .hover-focus {
+
   &:hover,
   &:focus {
     filter: brightness(0.95);
@@ -559,7 +568,7 @@ export default {
     }
 
     .art-container {
-      & > div {
+      &>div {
         width: 100% !important;
       }
     }
