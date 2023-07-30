@@ -1,4 +1,4 @@
-<template lang="">
+<template>
     <div id="!" class="hero">
         <div class="image-guard" />
         <img 
@@ -26,21 +26,10 @@
     </div>
 </template>
 
-<script>
-import state from "../state";
-
-import { about } from "../content.json";
-export default {
-  setup() {
-    if (!state.about) state.about = about;
-  },
-
-  computed: {
-    about() {
-      return state?.about;
-    },
-  },
-};
+<script setup lang="ts">
+defineProps<{
+  about: string;
+}>();
 </script>
 
 <style lang="scss">
@@ -141,11 +130,14 @@ export default {
     .hero-image {
       object-position: 65% 0;
     }
+
     .content {
+
       .signature,
       .hero-nav {
         display: none;
       }
+
       .text-block {
         font-size: 1.15rem;
         text-align: center;
@@ -157,6 +149,7 @@ export default {
         left: 0;
       }
     }
+
     .image-guard {
       background: linear-gradient(#000 50%, #0008 65%, #0003 85%);
     }
