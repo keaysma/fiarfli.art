@@ -2,6 +2,6 @@
 **/.vscode
 **/.git
 **/.env
-#dist/
+dist/
 yarn-error.log
 
