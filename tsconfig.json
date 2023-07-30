@@ -1,3 +1,11 @@
 {
-  "moduleResolution": "node"
+  "compilerOptions": {
+    "moduleResolution": "Node",
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "outDir": "./dist",
+    "paths": {
+      "/src/*": ["./src/*"]
+    }
+  }
 }
