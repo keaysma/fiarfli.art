@@ -1,11 +1,11 @@
-<template lang="">
-    <div id="footer" class="page">
-        <div class="text-content">
-            <p>Made with</p>
-            <font-awesome-icon class="footer-icon" :icon="faHeart" size="1x" />
+<template>
+    <footer>
+        <p class="text-content">
+            <span>Made with</span>
+            <font-awesome-icon class="footer-icon" :icon="faHeart" />
             <a href="https://keays.io" target="_blank">keays.io</a>
-        </div>
-    </div>
+        </p>
+    </footer>
 </template>
 
 <script>
@@ -17,7 +17,7 @@ export default {
         FontAwesomeIcon
     },
 
-    data () {
+    data() {
         return {
             faHeart
         }
@@ -26,13 +26,12 @@ export default {
 </script>
 
 <style lang="scss">
-#footer.page {
+footer {
+    position: relative;
     width: 100%;
     height: 50px;
 
     margin: 0;
-
-    //background: white;
 
     .text-content {
         display: flex;
@@ -47,13 +46,12 @@ export default {
         color: #534957;
         text-shadow: 1px 1px 3px #53495744;
 
-        &>* {
-            margin: auto 5px;
-        }
-
         .footer-icon {
+            width: 0.75em;
             color: #B2DEED;
             filter: drop-shadow(1px 2px 1px #BA9EA2);
+
+            margin: 0 0.25em;
         }
     }
 }

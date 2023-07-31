@@ -1,29 +1,19 @@
 <template>
-    <div id="!" class="hero">
-        <div class="image-guard" />
-        <img 
-            class="hero-image"
-            src="/skitty.webp"
-        />
+  <div id="hero">
+    <div id="hero-image" />
 
-        <div class="content">
-            <img
-                class="signature"
-                src="/Raquel-signature.svg"
-            />
+    <nav>
+      <img class="signature" src="/Raquel-signature.svg" width="200px" height="50px" />
 
-            <div class="hero-nav">
-                <div class="nav-links">
-                    <!-- <a class="nav-link" href="#!">Home</a> -->
-                    <a class="nav-link" href="#art">Art</a>
-                    <a class="nav-link" href="#commissions">Commissions</a>
-                    <a class="nav-link" href="#contact-me">Contact Me</a>
-                </div>
-            </div>
+      <div class="nav-links">
+        <a class="nav-link" href="#art">Art</a>
+        <a class="nav-link" href="#commissions">Commissions</a>
+        <a class="nav-link" href="#contact-me">Contact Me</a>
+      </div>
+    </nav>
 
-            <p class="text-block">{{ about }}</p>
-        </div>
-    </div>
+    <p class="text-block">{{ about }}</p>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -33,126 +23,63 @@ defineProps<{
 </script>
 
 <style lang="scss">
-.hero {
-  //position: fixed;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-content: center;
+#hero {
+  display: block;
+  width: 100%;
+  height: calc(100vh - 8em);
 
-  width: 100vw;
-  height: 100vh;
-
-  .hero-image {
+  >#hero-image {
     position: fixed;
 
-    top: 0px;
-
-    z-index: 0;
-
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    top: 0;
 
-    //filter: brightness(0.85);
+    background: linear-gradient(165deg, #000b 30%, #0000), center/cover url(/skitty.webp);
   }
 
-  .image-guard {
-    z-index: 5;
+  >nav {
+    display: block;
+    position: fixed;
+    backdrop-filter: blur(20px) brightness(0.75);
 
     width: 100%;
-    height: 100%;
+    height: 80px;
+    z-index: 99;
 
-    background: linear-gradient(165deg, #000b 30%, #0000);
-  }
+    padding: 1em 3em;
 
-  .content {
-    z-index: 10;
+    .signature {
+      margin: 0 auto 0 -0.5em;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      gap: 1em;
+
+      >.nav-link {
+        color: rgb(234, 205, 209);
+        text-decoration: none;
+      }
+    }
   }
 
   .text-block {
-    position: fixed;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+    position: absolute;
+    max-width: 23em;
 
-    width: 50%;
-    //margin-top: -150px;
+    padding: 0 3em;
+    top: 5em;
 
-    top: 15%;
-    left: 55px;
+    margin: 0;
 
     text-align: left;
-    font-size: 1.75rem;
 
     color: white;
-  }
-
-  .signature {
-    position: fixed;
-
-    z-index: 15px;
-
-    top: 5%;
-    left: calc(40px);
-
-    width: 250px;
-    height: 75px;
-  }
-
-  .hero-nav {
-    .nav-links {
-      position: fixed;
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-
-      //width: 100%;
-      //margin-top: -150px;
-
-      top: 7.5%;
-      left: 300px;
-
-      text-align: center;
-      font-size: 1.25rem;
-
-      .nav-link {
-        color: rgb(234, 205, 209);
-        text-decoration: none;
-        margin: 0 10px;
-      }
-    }
-  }
-}
-
-@media only screen and (max-width: 768px) {
-  .hero {
-    .hero-image {
-      object-position: 65% 0;
-    }
-
-    .content {
-
-      .signature,
-      .hero-nav {
-        display: none;
-      }
-
-      .text-block {
-        font-size: 1.15rem;
-        text-align: center;
-
-        width: calc(100% - 50px);
-        margin: 0 25px;
-
-        top: 90px;
-        left: 0;
-      }
-    }
-
-    .image-guard {
-      background: linear-gradient(#000 50%, #0008 65%, #0003 85%);
-    }
+    white-space: break-spaces;
   }
 }
 </style>
