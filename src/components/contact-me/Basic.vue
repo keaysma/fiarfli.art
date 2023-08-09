@@ -57,9 +57,10 @@ import { ref } from 'vue';
 
 import { contact, contactFormEnabled } from '../content.json'
 
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 
-const props = defineProps<{
+defineProps<{
     contact: string,
     contactFormEnabled: boolean
 }>();

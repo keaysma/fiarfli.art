@@ -18,13 +18,13 @@ import { about, commissions, contact, contactFormEnabled } from "/src/components
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <style>
       @font-face {
-        font-family: "Gloria Hallelujah";
-        src: url(/fonts/GloriaHallelujah-Regular.ttf);
+        font-family: "Raquel";
+        src: url(/fonts/Raquelfont_01.ttf);
       }
 
       @font-face {
         font-family: "Nanum Pen Script";
-        src: url(/fonts/NanumPenScript-Regular.ttf);
+        src: url(/fonts/nanum-pen-script-v19-latin-regular.woff2);
       }
 
       :root {
@@ -37,8 +37,10 @@ import { about, commissions, contact, contactFormEnabled } from "/src/components
         overflow-x: hidden;
         overflow-y: scroll;
 
-        font-family: "Nanum Pen Script", "Gloria Hallelujah";
-        font-size: 32px;
+        font-family: "Nanum Pen Script";
+        font-size: 36px;
+        line-height: 1.25em;
+        letter-spacing: -1px;
         margin: 0;
         padding: 0;
 
@@ -54,6 +56,8 @@ import { about, commissions, contact, contactFormEnabled } from "/src/components
         display: block;
         width: 100%;
         z-index: 20;
+
+        padding-top: 10em;
       }
 
       @media only screen and (max-width: 768px) {
@@ -72,7 +76,7 @@ import { about, commissions, contact, contactFormEnabled } from "/src/components
     </style>
   </head>
   <body>
-    <Hero {about} />
+    <Hero client:load {about} />
     <main class="background content">
       <!-- <Art client:load/> -->
       <Commissions {commissions} />

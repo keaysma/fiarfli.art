@@ -2,7 +2,7 @@
     <footer>
         <p class="text-content">
             <span>Made with</span>
-            <font-awesome-icon class="footer-icon" :icon="faHeart" />
+            <FontAwesomeIcon class="footer-icon" :icon="faHeart" />
             <a href="https://keays.io" target="_blank">keays.io</a>
         </p>
     </footer>
