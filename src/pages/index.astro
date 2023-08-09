@@ -78,7 +78,7 @@ import { about, commissions, contact, contactFormEnabled } from "/src/components
   <body>
     <Hero client:load {about} />
     <main class="background content">
-      <!-- <Art client:load/> -->
+      <Art client:load/>
       <Commissions {commissions} />
       <ContactMe client:visible {contact} {contactFormEnabled} />
       <MadeWithLove/>

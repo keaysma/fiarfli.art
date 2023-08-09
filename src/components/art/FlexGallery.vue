@@ -60,7 +60,7 @@
 </template>
 
 <script>
-import { ref, onMounted, onUnmounted, getCurrentInstance } from "vue";
+import { ref, onMounted, onUnmounted } from "vue";
 
 import state from "../state";
 

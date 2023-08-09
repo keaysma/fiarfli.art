@@ -69,7 +69,7 @@ onUnmounted(() => {
 
     padding: 1em 3em;
 
-    backdrop-filter: invert(0) contrast(1) brightness(0.75) blur(0.5em);
+    backdrop-filter: invert(0) contrast(1) brightness(0.5) blur(0.5em);
 
     transition: var(--transition);
 
