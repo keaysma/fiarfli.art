@@ -1,310 +1,263 @@
-<template lang="">
-    <div id="art" class="page">
-        <div class="art-content">
-            <!-- <h1>Art</h1> -->
-            <div v-for="(block, blockIndex) in blocks" :key="blockIndex" class="art-section" :id="`art-${block.name}`">
-                <h2>{{ block.name }}</h2>
-                <div class="art-container">
-                    <div
-                        v-for="(content, contentIndex) in block.content" :key="contentIndex"
-                        v-bind:style="{gridArea: `span ${content.height} / span ${content.width}`}"
-                        v-bind:class="content.type"
-                        @click="setGallerySettings({blockIndex,contentIndex});setIsGalleryOpen(content.type)"
-                    >
-                        <content v-bind:content="content" :displayIcon="true" :useColor="true" :useThumbnail="true"/>
-                    </div>
-                </div>
-            </div>
+<template>
+  <div id="art" class="page">
+    <div class="art-content">
+      <!-- <h1>Art</h1> -->
+      <div v-for="(block, blockIndex) in blocks" :key="blockIndex" class="art-section" :id="`art-${block.name}`">
+        <h2>{{ block.name }}</h2>
+        <div class="art-container">
+          <div v-for="(content, contentIndex) in block.content" :key="contentIndex"
+            v-bind:style="{ gridArea: `span ${content.height} / span ${content.width}` }" v-bind:class="content.type"
+            @click="gallerySettings = { blockIndex, contentIndex, open: true, fullscreen: false }">
+            <Content v-bind:content="content" :displayIcon="true" :useColor="true" :useThumbnail="true" />
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 
-    <!-- Gallery -->
-    <div class="gallery" :class="{open: isGalleryOpen}" v-on:click.self="closeGallery()">
-        <!-- <button class="gallery-icon gallery-go-fullscreen" @click="setIsGalleryFullscreen(true)">
+  <!-- Gallery -->
+  <div class="gallery" :class="{ open: gallerySettings.open }" v-on:click.self="gallerySettings.open = false">
+    <!-- <button class="gallery-icon gallery-go-fullscreen" @click="setIsGalleryFullscreen(true)">
             <font-awesome-icon :icon="faExpandArrowsAlt" size="2x" />
         </button> -->
-        <button class="gallery-icon gallery-thumb" @click="closeGallery()">
-            <font-awesome-icon :icon="faTimes" size="2x" />
-        </button>
+    <button class="gallery-icon gallery-thumb" @click="gallerySettings.open = false">
+      <FontAwesomeIcon :icon="faTimes" size="2x" />
+    </button>
 
-        <button class="gallery-bar gallery-left" @click="galleryPrevious()">
-            <font-awesome-icon :icon="faChevronLeft" size="2x" />
-        </button>
-        <button class="gallery-bar gallery-right" @click="galleryNext()">
-            <font-awesome-icon :icon="faChevronRight" size="2x" />
-        </button>
+    <button class="gallery-bar gallery-left" @click="galleryPrevious()">
+      <FontAwesomeIcon :icon="faChevronLeft" size="2x" />
+    </button>
+    <button class="gallery-bar gallery-right" @click="galleryNext()">
+      <FontAwesomeIcon :icon="faChevronRight" size="2x" />
+    </button>
 
-        <div class="gallery-content" v-on:touchstart="touchStart" v-on:touchend="touchEnd">
-            <div class="image-container hover-focus">
-                <content v-bind:content="blocks?.[gallerySettings?.blockIndex]?.content?.[gallerySettings?.contentIndex]" :controls="true" />
-            </div>
-            <div class="gallery-text">
-                <div class="gallery-header">
-                    <div class="gallery-title">
-                        <h1>{{ blocks?.[gallerySettings?.blockIndex]?.content?.[gallerySettings?.contentIndex]?.title }}</h1>
-                        <a @click="getShortcutLink(getShortcutFromTitle(blocks?.[gallerySettings?.blockIndex]?.content?.[gallerySettings?.contentIndex]?.title))">share</a>
-                    </div>
-                    <h2>{{ blocks?.[gallerySettings?.blockIndex]?.content?.[gallerySettings?.contentIndex]?.date }}</h2>
-                </div>
-                <div class="gallery-body">
-                    <p>{{ blocks?.[gallerySettings?.blockIndex]?.content?.[gallerySettings?.contentIndex]?.desc }}</p>
-                </div>
-            </div>
+    <div class="gallery-content" v-on:touchstart="touchStart" v-on:touchend="touchEnd">
+      <div class="image-container hover-focus">
+        <content v-bind:content="blocks?.[gallerySettings?.blockIndex]?.content?.[gallerySettings?.contentIndex]"
+          :controls="true" />
+      </div>
+      <div class="gallery-text">
+        <div class="gallery-header">
+          <div class="gallery-title">
+            <h1>{{ blocks?.[gallerySettings?.blockIndex]?.content?.[gallerySettings?.contentIndex]?.title }}</h1>
+            <a
+              @click="getShortcutLink(getShortcutFromTitle(blocks?.[gallerySettings?.blockIndex]?.content?.[gallerySettings?.contentIndex]?.title))">share</a>
+          </div>
+          <h2>{{ blocks?.[gallerySettings?.blockIndex]?.content?.[gallerySettings?.contentIndex]?.date }}</h2>
         </div>
-
-        <!-- Fullscreen Gallery -->
-        <div v-if="isGalleryFullscreen" class="gallery-fullscreen" v-on:touchstart="touchStart" v-on:touchend="touchEnd">
-            <content v-bind:content="blocks?.[gallerySettings?.blockIndex]?.content?.[gallerySettings?.contentIndex]" :controls="true" :fullscreen="true"/>
+        <div class="gallery-body">
+          <p>{{ blocks?.[gallerySettings?.blockIndex]?.content?.[gallerySettings?.contentIndex]?.desc }}</p>
         </div>
+      </div>
     </div>
+
+    <!-- Fullscreen Gallery -->
+    <div v-if="gallerySettings.fullscreen" class="gallery-fullscreen" v-on:touchstart="touchStart"
+      v-on:touchend="touchEnd">
+      <content v-bind:content="blocks?.[gallerySettings?.blockIndex]?.content?.[gallerySettings?.contentIndex]"
+        :controls="true" :fullscreen="true" />
+    </div>
+  </div>
 </template>
 
-<script>
+<script setup lang="ts">
 import { ref, onMounted, onUnmounted } from "vue";
 
-import state from "../state";
-
-import indexData from "../index.json";
-
-import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome"
 import {
   faTimes,
-  faExpandArrowsAlt,
-  faCompressArrowsAlt,
   faChevronLeft,
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
 import Content from "./Content.vue";
 
-export default {
-  created() {
-    const keyboardListener = (e) => {
-      //console.log({key: e.key})
-      //console.log({this: this})
+type ContentFit = "contain" | "cover";
+type ContentType = "link" | "iframe" | "contained";
 
-      if (e.key === "Escape") {
-        if (state.isGalleryFullscreen === false) {
-          state.isGalleryOpen = false;
-          document.body.style.overflow = "auto";
-        }
+interface Content {
+  title: string;
+  desc: string;
+  date: string;
+  fit: ContentFit;
+  type: ContentType;
+  width: "1" | "2" | "3" | "4" | "5" | "6";
+  height: "1" | "2" | "3";
 
-        state.isGalleryFullscreen = false;
-      }
+  html?: string;
+  color?: string;
+}
 
-      if (e.key === "f") {
-        if (state.isGalleryOpen === true)
-          state.isGalleryFullscreen = !state.isGalleryFullscreen;
-      }
+interface Block {
+  name: string;
+  content: Content[];
+}
 
-      if (e.key === "ArrowLeft") {
-        this.galleryPrevious();
-      }
+const props = defineProps<{
+  blocks: Block[];
+}>();
 
-      if (e.key === "ArrowRight") {
-        this.galleryNext();
-      }
+const gallerySettings = ref({
+  blockIndex: 0,
+  contentIndex: 0,
+  open: false,
+  fullscreen: false,
+});
+const keyboardListener = (e: KeyboardEvent) => {
+  if (e.key === "Escape") {
+    if (gallerySettings.value.fullscreen === false) {
+      gallerySettings.value.open = false;
+      // document.body.style.overflow = "auto";
     }
-    
-    onMounted(() => {
-      console.debug(`FlexGallery::created::onMounted`, location.hash);
 
-      const hashPath = location.hash.slice(1);
-      if (hashPath.length > 1) {
-        console.debug({
-          hashPath,
-          setIsGalleryOpen: this.setIsGalleryOpen,
-          blocks: this.blocks,
+    gallerySettings.value.fullscreen = false;
+  }
+
+  if (e.key === "f") {
+    if (gallerySettings.value.open)
+      gallerySettings.value.fullscreen = !gallerySettings.value.fullscreen;
+  }
+
+  if (e.key === "ArrowLeft") {
+    galleryPrevious();
+  }
+
+  if (e.key === "ArrowRight") {
+    galleryNext();
+  }
+}
+
+onMounted(() => {
+  console.debug(`FlexGallery::setup::onMounted`, location.hash);
+
+  const hashPath = location.hash.slice(1);
+  if (hashPath.length > 1) {
+    // Select gallery item by hashPath
+    // Find blockIndex, contentIndex
+    const blockIndex = props.blocks.findIndex((block) =>
+      block.content.find(
+        (content) => getShortcutFromTitle(content.title) === hashPath
+      )
+    );
+
+    if (blockIndex > -1) {
+      const contentIndex = props.blocks[blockIndex].content.findIndex(
+        (content) => getShortcutFromTitle(content.title) === hashPath
+      );
+
+      if (contentIndex > -1) {
+        console.log(`Found content with path ${hashPath}`, {
+          blockIndex,
+          contentIndex,
         });
 
-        // Select gallery item by hashPath
-        // Find blockIndex, contentIndex
-        const blockIndex = this.blocks.findIndex((block) =>
-          block.content.find(
-            (content) => this.getShortcutFromTitle(content.title) === hashPath
-          )
-        );
+        document.getElementById("art").scrollIntoView();
 
-        console.debug({ blockIndex });
-
-        if (blockIndex > -1) {
-          const contentIndex = this.blocks[blockIndex].content.findIndex(
-            (content) => this.getShortcutFromTitle(content.title) === hashPath
-          );
-
-          if (contentIndex > -1) {
-            console.log(`Found content with path ${hashPath}`, {
-              blockIndex,
-              contentIndex,
-            });
-
-            document.getElementById("art").scrollIntoView();
-
-            this.setGallerySettings({ blockIndex, contentIndex });
-            this.setIsGalleryOpen();
-          }
-        }
+        gallerySettings.value = { blockIndex, contentIndex, open: true, fullscreen: false };
       }
+    }
+  }
 
-      window.addEventListener("keydown", keyboardListener);
-    });
+  window.addEventListener("keydown", keyboardListener);
+});
 
-    onUnmounted(() => {
-      window.removeEventListener("keydown", keyboardListener);
-    });
-  },
+onUnmounted(() => {
+  window.removeEventListener("keydown", keyboardListener);
+});
 
-  setup() {
-    state.blocks = indexData.blocks;
+// TODO: do this with a listener
+// const setIsGalleryOpen = (value?: ContentType) => {
+//   if (!value || value === "link") {
+//     isGalleryOpen.value = true;
+//     document.body.style.overflow = "hidden";
+//   }
+// };
 
-    const setIsGalleryFullscreen = (value) => {
-      state.isGalleryFullscreen = value;
-    };
+// const closeGallery = () => {
+//   isGalleryOpen.value = false;
+//   isGalleryFullscreen.value = false;
+//   document.body.style.overflow = "auto";
+// };
 
-    // TODO: Use TypeScript :(((
-    const setIsGalleryOpen = (value /* string: link | iframe |contained */) => {
-      if (!value || value === "link") {
-        state.isGalleryOpen = true;
-        document.body.style.overflow = "hidden";
-      }
-    };
-    const closeGallery = () => {
-      state.isGalleryOpen = false;
-      state.isGalleryFullscreen = false;
-      document.body.style.overflow = "auto";
-    };
+const touchStartEvent = ref<TouchEvent>();
+const touchStart = (touchEvent: TouchEvent) => {
+  touchStartEvent.value = touchEvent;
+}
+const touchEnd = (touchEvent: TouchEvent) => {
+  const xMove =
+    touchEvent?.changedTouches?.[0]?.screenX -
+    touchStartEvent.value?.changedTouches?.[0]?.screenX;
 
-    const gallerySettings = ref({});
-    const setGallerySettings = (value) => (gallerySettings.value = value);
+  if (xMove >= 50) galleryPrevious();
+  if (xMove <= -50) galleryNext();
+}
 
-    const touchStartEvent = ref();
+// Turns any given string into a snake-case string
+// Used for quick-finding art pieces
+// Hangin' (full color) -> hangin-full-color
+const getShortcutFromTitle = (title: string) => {
+  return title
+    .replaceAll(/[^A-Za-z0-9 ]/g, " ") // Turn all non-alphanumeric characters into spaces
+    .replaceAll(/[ ]+/g, "-") // Condense all groups of spaces into '-'
+    .replace(/-$/, "") // If there's a trailing '-' remove it
+    .toLowerCase(); // All lowercase
+}
 
-    return {
-      setIsGalleryFullscreen,
+// Gets the full path to a shortcut
+const getShortcutLink = (shortcut: string) => {
+  const shortcutUrl = `${location.host}/#${shortcut}`;
+  console.debug(`getShortcutLink`, shortcutUrl);
 
-      setIsGalleryOpen,
-      closeGallery,
+  if (!navigator.clipboard) {
+    console.warn("Clipboard is not enabled, link cannot be copied");
+    return;
+  }
 
-      gallerySettings,
-      setGallerySettings,
-    };
-  },
+  navigator.clipboard
+    .writeText(shortcutUrl)
+    .then(() => console.debug("copied"));
+}
 
-  methods: {
-    touchStart(touchEvent) {
-      this.touchStartEvent = touchEvent;
-    },
+const galleryPrevious = () => {
+  let newContentIndex = (gallerySettings.value.contentIndex ?? 0) - 1;
+  let newBlockIndex = gallerySettings.value.blockIndex ?? 0;
 
-    touchEnd(touchEvent) {
-      const xMove =
-        touchEvent?.changedTouches?.[0]?.screenX -
-        this.touchStartEvent?.changedTouches?.[0]?.screenX;
+  if (newContentIndex < 0) {
+    newBlockIndex -= 1;
 
-      if (xMove >= 50) this.galleryPrevious();
+    if (newBlockIndex < 0) {
+      newBlockIndex = props.blocks.length - 1;
+    }
 
-      if (xMove <= -50) this.galleryNext();
-    },
+    newContentIndex = props.blocks[newBlockIndex]?.content?.length - 1;
+  }
 
-    // Turns any given string into a snake-case string
-    // Used for quick-finding art pieces
-    // Hangin' (full color) -> hangin-full-color
-    getShortcutFromTitle(title /* string */) {
-      return title
-        .replaceAll(/[^A-Za-z0-9 ]/g, " ") // Turn all non-alphanumeric characters into spaces
-        .replaceAll(/[ ]+/g, "-") // Condense all groups of spaces into '-'
-        .replace(/-$/, "") // If there's a trailing '-' remove it
-        .toLowerCase(); // All lowercase
-    },
+  gallerySettings.value = {
+    ... gallerySettings.value,
+    contentIndex: newContentIndex,
+    blockIndex: newBlockIndex,
+  };
+}
 
-    // Gets the full path to a shortcut
-    getShortcutLink(shortcut /* string */) {
-      const shortcutUrl = `${location.host}/#${shortcut}`;
-      console.debug(`getShortcutLink`, shortcutUrl);
+const galleryNext = () => {
+  let newContentIndex = (gallerySettings.value?.contentIndex ?? 0) + 1;
+  let newBlockIndex = gallerySettings.value?.blockIndex ?? 0;
 
-      if (!navigator.clipboard) {
-        console.warn("Clipboard is not enabled, link cannot be copied");
-        return;
-      }
+  if (newContentIndex >= props.blocks[newBlockIndex]?.content?.length) {
+    newContentIndex = 0;
+    newBlockIndex += 1;
 
-      navigator.clipboard
-        .writeText(shortcutUrl)
-        .then(() => console.debug("copied"));
-    },
+    if (newBlockIndex >= props.blocks.length) {
+      newBlockIndex = 0;
+      newContentIndex = 0;
+    }
+  }
 
-    galleryPrevious() {
-      let newContentIndex = (this?.gallerySettings?.contentIndex ?? 0) - 1;
-      let newBlockIndex = this?.gallerySettings?.blockIndex ?? 0;
-
-      if (newContentIndex < 0) {
-        newBlockIndex -= 1;
-
-        if (newBlockIndex < 0) {
-          newBlockIndex = this?.blocks?.length - 1;
-        }
-
-        newContentIndex = this?.blocks?.[newBlockIndex]?.content?.length - 1;
-      }
-
-      this.gallerySettings = {
-        contentIndex: newContentIndex,
-        blockIndex: newBlockIndex,
-      };
-    },
-
-    galleryNext() {
-      let newContentIndex = (this?.gallerySettings?.contentIndex ?? 0) + 1;
-      let newBlockIndex = this?.gallerySettings?.blockIndex ?? 0;
-
-      if (newContentIndex >= this?.blocks?.[newBlockIndex]?.content?.length) {
-        newContentIndex = 0;
-        newBlockIndex += 1;
-
-        if (newBlockIndex >= this?.blocks?.length) {
-          newBlockIndex = 0;
-          newContentIndex = 0;
-        }
-      }
-
-      this.gallerySettings = {
-        contentIndex: newContentIndex,
-        blockIndex: newBlockIndex,
-      };
-    },
-  },
-
-  computed: {
-    blocks() {
-      return state?.blocks;
-    },
-    mediaContentNames() {
-      return state?.mediaContentNames;
-    },
-    mediaContent() {
-      return state?.mediaContent;
-    },
-
-    isGalleryOpen() {
-      return state?.isGalleryOpen;
-    },
-    isGalleryFullscreen() {
-      return state?.isGalleryFullscreen;
-    },
-  },
-
-  components: {
-    FontAwesomeIcon,
-    Content,
-  },
-
-  data() {
-    return {
-      faTimes,
-      faExpandArrowsAlt,
-      faCompressArrowsAlt,
-      faChevronLeft,
-      faChevronRight,
-    };
-  },
-};
+  gallerySettings.value = {
+    ... gallerySettings.value,
+    contentIndex: newContentIndex,
+    blockIndex: newBlockIndex,
+  };
+}
 </script>
 
 <style lang="scss">

@@ -65,7 +65,7 @@ onUnmounted(() => {
 
     width: 100%;
     height: 80px;
-    z-index: 99;
+    z-index: 89;
 
     padding: 1em 3em;
 

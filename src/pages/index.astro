@@ -8,6 +8,7 @@ import MadeWithLove from "/src/components/footer/made-with-love.vue";
 
 // Application State
 import { about, commissions, contact, contactFormEnabled } from "/src/components/content.json";
+import { blocks } from "/src/components/index.json";
 ---
 
 <html lang="en">
@@ -78,7 +79,7 @@ import { about, commissions, contact, contactFormEnabled } from "/src/components
   <body>
     <Hero client:load {about} />
     <main class="background content">
-      <Art client:load/>
+      <Art client:load {blocks} />
       <Commissions {commissions} />
       <ContactMe client:visible {contact} {contactFormEnabled} />
       <MadeWithLove/>
