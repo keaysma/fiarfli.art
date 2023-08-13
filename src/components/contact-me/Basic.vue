@@ -39,7 +39,7 @@
 
                 <div class="form-group submit-group">
                     <button v-if="submitState === 'unsubmitted'" class="submit-button" type="submit">send it!
-                        <FontAwesomeIcon :icon="faPaperPlane" />
+                        <!-- <FontAwesomeIcon :icon="faPaperPlane" /> -->
                     </button>
                     <span v-else-if="submitState === 'submitted'" class="submitted-text">sending...</span>
                     <span v-else-if="submitState === 'success'" class="success-text">sent 🕊️</span>
@@ -56,9 +56,6 @@
 import { ref } from 'vue';
 
 import { contact, contactFormEnabled } from '../content.json'
-
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 
 defineProps<{
     contact: string,
