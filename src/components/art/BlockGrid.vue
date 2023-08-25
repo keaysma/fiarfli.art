@@ -109,6 +109,9 @@ onMounted(() => {
   .art-section {
     margin: 0 0 50px 0;
 
+    max-width: 900px;
+    margin: auto;
+
     h2 {
       position: sticky;
       top: 0px;
@@ -121,9 +124,11 @@ onMounted(() => {
   .art-container {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
-    gap: 10px;
+    gap: 8px;
 
-    &>div {
+    &>.content {
+      //max-width: 20vw;
+      // max-height: 20vw;
       transition: filter 0.15s;
 
       &:hover:not(.iframe, .contained),

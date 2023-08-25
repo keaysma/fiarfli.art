@@ -9,11 +9,11 @@
     </template>
 
     <template v-else>
-      <img v-if="!mediaContentNames?.includes(content?.path)"
+      <img v-if="!mediaContentNames?.includes(content?.path)" ref="imgRef"
         :src="useThumbnail ? content.thumbnail ?? content.path : content.path"
         :class="`fit-${content.fit} img-height-${content[`img-height`] ?? `full`}`" :style="{
           backgroundColor: (useColor && content?.color) || '#0000',
-        }" />
+        }" @load="onLoad" />
       <img v-else :class="`fit-${content.fit} img-height-${content[`img-height`] ?? `full`}`" :style="{
         backgroundImage: `url(${mediaContent?.[content?.path]?.base64})`,
         backgroundSize: content?.fit,
@@ -21,10 +21,11 @@
     </template>
   </div>
   <div v-else-if="content.type === 'contained'" v-html="content.html" class="contained" @click="openContainerLink()" />
-  <div v-else v-html="content.html" class="iframe" />
+  <!-- <div v-else v-html="content.html" class="iframe" /> -->
 </template>
 
 <script setup lang="ts">
+import { ref, watch } from 'vue';
 import { Content } from '/src/types';
 
 const props = defineProps<{
@@ -39,6 +40,22 @@ const props = defineProps<{
   mediaContentNames?: string[];
   mediaContent?: Record<string, { base64: string }>;
 }>();
+
+const imgRef = ref<HTMLImageElement>();
+watch(() => props.content, (content) => {
+  console.log(`Content::setup::watch`, content);
+  if (!imgRef.value) return;
+
+  imgRef.value.style.opacity = '0';
+  imgRef.value.parentElement.style.backgroundSize = '100px';
+});
+const onLoad = () => {
+  console.log(`Content::setup::onLoad`, imgRef.value);
+  if (!imgRef.value) return;
+
+  imgRef.value.style.opacity = '1';
+  imgRef.value.parentElement.style.backgroundSize = '0';
+};
 
 const videoRegex = new RegExp(/\.(mp4)$/);
 const openContainerLink = () => {
@@ -56,6 +73,12 @@ const openContainerLink = () => {
 <style lang="scss">
 .content {
 
+  background: url('/src/assets/images/loading.gif') no-repeat center center;
+  background: url('https://gifdb.com/images/high/animated-stars-loading-icon-38ccjfav8iijnqrb.gif');
+  background-size: 0; //50px 50px;
+  background-repeat: no-repeat;
+  background-position: center;
+
   img,
   video {
     width: 100%;
@@ -63,8 +86,12 @@ const openContainerLink = () => {
 
     margin: 0 auto;
 
-    background-repeat: no-repeat;
-    background-position: center;
+    transition: opacity 0.25s ease;
+
+    // background: url('https://gifdb.com/images/high/animated-stars-loading-icon-38ccjfav8iijnqrb.gif');
+    // background-size: 0; //50px;
+    // background-repeat: no-repeat;
+    // background-position: center;
   }
 
   img {
@@ -94,4 +121,5 @@ const openContainerLink = () => {
   &>* {
     z-index: 9;
   }
-}</style>
+}
+</style>
