@@ -12,9 +12,10 @@
         </button>
 
         <div class="gallery-content" v-on:touchstart="touchStart" v-on:touchend="touchEnd">
-            <div class="image-container hover-focus">
-                <Content v-bind:content="currentContent" :controls="true" />
-            </div>
+            <Content v-bind:content="currentContent" :controls="true" />
+            <button class="gallery-icon gallery-go-fullscreen" @click="gallerySettings.fullscreen = true">
+                <FontAwesomeIcon :icon="faExpand" size="2x" />
+            </button>
             <div class="gallery-text">
                 <div class="gallery-header">
                     <div class="gallery-title">
@@ -43,6 +44,7 @@ import { computed, onMounted, onUnmounted, ref } from "vue";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome"
 import {
     faTimes,
+    faExpand,
     faChevronLeft,
     faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
@@ -226,8 +228,11 @@ onUnmounted(() => {
     }
 
     .gallery-go-fullscreen {
-        top: 25px;
-        right: 100px;
+        opacity: 0;
+        top: 33%;
+        right: calc(50% - 25px);
+
+        transition: opacity 0.25s;
     }
 
     .gallery-left {
@@ -243,21 +248,30 @@ onUnmounted(() => {
         flex-direction: column;
 
         width: clamp(200px, 50vw, 100%);
-        height: 50vh;
+        height: auto;
 
-        margin: 150px auto;
+        margin: 100px auto;
 
-        >.image-container,
-        > .image-container > *,
-        img {
-            width: 100%;
-            height: 100%;
 
-            object-fit: contain;
+        &:hover {
+            &>.content {
+                filter: brightness(0.8);
+            }
 
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
+            .gallery-go-fullscreen {
+                opacity: 1;
+                filter: brightness(1);
+            }
+        }
+
+        >.content {
+            height: 50vh;
+
+            transition: filter 0.25s;
+
+            >img {
+                object-fit: contain;
+            }
         }
 
         .gallery-text {
@@ -266,7 +280,7 @@ onUnmounted(() => {
                 flex-direction: column;
 
                 h1 {
-                    margin: 25px 0 0 0;
+                    font-size: 0.7em;
                     color: #fffcf7;
                 }
 
@@ -314,16 +328,19 @@ onUnmounted(() => {
 
         background: black;
 
-        img {
+        >.content {
+
             width: 100%;
             height: 100%;
 
             z-index: 50;
 
-            object-fit: contain;
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
+            img {
+                object-fit: contain;
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center;
+            }
         }
     }
 }

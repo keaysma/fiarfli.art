@@ -5,27 +5,17 @@
       <div v-for="(block, blockIndex) in blocks" :key="blockIndex" class="art-section" :id="`art-${block.name}`">
         <h2>{{ block.name }}</h2>
         <div class="art-container">
-          <Content v-for="(content, contentIndex) in block.content" 
-            :key="contentIndex"
-            :class="content.type"
-            :style="{ gridArea: `span ${content.height} / span ${content.width}` }" 
-            :content="content"
-            :displayIcon="true" 
-            :useColor="true" 
-            :useThumbnail="true" 
-            @click="gallerySettings = { blockIndex, contentIndex, open: true, fullscreen: false }" 
-          />
+          <Content v-for="(content, contentIndex) in block.content" :key="contentIndex" :class="content.type"
+            :style="{ gridArea: `span ${content.height} / span ${content.width}` }" :content="content" :displayIcon="true"
+            :useColor="true" :useThumbnail="true"
+            @click="gallerySettings = { blockIndex, contentIndex, open: true, fullscreen: false }" />
         </div>
       </div>
     </div>
   </div>
 
   <!-- Gallery -->
-  <Gallery
-    :blocks="blocks"
-    :gallerySettings="gallerySettings"
-  />
-  
+  <Gallery :blocks="blocks" :gallerySettings="gallerySettings" />
 </template>
 
 <script setup lang="ts">
@@ -144,16 +134,6 @@ onMounted(() => {
   }
 }
 
-
-
-.hover-focus {
-
-  &:hover,
-  &:focus {
-    filter: brightness(0.95);
-  }
-}
-
 @media only screen and (max-width: 768px) {
   #art.page {
     width: 100%;
@@ -200,7 +180,7 @@ onMounted(() => {
       left: 125px;
     }
 
-    .gallery-content {
+    .art-content {
       width: clamp(200px, 100vw, 100%);
       height: 50vh;
 
@@ -215,6 +195,17 @@ onMounted(() => {
         padding: 0;
 
         object-fit: cover;
+      }
+
+
+
+
+      .content > * {
+
+        &:hover,
+        &:focus {
+          filter: brightness(0.95);
+        }
       }
 
       .gallery-text {

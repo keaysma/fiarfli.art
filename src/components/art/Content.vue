@@ -1,7 +1,7 @@
 <template>
-  <div v-if="!content.type || content.type === 'link'" class="content">
+  <div v-if="!content.type || content.type === 'link'" class="content" :class="{ controls, fullscreen }">
     <template v-if="content.path.match(videoRegex)">
-      <video :controls="videoControls ?? false">
+      <video :controls="controls ?? false">
         <source v-if="!mediaContentNames?.includes(content.path)" :src="content.path" type="video/mp4" />
         <source v-else :src="mediaContent?.[content.path]?.base64" type="video/mp4" />
         Your browser does not support the video tag.
@@ -32,7 +32,8 @@ const props = defineProps<{
   displayIcon?: boolean;
   useColor?: boolean;
   useThumbnail?: boolean;
-  videoControls?: boolean;
+  controls?: boolean;
+  fullscreen?: boolean;
 
   // Admin view props
   mediaContentNames?: string[];
@@ -93,5 +94,4 @@ const openContainerLink = () => {
   &>* {
     z-index: 9;
   }
-}
-</style>
+}</style>
