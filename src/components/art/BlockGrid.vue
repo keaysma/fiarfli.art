@@ -205,7 +205,7 @@ onMounted(() => {
 
 
 
-      .content > * {
+      .content>* {
 
         &:hover,
         &:focus {

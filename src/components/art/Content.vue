@@ -21,7 +21,7 @@
     </template>
   </div>
   <div v-else-if="content.type === 'contained'" v-html="content.html" class="contained" @click="openContainerLink()" />
-  <!-- <div v-else v-html="content.html" class="iframe" /> -->
+  <div v-else v-html="content.html" class="iframe" />
 </template>
 
 <script setup lang="ts">
@@ -117,6 +117,14 @@ const openContainerLink = () => {
 
 .contained {
   // z-index: 999;
+
+  // Asserting my control over Instagram embeds
+  > iframe, > blockquote {
+    min-width: unset !important;
+    min-height: unset !important;
+    height: auto;
+    width: 100% !important;
+  }
 
   &>* {
     z-index: 9;

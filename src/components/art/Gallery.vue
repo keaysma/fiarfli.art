@@ -250,9 +250,11 @@ onUnmounted(() => {
         flex-direction: column;
 
         width: clamp(200px, 50vw, 100%);
-        height: auto;
+        height: calc(100% - 100px);
 
         margin: 100px auto;
+
+        overflow-y: scroll;
 
         >.content {
             height: 50vh;
