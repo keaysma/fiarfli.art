@@ -12,22 +12,20 @@
         </button>
 
         <div class="gallery-content" v-on:touchstart="touchStart" v-on:touchend="touchEnd">
-            <Content v-bind:content="currentContent" :controls="true" :use-thumbnail="true" @click="gallerySettings.fullscreen = true" />
+            <Content v-bind:content="currentContent" :controls="true" :use-thumbnail="true"
+                @click="gallerySettings.fullscreen = true" />
             <button class="gallery-icon gallery-go-fullscreen">
                 <FontAwesomeIcon :icon="faExpand" size="2x" />
             </button>
             <div class="gallery-text">
-                <div class="gallery-header">
-                    <div class="gallery-title">
-                        <h1>{{ currentContent?.title }}
-                        </h1>
-                        <a @click="getShortcutLink(getShortcutFromTitle(currentContent?.title))">share</a>
-                    </div>
-                    <h2>{{ currentContent?.date }}</h2>
-                </div>
-                <div class="gallery-body">
-                    <p>{{ currentContent?.desc }}</p>
-                </div>
+                <h1 class="gallery-header">{{ currentContent.title }}</h1>
+                <br />
+                <h2 class="gallery-header">{{ currentContent.date }}</h2>
+                <a>
+                    <FontAwesomeIcon :icon="faShare" size="2xs" />
+                </a>
+                <hr />
+                <p class="gallery-body">{{ currentContent.desc }}</p>
             </div>
         </div>
 
@@ -47,6 +45,7 @@ import {
     faExpand,
     faChevronLeft,
     faChevronRight,
+    faShare,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { getShortcutFromTitle } from "/src/utils";
@@ -171,8 +170,8 @@ onUnmounted(() => {
 
     z-index: 999;
 
-    background: #000d;
-    backdrop-filter: blur(20px);
+    background: #111d;
+    backdrop-filter: blur(50px);
 
     transition: opacity 0.15s;
 
@@ -246,74 +245,89 @@ onUnmounted(() => {
     }
 
     .gallery-content {
+        position: fixed;
+        top: 25%;
+        left: 12.5%;
+
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
+        gap: 1em;
 
-        width: clamp(200px, 50vw, 100%);
-        height: calc(100% - 100px);
-
-        margin: 100px auto;
-
-        overflow-y: scroll;
+        width: 75%;
+        height: 50vh;
+        justify-content: center;
 
         >.content {
-            height: 50vh;
+            flex: 1;
+            // height: 100%;
 
             transition: filter 0.25s;
 
             cursor: pointer;
 
             >img {
+                height: unset;
+                max-height: 100%;
                 object-fit: contain;
+
+                &::after {
+                    content: "⛶";
+                    position: absolute;
+                    left: 50%;
+                    top: 50%;
+                }
             }
 
             &:hover {
                 filter: brightness(0.8);
 
-                + .gallery-go-fullscreen {
+                +.gallery-go-fullscreen {
                     opacity: 1;
                     filter: brightness(1);
                 }
             }
+
+
         }
 
-        .gallery-text {
-            .gallery-header {
-                display: flex;
-                flex-direction: column;
+        >.gallery-text {
+            flex: 1;
+            line-height: 0.65em;
 
-                h1 {
-                    font-size: 0.7em;
-                    color: #fffcf7;
-                }
-
-                h2 {
-                    margin: 0;
-
-                    line-height: 0.9rem;
-                    font-size: 1rem;
-                    color: #61605e;
-                }
-
-                .gallery-title {
-                    display: flex;
-                    flex-direction: row;
-                    align-items: flex-end;
-
-                    a {
-                        font-family: Arial, Helvetica, sans-serif;
-                        font-size: 15px;
-                        color: blue;
-
-                        margin: 0 0 25px 5px;
-                    }
-                }
+            >*:not(hr) {
+                display: inline-block;
             }
 
-            .gallery-body {
+            >h1,
+            h2,
+            p {
                 margin: 0;
+                text-align: left;
+            }
 
+            h1 {
                 color: #dedcd7;
+                font-size: 1.5em;
+            }
+
+            h2 {
+                color: #c0bdb8;
+                font-size: 0.75em;
+            }
+
+            p {
+                color: #858480;
+                line-height: 0.75em;
+            }
+
+            hr {
+                border-color: #5c5c5a;
+                margin: 5px 0;
+            }
+
+            a {
+                color: royalblue;
+                margin-left: 5px;
             }
         }
     }
