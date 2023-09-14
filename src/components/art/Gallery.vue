@@ -14,9 +14,7 @@
         <div class="gallery-content" v-on:touchstart="touchStart" v-on:touchend="touchEnd">
             <Content v-bind:content="currentContent" :controls="true" :use-thumbnail="true"
                 @click="gallerySettings.fullscreen = true" />
-            <button class="gallery-icon gallery-go-fullscreen">
-                <FontAwesomeIcon :icon="faExpand" size="2x" />
-            </button>
+            
             <div class="gallery-text">
                 <h1 class="gallery-header">{{ currentContent.title }}</h1>
                 <br />
@@ -31,7 +29,7 @@
 
         <!-- Fullscreen Gallery -->
         <div v-if="gallerySettings.fullscreen" class="gallery-fullscreen" @touchstart="touchStart" @touchend="touchEnd">
-            <Content :key="currentContent.desc" :content="currentContent" :controls="true" :fullscreen="true" />
+            <Content :key="currentContent.desc" :content="currentContent" :controls="true" :fullscreen="true" @click="gallerySettings.fullscreen = false" />
         </div>
     </div>
 </template>
@@ -266,24 +264,20 @@ onUnmounted(() => {
             cursor: pointer;
 
             >img {
-                height: unset;
+                height: 100%;
                 max-height: 100%;
                 object-fit: contain;
-
-                &::after {
-                    content: "⛶";
-                    position: absolute;
-                    left: 50%;
-                    top: 50%;
-                }
             }
 
             &:hover {
                 filter: brightness(0.8);
 
-                +.gallery-go-fullscreen {
-                    opacity: 1;
-                    filter: brightness(1);
+                &::after {
+                    content: "⛶";
+                    color: white;
+                    position: absolute;
+                    left: calc(50% - 14px);
+                    top: calc(50% - 22px);
                 }
             }
 
