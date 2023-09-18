@@ -3,6 +3,7 @@
     "module": "ESNext",
     "moduleResolution": "Node",
     "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
     "allowJs": true,
     "outDir": "./dist",
     "paths": {

@@ -29,3 +29,5 @@ export interface GallerySettings{
     open: boolean;
     fullscreen: boolean;
 }
+
+export type AdminPage = 'about' | 'commissions' | 'contactme' | 'gallery';

@@ -1,12 +1,12 @@
 <template>
-    <div id="contact-me" class="page" v-bind:class="{ 'split-page': contactFormEnabled }">
+    <div id="contact-me" class="page" :class="{ 'split-page': formEnabled }">
         <div class="text-content">
             <h2>Contact Me</h2>
             <p>
                 {{ contact }}
             </p>
         </div>
-        <div v-if="contactFormEnabled" class="contact-form">
+        <div v-if="formEnabled" class="contact-form">
             <form action="javascript:void(0);" @submit="submitMessage()">
                 <div class="form-group">
                     <div class="field-group">
@@ -53,14 +53,16 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, toRef } from 'vue';
 
 import { contact, contactFormEnabled } from '../content.json'
 
-defineProps<{
+const props = defineProps<{
     contact: string,
     contactFormEnabled: boolean
 }>();
+
+const formEnabled = toRef(props, 'contactFormEnabled');
 
 const submitState = ref('unsubmitted')
 const name = ref('')
