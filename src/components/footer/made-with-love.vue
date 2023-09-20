@@ -17,7 +17,7 @@ import { faHeart } from "@fortawesome/free-solid-svg-icons";
 footer {
     position: relative;
     width: 100%;
-    height: 50px;
+    height: 2.5em;
 
     margin: 0;
 

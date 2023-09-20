@@ -383,9 +383,14 @@ const submitMessage = () => {
 
 @media only screen and (max-width: 768px) {
     #contact-me.page {
-        width: 100%;
+        width: auto;
+
+        flex-direction: column;
+
+        height: unset;
 
         margin: 0;
+        padding: 0 0.5em;
 
         .content-wrapper {
             display: flex;

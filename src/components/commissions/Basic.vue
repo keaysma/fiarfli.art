@@ -16,7 +16,7 @@ defineProps<{
     position: relative;
     display: block;
 
-    width: 100%;
+    width: auto;
     min-height: 100vh;
 
     padding: 0 3em;
@@ -31,6 +31,9 @@ defineProps<{
         white-space: break-spaces;
     }
 
-    @media only screen and (max-width: 768px) {}
+    @media only screen and (max-width: 768px) {
+        padding: 0 0.5em;
+        min-height: unset;
+    }
 }
 </style>

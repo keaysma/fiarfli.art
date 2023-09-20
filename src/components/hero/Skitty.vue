@@ -73,9 +73,30 @@ onUnmounted(() => {
 
     transition: var(--transition);
 
+    @media only screen and (max-width: 768px) {
+      padding: 0.5em;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+
+      width: calc(100% - 1em);
+      height: 60px;
+
+      .signature {
+        height: 35px;
+        width: 120px;
+      }
+
+    }
+
     &:not(.scrollAtTop) {
       padding: 0.25em 3em;
       height: 35px;
+
+      @media only screen and (max-width: 768px) {
+        height: 60px;
+        padding: 0.5em;
+      }
 
       .signature {
         height: 35px;
@@ -108,6 +129,10 @@ onUnmounted(() => {
       gap: 1em;
 
       >.nav-link {
+        @media only screen and (max-width: 768px) {
+          font-size: 0.75em;
+        }
+
         color: rgb(234, 205, 209);
         text-decoration: none;
         font-size: 1.25em;
@@ -129,6 +154,11 @@ onUnmounted(() => {
 
     color: white;
     white-space: break-spaces;
+
+    @media only screen and (max-width: 768px) {
+      padding: 0.5em;
+    }
+
   }
 }
 </style>
