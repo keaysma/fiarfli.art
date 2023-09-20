@@ -302,6 +302,7 @@ onUnmounted(() => {
             h1 {
                 color: #dedcd7;
                 font-size: 1.5em;
+                line-height: 0.75em;
             }
 
             h2 {
