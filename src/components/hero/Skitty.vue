@@ -1,165 +1,164 @@
-<template lang="">
-    <div id="!" class="hero">
-        <div class="image-guard" />
-        <img 
-            class="hero-image"
-            src="/skitty.webp"
-        />
+<template>
+  <div id="hero">
+    <div id="hero-image" />
 
-        <div class="content">
-            <img
-                class="signature"
-                src="/Raquel-signature.svg"
-            />
+    <nav :class="{ scrollAtTop }">
+      <!-- <img class="logo" src="/fiarfli-logo.png" width="200px" height="200px" /> -->
+      <img class="signature" src="/raquel-signature.svg" width="250px" height="75px" />
 
-            <div class="hero-nav">
-                <div class="nav-links">
-                    <!-- <a class="nav-link" href="#!">Home</a> -->
-                    <a class="nav-link" href="#art">Art</a>
-                    <a class="nav-link" href="#commissions">Commissions</a>
-                    <a class="nav-link" href="#contact-me">Contact Me</a>
-                </div>
-            </div>
+      <div class="nav-links">
+        <a class="nav-link" href="#art">Art</a>
+        <a class="nav-link" href="#commissions">Commissions</a>
+        <a class="nav-link" href="#contact-me">Contact Me</a>
+      </div>
+    </nav>
 
-            <p class="text-block">{{ about }}</p>
-        </div>
-    </div>
+    <p class="text-block">{{ about }}</p>
+  </div>
 </template>
 
-<script>
-import state from "../state";
+<script setup lang="ts">
+import { onMounted, onUnmounted, ref } from 'vue';
 
-import { about } from "../content.json";
-export default {
-  setup() {
-    if (!state.about) state.about = about;
-  },
+defineProps<{
+  about: string;
+}>();
 
-  computed: {
-    about() {
-      return state?.about;
-    },
-  },
-};
+const scrollAtTop = ref(true);
+const scrollHanlder = () => {
+  // set scrollAtTop to true if scrollY is less than 100
+  // set scrollAtTop to false if scrollY is greater than 100
+  scrollAtTop.value = window.scrollY < 50;
+}
+
+onMounted(() => {
+  window.addEventListener('scroll', scrollHanlder);
+});
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', scrollHanlder);
+});
 </script>
 
 <style lang="scss">
-.hero {
-  //position: fixed;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-content: center;
+#hero {
+  --transition: all 0.25s ease-in-out;
 
-  width: 100vw;
-  height: 100vh;
+  display: block;
+  width: 100%;
+  height: calc(100vh - 0em);
 
-  .hero-image {
+  >#hero-image {
     position: fixed;
 
-    top: 0px;
-
-    z-index: 0;
-
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    top: 0;
 
-    //filter: brightness(0.85);
+    background: linear-gradient(165deg, #000b 30%, #0000), center/cover url(/skitty.webp);
   }
 
-  .image-guard {
-    z-index: 5;
+  >nav {
+    position: fixed;
+    display: inline-flex;
+    align-items: center;
 
     width: 100%;
-    height: 100%;
+    height: 80px;
+    z-index: 89;
 
-    background: linear-gradient(165deg, #000b 30%, #0000);
-  }
+    padding: 1em 3em;
 
-  .content {
-    z-index: 10;
+    backdrop-filter: invert(0) contrast(1) brightness(0.5) blur(0.5em);
+
+    transition: var(--transition);
+
+    @media only screen and (max-width: 768px) {
+      padding: 0.5em;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+
+      width: calc(100% - 1em);
+      height: 60px;
+
+      .signature {
+        height: 35px;
+        width: 120px;
+      }
+
+    }
+
+    &:not(.scrollAtTop) {
+      padding: 0.25em 3em;
+      height: 35px;
+
+      @media only screen and (max-width: 768px) {
+        height: 60px;
+        padding: 0.5em;
+      }
+
+      .signature {
+        height: 35px;
+        width: 120px;
+      }
+
+      .nav-links {
+        >.nav-link {
+          font-size: 0.75em;
+        }
+      }
+    }
+
+
+    .logo {
+      filter: contrast(0) brightness(2) opacity(0.3);
+    }
+
+    .signature {
+      transition: var(--transition);
+      margin-right: 0.5em;
+      margin-left: -0.25em;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      gap: 1em;
+
+      >.nav-link {
+        @media only screen and (max-width: 768px) {
+          font-size: 0.75em;
+        }
+
+        color: rgb(234, 205, 209);
+        text-decoration: none;
+        font-size: 1.25em;
+        transition: var(--transition);
+      }
+    }
   }
 
   .text-block {
-    position: fixed;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+    position: absolute;
+    max-width: 25em;
 
-    width: 50%;
-    //margin-top: -150px;
+    padding: 0 3em;
+    top: 6em;
 
-    top: 15%;
-    left: 55px;
+    margin: 0;
 
     text-align: left;
-    font-size: 1.75rem;
 
     color: white;
-  }
+    white-space: break-spaces;
 
-  .signature {
-    position: fixed;
-
-    z-index: 15px;
-
-    top: 5%;
-    left: calc(40px);
-
-    width: 250px;
-    height: 75px;
-  }
-
-  .hero-nav {
-    .nav-links {
-      position: fixed;
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-
-      //width: 100%;
-      //margin-top: -150px;
-
-      top: 7.5%;
-      left: 300px;
-
-      text-align: center;
-      font-size: 1.25rem;
-
-      .nav-link {
-        color: rgb(234, 205, 209);
-        text-decoration: none;
-        margin: 0 10px;
-      }
+    @media only screen and (max-width: 768px) {
+      padding: 0.5em;
     }
-  }
-}
 
-@media only screen and (max-width: 768px) {
-  .hero {
-    .hero-image {
-      object-position: 65% 0;
-    }
-    .content {
-      .signature,
-      .hero-nav {
-        display: none;
-      }
-      .text-block {
-        font-size: 1.15rem;
-        text-align: center;
-
-        width: calc(100% - 50px);
-        margin: 0 25px;
-
-        top: 90px;
-        left: 0;
-      }
-    }
-    .image-guard {
-      background: linear-gradient(#000 50%, #0008 65%, #0003 85%);
-    }
   }
 }
 </style>

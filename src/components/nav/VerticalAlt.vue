@@ -50,9 +50,6 @@ import state from '../state';
 
 import NavLinkThumb from './NavLinkThumb.vue';
 
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { faChessQueen, faBars, faTimes, faHome, faAddressCard, faPalette, faCommentsDollar, faAddressBook } from '@fortawesome/free-solid-svg-icons';
-
 const pageThreshold = 101
 
 const indexOfSmallestNegativeValue = (list) => {
@@ -93,7 +90,6 @@ export default {
     
     data () {
         return {
-            faChessQueen, faBars, faTimes, faHome, faAddressCard, faPalette, faCommentsDollar, faAddressBook,
             navSection: 0,
             navArtSubsection: 0
         }

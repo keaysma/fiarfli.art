@@ -1,195 +1,108 @@
 <template>
-  <div v-if="(content?.type || 'link') === 'link'" class="content">
-    <template v-if="content?.path?.match?.(videoRegex)">
-      <video :controls="controls">
-        <source
-          v-if="!mediaContentNames.includes(content?.path)"
-          v-bind:src="content.path"
-          type="video/mp4"
-        />
-        <source
-          v-if="mediaContentNames.includes(content?.path)"
-          v-bind:src="mediaContent?.[content?.path]?.base64"
-          type="video/mp4"
-        />
+  <div v-if="!content.type || content.type === 'link'" class="content" :class="{ controls, fullscreen }">
+    <template v-if="content.path.match(videoRegex)">
+      <video :controls="controls ?? false">
+        <source v-if="!mediaContentNames?.includes(content.path)" :src="content.path" type="video/mp4" />
+        <source v-else :src="mediaContent?.[content.path]?.base64" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
-      <div v-if="displayIcon" class="button-container">
-        <font-awesome-icon :icon="faPlayCircle" size="3x" />
-      </div>
     </template>
+
     <template v-else>
-      <img
-        v-if="
-          !mediaContentNames.includes(content?.path) &&
-          !content?.path?.match?.(videoRegex)
-        "
-        v-bind:src="
-          useThumbnail ? content?.thumbnail || content?.path : content?.path
-        "
-        v-bind:class="`fit-${content?.fit} img-height-${
-          content?.[`img-height`] ?? `full`
-        }`"
-        v-bind:style="{
+      <img v-if="!mediaContentNames?.includes(content?.path)" ref="imgRef"
+        :src="useThumbnail ? content.thumbnail ?? content.path : content.path"
+        :class="`fit-${content.fit} img-height-${content[`img-height`] ?? `full`}`" :style="{
           backgroundColor: (useColor && content?.color) || '#0000',
-        }"
-      />
-      <img
-        v-if="
-          mediaContentNames.includes(content?.path) &&
-          !content?.path?.match?.(videoRegex)
-        "
-        v-bind:class="`fit-${content?.fit} img-height-${
-          content?.[`img-height`] ?? `full`
-        }`"
-        v-bind:style="{
-          backgroundImage: `url(${mediaContent?.[content?.path]?.base64})`,
-          backgroundSize: content?.fit,
-        }"
-      />
-      <div
-        v-if="controls && !fullscreen"
-        class="button-container"
-        @click="setIsGalleryFullscreen(true)"
-      >
-        <button class="">
-          <font-awesome-icon :icon="faExpandArrowsAlt" size="4x" />
-        </button>
-      </div>
+        }" @load="onLoad" />
+      <img v-else :class="`fit-${content.fit} img-height-${content[`img-height`] ?? `full`}`" :style="{
+        backgroundImage: `url(${mediaContent?.[content?.path]?.base64})`,
+        backgroundSize: content?.fit,
+      }" />
     </template>
-    <button
-      v-if="fullscreen"
-      class="close-fullscreen"
-      @click="setIsGalleryFullscreen(false)"
-    >
-      <font-awesome-icon :icon="faCompressArrowsAlt" size="2x" />
-    </button>
   </div>
-  <div
-    v-else-if="content?.type === 'contained'"
-    v-html="content?.html"
-    class="contained"
-    @click="openContainerLink()"
-  />
-  <div v-else v-html="content?.html" class="iframe" />
+  <div v-else-if="content.type === 'contained'" v-html="content.html" class="contained" @click="openContainerLink()" />
+  <div v-else v-html="content.html" class="iframe" />
 </template>
 
-<script>
-import state from "../state";
+<script setup lang="ts">
+import { ref, watch } from 'vue';
+import { Content } from '/src/types';
 
-import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-import {
-  faCompressArrowsAlt,
-  faExpandArrowsAlt,
-  faPlayCircle,
-} from "@fortawesome/free-solid-svg-icons";
+const props = defineProps<{
+  content: Content;
+  displayIcon?: boolean;
+  useColor?: boolean;
+  useThumbnail?: boolean;
+  controls?: boolean;
+  fullscreen?: boolean;
 
-export default {
-  props: {
-    content: Object,
-    controls: Boolean,
-    displayIcon: Boolean,
-    fullscreen: Boolean,
-    useColor: Boolean,
-    useThumbnail: Boolean,
-  },
+  // Admin view props
+  mediaContentNames?: string[];
+  mediaContent?: Record<string, { base64: string }>;
+}>();
 
-  components: {
-    FontAwesomeIcon,
-  },
+const imgRef = ref<HTMLImageElement>();
+watch(() => props.content, (content) => {
+  console.log(`Content::setup::watch`, content);
+  if (!imgRef.value) return;
 
-  setup() {
-    const setIsGalleryFullscreen = (value) => {
-      state.isGalleryFullscreen = value;
-    };
+  imgRef.value.style.opacity = '0';
+  imgRef.value.parentElement.style.backgroundSize = '100px';
+});
+const onLoad = () => {
+  console.log(`Content::setup::onLoad`, imgRef.value);
+  if (!imgRef.value) return;
 
-    return {
-      setIsGalleryFullscreen,
-    };
-  },
-
-  methods: {
-    openContainerLink() {
-      if (!this?.content?.html) return;
-      console.log("full", this.content.html);
-      const parser = new DOMParser();
-      const htmlDoc = parser.parseFromString(this.content.html, "text/html");
-      console.log({ htmlDoc });
-
-      const link = htmlDoc.body.innerText
-      console.log({ link })
-      location = link
-    },
-  },
-
-  computed: {
-    mediaContentNames() {
-      return state?.mediaContentNames;
-    },
-    mediaContent() {
-      return state?.mediaContent;
-    },
-    isGalleryFullscreen() {
-      return state?.isGalleryFullscreen;
-    },
-  },
-
-  data: () => {
-    return {
-      faCompressArrowsAlt,
-      faExpandArrowsAlt,
-      faPlayCircle,
-      videoRegex: new RegExp(/\.(mp4)$/),
-    };
-  },
+  imgRef.value.style.opacity = '1';
+  imgRef.value.parentElement.style.backgroundSize = '0';
 };
+
+const videoRegex = new RegExp(/\.(mp4)$/);
+const openContainerLink = () => {
+  if (!props.content.html) return;
+  const parser = new DOMParser();
+  const htmlDoc = parser.parseFromString(props.content.html, "text/html");
+  console.log({ htmlDoc });
+
+  const link = htmlDoc.body.innerText;
+  window.history.pushState({}, '', link);
+}
+
 </script>
 
-<style lang="scss" scoped>
-img,
-video {
-  width: 100%;
-  height: 100%;
+<style lang="scss">
+.content {
 
-  margin: 0 auto;
-
+  background: url('/src/assets/images/loading.gif') no-repeat center center;
+  background: url('https://gifdb.com/images/high/animated-stars-loading-icon-38ccjfav8iijnqrb.gif');
+  background-size: 0; //50px 50px;
   background-repeat: no-repeat;
   background-position: center;
-}
 
-img {
-  &.fit-contain {
-    object-fit: contain;
+  img,
+  video {
+    width: 100%;
+    height: 100%;
+
+    margin: 0 auto;
+
+    transition: opacity 0.25s ease;
+
+    // background: url('https://gifdb.com/images/high/animated-stars-loading-icon-38ccjfav8iijnqrb.gif');
+    // background-size: 0; //50px;
+    // background-repeat: no-repeat;
+    // background-position: center;
   }
-  &.fit-cover {
-    object-fit: cover;
+
+  img {
+    &.fit-contain {
+      object-fit: contain;
+    }
+
+    &.fit-cover {
+      object-fit: cover;
+    }
   }
-}
-
-.close-fullscreen {
-  position: fixed;
-  z-index: 10;
-
-  top: 25px;
-  right: 25px;
-
-  width: 50px;
-  height: 50px;
-
-  border: none;
-
-  color: white;
-  background: transparent;
-
-  mix-blend-mode: difference;
-}
-
-.content,
-.iframe,
-.contained {
-  position: relative;
-  height: 100%;
-  width: 100%;
 }
 
 .iframe,
@@ -197,52 +110,24 @@ img {
   display: flex;
   justify-content: center;
 
-  & > * {
+  &>* {
     width: 100%;
   }
 }
 
 .contained {
-    z-index: 999;
+  // z-index: 999;
 
-    & > * {
-        z-index: 9;
-    }
-}
-
-.button-container {
-  position: absolute;
-
-  width: 100%;
-  height: 100%;
-
-  top: 0;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  & > button {
-    position: absolute;
-
-    width: 80px;
-    height: 80px;
-
-    top: calc(50% - 40px);
-    left: calc(50% - 40px);
-    margin: auto;
-
-    color: #ffff;
-    background: #0008;
-    border: none;
-    border-radius: 50px;
-
-    opacity: 0;
-    transition: opacity 0.15s;
+  // Asserting my control over Instagram embeds
+  > iframe, > blockquote {
+    min-width: unset !important;
+    min-height: unset !important;
+    height: auto;
+    width: 100% !important;
   }
 
-  &:hover > button {
-    opacity: 1;
+  &>* {
+    z-index: 9;
   }
 }
 </style>

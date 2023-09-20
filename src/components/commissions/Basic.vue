@@ -1,70 +1,39 @@
-<template lang="">
+<template>
     <div id="commissions" class="page">
-        <div class="text-content">
-            <h1>Commissions</h1>
-            <p>{{ commissions }}</p>
-        </div>
+        <h2>Commissions</h2>
+        <p>{{ commissions }}</p>
     </div>
 </template>
 
-<script>
-import state from '../state'
-
-import { commissions } from '../content.json'
-
-export default {
-    setup () {
-        if(!state.commissions)
-            state.commissions = commissions
-    },
-    computed: {
-        commissions () { return state?.commissions }
-    }
-}
+<script setup lang="ts">
+defineProps<{
+    commissions: string;
+}>();
 </script>
 
 <style lang="scss">
 #commissions.page {
-    display: flex;
-    flex-direction: column;
+    position: relative;
+    display: block;
 
-    width: 100%;
+    width: auto;
     min-height: 100vh;
 
-    margin: 0;
+    padding: 0 3em;
 
     //background: white;
 
-    .text-content {
-        margin: 20px 200px 20px 200px;
-        //position: sticky;
-        top: 200px;
-
-        color: #534957;
-        text-shadow: 1px 1px 1px #d389a7f4;
-
-        p {
-            white-space: break-spaces;
-        }
+    h2 {
+        padding-top: 4em;
     }
-}
 
-@media only screen and (max-width: 768px) {
-    #commissions.page {
-        width: 100%;
-        min-height: 100vh;
+    p {
+        white-space: break-spaces;
+    }
 
-        margin: 0;
-
-        .text-content {
-            font-size: 1rem;
-            margin: 50px 35px;
-            //position: sticky;
-            //top: 100px;
-
-            //color: dimgrey;
-            text-shadow: 1px 1px 3px #0004;
-        }
+    @media only screen and (max-width: 768px) {
+        padding: 0 0.5em;
+        min-height: unset;
     }
 }
 </style>

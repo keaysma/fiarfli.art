@@ -1,7 +1,6 @@
 ---
 // Component Imports
-import Panel from '../components/admin/Panel.vue'
-import View from '../components/admin/View.vue'
+import AdminPage from "/src/components/admin/Admin.vue";
 ---
 
 <html lang="en">
@@ -29,10 +28,10 @@ import View from '../components/admin/View.vue'
         width: 100vw;
       }
       main #admin:not(.maximized) {
-          width: 40vw;
+        width: 40vw;
       }
       main #admin.maximized {
-          width: 70vw;
+        width: 70vw;
       }
       a {
         text-decoration: none;
@@ -42,8 +41,7 @@ import View from '../components/admin/View.vue'
   </head>
   <body class="">
     <main class="">
-        <Panel client:visible/>
-        <View client:visible/>
+      <AdminPage client:load />
     </main>
   </body>
 </html>

@@ -2,55 +2,39 @@
     <div id="admin" class="page">
         <div class="content">
             <h2>Admin panel</h2>
-            <div v-if="currentPage==='about'">
-                <textarea 
-                    class="feature-text"
-                    v-model="about" 
-                    @input="setState('about', $event)"
-                />
-            </div>
+            <textarea v-if="currentPage === 'about'" class="feature-text" v-model="content.about" />
+            <textarea v-if="currentPage === 'commissions'" class="feature-text" v-model="content.commissions" />
 
-            <div v-if="currentPage==='commissions'">
-                <textarea 
-                    class="feature-text"
-                    v-model="commissions" 
-                    @input="setState('commissions', $event)"
-                />
-            </div>
-
-            <div v-if="currentPage==='contactme'">
-                <textarea 
-                    class="feature-text"
-                    v-model="contact" 
-                    @input="setState('contact', $event)"
-                />
-                <input 
-                    type="checkbox" 
-                    id="contact-form-enabled" 
-                    class="check" 
-                    name="contact-form-enabled" 
-                    v-model="contactFormEnabled" 
-                    @input="setStateCheckbox('contactFormEnabled', $event)"
-                />
+            <div v-if="currentPage === 'contactme'">
+                <textarea class="feature-text" v-model="content.contact" />
+                <input type="checkbox" id="contact-form-enabled" class="check" name="contact-form-enabled"
+                    v-model="content.contactFormEnabled" />
                 <label for="contact-form-enabled" class="check-label">Enable Form</label><br>
             </div>
 
-            <div v-if="currentPage==='gallery'">
-                <div v-for="(block, blockIndex) in blocks" :key="blockIndex" class="art-section" :id="`art-${block.name}`">
+            <div v-if="currentPage === 'gallery'">
+                <div v-for="(block, blockIndex) in blocks" :key="block.name" class="art-section"
+                    :id="`art-${block.name}`">
                     <div class="section-name">
-                        <input :value="block.name" v-on:input="updateSectionName($event, blockIndex)" />
+                        <input v-model="block.name" />
                         <div class="arrows">
-                            <div @click="moveSectionUp(blockIndex)"><FontAwesomeIcon :icon="faArrowUp" /></div>
-                            <div @click="moveSectionDown(blockIndex)"><FontAwesomeIcon :icon="faArrowDown" /></div>
-                            <div @click="deleteSection(blockIndex)"><FontAwesomeIcon :icon="faTrash" style="color: red;" /></div>
+                            <div @click="moveSectionUp(blockIndex)">
+                                <FontAwesomeIcon :icon="faArrowUp" />
+                            </div>
+                            <div @click="moveSectionDown(blockIndex)">
+                                <FontAwesomeIcon :icon="faArrowDown" />
+                            </div>
+                            <div @click="deleteSection(blockIndex)">
+                                <FontAwesomeIcon :icon="faTrash" style="color: red;" />
+                            </div>
                         </div>
                     </div>
                     <div class="art-container">
-                        <div v-for="(content, contentIndex) in block.content" :key="contentIndex" class="art-piece">
-                            <content v-if="(content.type || 'link') === 'link'" v-bind:content="content"/>
+                        <div v-for="(content, contentIndex) in block.content" :key="content.title" class="art-piece">
+                            <Content v-if="(content.type || 'link') === 'link'" v-bind:content="content" />
                             <div class="text-content">
                                 <label for="type">Type</label>
-                                <select name="type" :value="content.type || 'link'" v-on:input="handleContentPropertyUpdate($event, blockIndex, contentIndex, 'type')">
+                                <select name="type" v-model="content.type">
                                     <option value="link">link</option>
                                     <option value="iframe">iframe</option>
                                     <option value="contained">Tumblr's bullshit</option>
@@ -59,28 +43,30 @@
                                 <div v-if="(content.type || 'link') === 'link'">
                                     <label for="url">URL</label>
                                     <div class="url-input">
-                                        <input name="url" :value="content.path" v-on:input="handleContentPropertyUpdate($event, blockIndex, contentIndex, 'path')" />
-                                        <button @click="uploadContent(blockIndex, contentIndex)"><FontAwesomeIcon :icon="faUpload"/></button>
+                                        <input name="url" v-model="content.path" />
+                                        <button @click="uploadContent(blockIndex, contentIndex)">
+                                            <FontAwesomeIcon :icon="faUpload" />
+                                        </button>
                                     </div>
                                 </div>
                                 <div v-else class="html-input">
                                     <label for="html">HTML</label>
-                                    <textarea name="html" :value="content.html" v-on:input="handleContentPropertyUpdate($event, blockIndex, contentIndex, 'html')" />
+                                    <textarea name="html" v-model="content.html" />
                                 </div>
 
                                 <label for="name">Name</label>
-                                <input name="name" :value="content.title" v-on:input="handleContentPropertyUpdate($event, blockIndex, contentIndex, 'title')" />
-                                
+                                <input name="name" v-model="content.title" />
+
                                 <label for="date">Date</label>
-                                <input name="date" :value="content.date" v-on:input="handleContentPropertyUpdate($event, blockIndex, contentIndex, 'date')" />
-                                
+                                <input name="date" v-model="content.date" />
+
                                 <label for="desc">Description</label>
-                                <textarea name="desc" :value="content.desc" v-on:input="handleContentPropertyUpdate($event, blockIndex, contentIndex, 'desc')" />
-                                
-                                <br/>
-                                
+                                <textarea name="desc" v-model="content.desc" />
+
+                                <br />
+
                                 <label for="width">Width</label>
-                                <select name="width" :value="content.width" v-on:input="handleContentPropertyUpdate($event, blockIndex, contentIndex, 'width')">
+                                <select name="width" v-model="content.width">
                                     <option value="1">1/6</option>
                                     <option value="2">2/6</option>
                                     <option value="3">3/6</option>
@@ -90,68 +76,86 @@
                                 </select>
 
                                 <label for="height">Height</label>
-                                <select name="height" :value="content.height" v-on:input="handleContentPropertyUpdate($event, blockIndex, contentIndex, 'height')">
+                                <select name="height" v-model="content.height">
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
                                 </select>
 
                                 <label for="fit">Image Fit</label>
-                                <select name="fit" :value="content.fit" v-on:input="handleContentPropertyUpdate($event, blockIndex, contentIndex, 'fit')">
+                                <select name="fit" v-model="content.fit">
                                     <option value="contain">Contain</option>
                                     <option value="cover">Cover</option>
                                 </select>
 
                                 <label for="bg-color">Background Color</label>
                                 <div class="color-picker">
-                                    <input name="bg-color" type="color" :value="content.color" v-on:input="handleContentPropertyUpdate($event, blockIndex, contentIndex, 'color')"/>
-                                    <button v-on:click="handleContentPropertyReset(blockIndex, contentIndex, 'color')">x</button>
+                                    <input name="bg-color" type="color" v-model="content.color" />
+                                    <button @click="content.color = undefined">x</button>
                                 </div>
                             </div>
                             <div class="arrows">
-                                <div @click="moveContentUp(blockIndex, contentIndex)"><FontAwesomeIcon :icon="faArrowUp" /></div>
-                                <div @click="moveContentDown(blockIndex, contentIndex)"><FontAwesomeIcon :icon="faArrowDown" /></div>
-                                <div @click="deleteContent(blockIndex, contentIndex)"><FontAwesomeIcon :icon="faTrash" style="color: red;" /></div>
+                                <div @click="moveContentUp(blockIndex, contentIndex)">
+                                    <FontAwesomeIcon :icon="faArrowUp" />
+                                </div>
+                                <div @click="moveContentDown(blockIndex, contentIndex)">
+                                    <FontAwesomeIcon :icon="faArrowDown" />
+                                </div>
+                                <div @click="deleteContent(blockIndex, contentIndex)">
+                                    <FontAwesomeIcon :icon="faTrash" style="color: red;" />
+                                </div>
                             </div>
                         </div>
-                        <button class="new" @click="addContent(blockIndex)">NEW ART <FontAwesomeIcon :icon="faPlus" /></button>
+                        <button class="new" @click="addContent(blockIndex)">NEW ART
+                            <FontAwesomeIcon :icon="faPlus" />
+                        </button>
                     </div>
                 </div>
-                <button class="new" @click="addSection()">NEW SECTION <FontAwesomeIcon :icon="faPlus" /></button>
+                <button class="new" @click="addSection()">NEW SECTION
+                    <FontAwesomeIcon :icon="faPlus" />
+                </button>
             </div>
         </div>
-        
+
         <div class="page-nav">
             <div class="control-nav">
-                <button @click="setCurrentPage('about')">about</button>
-                <button @click="setCurrentPage('gallery')">art</button>
-                <button @click="setCurrentPage('commissions')">commissions</button>
-                <button @click="setCurrentPage('contactme')">contact me</button>
+                <button @click="emit('update:currentPage', 'about')">about</button>
+                <button @click="emit('update:currentPage', 'gallery')">art</button>
+                <button @click="emit('update:currentPage', 'commissions')">commissions</button>
+                <button @click="emit('update:currentPage', 'contactme')">contact me</button>
             </div>
             <div class="control-content">
-                <input type="password" placeholder="github token" @input="setToken" />
+                <input type="password" placeholder="github token" v-model="token" />
                 <div class="button-bar">
-                    <div v-if="uploadState=='unsubmitted'">
+                    <div v-if="uploadState == 'unsubmitted'">
                         <button class="submit" @click="submitChanges()">
-                                Submit <div><FontAwesomeIcon :icon="faArrowRight" /></div>
+                            Submit <div>
+                                <FontAwesomeIcon :icon="faArrowRight" />
+                            </div>
                         </button>
                     </div>
-                    <div v-if="uploadState=='submitted'">
+                    <div v-if="uploadState == 'submitted'">
                         <button class="submit">
-                                uploading
-                                <div><FontAwesomeIcon :icon="faSpinner" /></div>
+                            uploading
+                            <div>
+                                <FontAwesomeIcon :icon="faSpinner" />
+                            </div>
                         </button>
                     </div>
-                    <div v-if="uploadState=='success'">
+                    <div v-if="uploadState == 'success'">
                         <button class="submit">
-                                done
-                                <div><FontAwesomeIcon :icon="faCheck" /></div>
+                            done
+                            <div>
+                                <FontAwesomeIcon :icon="faCheck" />
+                            </div>
                         </button>
                     </div>
-                    <div v-if="uploadState=='error'">
+                    <div v-if="uploadState == 'error'">
                         <button class="submit">
-                                error
-                                <div><FontAwesomeIcon :icon="faTimes" /></div>
+                            error
+                            <div>
+                                <FontAwesomeIcon :icon="faTimes" />
+                            </div>
                         </button>
                     </div>
                 </div>
@@ -160,60 +164,225 @@
     </div>
 </template>
 
-<script>
-import { ref } from 'vue';
-
-import state from '../state';
-import contentData from '../content.json'
+<script setup lang="ts">
+import { computed, ref } from 'vue';
 
 import Content from '../art/Content.vue'
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { faArrowUp, faArrowDown, faArrowRight, faTrash, faSpinner, faCheck, faTimes, faPlus, faUpload } from '@fortawesome/free-solid-svg-icons';
+import { AdminPage, Block } from '/src/types';
 
-const {
-    about,
-    commissions,
-    contact,
-    contactFormEnabled,
-    ... otherContent
-} = contentData;
+const emit = defineEmits<{
+    (e: 'update:currentPage', value: AdminPage);
+}>();
 
-export default {
-    setup() {
-        const uploadState = ref('unsubmitted');
+const props = defineProps<{
+    currentPage: AdminPage;
+    blocks: Block[];
+    content: {
+        about: string;
+        commissions: string;
+        contact: string;
+        contactFormEnabled: boolean;
+    };
+}>();
 
-        const token = ref('');
-        const setToken = (event) => {
-            token.value = event.target.value
-        };
+const mediaContent = ref<Partial<Record<string, {
+    utf8: string,
+    base64: string
+}>>>({});
+const mediaContentNames = computed(() => Object.keys(mediaContent.value));
 
-        const { 
-            about : stateAbout,
-            commissions : stateCommissions,
-            contact : stateContact,
-            contactFormEnabled : stateContactFormEnabled
-        } = state;
+const uploadState = ref<'unsubmitted' | 'submitted' | 'success' | 'error'>('unsubmitted');
+const token = ref('');
 
-        state.about = stateAbout || about
-        state.commissions = stateCommissions || commissions
-        state.contact = stateContact || contact
-        state.contactFormEnabled = stateContactFormEnabled || contactFormEnabled
+const moveSectionUp = (id: number) => {
+    //console.log(`move ${id} up`)
 
-        return {
-            uploadState,
+    if (id < 1)
+        return
 
-            token, setToken
+    const element = props.blocks.splice(id, 1)
+    props.blocks.splice(id - 1, 0, ...element)
+}
+
+const moveSectionDown = (id: number) => {
+    //console.log(`move ${id} down`)
+
+    if (id >= props.blocks.length - 1)
+        return
+
+    const element = props.blocks.splice(id, 1)
+    props.blocks.splice(id + 1, 0, ...element)
+}
+
+const addSection = () => {
+    props.blocks.push({
+        name: "New Section",
+        content: []
+    })
+}
+
+const deleteSection = (id: number) => {
+    props.blocks.splice(id, 1)
+}
+
+const moveContentUp = (blockId: number, contentId: number) => {
+    //console.log(`move ${blockId} ${contentId} up`)
+
+    if (blockId === 0 && contentId === 0)
+        return
+
+    if (contentId === 0) {
+        const element = props.blocks[blockId].content.splice(contentId, 1)[0]
+        props.blocks[blockId - 1].content.push(element)
+    } else {
+        const element = props.blocks[blockId].content.splice(contentId, 1)
+        props.blocks[blockId].content.splice(contentId - 1, 0, ...element)
+    }
+}
+
+const moveContentDown = (blockId: number, contentId: number) => {
+    //console.log(`move ${blockId} ${contentId} down`)
+
+    if (blockId === props.blocks.length - 1 && contentId === props.blocks[props.blocks.length - 1].content.length - 1)
+        return
+
+    if (contentId === props.blocks[blockId].content.length - 1) {
+        const element = props.blocks[blockId].content.splice(contentId, 1)[0]
+        props.blocks[blockId + 1].content.unshift(element)
+    } else {
+        const element = props.blocks[blockId].content.splice(contentId, 1)
+        props.blocks[blockId].content.splice(contentId + 1, 0, ...element)
+    }
+}
+
+const addContent = (blockId: number) => {
+    const now = new Date()
+    const date = `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}`
+
+    props.blocks[blockId].content.push({
+        date,
+        path: "",
+        width: "6",
+        height: "1",
+        fit: "cover",
+        title: "New Masterpiece",
+        desc: "This is some new art by Raquel",
+    })
+};
+
+const deleteContent = (blockId: number, contentId: number) => {
+    props.blocks[blockId].content.splice(contentId, 1)
+}
+
+const readFileBytes = async (file: File) => new Promise<string | ArrayBuffer>((res, rej) => {
+    const reader = new FileReader()
+    reader.readAsText(file, 'UTF-8')
+    reader.onload = () => res(reader.result)
+    reader.onerror = error => rej(error)
+});
+const readFileBase64 = async (file: File) => new Promise<string | ArrayBuffer>((res, rej) => {
+    const reader = new FileReader()
+    reader.readAsDataURL(file)
+    reader.onload = () => res(reader.result)
+    reader.onerror = error => rej(error)
+});
+const decodeArrayBuffer = (maybeArrayBuffer: string | ArrayBuffer): string => {
+    if (typeof maybeArrayBuffer === 'string') return maybeArrayBuffer;
+    const decoder = new TextDecoder("utf-8");
+    return decoder.decode(maybeArrayBuffer);
+}
+
+// the chungus
+const uploadContent = (blockId: number, contentId: number) => {
+    const _tempFileInput = document.createElement('input')
+    _tempFileInput.type = 'file'
+
+    _tempFileInput.onchange = (event: Event) => {
+        const target = event.target as HTMLInputElement | undefined
+        if (!target) return;
+
+        const file: File | undefined = target.files?.[0]
+        if (!file) return;
+
+        const filename = file.name
+        const path = `/art/${filename}`
+
+        Promise.all([readFileBytes(file), readFileBase64(file)])
+            .then(([fileContentsRaw, base64FileContentsRaw]) => {
+                const fileContents = decodeArrayBuffer(fileContentsRaw);
+                const base64FileContents = decodeArrayBuffer(base64FileContentsRaw);
+
+                //console.log({ filename, path, fileContents, base64FileContents })
+                console.debug(`fileContents`, fileContents.length)
+
+                if (fileContents.length > (2 * 1048576 /* MiB */)) {
+                    console.error("TOO BIG OF A FILE")
+                    props.blocks[blockId].content[contentId].path = "ERROR TOO BIG, talk to Michael for upload"
+                    return
+                }
+
+                mediaContent.value[path] = {
+                    utf8: fileContents,
+                    base64: base64FileContents
+                }
+
+                //TODO bind to content
+                props.blocks[blockId].content[contentId].path = path
+
+                //console.log({ test: state.mediaContent?.[state.blocks[blockId].content[contentId].path]?.base64 })
+            })
+    }
+
+    _tempFileInput.click()
+}
+
+const submitChanges = () => {
+    // Gather in-use content from blocks
+    const usedContent = props.blocks.map(
+        ({ content }) => content.map(
+            ({ path }) => path
+        )
+    ).flat()
+
+    console.log({ usedContent })
+
+    const payload = {
+        token: token.value,
+
+        content: props.content,
+        blocks: props.blocks,
+        media: Object.entries(mediaContent.value)
+            .filter(([name]) => true) // filter out content that is not used
+            //.filter(([ name ]) => usedContent.includes(name)) // filter out content that is not used - this is not working
+            .map(([name, values]) => ({ name, content: values.base64.split(',')[1] }))
+    }
+
+    console.log(`${import.meta.env.PUBLIC_BACKEND}/api/grid`)
+    console.log({ payload })
+
+    fetch(
+        `${import.meta.env.PUBLIC_BACKEND}/api/grid`,
+        {
+            method: `POST`,
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(payload)
         }
-    },
+    )
+        .then(res => uploadState.value = res.ok ? "success" : "error")
+        .catch(err => uploadState.value = "error")
+        .finally(() => setTimeout(() => uploadState.value = "unsubmitted", 3000))
+    uploadState.value = "submitted"
+}
 
-    components: {
-        FontAwesomeIcon,
-        Content
-    },
-
+/*
+export default {
     methods: {
-        updateSectionName (event, index) {
+        updateSectionName(event, index) {
             //console.log('updateSectionName')
             //console.log({ index, event })
             //console.log(event.target.value)
@@ -232,140 +401,20 @@ export default {
             delete state.blocks[blockIndex].content[contentIndex][property]
         },
 
-        moveSectionUp (id) {
-            //console.log(`move ${id} up`)
+        
 
-            if(id < 1)
-                return
-
-            const element = state.blocks.splice(id, 1)
-            state.blocks.splice(id - 1, 0, ... element)
-        },
-
-        moveSectionDown (id) {
-            //console.log(`move ${id} down`)
-
-            if(id >= state.blocks.length - 1)
-                return
-
-            const element = state.blocks.splice(id, 1)
-            state.blocks.splice(id + 1, 0, ... element)
-        },
-
-        addSection () {
-            state.blocks.push({
-                name: "New Section",
-                content: []
-            })
-        },
-
-        deleteSection (id) {
-            state.blocks.splice(id, 1)
-        },
-
-        moveContentUp (blockId, contentId) {
-            //console.log(`move ${blockId} ${contentId} up`)
-
-            if(blockId === 0 && contentId === 0)
-                return
-
-            if(contentId === 0){
-                const element = state.blocks[blockId].content.splice(contentId, 1)
-                state.blocks[blockId - 1].content.push(... element)
-            }else{
-                const element = state.blocks[blockId].content.splice(contentId, 1)
-                state.blocks[blockId].content.splice(contentId - 1, 0, ... element)
-            }
-        },
-
-        moveContentDown (blockId, contentId) {
-            //console.log(`move ${blockId} ${contentId} down`)
-
-            if(blockId === state.blocks.length - 1 && contentId === state.blocks[state.blocks.length - 1].content.length - 1)
-                return
-
-            if(contentId === state.blocks[blockId].content.length - 1){
-                const element = state.blocks[blockId].content.splice(contentId, 1)
-                state.blocks[blockId + 1].content.unshift(... element)
-            }else{
-                const element = state.blocks[blockId].content.splice(contentId, 1)
-                state.blocks[blockId].content.splice(contentId + 1, 0, ... element)
-            }
-        },
-
-        addContent (blockId) {
-            const now = new Date()
-            const date = `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}`
-
-            state.blocks[blockId].content.push({
-                date,
-                path: "",
-                width: "6",
-                height: "1",
-                fit: "cover",
-                title: "New Masterpiece",
-                desc: "This is some new art by Raquel",
-            })
-        },
-
-        readFileBytes : async (file) => new Promise((res, rej) => {
+        readFileBytes: async (file) => new Promise((res, rej) => {
             const reader = new FileReader()
             reader.readAsText(file, 'UTF-8')
             reader.onload = () => res(reader.result)
             reader.onerror = error => rej(error)
         }),
-        readFileBase64 : async (file) => new Promise((res, rej) => {
+        readFileBase64: async (file) => new Promise((res, rej) => {
             const reader = new FileReader()
             reader.readAsDataURL(file)
             reader.onload = () => res(reader.result)
             reader.onerror = error => rej(error)
         }),
-
-        // the chungus
-        uploadContent (blockId, contentId) {
-            const _tempFileInput = document.createElement('input')
-            _tempFileInput.type = 'file'
-
-            _tempFileInput.onchange = event => { 
-                const file = event.target.files[0]
-                const filename = event.target.files[0].name
-                const path = `/art/${filename}`
-
-                Promise.all([this.readFileBytes(file), this.readFileBase64(file)])
-                    .then(([fileContents, base64FileContents]) => {
-                        //console.log({ filename, path, fileContents, base64FileContents })
-                        console.log(`fileContents`, fileContents.length)
-
-                        if(fileContents.length > (2 * 1048576 /* MiB */)){
-                            console.error("TOO BIG OF A FILE")
-                            state.blocks[blockId].content[contentId].path = "ERROR TOO BIG, talk to Michael for upload"
-                            return
-                        }
-
-                        state.mediaContent[path] = {
-                            utf8: fileContents,
-                            base64: base64FileContents
-                        }
-                        state.mediaContentNames = Object.keys(state.mediaContent)
-
-                        //TODO bind to content
-                        state.blocks[blockId].content[contentId].path = path
-
-                        console.log({
-                            mediaContentNames: state.mediaContentNames,
-                            meidaContent: state.mediaContent
-                        })
-
-                        //console.log({ test: state.mediaContent?.[state.blocks[blockId].content[contentId].path]?.base64 })
-                    })
-            }
-
-            _tempFileInput.click()
-        },
-
-        deleteContent (blockId, contentId) {
-            state.blocks[blockId].content.splice(contentId, 1)
-        },
 
         setCurrentPage(page) {
             state.adminCurrentPage = page
@@ -380,84 +429,9 @@ export default {
             //console.log({ event, content: event.target.checked })
             state[stateName] = event.target.checked
         },
-
-        submitChanges() {
-
-            const {
-                about,
-                commissions,
-                contact,
-                contactFormEnabled,
-
-                blocks,
-                mediaContent
-            } = state
-
-            // Gather in-use content from blocks
-            const usedContent = blocks.map(
-                ({ content }) => content.map(
-                    ({ path }) => path
-                )
-            ).flat()
-
-            console.log({ usedContent })
-
-            const payload = {
-                token: this.token,
-
-                content : {
-                    ... otherContent,
-                    about,
-                    commissions,
-                    contact,
-                    contactFormEnabled
-                },
-
-                blocks: [ ... blocks ],
-                media: Object.entries(mediaContent)
-                            .filter(([ name ]) => true) // filter out content that is not used
-                            //.filter(([ name ]) => usedContent.includes(name)) // filter out content that is not used - this is not working
-                            .map(([ name, values ]) => ({ name, content: values.base64.split(',')[1] }))
-            }
-
-            console.log(`${import.meta.env.PUBLIC_BACKEND}/api/grid`)
-            console.log({ payload })
-
-            fetch(
-                `${import.meta.env.PUBLIC_BACKEND}/api/grid`,
-                {
-                    method: `POST`,
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(payload)
-                }
-            )
-                .then(res => this.uploadState = res.ok ? "success" : "error")
-                .catch(err => this.uploadState = "error")
-                .finally(() => setTimeout(() => this.uploadState = "unsubmitted", 3000))
-            this.uploadState = "submitted"
-        }
     },
-
-    computed: {
-        blocks(){ return state?.blocks },
-        about(){ return state?.about },
-        commissions(){ return state?.commissions },
-        contact(){ return state?.contact },
-        contactFormEnabled(){ return state?.contactFormEnabled },
-        mediaContentNames(){ return state?.mediaContentNames },
-        mediaContent(){ return state?.mediaContent },
-        currentPage(){ return state?.adminCurrentPage }
-        
-    },
-
-    data () {
-        return {
-            faArrowUp, faArrowDown, faArrowRight, faTrash, faSpinner, faCheck, faTimes, faPlus, faUpload
-        }
-    }
 }
+*/
 </script>
 
 <style lang="scss">
@@ -486,7 +460,8 @@ export default {
             height: 75vh;
         }
 
-        .check, .check-label {
+        .check,
+        .check-label {
             color: black;
         }
 
@@ -519,7 +494,7 @@ export default {
             display: flex;
             flex-direction: row;
 
-            &>*{
+            &>* {
                 margin: 0 10px;
             }
         }
@@ -542,7 +517,7 @@ export default {
 
         border: 1px dotted #AAA;
         border-radius: 5px;
-        
+
 
         .content {
             width: 20%;
@@ -562,7 +537,7 @@ export default {
 
             margin: 5px 20px 5px 5px;
 
-            &>*{
+            &>* {
                 margin: 0;
                 padding: 0;
             }
@@ -609,7 +584,7 @@ export default {
 
             background: #3333;
 
-            &>*{
+            &>* {
                 margin: 5px 0;
             }
         }
