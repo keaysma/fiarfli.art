@@ -65,9 +65,9 @@ import { blocks } from "/src/components/index.json";
   <body>
     <Hero client:load {about} />
     <main>
-      <Art client:load {blocks} />
+      <Art client:visible {blocks} />
       <Commissions {commissions} />
-      <ContactMe client:visible {contact} {contactFormEnabled} />
+      <ContactMe client:load {contact} {contactFormEnabled} />
       <MadeWithLove/>
     </main>
   </body>
