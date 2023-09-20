@@ -52,32 +52,19 @@ import { blocks } from "/src/components/index.json";
         /*text-decoration: none;*/
         color: white;
       }
-      main.content {
+      main {
         position: relative;
         display: block;
-        width: 100%;
+        width: 100vw;
 
         padding-top: 10em;
-      }
-
-      @media only screen and (max-width: 768px) {
-        .content {
-          width: 100vw;
-          padding-left: 0;
-        }
-        .page-content {
-          width: 100%;
-        }
-      }
-      .background {
-        /* background: #FFF1ED; */
         background: linear-gradient(180deg, transparent 0, rgba(var(--light-blue), 0.125) 4em, rgba(var(--light-blue), 1) 16em, pink 48em, #fffee1);
       }
     </style>
   </head>
   <body>
     <Hero client:load {about} />
-    <main class="background content">
+    <main>
       <Art client:load {blocks} />
       <Commissions {commissions} />
       <ContactMe client:visible {contact} {contactFormEnabled} />

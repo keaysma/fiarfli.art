@@ -4,7 +4,7 @@
 
     <nav :class="{ scrollAtTop }">
       <!-- <img class="logo" src="/fiarfli-logo.png" width="200px" height="200px" /> -->
-      <img class="signature" src="/raquel-signature.svg" width="250px" height="75px" />
+      <img class="signature" src="/Raquel-signature.svg" width="250px" height="75px" />
 
       <div class="nav-links">
         <a class="nav-link" href="#art">Art</a>
