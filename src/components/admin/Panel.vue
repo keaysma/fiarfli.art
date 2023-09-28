@@ -282,8 +282,8 @@ const addContent = (blockId: number) => {
         width: "6",
         height: "1",
         fit: "cover",
-        title: "New Masterpiece",
-        desc: "This is some new art by Raquel",
+        title: "",
+        desc: "",
     })
 };
 
