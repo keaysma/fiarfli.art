@@ -13,7 +13,7 @@
             </div>
 
             <div v-if="currentPage === 'gallery'">
-                <div v-for="(block, blockIndex) in blocks" :key="block.name" class="art-section"
+                <div v-for="(block, blockIndex) in blocks" class="art-section"
                     :id="`art-${block.name}`">
                     <div class="section-name">
                         <input v-model="block.name" />
@@ -30,7 +30,7 @@
                         </div>
                     </div>
                     <div class="art-container">
-                        <div v-for="(content, contentIndex) in block.content" :key="content.title" class="art-piece">
+                        <div v-for="(content, contentIndex) in block.content" class="art-piece">
                             <Content v-if="(content.type || 'link') === 'link'" v-bind:content="content" />
                             <div class="text-content">
                                 <label for="type">Type</label>
@@ -165,13 +165,15 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import { computed, getCurrentInstance, ref } from 'vue';
 
 import Content from '../art/Content.vue'
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { faArrowUp, faArrowDown, faArrowRight, faTrash, faSpinner, faCheck, faTimes, faPlus, faUpload } from '@fortawesome/free-solid-svg-icons';
 import { AdminPage, Block } from '/src/types';
+
+const instance = getCurrentInstance();
 
 const emit = defineEmits<{
     (e: 'update:currentPage', value: AdminPage);
@@ -205,6 +207,9 @@ const moveSectionUp = (id: number) => {
 
     const element = props.blocks.splice(id, 1)
     props.blocks.splice(id - 1, 0, ...element)
+
+    // force update
+    instance.proxy.$forceUpdate();
 }
 
 const moveSectionDown = (id: number) => {
@@ -215,6 +220,9 @@ const moveSectionDown = (id: number) => {
 
     const element = props.blocks.splice(id, 1)
     props.blocks.splice(id + 1, 0, ...element)
+
+    // force update
+    instance.proxy.$forceUpdate();
 }
 
 const addSection = () => {
@@ -241,6 +249,9 @@ const moveContentUp = (blockId: number, contentId: number) => {
         const element = props.blocks[blockId].content.splice(contentId, 1)
         props.blocks[blockId].content.splice(contentId - 1, 0, ...element)
     }
+
+    // force update
+    instance.proxy.$forceUpdate();
 }
 
 const moveContentDown = (blockId: number, contentId: number) => {
@@ -256,6 +267,9 @@ const moveContentDown = (blockId: number, contentId: number) => {
         const element = props.blocks[blockId].content.splice(contentId, 1)
         props.blocks[blockId].content.splice(contentId + 1, 0, ...element)
     }
+
+    // force update
+    instance.proxy.$forceUpdate();
 }
 
 const addContent = (blockId: number) => {
