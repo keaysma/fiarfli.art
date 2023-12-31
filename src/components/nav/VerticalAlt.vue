@@ -31,7 +31,7 @@
         <div class="mobile-nav-signature">
             <img
                 class="mobile-nav-signature"
-                src="/Raquel-signature.svg"
+                src="/raquel-signature.svg"
             />
         </div>
         <button class="thumb blended" @click="openMobileMenu()" v-if="!isMobileMenuOpen">

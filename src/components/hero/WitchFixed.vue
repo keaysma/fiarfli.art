@@ -9,7 +9,7 @@
         <div class="content">
             <img
                 class="signature"
-                src="/Raquel-signature.svg"
+                src="/raquel-signature.svg"
             />
 
             <div class="hero-nav">
