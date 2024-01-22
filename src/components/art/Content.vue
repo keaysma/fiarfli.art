@@ -115,6 +115,10 @@ const openContainerLink = () => {
   }
 }
 
+.iframe > iframe {
+  min-width: unset !important;
+}
+
 .contained {
   // z-index: 999;
 
