@@ -126,7 +126,7 @@ const openContainerLink = () => {
   > iframe, > blockquote {
     min-width: unset !important;
     min-height: unset !important;
-    height: auto;
+    // height: auto;
     width: 100% !important;
   }
 
