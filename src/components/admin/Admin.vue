@@ -24,8 +24,4 @@ const contentState = ref({
     ...content,
 });
 const blockState = ref<Block[]>(blocks);
-const mediaContent = ref<Partial<Record<string, {
-    utf8: string,
-    base64: string
-}>>>({});
 </script>

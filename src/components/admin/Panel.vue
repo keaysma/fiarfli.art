@@ -165,7 +165,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, getCurrentInstance, ref } from 'vue';
+import { getCurrentInstance, ref } from 'vue';
 
 import Content from '../art/Content.vue'
 
@@ -194,7 +194,6 @@ const mediaContent = ref<Partial<Record<string, {
     utf8: string,
     base64: string
 }>>>({});
-const mediaContentNames = computed(() => Object.keys(mediaContent.value));
 
 const uploadState = ref<'unsubmitted' | 'submitted' | 'success' | 'error'>('unsubmitted');
 const token = ref('');
@@ -332,7 +331,7 @@ const uploadContent = (blockId: number, contentId: number) => {
                 //console.log({ filename, path, fileContents, base64FileContents })
                 console.debug(`fileContents`, fileContents.length)
 
-                if (fileContents.length > (2 * 1048576 /* MiB */)) {
+                if (fileContents.length > (10 * 1048576 /* MiB */)) {
                     console.error("TOO BIG OF A FILE")
                     props.blocks[blockId].content[contentId].path = "ERROR TOO BIG, talk to Michael for upload"
                     return
@@ -345,8 +344,6 @@ const uploadContent = (blockId: number, contentId: number) => {
 
                 //TODO bind to content
                 props.blocks[blockId].content[contentId].path = path
-
-                //console.log({ test: state.mediaContent?.[state.blocks[blockId].content[contentId].path]?.base64 })
             })
     }
 
@@ -361,16 +358,13 @@ const submitChanges = () => {
         )
     ).flat()
 
-    console.log({ usedContent })
-
     const payload = {
         token: token.value,
 
         content: props.content,
         blocks: props.blocks,
         media: Object.entries(mediaContent.value)
-            .filter(([name]) => true) // filter out content that is not used
-            //.filter(([ name ]) => usedContent.includes(name)) // filter out content that is not used - this is not working
+            .filter(([ name ]) => usedContent.includes(name)) // filter out content that is not used - this is not working
             .map(([name, values]) => ({ name, content: values.base64.split(',')[1] }))
     }
 
@@ -392,60 +386,6 @@ const submitChanges = () => {
         .finally(() => setTimeout(() => uploadState.value = "unsubmitted", 3000))
     uploadState.value = "submitted"
 }
-
-/*
-export default {
-    methods: {
-        updateSectionName(event, index) {
-            //console.log('updateSectionName')
-            //console.log({ index, event })
-            //console.log(event.target.value)
-            //console.log(state.blocks[index].name)
-
-            state.blocks[index].name = event.target.value
-        },
-
-        handleContentPropertyUpdate(event, blockIndex, contentIndex, property) {
-            //console.log({ event, blockIndex, contentIndex, property, value: event.target.value })
-
-            state.blocks[blockIndex].content[contentIndex][property] = event.target.value
-        },
-
-        handleContentPropertyReset(blockIndex, contentIndex, property) {
-            delete state.blocks[blockIndex].content[contentIndex][property]
-        },
-
-        
-
-        readFileBytes: async (file) => new Promise((res, rej) => {
-            const reader = new FileReader()
-            reader.readAsText(file, 'UTF-8')
-            reader.onload = () => res(reader.result)
-            reader.onerror = error => rej(error)
-        }),
-        readFileBase64: async (file) => new Promise((res, rej) => {
-            const reader = new FileReader()
-            reader.readAsDataURL(file)
-            reader.onload = () => res(reader.result)
-            reader.onerror = error => rej(error)
-        }),
-
-        setCurrentPage(page) {
-            state.adminCurrentPage = page
-        },
-
-        setState(stateName, event) {
-            //console.log({ event, content: event.target.value })
-            state[stateName] = event.target.value
-        },
-
-        setStateCheckbox(stateName, event) {
-            //console.log({ event, content: event.target.checked })
-            state[stateName] = event.target.checked
-        },
-    },
-}
-*/
 </script>
 
 <style lang="scss">
