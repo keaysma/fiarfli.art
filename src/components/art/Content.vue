@@ -12,7 +12,7 @@
       <img v-if="!mediaContentNames?.includes(content?.path)" ref="imgRef"
         :src="useThumbnail ? content.thumbnail ?? content.path : content.path"
         :class="`fit-${content.fit} img-height-${content[`img-height`] ?? `full`}`" :style="{
-          backgroundColor: (useColor && content?.color) || '#0000',
+          backgroundColor: (useColor && content?.color) ?? '#0000',
         }" @load="onLoad" />
       <img v-else :class="`fit-${content.fit} img-height-${content[`img-height`] ?? `full`}`" :style="{
         backgroundImage: `url(${mediaContent?.[content?.path]?.base64})`,
@@ -42,8 +42,8 @@ const props = defineProps<{
 }>();
 
 const imgRef = ref<HTMLImageElement>();
-watch(() => props.content, (content) => {
-  console.log(`Content::setup::watch`, content);
+watch(() => props.content.thumbnail, (content) => {
+  console.log(`Content::setup::watch`, content, imgRef);
   if (!imgRef.value) return;
 
   imgRef.value.style.opacity = '0';

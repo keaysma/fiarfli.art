@@ -13,8 +13,7 @@
             </div>
 
             <div v-if="currentPage === 'gallery'">
-                <div v-for="(block, blockIndex) in blocks" class="art-section"
-                    :id="`art-${block.name}`">
+                <div v-for="(block, blockIndex) in blocks" class="art-section" :id="`art-${block.name}`">
                     <div class="section-name">
                         <input v-model="block.name" />
                         <div class="arrows">
@@ -93,7 +92,8 @@
 
                                 <label for="bg-color">Background Color</label>
                                 <div class="color-picker">
-                                    <input name="bg-color" type="color" v-model="content.color" />
+                                    <input name="bg-color" type="color" :model-value="content.color ?? '#0000'"
+                                        @update:model-value="content.color = $event.target.value" />
                                     <button @click="content.color = undefined">x</button>
                                 </div>
                             </div>
@@ -121,6 +121,8 @@
         </div>
 
         <div class="page-nav">
+            <p class="commit-hash" :class="{ warning: currentHash !== latestHash }">version: {{ currentHash ?? 'UNKNOWN' }}
+            </p>
             <div class="control-nav">
                 <button @click="emit('update:currentPage', 'about')">about</button>
                 <button @click="emit('update:currentPage', 'gallery')">art</button>
@@ -130,37 +132,22 @@
             <div class="control-content">
                 <input type="password" placeholder="github token" v-model="token" />
                 <div class="button-bar">
-                    <div v-if="uploadState == 'unsubmitted'">
-                        <button class="submit" @click="submitChanges()">
-                            Submit <div>
-                                <FontAwesomeIcon :icon="faArrowRight" />
-                            </div>
-                        </button>
-                    </div>
-                    <div v-if="uploadState == 'submitted'">
-                        <button class="submit">
-                            uploading
-                            <div>
-                                <FontAwesomeIcon :icon="faSpinner" />
-                            </div>
-                        </button>
-                    </div>
-                    <div v-if="uploadState == 'success'">
-                        <button class="submit">
-                            done
-                            <div>
-                                <FontAwesomeIcon :icon="faCheck" />
-                            </div>
-                        </button>
-                    </div>
-                    <div v-if="uploadState == 'error'">
-                        <button class="submit">
-                            error
-                            <div>
-                                <FontAwesomeIcon :icon="faTimes" />
-                            </div>
-                        </button>
-                    </div>
+                    <button v-if="uploadState == 'unsubmitted'" class="submit" @click="submitChanges()">
+                        {{ currentHash === null ? "loading..." : currentHash !== latestHash ? "CAREFUL!" : "Submit" }}
+                        <FontAwesomeIcon :icon="faArrowRight" />
+                    </button>
+                    <button v-else-if="uploadState == 'submitted'" class="submit">
+                        uploading
+                        <FontAwesomeIcon :icon="faSpinner" />
+                    </button>
+                    <button v-else-if="uploadState == 'success'" class="submit">
+                        done
+                        <FontAwesomeIcon :icon="faCheck" />
+                    </button>
+                    <button v-else-if="uploadState == 'error'" class="submit">
+                        error
+                        <FontAwesomeIcon :icon="faTimes" />
+                    </button>
                 </div>
             </div>
         </div>
@@ -168,7 +155,7 @@
 </template>
 
 <script setup lang="ts">
-import { getCurrentInstance, ref } from 'vue';
+import { getCurrentInstance, ref, watch } from 'vue';
 
 import Content from '../art/Content.vue'
 
@@ -180,10 +167,14 @@ const instance = getCurrentInstance();
 
 const emit = defineEmits<{
     (e: 'update:currentPage', value: AdminPage);
+    (e: 'update:token', value: string);
+    (e: 'submitted');
 }>();
 
 const props = defineProps<{
     currentPage: AdminPage;
+    currentHash: string | null;
+    latestHash: string | null;
     blocks: Block[];
     content: {
         about: string;
@@ -200,6 +191,7 @@ const mediaContent = ref<Partial<Record<string, {
 
 const uploadState = ref<'unsubmitted' | 'submitted' | 'success' | 'error'>('unsubmitted');
 const token = ref('');
+watch(token, (newToken) => emit('update:token', newToken));
 
 const moveSectionUp = (id: number) => {
     //console.log(`move ${id} up`)
@@ -354,6 +346,11 @@ const uploadContent = (blockId: number, contentId: number) => {
 }
 
 const submitChanges = () => {
+    if (props.currentHash !== props.latestHash) {
+        const result = confirm("You are about to overwrite the latest version with the changes you made here. Are you sure?");
+        if (!result) return;
+    }
+
     // Gather in-use content from blocks
     const usedContent = props.blocks.map(
         ({ content }) => content.map(
@@ -367,7 +364,7 @@ const submitChanges = () => {
         content: props.content,
         blocks: props.blocks,
         media: Object.entries(mediaContent.value)
-            .filter(([ name ]) => usedContent.includes(name)) // filter out content that is not used - this is not working
+            .filter(([name]) => usedContent.includes(name)) // filter out content that is not used - this is not working
             .map(([name, values]) => ({ name, content: values.base64.split(',')[1] }))
     }
 
@@ -384,8 +381,16 @@ const submitChanges = () => {
             body: JSON.stringify(payload)
         }
     )
-        .then(res => uploadState.value = res.ok ? "success" : "error")
-        .catch(err => uploadState.value = "error")
+        .then(({ ok }) => {
+            uploadState.value = ok ? "success" : "error"
+            if (ok) {
+                emit('submitted')
+            }
+        })
+        .catch(err => {
+            uploadState.value = "error"
+            alert(`Error, show Michael: ${err}`)
+        })
         .finally(() => setTimeout(() => uploadState.value = "unsubmitted", 3000))
     uploadState.value = "submitted"
 }
@@ -563,12 +568,22 @@ const submitChanges = () => {
         left: 0;
 
         width: 100%;
-        height: 75px;
+        height: 100px;
 
         margin: 0;
         padding: 0;
 
         background: beige;
+
+        .commit-hash {
+            margin: 5px 10px;
+            font-size: 0.75em;
+            color: black;
+
+            &.warning {
+                color: red;
+            }
+        }
 
         .control-nav {
             margin: 5px 5px 10px 5px;
@@ -626,6 +641,11 @@ const submitChanges = () => {
             .submit {
                 color: white;
                 background: green;
+                line-height: 1em;
+
+                &:disabled {
+                    background: gray;
+                }
             }
         }
     }
