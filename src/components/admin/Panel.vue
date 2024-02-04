@@ -128,10 +128,11 @@
                 <button @click="emit('update:currentPage', 'gallery')">art</button>
                 <button @click="emit('update:currentPage', 'commissions')">commissions</button>
                 <button @click="emit('update:currentPage', 'contactme')">contact me</button>
-            </div>
-            <div class="control-content">
-                <input type="password" placeholder="github token" v-model="token" />
                 <div class="button-bar">
+                    <button @click="emit('logout')">
+                        Change token
+                        <FontAwesomeIcon :icon="faLock" />
+                    </button>
                     <button v-if="uploadState == 'unsubmitted'" class="submit" @click="submitChanges()">
                         {{ currentHash === null ? "loading..." : currentHash !== latestHash ? "CAREFUL!" : "Submit" }}
                         <FontAwesomeIcon :icon="faArrowRight" />
@@ -160,18 +161,19 @@ import { getCurrentInstance, ref, watch } from 'vue';
 import Content from '../art/Content.vue'
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { faArrowUp, faArrowDown, faArrowRight, faTrash, faSpinner, faCheck, faTimes, faPlus, faUpload } from '@fortawesome/free-solid-svg-icons';
+import { faArrowUp, faArrowDown, faArrowRight, faTrash, faSpinner, faCheck, faTimes, faPlus, faUpload, faLock } from '@fortawesome/free-solid-svg-icons';
 import { AdminPage, Block } from '/src/types';
 
 const instance = getCurrentInstance();
 
 const emit = defineEmits<{
     (e: 'update:currentPage', value: AdminPage);
-    (e: 'update:token', value: string);
+    (e: 'logout');
     (e: 'submitted');
 }>();
 
 const props = defineProps<{
+    token: string;
     currentPage: AdminPage;
     currentHash: string | null;
     latestHash: string | null;
@@ -190,8 +192,6 @@ const mediaContent = ref<Partial<Record<string, {
 }>>>({});
 
 const uploadState = ref<'unsubmitted' | 'submitted' | 'success' | 'error'>('unsubmitted');
-const token = ref('');
-watch(token, (newToken) => emit('update:token', newToken));
 
 const moveSectionUp = (id: number) => {
     //console.log(`move ${id} up`)
@@ -359,8 +359,6 @@ const submitChanges = () => {
     ).flat()
 
     const payload = {
-        token: token.value,
-
         content: props.content,
         blocks: props.blocks,
         media: Object.entries(mediaContent.value)
@@ -377,6 +375,7 @@ const submitChanges = () => {
             method: `POST`,
             headers: {
                 'Content-Type': 'application/json',
+                'X-Git-Token': props.token,
             },
             body: JSON.stringify(payload)
         }
@@ -412,6 +411,10 @@ const submitChanges = () => {
 
     color: floralwhite;
     background: linear-gradient(pink, skyblue);
+
+    @media (min-width: 768px) {
+        max-width: 50vw;
+    }
 
     &>.content {
         margin-bottom: 25px;
@@ -568,12 +571,13 @@ const submitChanges = () => {
         left: 0;
 
         width: 100%;
-        height: 100px;
+        height: 65px;
 
         margin: 0;
         padding: 0;
 
         background: beige;
+        border-top: 3px solid darkslateblue;
 
         .commit-hash {
             margin: 5px 10px;
@@ -586,16 +590,12 @@ const submitChanges = () => {
         }
 
         .control-nav {
+            display: flex;
             margin: 5px 5px 10px 5px;
 
             button {
                 margin: 0 5px;
             }
-        }
-
-        .control-content {
-            display: flex;
-            flex-direction: row;
         }
 
         input {
@@ -625,7 +625,6 @@ const submitChanges = () => {
 
                 height: 25px;
 
-                margin: 0 25px;
                 padding: 5px 5px 20px 10px;
 
                 box-shadow: 0px 0px 5px 1px darkgrey;
