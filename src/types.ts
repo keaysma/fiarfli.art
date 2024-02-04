@@ -16,6 +16,7 @@ export interface Content {
     html?: string;
     color?: string;
     thumbnail?: string;
+    hidden?: boolean;
 }
 
 export interface Block {

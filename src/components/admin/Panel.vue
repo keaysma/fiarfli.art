@@ -33,6 +33,9 @@
                         <div v-for="(content, contentIndex) in block.content" class="art-piece">
                             <Content v-if="(content.type || 'link') === 'link'" v-bind:content="content" />
                             <div class="text-content">
+                                <label for="hidden">Hidden</label>
+                                <input type="checkbox" name="hidden" class="check" v-model="content.hidden" />
+
                                 <label for="type">Type</label>
                                 <select name="type" v-model="content.type">
                                     <option value="link">link</option>
@@ -494,6 +497,10 @@ const submitChanges = () => {
             &>* {
                 margin: 0;
                 padding: 0;
+            }
+
+            .check {
+                align-self: flex-start;
             }
 
             .color-picker {

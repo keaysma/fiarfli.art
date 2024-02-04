@@ -5,10 +5,14 @@
       <div v-for="(block, blockIndex) in blocks" :key="blockIndex" class="art-section" :id="`art-${block.name}`">
         <h2>{{ block.name }}</h2>
         <div class="art-container">
-          <Content v-for="(content, contentIndex) in block.content" :key="contentIndex" :class="content.type"
-            :style="{ gridArea: `span ${content.height} / span ${content.width}` }" :content="content" :displayIcon="true"
-            :useColor="true" :useThumbnail="true"
-            @click="gallerySettings = { blockIndex, contentIndex, open: true, fullscreen: false }" />
+          <template v-for="(content, contentIndex) in block.content" :key="contentIndex">
+            <template v-if="content.hidden !== true">
+              <Content :class="content.type"
+                :style="{ gridArea: `span ${content.height} / span ${content.width}` }" :content="content"
+                :displayIcon="true" :useColor="true" :useThumbnail="true"
+                @click="gallerySettings = { blockIndex, contentIndex, open: true, fullscreen: false }" />
+            </template>
+          </template>
         </div>
       </div>
     </div>
