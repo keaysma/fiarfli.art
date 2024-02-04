@@ -567,7 +567,8 @@
           "height": "1",
           "fit": "cover",
           "title": "uwu test",
-          "desc": ""
+          "desc": "",
+          "hidden": true
         }
       ]
     }
