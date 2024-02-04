@@ -53,6 +53,17 @@
           "fit": "cover",
           "title": "Demo Reel 2021",
           "desc": "Demo Reel 2021- I will be uploading a new demo reel for 2023 soon..."
+        },
+        {
+          "date": "2024-2-4",
+          "path": "/art/WhatsApp Image 2023-10-07 at 7.02.42 PM.webp",
+          "width": "6",
+          "height": "1",
+          "fit": "cover",
+          "title": "test",
+          "desc": "",
+          "hidden": true,
+          "thumbnail": "thumbnail/art/WhatsApp Image 2023-10-07 at 7.02.42 PM.webp"
         }
       ]
     },
