@@ -1,5 +1,5 @@
 <template>
-    <div id="commissions" class="page">
+    <div v-if="commissionsEnabled" id="commissions" class="page">
         <h2>Commissions</h2>
         <p>{{ commissions }}</p>
     </div>
@@ -8,6 +8,7 @@
 <script setup lang="ts">
 defineProps<{
     commissions: string;
+    commissionsEnabled: boolean;
 }>();
 </script>
 

@@ -6,8 +6,9 @@ type Height = string | "1" | "2" | "3";
 export interface SiteContent {
     about: string;
     commissions: string;
+    commissionsEnabled: boolean;
     contact: string;
-    contactFormEnabled: true;
+    contactFormEnabled: boolean;
 }
 
 export interface Content {

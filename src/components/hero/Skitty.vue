@@ -8,7 +8,7 @@
 
       <div class="nav-links" @mouseenter="() => { navHover = true; setHover(true) }" @mouseleave="setHover(false)">
         <a id="art-link" class="nav-link" href="#art">Art <span>▼</span></a>
-        <a class="nav-link" href="#commissions">Commissions</a>
+        <a v-if="commissionsEnabled" class="nav-link" href="#commissions">Commissions</a>
         <a class="nav-link" href="#contact-me">Contact Me</a>
 
         <div class="art-block-links" :class="{ navHover }">
@@ -32,6 +32,7 @@ import { debounce } from '/src/utils';
 const props = defineProps<{
   about: string;
   blocks: Block[];
+  commissionsEnabled: boolean;
 }>();
 
 const blockSections = computed(() =>

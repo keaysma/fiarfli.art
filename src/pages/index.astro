@@ -7,7 +7,7 @@ import ContactMe from "/src/components/contact-me/Basic.vue";
 import MadeWithLove from "/src/components/footer/made-with-love.vue";
 
 // Application State
-import { about, commissions, contact, contactFormEnabled } from "/src/components/content.json";
+import { about, commissions, commissionsEnabled, contact, contactFormEnabled } from "/src/components/content.json";
 import { blocks } from "/src/components/index.json";
 ---
 
@@ -63,10 +63,10 @@ import { blocks } from "/src/components/index.json";
     </style>
   </head>
   <body>
-    <Hero client:load {about} {blocks} />
+    <Hero client:load {about} {blocks} {commissionsEnabled} />
     <main>
       <Art client:visible {blocks} />
-      <Commissions {commissions} />
+      <Commissions {commissions} {commissionsEnabled} />
       <ContactMe client:load {contact} {contactFormEnabled} />
       <MadeWithLove/>
     </main>

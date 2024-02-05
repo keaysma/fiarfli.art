@@ -3,7 +3,13 @@
         <div class="content">
             <h2>Admin panel</h2>
             <textarea v-if="currentPage === 'about'" class="feature-text" v-model="content.about" />
-            <textarea v-if="currentPage === 'commissions'" class="feature-text" v-model="content.commissions" />
+
+            <div v-if="currentPage === 'commissions'">
+                <textarea class="feature-text" v-model="content.commissions" />
+                <input type="checkbox" id="commissions-enabled" class="check" name="commissions-enabled"
+                    v-model="content.commissionsEnabled" />
+                <label for="commissions-enabled" class="check-label">Enable</label><br>
+            </div>
 
             <div v-if="currentPage === 'contactme'">
                 <textarea class="feature-text" v-model="content.contact" />
@@ -75,12 +81,11 @@
                                 </div>
                                 <fieldset class="tags">
                                     <input name="tags" />
-                                    <button
-                                        @click="$event => { 
-                                            const inputElement = (($event.target as HTMLButtonElement).previousElementSibling as HTMLInputElement)
-                                            content.tags.push(inputElement.value); 
-                                            inputElement.value = '';
-                                        }">
+                                    <button @click="$event => {
+                                        const inputElement = (($event.target as HTMLButtonElement).previousElementSibling as HTMLInputElement)
+                                        content.tags.push(inputElement.value);
+                                        inputElement.value = '';
+                                    }">
                                         Add
                                     </button>
                                 </fieldset>
@@ -183,7 +188,7 @@ import Content from '../art/Content.vue'
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { faArrowUp, faArrowDown, faArrowRight, faTrash, faSpinner, faCheck, faTimes, faPlus, faUpload, faLock } from '@fortawesome/free-solid-svg-icons';
-import { AdminPage, Block } from '/src/types';
+import { AdminPage, Block, SiteContent } from '/src/types';
 
 const instance = getCurrentInstance();
 
@@ -199,12 +204,7 @@ const props = defineProps<{
     currentHash: string | null;
     latestHash: string | null;
     blocks: Block[];
-    content: {
-        about: string;
-        commissions: string;
-        contact: string;
-        contactFormEnabled: boolean;
-    };
+    content: SiteContent;
 }>();
 
 const mediaContent = ref<Partial<Record<string, {
@@ -538,7 +538,7 @@ const submitChanges = () => {
             }
 
             .tag-list {
-                > span {
+                >span {
                     font-size: small;
                     line-height: 1.7em;
                 }
