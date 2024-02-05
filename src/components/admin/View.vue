@@ -2,7 +2,7 @@
     <div id="admin-view">
         <About v-if="currentPage === 'about'" :about="content.about" />
         <Art v-if="currentPage === 'gallery'" :blocks="blocks" />
-        <Commissions v-if="currentPage === 'commissions'" :commissions="content.commissions" />
+        <Commissions v-if="currentPage === 'commissions'" :commissions="content.commissions" :commissionsEnabled="content.contactFormEnabled" />
         <Contact v-if="currentPage === 'contactme'" :contact="content.contact"
             :contactFormEnabled="content.contactFormEnabled" />
     </div>
