@@ -6,10 +6,17 @@
       <!-- <img class="logo" src="/fiarfli-logo.png" width="200px" height="200px" /> -->
       <img class="signature" src="/raquel-signature.svg" width="250px" height="75px" />
 
-      <div class="nav-links">
+      <div class="nav-links" @mouseenter="() => { navHover = true; setHover(true) }" @mouseleave="setHover(false)">
         <a class="nav-link" href="#art">Art</a>
         <a class="nav-link" href="#commissions">Commissions</a>
         <a class="nav-link" href="#contact-me">Contact Me</a>
+
+        <div class="art-block-links" :class="{ navHover }">
+          <a v-for="(block, blockIndex) in blocks" :key="blockIndex" :href="`#${blockSections[blockIndex]}`"
+            class="nav-link">
+            {{ block.name }}
+          </a>
+        </div>
       </div>
     </nav>
 
@@ -18,11 +25,23 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, onUnmounted, ref } from 'vue';
+import { computed, onMounted, onUnmounted, ref } from 'vue';
+import { Block } from '/src/types';
+import { debounce } from '/src/utils';
 
-defineProps<{
+const props = defineProps<{
   about: string;
+  blocks: Block[];
 }>();
+
+const blockSections = computed(() =>
+  props.blocks.map(({ name }) => name.toLowerCase().replace(/ /g, '-'))
+)
+
+const navHover = ref(false);
+const setHover = debounce((value: boolean) => {
+  navHover.value = value;
+}, 250);
 
 const scrollAtTop = ref(true);
 const scrollHanlder = () => {
@@ -122,6 +141,7 @@ onUnmounted(() => {
     }
 
     .nav-links {
+      position: relative;
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
@@ -137,6 +157,41 @@ onUnmounted(() => {
         text-decoration: none;
         font-size: 1.25em;
         transition: var(--transition);
+      }
+    }
+
+    .art-block-links {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+
+      top: 1.5em;
+      left: -1em;
+      width: 100%;
+
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity ease-in-out 0.25s;
+
+      padding: 0.5em 1em;
+
+      background: rgba(0, 0, 0, 0.75);
+      border-radius: 0.5em;
+
+      &.navHover {
+        opacity: 1;
+        pointer-events: all;
+      }
+
+      >a {
+        color: white;
+        text-decoration: none;
+        font-size: 1em;
+        transition: var(--transition);
+
+        &:hover {
+          color: #d389a7;
+        }
       }
     }
   }
