@@ -7,7 +7,7 @@
       <img class="signature" src="/raquel-signature.svg" width="250px" height="75px" />
 
       <div class="nav-links" @mouseenter="() => { navHover = true; setHover(true) }" @mouseleave="setHover(false)">
-        <a class="nav-link" href="#art">Art</a>
+        <a id="art-link" class="nav-link" href="#art">Art <span>▼</span></a>
         <a class="nav-link" href="#commissions">Commissions</a>
         <a class="nav-link" href="#contact-me">Contact Me</a>
 
@@ -123,6 +123,17 @@ onUnmounted(() => {
       }
 
       .nav-links {
+        >#art-link {
+          display: flex;
+          flex-direction: row;
+
+          gap: 0.125em;
+
+          >span {
+            font-size: x-small;
+          }
+        }
+
         >.nav-link {
           font-size: 0.75em;
         }
