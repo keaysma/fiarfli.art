@@ -65,6 +65,27 @@
                                 <label for="desc">Description</label>
                                 <textarea name="desc" v-model="content.desc" />
 
+                                <label for="tags">Tags</label>
+                                <div class="tag-list">
+                                    <button v-if="content.tags.length" v-for="tag in content.tags"
+                                        @click="content.tags.splice(content.tags.indexOf(tag), 1)">
+                                        {{ tag }}
+                                    </button>
+                                    <span v-else>No tags</span>
+                                </div>
+                                <fieldset class="tags">
+                                    <input name="tags" />
+                                    <button
+                                        @click="$event => { 
+                                            const inputElement = (($event.target as HTMLButtonElement).previousElementSibling as HTMLInputElement)
+                                            content.tags.push(inputElement.value); 
+                                            inputElement.value = '';
+                                        }">
+                                        Add
+                                    </button>
+                                </fieldset>
+
+                                <br />
                                 <br />
 
                                 <label for="width">Width</label>
@@ -278,6 +299,7 @@ const addContent = (blockId: number) => {
         fit: "cover",
         title: "",
         desc: "",
+        tags: [],
     })
 };
 
@@ -416,6 +438,10 @@ const submitChanges = () => {
         max-width: 50vw;
     }
 
+    fieldset {
+        border: none;
+    }
+
     &>.content {
         margin-bottom: 25px;
         padding: 0 10px;
@@ -509,6 +535,26 @@ const submitChanges = () => {
 
             .check {
                 align-self: flex-start;
+            }
+
+            .tag-list {
+                > span {
+                    font-size: small;
+                    line-height: 1.7em;
+                }
+            }
+
+            .tags {
+                display: flex;
+                flex-direction: row;
+
+                input {
+                    flex: 1;
+                }
+
+                button {
+                    margin: 0;
+                }
             }
 
             .color-picker {
