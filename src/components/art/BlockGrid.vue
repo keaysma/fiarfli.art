@@ -2,28 +2,35 @@
   <div id="art" class="page">
     <div class="art-content">
       <!-- <h1>Art</h1> -->
-      <div v-for="(block, blockIndex) in blocks" :key="blockIndex" class="art-section" :id="`art-${block.name}`">
-        <h2>{{ block.name }}</h2>
-        <div class="art-container">
-          <template v-for="(content, contentIndex) in block.content" :key="contentIndex">
-            <template v-if="content.hidden !== true">
-              <Content :class="content.type"
-                :style="{ gridArea: `span ${content.height} / span ${content.width}` }" :content="content"
-                :displayIcon="true" :useColor="true" :useThumbnail="true"
-                @click="gallerySettings = { blockIndex, contentIndex, open: true, fullscreen: false }" />
+      <!-- <div class="tag-list">
+        <button v-for="(tag, tagIndex) in tags" :key="tagIndex" :id="`tag-${tag}`"
+          @click="selectedTags.includes(tag) ? selectedTags.splice(selectedTags.indexOf(tag), 1) : selectedTags.push(tag)">
+          {{ tag }} {{ selectedTags.includes(tag) ? "✓" : "" }}
+        </button>
+      </div> -->
+      <div v-for="(block, blockIndex) in filteredBlocks" :key="blockIndex" class="art-section" :id="`art-${block.name}`">
+        <template v-if="block.content.length > 0">
+          <h2 :id="block.name.toLowerCase().replaceAll(/\ /g, '-')">{{ block.name }}</h2>
+          <div class="art-container">
+            <template v-for="(content, contentIndex) in block.content" :key="contentIndex">
+              <template v-if="content.hidden !== true">
+                <Content :class="content.type" :style="{ gridArea: `span ${content.height} / span ${content.width}` }"
+                  :content="content" :displayIcon="true" :useColor="true" :useThumbnail="true"
+                  @click="gallerySettings = { blockIndex, contentIndex, open: true, fullscreen: false }" />
+              </template>
             </template>
-          </template>
-        </div>
+          </div>
+        </template>
       </div>
     </div>
   </div>
 
   <!-- Gallery -->
-  <Gallery :blocks="blocks" :gallerySettings="gallerySettings" />
+  <Gallery :blocks="filteredBlocks" :gallerySettings="gallerySettings" />
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
+import { ref, onMounted, computed } from "vue";
 
 import Content from "/src/components/art/Content.vue";
 import Gallery from "/src/components/art/Gallery.vue";
@@ -40,6 +47,26 @@ const gallerySettings = ref<GallerySettings>({
   contentIndex: 0,
   open: false,
   fullscreen: false,
+});
+
+const selectedTags = ref<string[]>([]);
+const tags = computed(() =>
+  new Set<string>(props.blocks.map((block) => block.content.map((content) => content.tags)).flat(2))
+);
+
+const filteredBlocks = computed(() => {
+  if (selectedTags.value.length === 0) {
+    return props.blocks;
+  }
+
+  return props.blocks.map((block) => {
+    return {
+      ...block,
+      content: block.content.filter((content) => {
+        return content.tags.some((tag) => selectedTags.value.includes(tag));
+      }),
+    };
+  });
 });
 
 onMounted(() => {
@@ -74,20 +101,6 @@ onMounted(() => {
   }
 
 });
-
-// TODO: do this with a listener
-// const setIsGalleryOpen = (value?: ContentType) => {
-//   if (!value || value === "link") {
-//     isGalleryOpen.value = true;
-//     document.body.style.overflow = "hidden";
-//   }
-// };
-
-// const closeGallery = () => {
-//   isGalleryOpen.value = false;
-//   isGalleryFullscreen.value = false;
-//   document.body.style.overflow = "auto";
-// };
 </script>
 
 <style lang="scss">
@@ -101,6 +114,36 @@ onMounted(() => {
   margin: 0;
 
   overflow: hidden;
+
+  h1, h2 {
+    text-align: center;
+  }
+
+  .tag-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 5px;
+
+    button {
+      padding: 5px 10px;
+      margin: 15px 0;
+
+      border: 1px solid #0002;
+      border-radius: 5px;
+
+      background-color: #fff4;
+      backdrop-filter: blur(5px);
+
+      font-size: 1em;
+
+      gap: 10px;
+
+      &:hover {
+        background-color: #fff4;
+      }
+    }
+  }
 
   .art-content {
     margin: 75px 125px;
