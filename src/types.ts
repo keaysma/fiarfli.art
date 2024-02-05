@@ -14,6 +14,7 @@ export interface Content {
     path: string;
     title: string;
     desc: string;
+    tags: string[];
     date: string;
     width: Width;
     height: Height;
