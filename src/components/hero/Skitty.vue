@@ -124,17 +124,6 @@ onUnmounted(() => {
       }
 
       .nav-links {
-        >#art-link {
-          display: flex;
-          flex-direction: row;
-
-          gap: 0.125em;
-
-          >span {
-            font-size: x-small;
-          }
-        }
-
         >.nav-link {
           font-size: 0.75em;
         }
@@ -159,6 +148,17 @@ onUnmounted(() => {
       flex-wrap: wrap;
       justify-content: flex-start;
       gap: 1em;
+
+      >#art-link {
+        display: flex;
+        flex-direction: row;
+
+        gap: 0.125em;
+
+        >span {
+          font-size: x-small;
+        }
+      }
 
       >.nav-link {
         @media only screen and (max-width: 768px) {
