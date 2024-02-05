@@ -8,3 +8,15 @@ export const getShortcutFromTitle = (title: string) => {
     .replace(/-$/, "") // If there's a trailing '-' remove it
     .toLowerCase(); // All lowercase
 }
+
+export const debounce = <T extends any[]>(func: (...args: T) => void, wait: number) => {
+  let timeout: number;
+  return function (...args: T) {
+    const later = () => {
+      clearTimeout(timeout);
+      func(...args);
+    };
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
+}
