@@ -63,7 +63,7 @@ import { blocks } from "/src/components/index.json";
     </style>
   </head>
   <body>
-    <Hero client:load {about} />
+    <Hero client:load {about} {blocks} />
     <main>
       <Art client:visible {blocks} />
       <Commissions {commissions} />
