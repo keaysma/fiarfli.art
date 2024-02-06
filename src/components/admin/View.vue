@@ -13,17 +13,12 @@ import About from '../about/BasicAlt.vue'
 import Art from '../art/BlockGrid.vue'
 import Commissions from '../commissions/Basic.vue'
 import Contact from '../contact-me/Basic.vue'
-import { AdminPage, Block } from '/src/types';
+import { AdminPage, Block, SiteContent } from '/src/types';
 
 defineProps<{
     currentPage: AdminPage;
     blocks: Block[];
-    content: {
-        about: string;
-        commissions: string;
-        contact: string;
-        contactFormEnabled: boolean;
-    };
+    content: SiteContent;
 }>();
 </script>
 

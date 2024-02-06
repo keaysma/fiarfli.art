@@ -5,9 +5,12 @@
             <textarea v-if="currentPage === 'about'" class="feature-text" v-model="content.about" />
 
             <div v-if="currentPage === 'commissions'">
-                <textarea class="feature-text" v-model="content.commissions" />
+                <textarea v-if="content.commissions.enabled" class="feature-text"
+                    v-model="content.commissions.enabledMessage" />
+                <textarea v-else class="feature-text"
+                    v-model="content.commissions.disabledMessage" />
                 <input type="checkbox" id="commissions-enabled" class="check" name="commissions-enabled"
-                    v-model="content.commissionsEnabled" />
+                    v-model="content.commissions.enabled" />
                 <label for="commissions-enabled" class="check-label">Enable</label><br>
             </div>
 

@@ -1,14 +1,18 @@
 <template>
-    <div v-if="commissionsEnabled" id="commissions" class="page">
+    <div id="commissions" class="page">
         <h2>Commissions</h2>
-        <p>{{ commissions }}</p>
+        <div v-html="markdown.render(commissions.enabledMessage)" />
     </div>
 </template>
 
 <script setup lang="ts">
+import MarkdownIt from "markdown-it";
+import { SiteContent } from "/src/types";
+
+const markdown = new MarkdownIt();
+
 defineProps<{
-    commissions: string;
-    commissionsEnabled: boolean;
+    commissions: SiteContent['commissions']
 }>();
 </script>
 
