@@ -1,7 +1,7 @@
 <template>
     <div id="commissions" class="page">
         <h2>Commissions</h2>
-        <div v-html="markdown.render(commissions.enabledMessage)" />
+        <div v-html="markdown.render(commissions.enabled ? commissions.enabledMessage : commissions.disabledMessage)" />
     </div>
 </template>
 
