@@ -9,11 +9,11 @@
 import MarkdownIt from "markdown-it";
 import { SiteContent } from "/src/types";
 
-const markdown = new MarkdownIt();
-
 defineProps<{
     commissions: SiteContent['commissions']
 }>();
+
+const markdown = new MarkdownIt({ html: true, breaks: true });
 </script>
 
 <style lang="scss">
