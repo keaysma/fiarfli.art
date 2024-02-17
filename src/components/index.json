@@ -261,13 +261,13 @@
         },
         {
           "date": "2021-11",
-          "path": "/art/bg1.webp",
-          "thumbnail": "thumbnail/art/bg1.webp",
+          "path": "/art/bg3 nofig.webp",
+          "thumbnail": "thumbnail/art/bg3 nofig.webp",
           "width": "3",
           "height": "1",
           "fit": "cover",
-          "title": "Cottage front",
-          "desc": "A closer shot of background art from the first scene of my senior project.",
+          "title": "The Unburnt Woods",
+          "desc": "Background art from the later scenes of my senior project.",
           "type": "link",
           "html": "https://fiarfliart.tumblr.com/post/676088365078167552",
           "tags": [
