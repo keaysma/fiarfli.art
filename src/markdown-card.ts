@@ -58,7 +58,7 @@ type MetaProps = Partial<{
     "og:image:alt": string;
 }>
 
-export const markdownCardPlugin = (token: string) => function (md: MarkdownIt) {
+export const markdownCardPlugin = (token: string, onRenderComplete: (content: any) => void) => function (md: MarkdownIt) {
     /*
     !!(https://ko-fi.com/fiarfli/commissions) -> <div> <img src="https://ko-fi.com/fiarfli/comissions/picture"/> </div>
     */
@@ -72,14 +72,14 @@ export const markdownCardPlugin = (token: string) => function (md: MarkdownIt) {
             if (!match) return false;
 
             const cardId = `md-card-${new Date().getTime()}`
-            const d = state.push('card_open', 'a', 1);
+            const d = state.push('card_open', 'div', 1);
             d.attrSet("id", cardId);
 
             state.push('bold_open', 'b', 1);
             const t = state.push('text', '', 0); t.content = '...';
             state.push('bold_close', 'b', -1)
 
-            state.push('card_close', 'a', -1);
+            state.push('card_close', 'div', -1);
 
             state.pos += match[0].length;
 
@@ -104,10 +104,14 @@ export const markdownCardPlugin = (token: string) => function (md: MarkdownIt) {
 
                     // width="${meta["og:image:width"]}" height="${meta["og:image:height"]}"
                     card.innerHTML = `
-                        <img src="${meta["og:image"]}" alt="${meta["og:image:alt"]}" />
-                        <h3>${meta["og:title"]}</h3>
-                        <p>${meta["og:description"]}</p>
+                        <a href="${meta["og:url"]}">
+                            <img src="${meta["og:image"]}" alt="${meta["og:image:alt"]}">
+                            <h3>${meta["og:title"]}</h3>
+                            <p>${meta["og:description"]}</p>
+                        </a>
                     `
+
+                    onRenderComplete(state);
                 })
                 .catch(() => {
                     console.error("Failed to fetch", match[1])

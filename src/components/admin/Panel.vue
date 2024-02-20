@@ -213,7 +213,16 @@ const props = defineProps<{
 }>();
 
 const md = new MarkdownIt({ html: true })
-md.use(markdownCardPlugin(props.token))
+
+// onRenderComplete is kind of a hack to get the rendered content from the markdown card
+// to save it to the content object
+md.use(markdownCardPlugin(props.token, () => {
+    const renderedContent = document.querySelector('#commissions .content')
+
+    if (renderedContent) {
+        props.content.commissions.__html = renderedContent.innerHTML
+    }
+}))
 watch(
     () => [
         props.content.commissions.enabled,

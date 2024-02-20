@@ -1,7 +1,7 @@
 <template>
     <div id="commissions" class="page">
         <h2>Commissions</h2>
-        <div v-html="commissions.__html" />
+        <div class="content" v-html="commissions.__html" />
     </div>
 </template>
 
@@ -50,9 +50,13 @@ defineProps<{
         background: linear-gradient(180deg, transparent 0, rgba(var(--light-blue), 0.125) 12%, rgba(var(--light-blue), 1) 40%, pink 65%, #fffee1);
 
 
-        > h3, > p {
-            padding: 0 1em;
-            margin: 0.5em 0;
+        a {
+
+            >h3,
+            >p {
+                padding: 0 1em;
+                margin: 0.5em 0;
+            }
         }
     }
 
