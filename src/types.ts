@@ -9,6 +9,7 @@ export interface SiteContent {
         enabled: boolean;
         enabledMessage: string;
         disabledMessage: string;
+        __html: string;
     };
     commissionsEnabled: boolean;
     contact: string;

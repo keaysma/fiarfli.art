@@ -192,6 +192,8 @@ import Content from '../art/Content.vue'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { faArrowUp, faArrowDown, faArrowRight, faTrash, faSpinner, faCheck, faTimes, faPlus, faUpload, faLock } from '@fortawesome/free-solid-svg-icons';
 import { AdminPage, Block, SiteContent } from '/src/types';
+import MarkdownIt from 'markdown-it';
+import { markdownCardPlugin } from '/src/markdown-card';
 
 const instance = getCurrentInstance();
 
@@ -209,6 +211,22 @@ const props = defineProps<{
     blocks: Block[];
     content: SiteContent;
 }>();
+
+const md = new MarkdownIt({ html: true })
+md.use(markdownCardPlugin(props.token))
+watch(
+    () => [
+        props.content.commissions.enabled,
+        props.content.commissions.enabledMessage,
+        props.content.commissions.disabledMessage,
+    ], () => {
+        props.content.commissions.__html = md.render(
+            props.content.commissions.enabled
+                ? props.content.commissions.enabledMessage
+                : props.content.commissions.disabledMessage
+        )
+    }
+)
 
 const mediaContent = ref<Partial<Record<string, {
     utf8: string,
