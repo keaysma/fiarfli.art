@@ -19,6 +19,7 @@ defineProps<{
     display: block;
 
     width: auto;
+    max-width: 75vw;
     min-height: 100vh;
 
     padding: 0 3em;
@@ -26,22 +27,34 @@ defineProps<{
     //background: white;
 
     h2 {
-        padding-top: 4em;
+        /* padding-top: 4em; */
+        margin: 0;
     }
 
-    p {
-        white-space: break-spaces;
+    .content {
+        font-size: 0.7em;
+        line-height: 1em;
+
+        & > * {
+            white-space: pre-wrap;
+        }
+
+        pre {
+            margin: 0;
+        }
     }
 
     .md-card {
         display: flex;
         flex-direction: column;
 
-        max-width: 600px;
-        // height: 400px;
+        max-width: 400px;
+        /* max-height: 400px; */
+
+        margin: 1em auto;
 
         border-radius: 10px;
-        border: 1px solid #e0e0e0;
+        border: 2px solid pink;
 
         overflow: hidden;
 
@@ -49,20 +62,57 @@ defineProps<{
         --light-blue: 173, 216, 230;
         background: linear-gradient(180deg, transparent 0, rgba(var(--light-blue), 0.125) 12%, rgba(var(--light-blue), 1) 40%, pink 65%, #fffee1);
 
+        transition: box-shadow 0.5s;
+
+        &:hover {
+            box-shadow: 0 0 10px 5px pink;
+        }
 
         a {
+            display: contents;
 
-            >h3,
-            >p {
+            color: black;
+
+            >img{
+                max-width: 400px;
+                max-height: 200px;
+            }
+
+            >h3 {
+                text-decoration: underline;
                 padding: 0 1em;
-                margin: 0.5em 0;
+                margin: 0.25em 0;
+            }
+
+            >p {
+                font-size: 0.8em;
+                padding: 0 1.5em;
+                margin: 0.25em 0;
+            }
+
+            @media only screen and (max-width: 768px) {
+                >h3 {
+                    padding: 0 0.7em;
+                    margin: 0.25em 0 0 0;
+                    font-size: 3em;
+                }
+
+                >p {
+                    font-size: 2em;
+                }
             }
         }
     }
 
     @media only screen and (max-width: 768px) {
-        padding: 0 0.5em;
+        padding: 1em;
         min-height: unset;
+
+        .content {
+            font-size: 0.75em;
+            word-wrap: break-word;
+            white-space: pre-wrap;
+        }
     }
 }
 </style>

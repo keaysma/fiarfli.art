@@ -2,7 +2,7 @@
   <div id="hero">
     <div id="hero-image" />
 
-    <nav :class="{ scrollAtTop }">
+    <nav :class="{ scrollAtTop: false }">
       <!-- <img class="logo" src="/fiarfli-logo.png" width="200px" height="200px" /> -->
       <img class="signature" src="/raquel-signature.svg" width="250px" height="75px" />
 
@@ -66,7 +66,7 @@ onUnmounted(() => {
 
   display: block;
   width: 100%;
-  height: calc(100vh - 0em);
+  /* height: calc(100vh - 0em); */
 
   >#hero-image {
     position: fixed;
@@ -89,12 +89,12 @@ onUnmounted(() => {
 
     padding: 1em 3em;
 
-    backdrop-filter: invert(0) contrast(1) brightness(0.5) blur(0.5em);
+    backdrop-filter: brightness(50%) blur(0.5em);
 
     transition: var(--transition);
 
     @media only screen and (max-width: 768px) {
-      padding: 0.5em;
+      padding: 0.5em 1.25em;
       display: flex;
       flex-direction: column;
       align-items: flex-start;
@@ -110,12 +110,12 @@ onUnmounted(() => {
     }
 
     &:not(.scrollAtTop) {
-      padding: 0.25em 3em;
+      /* padding: 0.25em 3em; */
       height: 35px;
 
       @media only screen and (max-width: 768px) {
         height: 60px;
-        padding: 0.5em;
+        /* padding: 0.5em; */
       }
 
       .signature {
@@ -209,21 +209,26 @@ onUnmounted(() => {
   }
 
   .text-block {
-    position: absolute;
-    max-width: 25em;
+    position: relative;
+    /* max-width: 25em; */
 
-    padding: 0 3em;
-    top: 6em;
+    padding: 2em 3em 0;
+    top: 1.33em;
 
     margin: 0;
 
     text-align: left;
 
+    background: linear-gradient(180deg, #000b 10%, #0000);
     color: white;
     white-space: break-spaces;
 
     @media only screen and (max-width: 768px) {
-      padding: 0.5em;
+        padding: 2.5em 1.5em 0;
+
+        /* backdrop-filter: brightness(65%) blur(0.1em); */
+
+        font-size: smaller;
     }
 
   }

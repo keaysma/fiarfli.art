@@ -151,6 +151,15 @@ const submitMessage = () => {
         p {
             white-space: break-spaces;
         }
+
+        @media only screen and (max-width: 768px) {
+            padding: 1em;
+            min-height: unset;
+
+            font-size: smaller;
+            word-wrap: break-word;
+            white-space: pre-wrap;
+        }
     }
 
     .contact-form {
@@ -392,42 +401,40 @@ const submitMessage = () => {
         margin: 0;
         padding: 0 0.5em;
 
-        .content-wrapper {
-            display: flex;
-            flex-direction: column;
+        display: flex;
+        flex-direction: column;
 
-            &.split-page {
+        &.split-page {
 
-                .text-content,
-                .contact-form,
-                form {
-                    width: 100%;
-                    max-width: 100%;
-                }
+            .text-content,
+            .contact-form,
+            form {
+                width: 85%;
+                max-width: 100%;
             }
+        }
 
-            .text-content {
+        .text-content {
+            width: 100%;
+
+            text-shadow: 1px 1px 3px #0004;
+        }
+
+        .contact-form {
+
+            .form-group,
+            .field-group,
+            input,
+            textarea {
                 width: 100%;
-
-                text-shadow: 1px 1px 3px #0004;
             }
 
-            .contact-form {
+            .field-group {
+                margin: 10px 0;
+            }
 
-                .form-group,
-                .field-group,
-                input,
-                textarea {
-                    width: 100%;
-                }
-
-                .field-group {
-                    margin: 10px 0;
-                }
-
-                .form-group {
-                    margin: 10px 0;
-                }
+            .form-group {
+                margin: 10px 0;
             }
         }
     }
