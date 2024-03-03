@@ -19,10 +19,10 @@ defineProps<{
     display: block;
 
     width: auto;
-    max-width: 75vw;
     min-height: 100vh;
 
     padding: 0 3em;
+    margin: 0 1em;
 
     //background: white;
 
@@ -94,11 +94,11 @@ defineProps<{
                 >h3 {
                     padding: 0 0.7em;
                     margin: 0.25em 0 0 0;
-                    font-size: 3em;
+                    /* font-size: 3em; */
                 }
 
                 >p {
-                    font-size: 2em;
+                    /* font-size: 2em; */
                 }
             }
         }
