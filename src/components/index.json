@@ -63,6 +63,19 @@
       "name": "Illustration",
       "content": [
         {
+          "date": "2023-10-06",
+          "path": "/art/cloudsplashhouse.webp",
+          "width": "6",
+          "height": "1",
+          "fit": "cover",
+          "title": "House on the Cliff",
+          "desc": "",
+          "tags": [
+
+          ],
+          "thumbnail": "thumbnail/art/cloudsplashhouse.webp"
+        },
+        {
           "date": "2022-3-28",
           "path": "/art/Thibault commission smol.webp",
           "thumbnail": "thumbnail/art/Thibault commission smol.webp",
