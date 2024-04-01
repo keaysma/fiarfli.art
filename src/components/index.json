@@ -581,6 +581,19 @@
           ]
         },
         {
+          "date": "2024-02-26",
+          "path": "/art/Froggo.webp",
+          "width": "1",
+          "height": "1",
+          "fit": "cover",
+          "title": "",
+          "desc": "",
+          "tags": [
+
+          ],
+          "thumbnail": "thumbnail/art/Froggo.webp"
+        },
+        {
           "date": "Fall 2019",
           "path": "/art/golden poison froggo.webp",
           "thumbnail": "thumbnail/art/golden poison froggo.webp",
@@ -604,20 +617,8 @@
           "desc": "Inspired by the Untitled Goose Game, I sold these stickers at GMU's artist alley Fall 2019. ",
           "tags": [
 
-          ]
-        },
-        {
-          "date": "Fall 2018",
-          "path": "/art/a mural thing shirt design.webp",
-          "thumbnail": "thumbnail/art/a mural thing shirt design.webp",
-          "width": "1",
-          "height": "1",
-          "fit": "cover",
-          "title": "Mural Day Shirt Design",
-          "desc": "A design I made and stenciled on to vinyl for shirts- the design was inspired by artists whose murals were on campus for Murals at Mason Walls 2018 such as MARICAMA and Imani Shanklin Roberts ",
-          "tags": [
-
-          ]
+          ],
+          "hidden": true
         },
         {
           "date": "May 2021",
@@ -654,6 +655,19 @@
           "title": "Senior Project Fall 2021 Discord",
           "desc": "Icon I made for my senior project class' discord server!",
           "thumbnail": "thumbnail/art/snr proj fall 2021.webp",
+          "tags": [
+
+          ]
+        },
+        {
+          "date": "Fall 2018",
+          "path": "/art/a mural thing shirt design.webp",
+          "thumbnail": "thumbnail/art/a mural thing shirt design.webp",
+          "width": "1",
+          "height": "1",
+          "fit": "cover",
+          "title": "Mural Day Shirt Design",
+          "desc": "A design I made and stenciled on to vinyl for shirts- the design was inspired by artists whose murals were on campus for Murals at Mason Walls 2018 such as MARICAMA and Imani Shanklin Roberts ",
           "tags": [
 
           ]
