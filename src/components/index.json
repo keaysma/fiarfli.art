@@ -528,17 +528,30 @@
       "name": "Graphics",
       "content": [
         {
-          "path": "/art/Gaius and Skitty.webp",
-          "thumbnail": "thumbnail/art/Gaius and Skitty.webp",
+          "date": "2024-03-01",
+          "path": "/art/Fall Witch VERSION 4.webp",
           "width": "2",
           "height": "1",
-          "fit": "contain",
-          "title": "Gaius and Skitty",
-          "desc": "The back part of a design I did for a Christmas card in 2020!",
-          "date": "December 2020",
+          "fit": "cover",
+          "title": "",
+          "desc": "",
           "tags": [
 
-          ]
+          ],
+          "thumbnail": "thumbnail/art/Fall Witch VERSION 4.webp"
+        },
+        {
+          "date": "2024-03-01",
+          "path": "/art/Spring Witch Dress B.webp",
+          "width": "2",
+          "height": "1",
+          "fit": "cover",
+          "title": "Spring Witchin'",
+          "desc": "",
+          "tags": [
+
+          ],
+          "thumbnail": "thumbnail/art/Spring Witch Dress B.webp"
         },
         {
           "date": "2019-10-10",
@@ -549,6 +562,19 @@
           "fit": "contain",
           "title": "Fall Witchin'",
           "desc": "A Sticker design I made for GMU artist alley in  2019",
+          "tags": [
+
+          ]
+        },
+        {
+          "path": "/art/Gaius and Skitty.webp",
+          "thumbnail": "thumbnail/art/Gaius and Skitty.webp",
+          "width": "2",
+          "height": "1",
+          "fit": "contain",
+          "title": "Gaius and Skitty",
+          "desc": "The back part of a design I did for a Christmas card in 2020!",
+          "date": "December 2020",
           "tags": [
 
           ]
