@@ -46,23 +46,10 @@
       "name": "Illustration",
       "content": [
         {
-          "date": "2023-10-06",
-          "path": "/art/cloudsplashhouse.webp",
-          "width": "6",
-          "height": "1",
-          "fit": "cover",
-          "title": "House on the Cliff",
-          "desc": "",
-          "tags": [
-
-          ],
-          "thumbnail": "thumbnail/art/cloudsplashhouse.webp"
-        },
-        {
           "date": "2022-3-28",
           "path": "/art/Thibault commission smol.webp",
           "thumbnail": "thumbnail/art/Thibault commission smol.webp",
-          "width": "1",
+          "width": "3",
           "height": "2",
           "fit": "cover",
           "title": "Tybalt Brooding",
@@ -164,19 +151,6 @@
           ]
         },
         {
-          "date": "2021",
-          "path": "/art/Illustration4.webp",
-          "thumbnail": "thumbnail/art/Illustration4.webp",
-          "width": "2",
-          "height": "1",
-          "fit": "cover",
-          "title": "Crepe Myrtle in the Parking Lot",
-          "desc": "Study of a parking lot in Chantilly, VA.",
-          "tags": [
-
-          ]
-        },
-        {
           "date": "2023-2-17",
           "path": "/art/test.webp",
           "width": "1",
@@ -191,41 +165,14 @@
           ]
         },
         {
-          "path": "/art/Illustration flip.webp",
-          "thumbnail": "thumbnail/art/Illustration flip.webp",
-          "width": "1",
-          "height": "1",
-          "fit": "cover",
-          "title": "Pokeboba",
-          "desc": "My half of a spread from class zine May 2021. Full zine can be viewed here: https://www.blurb.com/books/10701078-show-and-tell",
-          "date": "2021-05",
-          "tags": [
-
-          ]
-        },
-        {
-          "date": "2022-11-03",
-          "path": "/art/amity.webp",
-          "width": "1",
-          "height": "1",
-          "fit": "cover",
-          "title": "Thanks to Them Amity",
-          "desc": "A doodle I did of Amity based on her appearance (and the wallpaper in the Old house) in Season 3 Episode 1 of The Owl House",
-          "thumbnail": "thumbnail/art/amity.webp",
-          "hidden": false,
-          "tags": [
-            "owl house"
-          ]
-        },
-        {
-          "path": "/art/blue_peony.webp",
-          "thumbnail": "thumbnail/art/blue_peony.webp",
+          "date": "2021",
+          "path": "/art/Illustration4.webp",
+          "thumbnail": "thumbnail/art/Illustration4.webp",
           "width": "2",
           "height": "1",
-          "fit": "contain",
-          "title": "Blue Peony",
-          "desc": "A blue peony glowing against a white backdrop with purple light",
-          "date": "2021",
+          "fit": "cover",
+          "title": "Crepe Myrtle in the Parking Lot",
+          "desc": "Study of a parking lot in Chantilly, VA.",
           "tags": [
 
           ]
@@ -267,6 +214,60 @@
           "date": "2021",
           "tags": [
             "commission"
+          ]
+        },
+        {
+          "date": "2022-11-03",
+          "path": "/art/amity.webp",
+          "width": "2",
+          "height": "1",
+          "fit": "cover",
+          "title": "Thanks to Them Amity",
+          "desc": "A doodle I did of Amity based on her appearance (and the wallpaper in the Old house) in Season 3 Episode 1 of The Owl House",
+          "thumbnail": "thumbnail/art/amity.webp",
+          "hidden": false,
+          "tags": [
+            "owl house"
+          ]
+        },
+        {
+          "path": "/art/Illustration flip.webp",
+          "thumbnail": "thumbnail/art/Illustration flip.webp",
+          "width": "1",
+          "height": "1",
+          "fit": "cover",
+          "title": "Pokeboba",
+          "desc": "My half of a spread from class zine May 2021. Full zine can be viewed here: https://www.blurb.com/books/10701078-show-and-tell",
+          "date": "2021-05",
+          "tags": [
+
+          ]
+        },
+        {
+          "date": "2023-10-06",
+          "path": "/art/cloudsplashhouse.webp",
+          "width": "6",
+          "height": "1",
+          "fit": "cover",
+          "title": "House on the Cliff",
+          "desc": "",
+          "tags": [
+
+          ],
+          "thumbnail": "thumbnail/art/cloudsplashhouse.webp",
+          "hidden": false
+        },
+        {
+          "path": "/art/blue_peony.webp",
+          "thumbnail": "thumbnail/art/blue_peony.webp",
+          "width": "2",
+          "height": "1",
+          "fit": "contain",
+          "title": "Blue Peony",
+          "desc": "A blue peony glowing against a white backdrop with purple light",
+          "date": "2021",
+          "tags": [
+
           ]
         },
         {
