@@ -672,6 +672,58 @@
 
           ],
           "hidden": true
+        },
+        {
+          "date": "2024-3-01",
+          "path": "/art/merfrenchie_cool.webp",
+          "width": "1",
+          "height": "1",
+          "fit": "cover",
+          "title": "",
+          "desc": "",
+          "tags": [
+
+          ],
+          "thumbnail": "thumbnail/art/merfrenchie_cool.webp"
+        },
+        {
+          "date": "2024-3-01",
+          "path": "/art/merfrenchie_warm.webp",
+          "width": "1",
+          "height": "1",
+          "fit": "cover",
+          "title": "",
+          "desc": "",
+          "tags": [
+
+          ],
+          "thumbnail": "thumbnail/art/merfrenchie_warm.webp"
+        },
+        {
+          "date": "2024-3-01",
+          "path": "/art/nanalan cat.webp",
+          "width": "1",
+          "height": "1",
+          "fit": "cover",
+          "title": "",
+          "desc": "",
+          "tags": [
+
+          ],
+          "thumbnail": "thumbnail/art/nanalan cat.webp"
+        },
+        {
+          "date": "2024-3-01",
+          "path": "/art/cloudsplashcat sticker.webp",
+          "width": "1",
+          "height": "1",
+          "fit": "cover",
+          "title": "",
+          "desc": "",
+          "tags": [
+
+          ],
+          "thumbnail": "thumbnail/art/cloudsplashcat sticker.webp"
         }
       ]
     },
