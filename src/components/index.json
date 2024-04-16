@@ -165,19 +165,6 @@
           ]
         },
         {
-          "date": "2021",
-          "path": "/art/Illustration4.webp",
-          "thumbnail": "thumbnail/art/Illustration4.webp",
-          "width": "2",
-          "height": "1",
-          "fit": "cover",
-          "title": "Crepe Myrtle in the Parking Lot",
-          "desc": "Study of a parking lot in Chantilly, VA.",
-          "tags": [
-
-          ]
-        },
-        {
           "date": "2023-12-30",
           "path": "/art/gone_bananas.webp",
           "width": "4",
@@ -254,6 +241,19 @@
           "date": "2021",
           "tags": [
 
+          ]
+        },
+        {
+          "date": "2021",
+          "path": "/art/Illustration4.webp",
+          "thumbnail": "thumbnail/art/Illustration4.webp",
+          "width": "1",
+          "height": "1",
+          "fit": "cover",
+          "title": "Crepe Myrtle in the Parking Lot",
+          "desc": "Study of a parking lot in Chantilly, VA.",
+          "tags": [
+            "study"
           ]
         },
         {
