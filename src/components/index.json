@@ -528,6 +528,47 @@
       "name": "Graphics",
       "content": [
         {
+          "date": "Fall 2019",
+          "path": "/art/honke sticker.webp",
+          "thumbnail": "thumbnail/art/honke sticker.webp",
+          "width": "2",
+          "height": "1",
+          "fit": "contain",
+          "title": "HOnkers for You!",
+          "desc": "Inspired by the Untitled Goose Game, I sold these stickers at GMU's artist alley Fall 2019. ",
+          "tags": [
+
+          ],
+          "hidden": false
+        },
+        {
+          "path": "/art/Gaius and Skitty.webp",
+          "thumbnail": "thumbnail/art/Gaius and Skitty.webp",
+          "width": "4",
+          "height": "1",
+          "fit": "contain",
+          "title": "Gaius and Skitty",
+          "desc": "The back part of a design I did for a Christmas card in 2020!",
+          "date": "December 2020",
+          "tags": [
+
+          ]
+        },
+        {
+          "date": "2024-02-26",
+          "path": "/art/Froggo.webp",
+          "width": "1",
+          "height": "1",
+          "fit": "cover",
+          "title": "",
+          "desc": "",
+          "tags": [
+
+          ],
+          "thumbnail": "thumbnail/art/Froggo.webp",
+          "hidden": false
+        },
+        {
           "date": "2024-03-01",
           "path": "/art/Spring Witch Dress B.webp",
           "width": "1",
@@ -568,98 +609,6 @@
           "hidden": true
         },
         {
-          "path": "/art/Gaius and Skitty.webp",
-          "thumbnail": "thumbnail/art/Gaius and Skitty.webp",
-          "width": "2",
-          "height": "1",
-          "fit": "contain",
-          "title": "Gaius and Skitty",
-          "desc": "The back part of a design I did for a Christmas card in 2020!",
-          "date": "December 2020",
-          "tags": [
-
-          ]
-        },
-        {
-          "date": "2024-02-26",
-          "path": "/art/Froggo.webp",
-          "width": "1",
-          "height": "1",
-          "fit": "cover",
-          "title": "",
-          "desc": "",
-          "tags": [
-
-          ],
-          "thumbnail": "thumbnail/art/Froggo.webp"
-        },
-        {
-          "date": "Fall 2019",
-          "path": "/art/golden poison froggo.webp",
-          "thumbnail": "thumbnail/art/golden poison froggo.webp",
-          "width": "1",
-          "height": "1",
-          "fit": "cover",
-          "title": "Golden poison frog",
-          "desc": "Golden poison frog design I plan to make stickers of.",
-          "tags": [
-
-          ]
-        },
-        {
-          "date": "Fall 2019",
-          "path": "/art/honke sticker.webp",
-          "thumbnail": "thumbnail/art/honke sticker.webp",
-          "width": "1",
-          "height": "1",
-          "fit": "contain",
-          "title": "HOnkers for You!",
-          "desc": "Inspired by the Untitled Goose Game, I sold these stickers at GMU's artist alley Fall 2019. ",
-          "tags": [
-
-          ],
-          "hidden": true
-        },
-        {
-          "date": "May 2021",
-          "path": "/art/Inside front cover.webp",
-          "thumbnail": "thumbnail/art/Inside front cover.webp",
-          "width": "2",
-          "height": "1",
-          "fit": "cover",
-          "title": "Show and Tell Artist Icons",
-          "desc": "Inside cover designs for the collaborative zine \"Show and Tell\" my classmates and I made in our AVT 340 class. Each icon represents a classmate; the final version in the book has slightly different colors as I had compiled the icons we made in Illustrator",
-          "tags": [
-
-          ]
-        },
-        {
-          "date": "2021-08-31",
-          "path": "/art/comics thumbnail.webp",
-          "width": "2",
-          "height": "1",
-          "fit": "cover",
-          "title": "Comics Fall 2021 Discord",
-          "desc": "The icon I made for my Comics class discord. For someone who doesn't have the best understanding of discord I set up a lot of discords for my classes towards the end of college XD",
-          "thumbnail": "thumbnail/art/comics thumbnail.webp",
-          "tags": [
-
-          ]
-        },
-        {
-          "date": "2021-8-31",
-          "path": "/art/snr proj fall 2021.webp",
-          "width": "2",
-          "height": "1",
-          "fit": "cover",
-          "title": "Senior Project Fall 2021 Discord",
-          "desc": "Icon I made for my senior project class' discord server!",
-          "thumbnail": "thumbnail/art/snr proj fall 2021.webp",
-          "tags": [
-
-          ]
-        },
-        {
           "date": "Fall 2018",
           "path": "/art/a mural thing shirt design.webp",
           "thumbnail": "thumbnail/art/a mural thing shirt design.webp",
@@ -672,6 +621,59 @@
 
           ],
           "hidden": true
+        },
+        {
+          "date": "Fall 2019",
+          "path": "/art/golden poison froggo.webp",
+          "thumbnail": "thumbnail/art/golden poison froggo.webp",
+          "width": "1",
+          "height": "1",
+          "fit": "cover",
+          "title": "Golden poison frog",
+          "desc": "Golden poison frog design I plan to make stickers of.",
+          "tags": [
+
+          ],
+          "hidden": true
+        },
+        {
+          "date": "2024-3-01",
+          "path": "/art/cloudsplashcat sticker.webp",
+          "width": "1",
+          "height": "1",
+          "fit": "cover",
+          "title": "",
+          "desc": "",
+          "tags": [
+
+          ],
+          "thumbnail": "thumbnail/art/cloudsplashcat sticker.webp"
+        },
+        {
+          "date": "2024-3-01",
+          "path": "/art/nanalan cat.webp",
+          "width": "1",
+          "height": "1",
+          "fit": "cover",
+          "title": "",
+          "desc": "",
+          "tags": [
+
+          ],
+          "thumbnail": "thumbnail/art/nanalan cat.webp"
+        },
+        {
+          "date": "2024-4-16",
+          "path": "/art/nanalan mona.webp",
+          "width": "1",
+          "height": "1",
+          "fit": "cover",
+          "title": "",
+          "desc": "",
+          "tags": [
+
+          ],
+          "thumbnail": "thumbnail/art/nanalan mona.webp"
         },
         {
           "date": "2024-3-01",
@@ -700,30 +702,46 @@
           "thumbnail": "thumbnail/art/merfrenchie_warm.webp"
         },
         {
-          "date": "2024-3-01",
-          "path": "/art/nanalan cat.webp",
-          "width": "1",
+          "date": "May 2021",
+          "path": "/art/Inside front cover.webp",
+          "thumbnail": "thumbnail/art/Inside front cover.webp",
+          "width": "2",
           "height": "1",
           "fit": "cover",
-          "title": "",
-          "desc": "",
+          "title": "Show and Tell Artist Icons",
+          "desc": "Inside cover designs for the collaborative zine \"Show and Tell\" my classmates and I made in our AVT 340 class. Each icon represents a classmate; the final version in the book has slightly different colors as I had compiled the icons we made in Illustrator",
           "tags": [
 
           ],
-          "thumbnail": "thumbnail/art/nanalan cat.webp"
+          "hidden": true
         },
         {
-          "date": "2024-3-01",
-          "path": "/art/cloudsplashcat sticker.webp",
-          "width": "1",
+          "date": "2021-08-31",
+          "path": "/art/comics thumbnail.webp",
+          "width": "2",
           "height": "1",
           "fit": "cover",
-          "title": "",
-          "desc": "",
+          "title": "Comics Fall 2021 Discord",
+          "desc": "The icon I made for my Comics class discord. For someone who doesn't have the best understanding of discord I set up a lot of discords for my classes towards the end of college XD",
+          "thumbnail": "thumbnail/art/comics thumbnail.webp",
           "tags": [
 
           ],
-          "thumbnail": "thumbnail/art/cloudsplashcat sticker.webp"
+          "hidden": true
+        },
+        {
+          "date": "2021-8-31",
+          "path": "/art/snr proj fall 2021.webp",
+          "width": "2",
+          "height": "1",
+          "fit": "cover",
+          "title": "Senior Project Fall 2021 Discord",
+          "desc": "Icon I made for my senior project class' discord server!",
+          "thumbnail": "thumbnail/art/snr proj fall 2021.webp",
+          "tags": [
+
+          ],
+          "hidden": true
         }
       ]
     },
