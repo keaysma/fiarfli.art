@@ -555,18 +555,17 @@
           ]
         },
         {
-          "date": "2024-02-26",
-          "path": "/art/Froggo.webp",
+          "date": "2024-3-5",
+          "path": "/art/moccafest_shamrock.webp",
           "width": "1",
           "height": "1",
           "fit": "cover",
-          "title": "",
+          "title": "Shamrock design",
           "desc": "",
           "tags": [
 
           ],
-          "thumbnail": "thumbnail/art/Froggo.webp",
-          "hidden": false
+          "thumbnail": "thumbnail/art/moccafest_shamrock.webp"
         },
         {
           "date": "2024-03-01",
@@ -655,7 +654,7 @@
           "width": "1",
           "height": "1",
           "fit": "cover",
-          "title": "",
+          "title": "Ally Sticker",
           "desc": "",
           "tags": [
 
@@ -663,12 +662,12 @@
           "thumbnail": "thumbnail/art/nanalan cat.webp"
         },
         {
-          "date": "2024-4-16",
+          "date": "2024-3-01",
           "path": "/art/nanalan mona.webp",
           "width": "1",
           "height": "1",
           "fit": "cover",
-          "title": "",
+          "title": "Mona sticker",
           "desc": "",
           "tags": [
 
@@ -700,6 +699,20 @@
 
           ],
           "thumbnail": "thumbnail/art/merfrenchie_warm.webp"
+        },
+        {
+          "date": "2024-02-26",
+          "path": "/art/Froggo.webp",
+          "width": "1",
+          "height": "1",
+          "fit": "cover",
+          "title": "",
+          "desc": "",
+          "tags": [
+
+          ],
+          "thumbnail": "thumbnail/art/Froggo.webp",
+          "hidden": true
         },
         {
           "date": "May 2021",
