@@ -555,19 +555,6 @@
           ]
         },
         {
-          "date": "2024-3-5",
-          "path": "/art/moccafest_shamrock.webp",
-          "width": "1",
-          "height": "1",
-          "fit": "cover",
-          "title": "Shamrock pin design",
-          "desc": "",
-          "tags": [
-
-          ],
-          "thumbnail": "thumbnail/art/moccafest_shamrock.webp"
-        },
-        {
           "date": "2024-03-01",
           "path": "/art/Spring Witch Dress B.webp",
           "width": "1",
@@ -579,19 +566,6 @@
 
           ],
           "thumbnail": "thumbnail/art/Spring Witch Dress B.webp"
-        },
-        {
-          "date": "2024-03-01",
-          "path": "/art/Fall Witch VERSION 4.webp",
-          "width": "1",
-          "height": "1",
-          "fit": "cover",
-          "title": "Fall Witchin' sticker revisited",
-          "desc": "",
-          "tags": [
-
-          ],
-          "thumbnail": "thumbnail/art/Fall Witch VERSION 4.webp"
         },
         {
           "date": "2019-10-10",
@@ -606,6 +580,19 @@
 
           ],
           "hidden": true
+        },
+        {
+          "date": "2024-03-01",
+          "path": "/art/Fall Witch VERSION 4.webp",
+          "width": "1",
+          "height": "1",
+          "fit": "cover",
+          "title": "Fall Witchin' sticker revisited",
+          "desc": "",
+          "tags": [
+
+          ],
+          "thumbnail": "thumbnail/art/Fall Witch VERSION 4.webp"
         },
         {
           "date": "2024-3-01",
@@ -726,6 +713,19 @@
 
           ],
           "thumbnail": "thumbnail/art/shamrock_cat_button_circle.webp"
+        },
+        {
+          "date": "2024-3-5",
+          "path": "/art/moccafest_shamrock.webp",
+          "width": "1",
+          "height": "1",
+          "fit": "cover",
+          "title": "Shamrock pin design",
+          "desc": "",
+          "tags": [
+
+          ],
+          "thumbnail": "thumbnail/art/moccafest_shamrock.webp"
         },
         {
           "date": "May 2021",
