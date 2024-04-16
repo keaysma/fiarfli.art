@@ -557,15 +557,28 @@
         {
           "date": "2024-03-01",
           "path": "/art/Spring Witch Dress B.webp",
-          "width": "1",
+          "width": "2",
           "height": "1",
           "fit": "cover",
-          "title": "Spring Witchin'",
+          "title": "Spring Witchin' Sticker",
           "desc": "",
           "tags": [
 
           ],
           "thumbnail": "thumbnail/art/Spring Witch Dress B.webp"
+        },
+        {
+          "date": "2024-03-01",
+          "path": "/art/Fall Witch VERSION 4.webp",
+          "width": "2",
+          "height": "1",
+          "fit": "cover",
+          "title": "Fall Witchin' Sticker",
+          "desc": "",
+          "tags": [
+
+          ],
+          "thumbnail": "thumbnail/art/Fall Witch VERSION 4.webp"
         },
         {
           "date": "2019-10-10",
@@ -582,22 +595,9 @@
           "hidden": true
         },
         {
-          "date": "2024-03-01",
-          "path": "/art/Fall Witch VERSION 4.webp",
-          "width": "1",
-          "height": "1",
-          "fit": "cover",
-          "title": "Fall Witchin' sticker revisited",
-          "desc": "",
-          "tags": [
-
-          ],
-          "thumbnail": "thumbnail/art/Fall Witch VERSION 4.webp"
-        },
-        {
           "date": "2024-3-01",
           "path": "/art/cloudsplashcat sticker.webp",
-          "width": "1",
+          "width": "2",
           "height": "1",
           "fit": "cover",
           "title": "Cloud Cat Sticker",
@@ -606,6 +606,19 @@
 
           ],
           "thumbnail": "thumbnail/art/cloudsplashcat sticker.webp"
+        },
+        {
+          "date": "2024-3-5",
+          "path": "/art/shamrock_cat_button_real.webp",
+          "width": "1",
+          "height": "1",
+          "fit": "cover",
+          "title": "Shamrock Cat Button",
+          "desc": "",
+          "tags": [
+
+          ],
+          "thumbnail": "thumbnail/art/shamrock_cat_button_real.webp"
         },
         {
           "date": "2024-3-01",
@@ -626,7 +639,7 @@
           "width": "1",
           "height": "1",
           "fit": "cover",
-          "title": "Mona sticker",
+          "title": "Mona Sticker",
           "desc": "",
           "tags": [
 
@@ -634,38 +647,12 @@
           "thumbnail": "thumbnail/art/nanalan mona.webp"
         },
         {
-          "date": "2024-3-01",
-          "path": "/art/merfrenchie_cool.webp",
-          "width": "1",
-          "height": "1",
-          "fit": "cover",
-          "title": "Merfrenchie cool sticker",
-          "desc": "",
-          "tags": [
-
-          ],
-          "thumbnail": "thumbnail/art/merfrenchie_cool.webp"
-        },
-        {
-          "date": "2024-3-01",
-          "path": "/art/merfrenchie_warm.webp",
-          "width": "1",
-          "height": "1",
-          "fit": "cover",
-          "title": "Merfrenchie warm sticker",
-          "desc": "",
-          "tags": [
-
-          ],
-          "thumbnail": "thumbnail/art/merfrenchie_warm.webp"
-        },
-        {
           "date": "2024-02-26",
           "path": "/art/Froggo.webp",
           "width": "1",
           "height": "1",
           "fit": "cover",
-          "title": "",
+          "title": "Froggo Sticker",
           "desc": "",
           "tags": [
 
@@ -681,17 +668,43 @@
           "height": "1",
           "fit": "cover",
           "title": "Golden poison frog",
-          "desc": "Golden poison frog design I plan to make stickers of.",
+          "desc": "Golden poison frog design",
           "tags": [
 
           ],
           "hidden": false
         },
         {
+          "date": "2024-3-5",
+          "path": "/art/moccafest_shamrock.webp",
+          "width": "1",
+          "height": "1",
+          "fit": "cover",
+          "title": "Shamrock Pin",
+          "desc": "",
+          "tags": [
+
+          ],
+          "thumbnail": "thumbnail/art/moccafest_shamrock.webp"
+        },
+        {
+          "date": "2024-3-01",
+          "path": "/art/merfrenchie_cool.webp",
+          "width": "2",
+          "height": "1",
+          "fit": "cover",
+          "title": "Merfrenchie cool sticker",
+          "desc": "",
+          "tags": [
+
+          ],
+          "thumbnail": "thumbnail/art/merfrenchie_cool.webp"
+        },
+        {
           "date": "Fall 2018",
           "path": "/art/a mural thing shirt design.webp",
           "thumbnail": "thumbnail/art/a mural thing shirt design.webp",
-          "width": "1",
+          "width": "2",
           "height": "1",
           "fit": "cover",
           "title": "Mural Day Shirt Design",
@@ -702,30 +715,17 @@
           "hidden": false
         },
         {
-          "date": "2024-3-5",
-          "path": "/art/shamrock_cat_button_circle.webp",
-          "width": "1",
+          "date": "2024-3-01",
+          "path": "/art/merfrenchie_warm.webp",
+          "width": "2",
           "height": "1",
           "fit": "cover",
-          "title": "Shamrock Cat button",
+          "title": "Merfrenchie warm sticker",
           "desc": "",
           "tags": [
 
           ],
-          "thumbnail": "thumbnail/art/shamrock_cat_button_circle.webp"
-        },
-        {
-          "date": "2024-3-5",
-          "path": "/art/moccafest_shamrock.webp",
-          "width": "1",
-          "height": "1",
-          "fit": "cover",
-          "title": "Shamrock pin design",
-          "desc": "",
-          "tags": [
-
-          ],
-          "thumbnail": "thumbnail/art/moccafest_shamrock.webp"
+          "thumbnail": "thumbnail/art/merfrenchie_warm.webp"
         },
         {
           "date": "May 2021",
