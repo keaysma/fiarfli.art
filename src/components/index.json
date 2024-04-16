@@ -244,6 +244,19 @@
           ]
         },
         {
+          "path": "/art/blue_peony.webp",
+          "thumbnail": "thumbnail/art/blue_peony.webp",
+          "width": "2",
+          "height": "1",
+          "fit": "contain",
+          "title": "Blue Peony",
+          "desc": "A blue peony glowing against a white backdrop with purple light",
+          "date": "2021",
+          "tags": [
+
+          ]
+        },
+        {
           "date": "2023-10-06",
           "path": "/art/cloudsplashhouse.webp",
           "width": "6",
@@ -256,19 +269,6 @@
           ],
           "thumbnail": "thumbnail/art/cloudsplashhouse.webp",
           "hidden": false
-        },
-        {
-          "path": "/art/blue_peony.webp",
-          "thumbnail": "thumbnail/art/blue_peony.webp",
-          "width": "2",
-          "height": "1",
-          "fit": "contain",
-          "title": "Blue Peony",
-          "desc": "A blue peony glowing against a white backdrop with purple light",
-          "date": "2021",
-          "tags": [
-
-          ]
         },
         {
           "date": "2021-11",
