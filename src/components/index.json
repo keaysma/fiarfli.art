@@ -46,6 +46,19 @@
       "name": "Illustration",
       "content": [
         {
+          "date": "2024-7-18",
+          "path": "/art/Fiarfli_Final_smallerFile.webp",
+          "width": "6",
+          "height": "1",
+          "fit": "cover",
+          "title": "",
+          "desc": "",
+          "tags": [
+
+          ],
+          "thumbnail": "thumbnail/art/Fiarfli_Final_smallerFile.webp"
+        },
+        {
           "date": "2022-3-28",
           "path": "/art/Thibault commission smol.webp",
           "thumbnail": "thumbnail/art/Thibault commission smol.webp",
