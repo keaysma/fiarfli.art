@@ -482,7 +482,11 @@
           "type": "contained",
           "html": " <div class=\"tumblr-post\" data-href=\"https://embed.tumblr.com/embed/post/lmBIK8pweh0TNh0gbQue7Q/680675660374638592\" data-did=\"da39a3ee5e6b4b0d3255bfef95601890afd80709\"><a href=\"https://fiarfliart.tumblr.com/post/680675660374638592\">https://fiarfliart.tumblr.com/post/680675660374638592</a></div>  <script async src=\"https://assets.tumblr.com/post.js\"></script>",
           "tags": [
-
+            "zine",
+            "surroundings",
+            "mixed media",
+            "vellum",
+            "book art"
           ]
         },
         {
@@ -496,7 +500,10 @@
           "type": "contained",
           "html": "<div class=\"tumblr-post\" data-href=\"https://embed.tumblr.com/embed/post/lmBIK8pweh0TNh0gbQue7Q/676486006144385024\" data-did=\"da39a3ee5e6b4b0d3255bfef95601890afd80709\"><a href=\"https://fiarfliart.tumblr.com/post/676486006144385024\">https://fiarfliart.tumblr.com/post/676486006144385024</a></div>  <script async src=\"https://assets.tumblr.com/post.js\"></script>",
           "tags": [
-
+            "risograph print",
+            "riso",
+            "comic",
+            "zine"
           ]
         },
         {
@@ -511,7 +518,9 @@
           "html": " <div class=\"tumblr-post\" data-href=\"https://embed.tumblr.com/embed/post/lmBIK8pweh0TNh0gbQue7Q/676088673226440704\" data-did=\"da39a3ee5e6b4b0d3255bfef95601890afd80709\"><a href=\"https://fiarfliart.tumblr.com/post/676088673226440704\">https://fiarfliart.tumblr.com/post/676088673226440704</a></div>  <script async src=\"https://assets.tumblr.com/post.js\"></script>",
           "thumbnail": "thumbnail/art/bean_color.webp",
           "tags": [
-
+            "inktober",
+            "inktober 2021",
+            "comic"
           ]
         },
         {
@@ -521,10 +530,12 @@
           "height": "1",
           "fit": "cover",
           "title": "Inktober 01 2022",
-          "desc": "Ballpoint pen on paper. I was watching Hocus Pocus with friends when I drew this.",
+          "desc": "A witch loosely based on Winifred Sanderson in Hocus Pocus, which I was watching when I drew this.",
           "thumbnail": "thumbnail/art/inktober 2022_01.webp",
           "tags": [
-
+            "inktober",
+            "inktober 2022",
+            "witch"
           ]
         },
         {
@@ -534,10 +545,13 @@
           "height": "1",
           "fit": "cover",
           "title": "Inktober 02 2022",
-          "desc": "Ballpoint pen on paper.",
+          "desc": "A cat sits on a garden wall overlooking a pond... Ballpoint pen on paper... This was the year I tried to do full 8 x 11 illustrations every day for inktober, and I burnt out fast! I applied that lesson to a more manageable work flow the following inktober 2023...",
           "thumbnail": "thumbnail/art/inktober 2022_02.webp",
           "tags": [
-
+            "inktober",
+            "cat",
+            "ink",
+            "inktober 2022"
           ]
         },
         {
@@ -547,11 +561,16 @@
           "height": "1",
           "fit": "cover",
           "title": "Inktober 2023",
-          "desc": "",
+          "desc": "My Inktober for 2023- I made these while I was travelling, and to keep drawing for each day of the month manageable I decided to delegate it to post-its in my sketchbook. I used two different prompt lists- Booapple and Adventuretober 2023",
           "type": "contained",
           "html": "<div class=\"tumblr-post\" data-href=\"https://embed.tumblr.com/embed/post/TWwA46litAfEdeXxUee4Gg/734436617499148288\" data-did=\"88c1204aa983a17732fd3e4f6853ecc6cd34b7c6\"><a href=\"https://avidfireflycatcher.tumblr.com/post/734436617499148288/my-inktober-drawings-i-was-traveling-for-most-of\">https://avidfireflycatcher.tumblr.com/post/734436617499148288/my-inktober-drawings-i-was-traveling-for-most-of</a></div>  <script async src=\"https://assets.tumblr.com/post.js\"></script>",
           "tags": [
-
+            "inktober",
+            "ink",
+            "marker",
+            "traditional",
+            "post-its",
+            "inktober 2023"
           ]
         }
       ]
@@ -567,9 +586,11 @@
           "height": "1",
           "fit": "contain",
           "title": "HOnkers for You!",
-          "desc": "Inspired by the Untitled Goose Game, I sold these stickers at GMU's artist alley Fall 2019. ",
+          "desc": "Initially inspired by the Untitled Goose Game, I sold these stickers at GMU's artist alley Fall 2019, and at MoCCA fest in 2024. ",
           "tags": [
-
+            "sticker",
+            "goose",
+            "honkers for you"
           ],
           "hidden": false
         },
@@ -583,7 +604,10 @@
           "desc": "The back part of a design I did for a Christmas card in 2020!",
           "date": "December 2020",
           "tags": [
-
+            "card",
+            "cat",
+            "dog",
+            "crimmus"
           ]
         },
         {
@@ -595,7 +619,10 @@
           "title": "Spring Witchin' Sticker",
           "desc": "",
           "tags": [
-
+            "sticker",
+            "green",
+            "pink",
+            "spring witchin"
           ],
           "thumbnail": "thumbnail/art/Spring Witch Dress B.webp"
         },
@@ -622,7 +649,10 @@
           "title": "Fall Witchin'",
           "desc": "A Sticker design I made for GMU artist alley in  2019",
           "tags": [
-
+            "orange",
+            "witch",
+            "fall witchin",
+            "sticker"
           ],
           "hidden": true
         },
@@ -635,7 +665,11 @@
           "title": "Cloud Cat Sticker",
           "desc": "",
           "tags": [
-
+            "cat",
+            "sticker",
+            "cloud",
+            "cloud cat",
+            "blue"
           ],
           "thumbnail": "thumbnail/art/cloudsplashcat sticker.webp"
         },
@@ -648,7 +682,10 @@
           "title": "Shamrock Cat Button",
           "desc": "",
           "tags": [
-
+            "cat",
+            "pin",
+            "pink",
+            "green"
           ],
           "thumbnail": "thumbnail/art/shamrock_cat_button_realy.webp"
         },
@@ -661,7 +698,9 @@
           "title": "Ally Sticker",
           "desc": "",
           "tags": [
-            "sticker"
+            "sticker",
+            "cat",
+            "nana lan"
           ],
           "thumbnail": "thumbnail/art/nanalan cat.webp"
         },
@@ -674,7 +713,9 @@
           "title": "Mona Sticker",
           "desc": "",
           "tags": [
-            "sticker"
+            "sticker",
+            "mona",
+            "nana lan"
           ],
           "thumbnail": "thumbnail/art/nanalan mona.webp"
         },
@@ -688,7 +729,10 @@
           "desc": "",
           "tags": [
             "sticker",
-            "zine"
+            "zine",
+            "frog",
+            "pink",
+            "firefly"
           ],
           "thumbnail": "thumbnail/art/Froggo.webp",
           "hidden": false
@@ -703,7 +747,8 @@
           "title": "Golden poison frog",
           "desc": "Golden poison frog design",
           "tags": [
-
+            "yellow",
+            "frog"
           ],
           "hidden": false
         },
@@ -714,9 +759,10 @@
           "height": "1",
           "fit": "cover",
           "title": "Shamrock Pin",
-          "desc": "",
+          "desc": "It's a shamrock! A four leaf clover! I made pins with this design for MoCCA fest since it took place on the 16th and 17th of March.",
           "tags": [
-
+            "pin",
+            "green"
           ],
           "thumbnail": "thumbnail/art/moccafest_shamrock.webp"
         },
@@ -766,13 +812,27 @@
           "width": "1",
           "height": "1",
           "fit": "cover",
-          "title": "",
+          "title": "Aekta symbol for Zine endpapers",
           "desc": "",
           "tags": [
             "zine"
           ],
           "thumbnail": "thumbnail/art/mushroom_symbol_zine.webp",
           "hidden": true
+        },
+        {
+          "date": "May 2021",
+          "path": "/art/jelly_symbol_zine.webp",
+          "width": "6",
+          "height": "1",
+          "fit": "cover",
+          "title": "Mintyfishuu symbol for Zine endpapers",
+          "desc": "",
+          "tags": [
+            "zine"
+          ],
+          "hidden": true,
+          "thumbnail": "thumbnail/art/jelly_symbol_zine.webp"
         },
         {
           "date": "May 2021",
