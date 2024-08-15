@@ -721,19 +721,6 @@
           "thumbnail": "thumbnail/art/moccafest_shamrock.webp"
         },
         {
-          "date": "2024-3-01",
-          "path": "/art/merfrenchie_cool.webp",
-          "width": "1",
-          "height": "1",
-          "fit": "cover",
-          "title": "Merfrenchie cool sticker",
-          "desc": "",
-          "tags": [
-            "sticker"
-          ],
-          "thumbnail": "thumbnail/art/merfrenchie_cool.webp"
-        },
-        {
           "date": "Fall 2018",
           "path": "/art/a mural thing shirt design.webp",
           "thumbnail": "thumbnail/art/a mural thing shirt design.webp",
@@ -749,12 +736,25 @@
         },
         {
           "date": "2024-3-01",
+          "path": "/art/merfrenchie_cool.webp",
+          "width": "1",
+          "height": "1",
+          "fit": "cover",
+          "title": "Merfrenchie cool sticker",
+          "desc": "A blue merfrenchie, also known as a blue manapup. It has algae growing on its tail.",
+          "tags": [
+            "sticker"
+          ],
+          "thumbnail": "thumbnail/art/merfrenchie_cool.webp"
+        },
+        {
+          "date": "2024-3-01",
           "path": "/art/merfrenchie_warm.webp",
           "width": "1",
           "height": "1",
           "fit": "cover",
           "title": "Merfrenchie warm sticker",
-          "desc": "",
+          "desc": "An earthy merfrenchie, also known as an earthy manapup. It has algae growing on its tail.",
           "tags": [
             "sticker"
           ],
@@ -771,7 +771,8 @@
           "tags": [
             "zine"
           ],
-          "thumbnail": "thumbnail/art/mushroom_symbol_zine.webp"
+          "thumbnail": "thumbnail/art/mushroom_symbol_zine.webp",
+          "hidden": true
         },
         {
           "date": "May 2021",
