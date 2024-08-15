@@ -175,7 +175,8 @@
           "desc": "I was testing out star cloud brushes I downloaded and suddenly I had a drawing ><'",
           "tags": [
 
-          ]
+          ],
+          "hidden": false
         },
         {
           "date": "2023-2-17",
@@ -215,7 +216,8 @@
           "desc": "My first commission; pencil on paper.",
           "tags": [
 
-          ]
+          ],
+          "hidden": true
         },
         {
           "path": "/art/Hangin.webp",
@@ -239,7 +241,7 @@
           "title": "Thanks to Them Amity",
           "desc": "A doodle I did of Amity based on her appearance (and the wallpaper in the Old house) in Season 3 Episode 1 of The Owl House",
           "thumbnail": "thumbnail/art/amity.webp",
-          "hidden": false,
+          "hidden": true,
           "tags": [
             "owl house"
           ]
@@ -258,19 +260,6 @@
           ]
         },
         {
-          "path": "/art/blue_peony.webp",
-          "thumbnail": "thumbnail/art/blue_peony.webp",
-          "width": "2",
-          "height": "1",
-          "fit": "contain",
-          "title": "Blue Peony",
-          "desc": "A blue peony glowing against a white backdrop with purple light",
-          "date": "2021",
-          "tags": [
-
-          ]
-        },
-        {
           "date": "2021",
           "path": "/art/Illustration4.webp",
           "thumbnail": "thumbnail/art/Illustration4.webp",
@@ -284,9 +273,22 @@
           ]
         },
         {
+          "path": "/art/blue_peony.webp",
+          "thumbnail": "thumbnail/art/blue_peony.webp",
+          "width": "2",
+          "height": "1",
+          "fit": "contain",
+          "title": "Blue Peony",
+          "desc": "A blue peony glowing against a white backdrop with purple light",
+          "date": "2021",
+          "tags": [
+
+          ]
+        },
+        {
           "date": "2023-10-06",
           "path": "/art/cloudsplashhouse.webp",
-          "width": "6",
+          "width": "2",
           "height": "1",
           "fit": "cover",
           "title": "House on the Cliff",
@@ -310,12 +312,13 @@
           "html": "https://fiarfliart.tumblr.com/post/676088365078167552",
           "tags": [
 
-          ]
+          ],
+          "hidden": true
         },
         {
           "date": "2023-12-30",
           "path": "/art/withches_entrance.webp",
-          "width": "3",
+          "width": "2",
           "height": "1",
           "fit": "cover",
           "title": "Entrance to the Cottage",
@@ -323,7 +326,8 @@
           "thumbnail": "thumbnail/art/withches_entrance.webp",
           "tags": [
 
-          ]
+          ],
+          "hidden": false
         },
         {
           "date": "2021-11",
@@ -657,7 +661,7 @@
           "title": "Ally Sticker",
           "desc": "",
           "tags": [
-
+            "sticker"
           ],
           "thumbnail": "thumbnail/art/nanalan cat.webp"
         },
@@ -670,7 +674,7 @@
           "title": "Mona Sticker",
           "desc": "",
           "tags": [
-
+            "sticker"
           ],
           "thumbnail": "thumbnail/art/nanalan mona.webp"
         },
@@ -683,7 +687,8 @@
           "title": "Froggo Sticker",
           "desc": "",
           "tags": [
-
+            "sticker",
+            "zine"
           ],
           "thumbnail": "thumbnail/art/Froggo.webp",
           "hidden": false
@@ -724,7 +729,7 @@
           "title": "Merfrenchie cool sticker",
           "desc": "",
           "tags": [
-
+            "sticker"
           ],
           "thumbnail": "thumbnail/art/merfrenchie_cool.webp"
         },
@@ -738,7 +743,7 @@
           "title": "Mural Day Shirt Design",
           "desc": "A design I made and stenciled on to vinyl for shirts- the design was inspired by artists whose murals were on campus for Murals at Mason Walls 2018 such as MARICAMA and Imani Shanklin Roberts ",
           "tags": [
-
+            "shirt design"
           ],
           "hidden": false
         },
@@ -751,9 +756,22 @@
           "title": "Merfrenchie warm sticker",
           "desc": "",
           "tags": [
-
+            "sticker"
           ],
           "thumbnail": "thumbnail/art/merfrenchie_warm.webp"
+        },
+        {
+          "date": "May 2021",
+          "path": "/art/mushroom_symbol_zine.webp",
+          "width": "1",
+          "height": "1",
+          "fit": "cover",
+          "title": "",
+          "desc": "",
+          "tags": [
+            "zine"
+          ],
+          "thumbnail": "thumbnail/art/mushroom_symbol_zine.webp"
         },
         {
           "date": "May 2021",
@@ -763,9 +781,11 @@
           "height": "1",
           "fit": "cover",
           "title": "Show and Tell Artist Icons",
-          "desc": "Inside cover designs for the collaborative zine \"Show and Tell\" my classmates and I made in our AVT 340 class. Each icon represents a classmate; the final version in the book has slightly different colors as I had compiled the icons we made in Illustrator",
+          "desc": "Endpaper designs for the collaborative zine \"Show and Tell\" my classmates and I made in our AVT 340 class. Each icon represents a classmate; the final version in the book has slightly different colors as I had compiled the icons we made in Illustrator. The final endpapers are slightly different in the zine, but this was the first step to getting there.",
           "tags": [
-
+            "zine",
+            "design",
+            "endpapers"
           ],
           "hidden": false
         },
