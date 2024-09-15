@@ -43,6 +43,50 @@
   },
   "blocks": [
     {
+      "name": "Demo Reel",
+      "content": [
+        {
+          "date": "2024-8-20",
+          "path": "/art/Blooming_in_Dungeon_color.gif",
+          "width": "3",
+          "height": "1",
+          "fit": "cover",
+          "title": "Blooming in Dungeon",
+          "desc": "",
+          "tags": [
+
+          ],
+          "hidden": false
+        },
+        {
+          "date": "2019",
+          "path": "/art/sperkle.gif",
+          "width": "3",
+          "height": "1",
+          "fit": "cover",
+          "title": "",
+          "desc": "A flourish of sparkles I animated as a transition between two scenes for a project in my undergrad",
+          "tags": [
+
+          ]
+        },
+        {
+          "path": "/art/demo.mp4",
+          "date": "December 2021",
+          "width": "6",
+          "height": "2",
+          "fit": "cover",
+          "title": "Demo Reel 2021",
+          "desc": "Demo Reel 2021",
+          "tags": [
+            "animation",
+            "demo reel",
+            "demo reel 2021"
+          ]
+        }
+      ]
+    },
+    {
       "name": "Illustration",
       "content": [
         {
@@ -402,38 +446,6 @@
           "tags": [
             "Lightbox 2021"
           ]
-        }
-      ]
-    },
-    {
-      "name": "Demo Reel",
-      "content": [
-        {
-          "path": "/art/demo.mp4",
-          "date": "December 2021",
-          "width": "6",
-          "height": "2",
-          "fit": "cover",
-          "title": "Demo Reel 2021",
-          "desc": "Demo Reel 2021",
-          "tags": [
-            "animation",
-            "demo reel",
-            "demo reel 2021"
-          ]
-        },
-        {
-          "date": "2024-8-20",
-          "path": "/art/Blooming_in_Dungeon_color.gif",
-          "width": "6",
-          "height": "1",
-          "fit": "cover",
-          "title": "Blooming in Dungeon",
-          "desc": "",
-          "tags": [
-
-          ],
-          "hidden": true
         }
       ]
     },
