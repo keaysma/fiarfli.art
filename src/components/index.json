@@ -433,7 +433,7 @@
           "tags": [
 
           ],
-          "hidden": true
+          "hidden": false
         },
         {
           "date": "2019",
@@ -451,11 +451,23 @@
         {
           "date": "2023",
           "path": "/art/silly freed loop.gif",
-          "width": "6",
+          "width": "2",
           "height": "1",
           "fit": "cover",
           "title": "Silly freed",
           "desc": "A cat stuck in a bottle gets a hand from a ghost",
+          "tags": [
+
+          ]
+        },
+        {
+          "date": "2024-01-29",
+          "path": "/art/Laughter! .mp4",
+          "width": "1",
+          "height": "1",
+          "fit": "cover",
+          "title": "",
+          "desc": "A woman tries to contain her laughter before laughing a lot, and then regain her composure; this animation loops! Part of a skill test for a job application.",
           "tags": [
 
           ]
