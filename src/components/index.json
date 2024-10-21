@@ -46,6 +46,20 @@
       "name": "Illustration",
       "content": [
         {
+          "date": "2024-09-11",
+          "path": "/art/MOLE INTEREST.webp",
+          "width": "6",
+          "height": "1",
+          "fit": "cover",
+          "title": "Mole Interest",
+          "desc": "Meme Art for Mole Interest Anniversary!",
+          "tags": [
+            "meme",
+            "mole interest"
+          ],
+          "thumbnail": "thumbnail/art/MOLE INTEREST.webp"
+        },
+        {
           "date": "2024-8-06",
           "path": "/art/The Cat at Fresh Pond Road.webp",
           "width": "3",
