@@ -47,7 +47,7 @@ watch(() => props.content.thumbnail, (content) => {
   if (!imgRef.value) return;
 
   imgRef.value.style.opacity = '0';
-  imgRef.value.parentElement.style.backgroundSize = '100px';
+  imgRef.value.parentElement.style.backgroundSize = 'contain';
 });
 const onLoad = () => {
   console.log(`Content::setup::onLoad`, imgRef.value);
@@ -73,9 +73,8 @@ const openContainerLink = () => {
 <style lang="scss">
 .content {
 
-  background: url('/src/assets/images/loading.gif') no-repeat center center;
-  background: url('https://gifdb.com/images/high/animated-stars-loading-icon-38ccjfav8iijnqrb.gif');
-  background-size: 0; //50px 50px;
+  background: url('/loading.gif') no-repeat center center;
+  background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
 
