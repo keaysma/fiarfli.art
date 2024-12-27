@@ -18,6 +18,7 @@
   "dependencies": {
     "@astrojs/vue": "^1.2.2",
     "@fortawesome/fontawesome-svg-core": "^6.4.2",
+    "@fortawesome/free-brands-svg-icons": "^6.7.2",
     "@fortawesome/free-solid-svg-icons": "^6.4.2",
     "@fortawesome/vue-fontawesome": "^3.0.3",
     "markdown-it": "^14.0.0",
