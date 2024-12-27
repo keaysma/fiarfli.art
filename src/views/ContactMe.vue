@@ -146,6 +146,7 @@ const submitMessage = () => {
         display: inline-block;
         vertical-align: top;
         width: 50%;
+        margin-right: 1em;
 
         line-height: 1em;
 
@@ -158,7 +159,6 @@ const submitMessage = () => {
         display: inline-block;
         width: 40%;
         max-width: 24em;
-        margin: 0 1em;
     }
 
     .social-links {

@@ -12,7 +12,7 @@
 import About from '../about/BasicAlt.vue'
 import Art from '../art/BlockGrid.vue'
 import Commissions from '../commissions/Basic.vue'
-import Contact from '../contact-me/Basic.vue'
+import Contact from '../../views/ContactMe.vue'
 import { AdminPage, Block, SiteContent } from '/src/types';
 
 defineProps<{
