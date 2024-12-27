@@ -332,12 +332,14 @@ const submitMessage = () => {
 
         .submitted-text {
             background: -webkit-linear-gradient(135deg, blue, pink);
+            background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .success-text {
             background: -webkit-linear-gradient(275deg, blue, pink);
+            background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
