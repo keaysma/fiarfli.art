@@ -74,7 +74,7 @@ const openContainerLink = () => {
 .content {
 
   background: url('/loading.gif') no-repeat center center;
-  background-size: contain;
+  background-size: 0;
   background-repeat: no-repeat;
   background-position: center;
 
