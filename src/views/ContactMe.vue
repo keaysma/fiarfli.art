@@ -162,9 +162,10 @@ const submitMessage = () => {
     }
 
     .social-links {
+        display: inline;
+        white-space: pre;
         &>* {
-            margin-left: 1em;
-
+            margin-inline-start: 0.5em;
             &:first-child {
                 margin-left: 0;
             }
