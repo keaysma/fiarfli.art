@@ -1,32 +1,12 @@
-<template>
-    <div id="admin-view-login" :class="{ authenticated }">
-        <p>Bootleg password</p>
-        <input type="password" v-model="token" />
-        <button @click="login">{{ loading ? "Hold on..." : "Submit"}}</button>
-    </div>
-    <template v-if="authenticated">
-        <template v-if="blockState && contentState">
-            <Panel v-model:currentPage="currentPage" :blocks="blockState" :content="contentState"
-                :currentHash="currentCommitHash" :latestHash="latestCommitHash" :token="token"
-                @logout="authenticated = false" @submitted="refresh" />
-            <View v-model:currentPage="currentPage" :blocks="blockState" :content="contentState" />
-        </template>
-        <div v-else id="admin-view-login">
-            <p>Something broke I think?</p>
-            <button @click="logout">Refresh</button>
-        </div>
-    </template>
-</template>
-
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
 
 // Components
-import View from './View.vue';
-import Panel from './Panel.vue';
+import View from '/src/components/admin/View.vue';
+import Panel from '/src/components/admin/Panel.vue';
 
 // Types
-import { AdminPage, Block, SiteContent } from '/src/types';
+import type { AdminPage, Block, SiteContent } from '/src/types';
 
 // In this context, 'authenticated' means the user has entered a token, but the token has not been verified
 const authenticated = ref<boolean>(false);
@@ -128,6 +108,26 @@ onMounted(() => {
     }
 });
 </script>
+
+<template>
+    <div id="admin-view-login" :class="{ authenticated }">
+        <p>Bootleg password</p>
+        <input type="password" v-model="token" />
+        <button @click="login">{{ loading ? "Hold on..." : "Submit" }}</button>
+    </div>
+    <template v-if="authenticated">
+        <template v-if="blockState && contentState">
+            <Panel v-model:currentPage="currentPage" :blocks="blockState" :content="contentState"
+                :currentHash="currentCommitHash" :latestHash="latestCommitHash" :token="token"
+                @logout="authenticated = false" @submitted="refresh" />
+            <View v-model:currentPage="currentPage" :blocks="blockState" :content="contentState" />
+        </template>
+        <div v-else id="admin-view-login">
+            <p>Something broke I think?</p>
+            <button @click="logout">Refresh</button>
+        </div>
+    </template>
+</template>
 
 <style lang="scss">
 #admin-view-login {
