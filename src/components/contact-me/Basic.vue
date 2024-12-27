@@ -1,61 +1,9 @@
-<template>
-    <div id="contact-me" class="page" :class="{ 'split-page': formEnabled }">
-        <div class="text-content">
-            <h2>Contact Me</h2>
-            <p>
-                {{ contact }}
-            </p>
-        </div>
-        <div v-if="formEnabled" class="contact-form">
-            <form action="javascript:void(0);" @submit="submitMessage()">
-                <div class="form-group">
-                    <div class="field-group">
-                        <input type="text" name="name" v-model="name" required />
-                        <label for="name">Name</label>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="field-group">
-                        <input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" name="email" v-model="email"
-                            required />
-                        <label for="email">Email</label>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="field-group">
-                        <input type="text" name="subject" autocomplete="off" v-model="subject" required />
-                        <label for="subject">Subject</label>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="field-group">
-                        <textarea name="body" v-model="body" required></textarea>
-                        <label for="body">Message</label>
-                    </div>
-                </div>
-
-                <div class="form-group submit-group">
-                    <button v-if="submitState === 'unsubmitted'" class="submit-button" type="submit">send it!
-                        <!-- <FontAwesomeIcon :icon="faPaperPlane" /> -->
-                    </button>
-                    <span v-else-if="submitState === 'submitted'" class="submitted-text">sending...</span>
-                    <span v-else-if="submitState === 'success'" class="success-text">sent 🕊️</span>
-                    <span v-else-if="submitState === 'error'" class="error-text"><span>MEOW!!!</span> 🙀 (failed, try
-                        again later)</span>
-                    <span v-else class="">"MEOW." -- Raquel</span>
-                </div>
-            </form>
-        </div>
-    </div>
-</template>
-
 <script setup lang="ts">
+import Linktree from '/src/components/Linktree.vue'
+import { faBluesky, faInstagram, faLinkedin, faLinkedinIn, faTumblr, faTumblrSquare, faTwitch, faTwitter } from '@fortawesome/free-brands-svg-icons';
+import { faCoffee, faTree } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { ref, toRef } from 'vue';
-
-import { contact, contactFormEnabled } from '../content.json'
 
 const props = defineProps<{
     contact: string,
@@ -112,72 +60,208 @@ const submitMessage = () => {
 }
 </script>
 
+<template>
+    <div id="contact-me" class="page">
+        <h2>Contact Me</h2>
+        <p>
+            <span>{{ contact }}</span>
+            <br>
+            <br>
+            <span class="social-links">
+                <a href="https://ko-fi.com/fiarfli">
+                    <label>Kofi</label>
+                    <FontAwesomeIcon :icon="faCoffee" />
+                </a>
+                <a href="https://www.instagram.com/fiarfli">
+                    <label>Insta</label>
+                    <FontAwesomeIcon :icon="faInstagram" />
+                </a>
+                <a href="">
+                    <label>'blur</label>
+                    <FontAwesomeIcon :icon="faTumblr" />
+                </a>
+                <a href="">
+                    <label>LinkedIn</label>
+                    <FontAwesomeIcon :icon="faLinkedinIn" />
+                </a>
+                <a href="">
+                    <label>Twitch!</label>
+                    <FontAwesomeIcon :icon="faTwitch" />
+                </a>
+                <a href="">
+                    <label>bsky</label>
+                    <FontAwesomeIcon :icon="faBluesky" />
+                </a>
+                <a href="https://linktr.ee/fiarfli">
+                    <label>linky</label>
+                    <!-- <FontAwesomeIcon :icon="faTree" /> -->
+
+                    <!-- <svg width="25px" height="25px" stroke="red" fill="red">
+                        <image width="25px" href="/public/linktree.svg" />
+                    </svg> -->
+
+                    <!-- <object data="/public/linktree.svg"></object> -->
+
+                    <Linktree width="28px" height="28px" class="svg-inline--fa" />
+                </a>
+            </span>
+        </p>
+        <div v-if="formEnabled" class="contact-form">
+            <form action="javascript:void(0);" @submit="submitMessage()">
+                <div class="form-group">
+                    <div class="field-group">
+                        <label for="name">Name</label>
+                        <input type="text" name="name" v-model="name" required />
+                    </div>
+
+                    <div class="field-group">
+                        <label for="email">Email</label>
+                        <input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" name="email"
+                            v-model="email" required />
+                    </div>
+
+                    <div class="field-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" name="subject" autocomplete="off" v-model="subject" required />
+                    </div>
+
+                    <div class="field-group">
+                        <label for="body">Message</label>
+                        <textarea name="body" v-model="body" required></textarea>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <button v-if="submitState === 'unsubmitted'" class="submit-button" type="submit">send it!
+                        <!-- <FontAwesomeIcon :icon="faPaperPlane" /> -->
+                    </button>
+                    <span v-else-if="submitState === 'submitted'" class="submitted-text">sending...</span>
+                    <span v-else-if="submitState === 'success'" class="success-text">sent 🕊️</span>
+                    <span v-else-if="submitState === 'error'" class="error-text"><span>MEOW!!!</span> 🙀 (failed, try
+                        again later)</span>
+                    <span v-else class="">"MEOW." -- Raquel</span>
+                </div>
+            </form>
+        </div>
+    </div>
+</template>
+
 <style lang="scss">
 #contact-me.page {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+    display: block;
 
-    height: 90vh;
+    height: 80vh;
 
-    padding: 0 4em;
+    padding: 4em 4em;
+    margin: 0;
 
-    &.split-page {
-        .text-content {
-            flex: 0.4;
+    color: #534957;
+    text-shadow: 1px 1px 1px #d389a7f4;
 
-        }
+    >p {
+        float: left;
 
-        .contact-form {
-            flex: 0.55;
+        margin-right: 1em;
 
-            &,
-            form,
-            .form-group,
-            .field-group {
-                width: 100%;
-            }
-        }
-    }
+        font-size: 28px;
+        line-height: 1em;
 
-    .text-content {
-        margin: 0;
-
-        color: #534957;
-        text-shadow: 1px 1px 1px #d389a7f4;
-
-        h2,
-        p {
-            white-space: break-spaces;
-        }
-
-        @media only screen and (max-width: 768px) {
-            padding: 1em;
-            min-height: unset;
-
-            font-size: smaller;
-            word-wrap: break-word;
-            white-space: pre-wrap;
+        svg {
+            max-width: 36px;
         }
     }
 
     .contact-form {
-        .submit-button {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-evenly;
-            align-items: center;
+        float: right;
+        width: 33vw;
+        max-width: 24em;
+    }
 
-            margin-left: auto;
-            margin-top: 10px;
+    .social-links {
+        &>* {
+            margin-left: 1em;
+
+            &:first-child {
+                margin-left: 0;
+            }
+        }
+
+        >a {
+            position: relative;
+            width: 36px;
+            color: #c4c0ff;
+            fill: #c4c0ff;
+            text-decoration: none;
+
+            &:hover {
+                color: #edc0ff;
+                fill: #edc0ff;
+                >label {
+                    display: initial;
+                }
+            }
+
+            >label {
+                display: none;
+                position: absolute;
+                top: -1.5em;
+                left: -0.825em;
+
+                width: 2.5em;
+                text-align: center;
+
+                color: #534957;
+                background-color: #caade6;
+
+                border-radius: 0.25em;
+                border: 1px solid #534957;
+
+                padding: 0.1em;
+            }
+        }
+    }
+
+    h2,
+    p {
+        white-space: break-spaces;
+    }
+
+    @media only screen and (max-width: 768px) {
+        padding: 1em;
+        min-height: unset;
+
+        font-size: smaller;
+        word-wrap: break-word;
+        white-space: pre-wrap;
+    }
+
+    .contact-form {
+        // border: 4px solid darkblue;
+        // border-radius: 1em;
+        // background-color: #adc1e6;
+        // padding: .5em .75em .5em .5em;
+
+        margin-top: -3em;
+
+        .submit-button {
+            font-family: "Nanum Pen Script";
+            display: block;
+            float: right;
+
+            font-size: 1em;
+            line-height: 0.5em;
+
+            width: 150px;
+            height: 50px;
+
             padding: 10px;
+            margin-right: -0.3em;
 
             color: slateblue;
             background: transparent;
 
             border: 2px solid slateblue;
-            border-radius: 15px;
+            border-radius: 8px;
 
             transition: all 0.25s cubic-bezier(0.075, 0.82, 0.165, 1);
 
@@ -277,15 +361,6 @@ const submitMessage = () => {
             }
         }
 
-        .form-group {
-            display: flex;
-            flex-direction: row;
-        }
-
-        .submit-group {
-            justify-content: end;
-        }
-
         .submitted-text {
             background: -webkit-linear-gradient(135deg, blue, pink);
             -webkit-background-clip: text;
@@ -329,14 +404,15 @@ const submitMessage = () => {
         }
 
         .field-group {
-            display: flex;
-            flex-direction: column-reverse;
-
-            margin: 10px 0;
+            display: block;
+            margin: 0.5em 0;
 
             label {
-                width: 100px;
-                margin-left: 5px;
+                display: block;
+
+                margin: 0;
+                padding: 0;
+                line-height: 0.5em;
 
                 color: slateblue;
 
@@ -350,7 +426,7 @@ const submitMessage = () => {
             }
 
             textarea {
-                height: 250px;
+                height: 150px;
             }
 
             input,
@@ -362,6 +438,8 @@ const submitMessage = () => {
                 border-radius: 5px;
 
                 background: transparent;
+
+                width: 100%;
 
                 transition: all 0.2s;
 
@@ -434,7 +512,7 @@ const submitMessage = () => {
             }
 
             .form-group {
-                margin: 10px 0;
+                margin: 1em 0;
             }
         }
     }
