@@ -11,7 +11,7 @@
 <script setup lang="ts">
 import About from '../about/BasicAlt.vue'
 import Art from '../art/BlockGrid.vue'
-import Commissions from '../commissions/Basic.vue'
+import Commissions from '../commissions/Commissions.vue'
 import Contact from '../../views/ContactMe.vue'
 import { AdminPage, Block, SiteContent } from '/src/types';
 

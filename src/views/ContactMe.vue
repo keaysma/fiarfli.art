@@ -436,12 +436,8 @@ const submitMessage = () => {
         }
     }
 
-    @media only screen and (max-width: 1024px) {
-        display: block;
-        position: relative;
-
+    @media only screen and (max-width: 768px) {
         width: auto;
-        height: unset;
         min-height: unset;
 
         margin: 0.5em;
