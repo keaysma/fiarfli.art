@@ -2,7 +2,7 @@
 // Component Imports
 import Hero from "/src/components/hero/Skitty.vue";
 import Art from "/src/components/art/BlockGrid.vue";
-import Commissions from "/src/components/commissions/Basic.vue";
+import Commissions from "/src/views/Commissions.vue";
 import ContactMe from "/src/views/ContactMe.vue";
 import MadeWithLove from "/src/views/MadeWithLove.vue";
 
@@ -36,7 +36,6 @@ import { blocks } from "/src/components/index.json";
       body {
         display: block;
         position: relative;
-        /* width: 100vw; */
         overflow-x: hidden;
         overflow-y: scroll;
 
@@ -48,11 +47,6 @@ import { blocks } from "/src/components/index.json";
         padding: 0;
 
         scroll-behavior: smooth;
-      }
-
-      a {
-        /*text-decoration: none;*/
-        color: white;
       }
       main {
         display: block;
@@ -68,6 +62,10 @@ import { blocks } from "/src/components/index.json";
 
       .page {
         padding: 4em 0em;
+
+        h2 {
+          margin: 0;
+        }
       }
     </style>
   </head>

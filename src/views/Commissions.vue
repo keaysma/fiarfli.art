@@ -1,10 +1,3 @@
-<template>
-    <div id="commissions" class="page">
-        <h2>Commissions</h2>
-        <div class="content" v-html="commissions.__html" />
-    </div>
-</template>
-
 <script setup lang="ts">
 import { type SiteContent } from "/src/types";
 
@@ -13,29 +6,22 @@ defineProps<{
 }>();
 </script>
 
+<template>
+    <div id="commissions" class="page">
+        <h2>Commissions</h2>
+        <div class="content" v-html="commissions.__html" />
+    </div>
+</template>
+
 <style lang="scss">
 #commissions.page {
-    position: relative;
-    display: block;
-
-    width: auto;
-    min-height: 100vh;
-
-    padding: 0 3em;
-    margin: 0 1em;
-
-    //background: white;
-
-    h2 {
-        /* padding-top: 4em; */
-        margin: 0;
-    }
+    // min-height: 40vh;
 
     .content {
         font-size: 0.7em;
         line-height: 1em;
 
-        & > * {
+        &>* {
             white-space: pre-wrap;
         }
 
@@ -73,7 +59,7 @@ defineProps<{
 
             color: black;
 
-            >img{
+            >img {
                 max-width: 400px;
                 max-height: 200px;
             }
@@ -101,17 +87,6 @@ defineProps<{
                     /* font-size: 2em; */
                 }
             }
-        }
-    }
-
-    @media only screen and (max-width: 768px) {
-        padding: 1em;
-        min-height: unset;
-
-        .content {
-            font-size: 0.75em;
-            word-wrap: break-word;
-            white-space: pre-wrap;
         }
     }
 }
