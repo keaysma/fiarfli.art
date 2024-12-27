@@ -142,6 +142,8 @@ onMounted(() => {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    
+    line-height: 1.25em;
 
     background: linear-gradient(pink, skyblue);
 

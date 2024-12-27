@@ -26,8 +26,12 @@ defineProps<{
 <style>
 #admin-view {
     width: 60%;
-    height: 100vh;
+    height: calc(100vh - 2em);
+
+    padding: 2em 2em 0;
 
     overflow: scroll;
+
+    background: ivory
 }
 </style>
