@@ -1,14 +1,3 @@
-<template>
-    <div id="admin-view">
-        <About v-if="currentPage === 'about'" :about="content.about" />
-        <Art v-if="currentPage === 'gallery'" :blocks="blocks" />
-        <Commissions v-if="currentPage === 'commissions'" :commissions="content.commissions"
-            :commissionsEnabled="content.contactFormEnabled" />
-        <Contact v-if="currentPage === 'contactme'" :contact="content.contact"
-            :contactFormEnabled="content.contactFormEnabled" />
-    </div>
-</template>
-
 <script setup lang="ts">
 import About from '/src/components/about/BasicAlt.vue'
 import Art from '/src/views/BlockGrid.vue'
@@ -22,6 +11,17 @@ defineProps<{
     content: SiteContent;
 }>();
 </script>
+
+<template>
+    <div id="admin-view">
+        <About v-if="currentPage === 'about'" :about="content.about" />
+        <Art v-if="currentPage === 'gallery'" :blocks="blocks" />
+        <Commissions v-if="currentPage === 'commissions'" :commissions="content.commissions"
+            :commissionsEnabled="content.contactFormEnabled" />
+        <Contact v-if="currentPage === 'contactme'" :contact="content.contact"
+            :contactFormEnabled="content.contactFormEnabled" />
+    </div>
+</template>
 
 <style>
 #admin-view {
