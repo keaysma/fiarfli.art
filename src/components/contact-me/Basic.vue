@@ -94,14 +94,6 @@ const submitMessage = () => {
                 </a>
                 <a href="https://linktr.ee/fiarfli">
                     <label>linky</label>
-                    <!-- <FontAwesomeIcon :icon="faTree" /> -->
-
-                    <!-- <svg width="25px" height="25px" stroke="red" fill="red">
-                        <image width="25px" href="/public/linktree.svg" />
-                    </svg> -->
-
-                    <!-- <object data="/public/linktree.svg"></object> -->
-
                     <Linktree width="28px" height="28px" class="svg-inline--fa" />
                 </a>
             </span>
@@ -148,22 +140,13 @@ const submitMessage = () => {
 
 <style lang="scss">
 #contact-me.page {
-    display: block;
-
-    height: 80vh;
-
-    padding: 4em 4em;
-    margin: 0;
-
-    color: #534957;
-    text-shadow: 1px 1px 1px #d389a7f4;
+    display: inline;
 
     >p {
-        float: left;
+        display: inline-block;
+        vertical-align: top;
+        width: 50%;
 
-        margin-right: 1em;
-
-        font-size: 28px;
         line-height: 1em;
 
         svg {
@@ -172,9 +155,10 @@ const submitMessage = () => {
     }
 
     .contact-form {
-        float: right;
-        width: 33vw;
+        display: inline-block;
+        width: 40%;
         max-width: 24em;
+        margin: 0 1em;
     }
 
     .social-links {
@@ -196,6 +180,7 @@ const submitMessage = () => {
             &:hover {
                 color: #edc0ff;
                 fill: #edc0ff;
+
                 >label {
                     display: initial;
                 }
@@ -226,23 +211,7 @@ const submitMessage = () => {
         white-space: break-spaces;
     }
 
-    @media only screen and (max-width: 768px) {
-        padding: 1em;
-        min-height: unset;
-
-        font-size: smaller;
-        word-wrap: break-word;
-        white-space: pre-wrap;
-    }
-
     .contact-form {
-        // border: 4px solid darkblue;
-        // border-radius: 1em;
-        // background-color: #adc1e6;
-        // padding: .5em .75em .5em .5em;
-
-        margin-top: -3em;
-
         .submit-button {
             font-family: "Nanum Pen Script";
             display: block;
@@ -466,54 +435,35 @@ const submitMessage = () => {
             }
         }
     }
-}
 
-@media only screen and (max-width: 768px) {
-    #contact-me.page {
+    @media only screen and (max-width: 1024px) {
+        display: block;
+        position: relative;
+
         width: auto;
-
-        flex-direction: column;
-
         height: unset;
+        min-height: unset;
 
-        margin: 0;
-        padding: 0 0.5em;
+        margin: 0.5em;
+        padding: 1em;
 
-        display: flex;
-        flex-direction: column;
+        font-size: smaller;
+        // word-wrap: break-word;
+        // white-space: pre-wrap;
 
-        &.split-page {
-
-            .text-content,
-            .contact-form,
-            form {
-                width: 85%;
-                max-width: 100%;
-            }
-        }
-
-        .text-content {
+        p {
+            display: block;
+            position: relative;
             width: 100%;
-
-            text-shadow: 1px 1px 3px #0004;
+            height: min-content;
+            float: unset;
         }
 
         .contact-form {
+            width: 100%;
 
-            .form-group,
-            .field-group,
-            input,
-            textarea {
-                width: 100%;
-            }
-
-            .field-group {
-                margin: 10px 0;
-            }
-
-            .form-group {
-                margin: 1em 0;
-            }
+            margin-top: unset;
+            float: unset;
         }
     }
 }

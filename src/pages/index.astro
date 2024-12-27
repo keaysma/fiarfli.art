@@ -34,7 +34,9 @@ import { blocks } from "/src/components/index.json";
 
       html,
       body {
-        width: 100vw;
+        display: block;
+        position: relative;
+        /* width: 100vw; */
         overflow-x: hidden;
         overflow-y: scroll;
 
@@ -53,12 +55,19 @@ import { blocks } from "/src/components/index.json";
         color: white;
       }
       main {
-        position: relative;
         display: block;
-        width: 100vw;
+        position: relative;
 
-        padding-top: 5em;
+        padding: 5em 4em 0;
         background: linear-gradient(180deg, transparent 0, rgba(var(--light-blue), 0.125) 1.5em, rgba(var(--light-blue), 1) 16em, pink 48em, #fffee1);
+        
+        color: #534957;
+        text-shadow: 1px 1px 3px #53495744;
+        font-size: 28px;
+      }
+
+      .page {
+        padding: 4em 0em;
       }
     </style>
   </head>
