@@ -38,7 +38,7 @@ export interface Block {
     content: Content[];
 }
 
-export interface GallerySettings{
+export interface GallerySettings {
     blockIndex: number;
     contentIndex: number;
     open: boolean;
@@ -46,3 +46,8 @@ export interface GallerySettings{
 }
 
 export type AdminPage = 'about' | 'commissions' | 'contactme' | 'gallery';
+
+export interface LocalDataShape<T = any> {
+    data: T
+    hash: string
+}
