@@ -281,7 +281,7 @@ onUnmounted(() => {
 
             cursor: pointer;
 
-            >img {
+            >img,>video {
                 height: 100%;
                 max-height: 100%;
                 object-fit: contain;
@@ -292,7 +292,7 @@ onUnmounted(() => {
                 }
             }
 
-            &:hover {
+            &:hover:not(.video) {
                 filter: brightness(0.8);
 
                 &::after {

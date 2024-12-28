@@ -1,5 +1,6 @@
 <template>
-  <div v-if="!content.type || content.type === 'link'" class="content" :class="{ controls, fullscreen }">
+  <div v-if="!content.type || content.type === 'link'" class="content"
+    :class="{ controls, fullscreen, video: content.path.match(videoRegex) }">
     <template v-if="content.path.match(videoRegex)">
       <video :controls="controls ?? false">
         <source v-if="!mediaContentNames?.includes(content.path)" :src="content.path" type="video/mp4" />
@@ -114,7 +115,7 @@ const openContainerLink = () => {
   }
 }
 
-.iframe > iframe {
+.iframe>iframe {
   min-width: unset !important;
 }
 
@@ -122,7 +123,8 @@ const openContainerLink = () => {
   // z-index: 999;
 
   // Asserting my control over Instagram embeds
-  > iframe, > blockquote {
+  >iframe,
+  >blockquote {
     min-width: unset !important;
     min-height: unset !important;
     // height: auto;
