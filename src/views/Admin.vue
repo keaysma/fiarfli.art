@@ -1,12 +1,13 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, watch } from 'vue';
 
 // Components
 import View from '/src/components/admin/View.vue';
 import Panel from '/src/components/admin/Panel.vue';
 
 // Types
-import type { AdminPage, Block, SiteContent } from '/src/types';
+import type { AdminPage, Block, LocalDataShape, SiteContent } from '/src/types';
+import { LOCAL_STORAGE_BLOCK_KEY, LOCAL_STORAGE_CONTENT_KEY } from '/src/consts';
 
 // In this context, 'authenticated' means the user has entered a token, but the token has not been verified
 const authenticated = ref<boolean>(false);
@@ -37,6 +38,17 @@ const getLatestCommitHash = async () => {
     }
 };
 
+const submitted = () => {
+    deleteLocalData();
+    refresh();
+}
+
+const deleteLocalData = () => {
+    console.log("deleted local storage")
+    localStorage.removeItem(LOCAL_STORAGE_CONTENT_KEY);
+    localStorage.removeItem(LOCAL_STORAGE_BLOCK_KEY);
+}
+
 const refresh = async () => {
     currentCommitHash.value = null;
 
@@ -48,15 +60,56 @@ const refresh = async () => {
                 'X-Git-Token': token.value
             },
         })
-        const gridData = await gridResponse.json()
+        const gridData: {
+            content: SiteContent,
+            index: {
+                $schema: any
+                blocks: Block[]
+            },
+            head: string
+        } = await gridResponse.json()
 
         const { content, index, head } = gridData;
 
-        contentState.value = {
-            ...content,
-        };
-        blockState.value = index.blocks;
         currentCommitHash.value = head;
+
+        let doReload: boolean | undefined = undefined;
+
+        const localContentStateSerialized = localStorage.getItem(LOCAL_STORAGE_CONTENT_KEY);
+        if (localContentStateSerialized !== null) {
+            const localContentState: LocalDataShape<SiteContent> = JSON.parse(localContentStateSerialized);
+            if (localContentState.hash === currentCommitHash.value) {
+                doReload = confirm("continue where you left off?")
+                if (doReload === true) {
+                    contentState.value = {
+                        ...localContentState.data,
+                    }
+                }
+            }
+        }
+
+        if (contentState.value === null) {
+            contentState.value = {
+                ...content,
+            };
+        }
+
+        const localBlockStateSerialized = localStorage.getItem(LOCAL_STORAGE_BLOCK_KEY);
+        if (localBlockStateSerialized !== null) {
+            const localBlockState: LocalDataShape<Block[]> = JSON.parse(localBlockStateSerialized);
+            if (localBlockState.hash === currentCommitHash.value) {
+                if (doReload === undefined) {
+                    doReload = confirm("continue where you left off??????")
+                }
+                if (doReload === true) {
+                    blockState.value = localBlockState.data
+                }
+            }
+        }
+
+        if (blockState.value === null) {
+            blockState.value = index.blocks;
+        }
 
         await getLatestCommitHash();
     } catch (error) {
@@ -107,6 +160,39 @@ onMounted(() => {
         window.removeEventListener('focus', focusListener);
     }
 });
+
+const deep = true
+watch(
+    contentState,
+    () => {
+        localStorage.setItem(
+            LOCAL_STORAGE_CONTENT_KEY,
+            JSON.stringify(
+                {
+                    hash: currentCommitHash.value,
+                    data: contentState.value
+                } satisfies LocalDataShape<SiteContent>
+            )
+        )
+    },
+    { deep }
+)
+
+watch(
+    blockState,
+    () => {
+        localStorage.setItem(
+            LOCAL_STORAGE_BLOCK_KEY,
+            JSON.stringify(
+                {
+                    hash: currentCommitHash.value,
+                    data: blockState.value
+                } satisfies LocalDataShape<Block[]>
+            )
+        )
+    },
+    { deep }
+)
 </script>
 
 <template>
@@ -119,7 +205,7 @@ onMounted(() => {
         <template v-if="blockState && contentState">
             <Panel v-model:currentPage="currentPage" :blocks="blockState" :content="contentState"
                 :currentHash="currentCommitHash" :latestHash="latestCommitHash" :token="token"
-                @logout="authenticated = false" @submitted="refresh" />
+                @logout="authenticated = false" @clear-localstorage="deleteLocalData" @submitted="submitted" />
             <View v-model:currentPage="currentPage" :blocks="blockState" :content="contentState" />
         </template>
         <div v-else id="admin-view-login">
@@ -142,7 +228,7 @@ onMounted(() => {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    
+
     line-height: 1.25em;
 
     background: linear-gradient(pink, skyblue);

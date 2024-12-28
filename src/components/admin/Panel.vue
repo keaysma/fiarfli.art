@@ -7,8 +7,7 @@
             <div v-if="currentPage === 'commissions'">
                 <textarea v-if="content.commissions.enabled" class="feature-text"
                     v-model="content.commissions.enabledMessage" />
-                <textarea v-else class="feature-text"
-                    v-model="content.commissions.disabledMessage" />
+                <textarea v-else class="feature-text" v-model="content.commissions.disabledMessage" />
                 <input type="checkbox" id="commissions-enabled" class="check" name="commissions-enabled"
                     v-model="content.commissions.enabled" />
                 <label for="commissions-enabled" class="check-label">Enable</label><br>
@@ -150,7 +149,8 @@
         </div>
 
         <div class="page-nav">
-            <p class="commit-hash" :class="{ warning: currentHash !== latestHash }">version: {{ currentHash ?? 'UNKNOWN' }}
+            <p class="commit-hash" :class="{ warning: currentHash !== latestHash }">version: {{ currentHash ?? 'UNKNOWN'
+                }}
             </p>
             <div class="control-nav">
                 <button @click="emit('update:currentPage', 'about')">about</button>
@@ -158,6 +158,9 @@
                 <button @click="emit('update:currentPage', 'commissions')">commissions</button>
                 <button @click="emit('update:currentPage', 'contactme')">contact me</button>
                 <div class="button-bar">
+                    <button @click="emit('clear-localstorage')">
+                        Clear saved data
+                    </button>
                     <button @click="emit('logout')">
                         Change token
                         <FontAwesomeIcon :icon="faLock" />
@@ -185,7 +188,7 @@
 </template>
 
 <script setup lang="ts">
-import { getCurrentInstance, ref, watch } from 'vue';
+import { computed, getCurrentInstance, ref, watch } from 'vue';
 
 import Content from '../art/Content.vue'
 
@@ -200,6 +203,7 @@ const instance = getCurrentInstance();
 const emit = defineEmits<{
     (e: 'update:currentPage', value: AdminPage);
     (e: 'logout');
+    (e: 'clear-localstorage')
     (e: 'submitted');
 }>();
 
