@@ -30,6 +30,11 @@ import { blocks } from "/src/components/index.json";
 
       :root {
         --light-blue: 173, 216, 230;
+        --pink: 255, 192, 203;
+        --beige: 255, 254, 225;
+
+        --text-color: 83, 73, 87;
+        --shadow-color: 83, 73, 87, 0.267;
       }
 
       html,
@@ -54,10 +59,10 @@ import { blocks } from "/src/components/index.json";
         position: relative;
 
         padding: 5em 4em 0;
-        background: linear-gradient(180deg, transparent 0, rgba(var(--light-blue), 0.125) 1.5em, rgba(var(--light-blue), 1) 16em, pink 48em, #fffee1);
+        background: linear-gradient(180deg, transparent 0, rgba(var(--light-blue), 0.425) 4em, rgba(var(--light-blue), 1) 16em, rgb(var(--pink)) 48em, rgb(var(--beige)));
         
-        color: #534957;
-        text-shadow: 1px 1px 3px #53495744;
+        color: rgb(var(--text-color));
+        text-shadow: 1px 1px 3px rgba(var(--shadow-color));
         font-size: 28px;
       }
 

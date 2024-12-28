@@ -212,8 +212,8 @@ onUnmounted(() => {
     position: relative;
     /* max-width: 25em; */
 
-    padding: 2em 3em 0;
-    top: 1.33em;
+    padding: 6em 3em 0;
+    // top: 40px;
 
     margin: 0;
 
@@ -224,7 +224,7 @@ onUnmounted(() => {
     white-space: break-spaces;
 
     @media only screen and (max-width: 768px) {
-        padding: 2.5em 1.5em 0;
+        padding: 4em 1.5em 0;
 
         /* backdrop-filter: brightness(65%) blur(0.1em); */
 
