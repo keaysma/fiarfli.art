@@ -21,7 +21,7 @@
                 <h2 class="gallery-header">{{ standardDate(currentContent.date) }}</h2>
                 <hr />
                 <p class="gallery-body">{{ currentContent.desc }}</p>
-                <br>
+                <br v-if="currentContent.desc">
                 <a>
                     share
                 </a>
@@ -338,8 +338,11 @@ onUnmounted(() => {
             }
 
             p {
-                color: #858480;
                 line-height: 0.75em;
+                
+                color: #b1afab;
+                font-family: 'Architects Daughter';
+                letter-spacing: 0px;
             }
 
             hr {
