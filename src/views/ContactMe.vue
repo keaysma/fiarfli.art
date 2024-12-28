@@ -76,7 +76,7 @@ const submitMessage = () => {
                     <label>Insta</label>
                     <FontAwesomeIcon :icon="faInstagram" />
                 </a>
-                <a href="http://fiarfliart.tumblr.com/" target="_blank">
+                <a href="https://fiarfliart.tumblr.com/" target="_blank">
                     <label>'blur</label>
                     <FontAwesomeIcon :icon="faTumblr" />
                 </a>
