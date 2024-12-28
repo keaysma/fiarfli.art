@@ -30,12 +30,15 @@
 [x] Add file size limit
 [x] Filter out unused and just-uploaded files before submit
 
-[ ] Skills section
-[ ] Downloadable Resume
+[x] Add browser storage-based intermediary save functionality
 
-[ ] Add config for mobile browser color, use the pink color
+[ ] Social media integration: RSS-feed like integration with Tumblr/Instagram?
+
+[ ] Downloadable Resume
+[ ] Add config file for mobile browser color, use the pink color
 [ ] Look into SEO
 
 # Maybe
-[ ] Add browser storage-based intermediary save functionality
 [ ] Favorite pokemon on site
+[ ] Skills section
+[ ] Something a bit better than the current gradient?
