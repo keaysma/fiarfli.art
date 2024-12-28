@@ -14,22 +14,23 @@
         <div class="gallery-content" v-on:touchstart="touchStart" v-on:touchend="touchEnd">
             <Content v-bind:content="currentContent" :controls="true" :use-thumbnail="true"
                 @click="gallerySettings.fullscreen = true" />
-            
+
             <div class="gallery-text">
                 <h1 class="gallery-header">{{ currentContent.title }}</h1>
                 <br />
                 <h2 class="gallery-header">{{ currentContent.date }}</h2>
-                <a>
-                    <FontAwesomeIcon :icon="faShare" size="2xs" />
-                </a>
                 <hr />
                 <p class="gallery-body">{{ currentContent.desc }}</p>
+                <a>
+                    share
+                </a>
             </div>
         </div>
 
         <!-- Fullscreen Gallery -->
         <div v-if="gallerySettings.fullscreen" class="gallery-fullscreen" @touchstart="touchStart" @touchend="touchEnd">
-            <Content :key="currentContent.desc" :content="currentContent" :controls="true" :fullscreen="true" @click="gallerySettings.fullscreen = false" />
+            <Content :key="currentContent.desc" :content="currentContent" :controls="true" :fullscreen="true"
+                @click="gallerySettings.fullscreen = false" />
         </div>
     </div>
 </template>
@@ -254,6 +255,11 @@ onUnmounted(() => {
         width: 75%;
         height: 50vh;
         justify-content: center;
+        align-items: center;
+
+        @media only screen and (max-width: 768px) {
+            flex-direction: column;
+        }
 
         >.content {
             flex: 1;
@@ -267,6 +273,11 @@ onUnmounted(() => {
                 height: 100%;
                 max-height: 100%;
                 object-fit: contain;
+
+                @media only screen and (max-width: 768px) {
+                    width: 75vw;
+                    max-height: 50vh;
+                }
             }
 
             &:hover {
@@ -287,6 +298,10 @@ onUnmounted(() => {
         >.gallery-text {
             flex: 1;
             line-height: 0.65em;
+
+            @media only screen and (max-width: 768px) {
+                width: 100%;
+            }
 
             >*:not(hr) {
                 display: inline-block;
@@ -322,7 +337,7 @@ onUnmounted(() => {
 
             a {
                 color: royalblue;
-                margin-left: 5px;
+                font-size: 0.75em;
             }
         }
     }
