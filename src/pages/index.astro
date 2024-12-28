@@ -48,6 +48,7 @@ import { blocks } from "/src/components/index.json";
 
         scroll-behavior: smooth;
       }
+      
       main {
         display: block;
         position: relative;
@@ -58,6 +59,12 @@ import { blocks } from "/src/components/index.json";
         color: #534957;
         text-shadow: 1px 1px 3px #53495744;
         font-size: 28px;
+      }
+
+      @media only screen and (max-width: 768px) {
+          main {
+            padding: 1em;
+          }
       }
 
       .page {
