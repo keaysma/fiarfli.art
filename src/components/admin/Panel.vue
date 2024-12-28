@@ -188,7 +188,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, getCurrentInstance, ref, watch } from 'vue';
+import { getCurrentInstance, ref, watch } from 'vue';
 
 import Content from '../art/Content.vue'
 
