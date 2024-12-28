@@ -18,9 +18,10 @@
             <div class="gallery-text">
                 <h1 class="gallery-header">{{ currentContent.title }}</h1>
                 <br />
-                <h2 class="gallery-header">{{ currentContent.date }}</h2>
+                <h2 class="gallery-header">{{ standardDate(currentContent.date) }}</h2>
                 <hr />
                 <p class="gallery-body">{{ currentContent.desc }}</p>
+                <br>
                 <a>
                     share
                 </a>
@@ -107,6 +108,17 @@ const next = () => {
 
     props.gallerySettings.contentIndex = 0;
     props.gallerySettings.blockIndex = nextBlock < props.blocks.length ? nextBlock : 0;
+}
+
+const standardDate = (dateString: string): string => {
+    const date = new Date(dateString);
+
+    const formattedDate = date.toLocaleString('default', { month: 'long', year: 'numeric' });
+    if (formattedDate === "Invalid Date") {
+        return dateString;
+    }
+
+    return formattedDate;
 }
 
 // Gets the full path to a shortcut
