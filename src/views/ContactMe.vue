@@ -68,31 +68,31 @@ const submitMessage = () => {
             <br>
             <br>
             <span class="social-links">
-                <a href="https://ko-fi.com/fiarfli">
+                <a href="https://ko-fi.com/fiarfli" target="_blank">
                     <label>Kofi</label>
                     <FontAwesomeIcon :icon="faCoffee" />
                 </a>
-                <a href="https://www.instagram.com/fiarfli">
+                <a href="https://www.instagram.com/fiarfli" target="_blank">
                     <label>Insta</label>
                     <FontAwesomeIcon :icon="faInstagram" />
                 </a>
-                <a href="">
+                <a href="http://fiarfliart.tumblr.com/" target="_blank">
                     <label>'blur</label>
                     <FontAwesomeIcon :icon="faTumblr" />
                 </a>
-                <a href="">
+                <a href="https://www.linkedin.com/in/raquel-bumgarner-27b6a315b/" target="_blank">
                     <label>LinkedIn</label>
                     <FontAwesomeIcon :icon="faLinkedinIn" />
                 </a>
-                <a href="">
+                <a href="https://www.twitch.tv/fiarfli" target="_blank">
                     <label>Twitch!</label>
                     <FontAwesomeIcon :icon="faTwitch" />
                 </a>
-                <a href="">
+                <a href="https://bsky.app/profile/fiarfli.art" target="_blank">
                     <label>bsky</label>
                     <FontAwesomeIcon :icon="faBluesky" />
                 </a>
-                <a href="https://linktr.ee/fiarfli">
+                <a href="https://linktr.ee/fiarfli" target="_blank">
                     <label>linky</label>
                     <Linktree width="28px" height="28px" class="svg-inline--fa" />
                 </a>
