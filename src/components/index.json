@@ -495,143 +495,6 @@
       ]
     },
     {
-      "name": "Demo Reel",
-      "content": [
-        {
-          "path": "/art/demo.mp4",
-          "date": "December 2021",
-          "width": "6",
-          "height": "2",
-          "fit": "cover",
-          "title": "Demo Reel 2021",
-          "desc": "Demo Reel 2021",
-          "tags": [
-            "animation",
-            "demo reel",
-            "demo reel 2021"
-          ]
-        },
-        {
-          "date": "2024-5-20",
-          "path": "/art/Blooming_in_Dungeon_color.gif",
-          "width": "3",
-          "height": "1",
-          "fit": "cover",
-          "title": "Blooming in Dungeon",
-          "desc": "",
-          "tags": [
-
-          ],
-          "hidden": false
-        },
-        {
-          "date": "2019",
-          "path": "/art/sperkle.gif",
-          "width": "3",
-          "height": "1",
-          "fit": "cover",
-          "title": "",
-          "desc": "A flourish of sparkles I animated as a transition between two scenes for a project in my undergrad",
-          "tags": [
-
-          ],
-          "hidden": true
-        },
-        {
-          "date": "2023",
-          "path": "/art/silly freed loop.gif",
-          "width": "2",
-          "height": "1",
-          "fit": "cover",
-          "title": "Silly freed",
-          "desc": "A cat stuck in a bottle gets a hand from a ghost",
-          "tags": [
-
-          ]
-        },
-        {
-          "date": "2024-01-29",
-          "path": "/art/Laughter! .mp4",
-          "width": "3",
-          "height": "1",
-          "fit": "cover",
-          "title": "Laughter",
-          "desc": "A woman tries to contain her laughter before laughing a lot, and then regain her composure; this animation loops! Part of a skill test for a job application.",
-          "tags": [
-
-          ]
-        }
-      ]
-    },
-    {
-      "name": "Photomanips",
-      "content": [
-        {
-          "date": "2022",
-          "path": "/art/Flora.webp",
-          "width": "1",
-          "height": "1",
-          "fit": "cover",
-          "title": "Flora",
-          "desc": "Recolorized image found on the internet archive, masked over a photo I took in the woods by my parent's home.",
-          "thumbnail": "thumbnail/art/Flora.webp",
-          "tags": [
-            "digital collage",
-            "fairy"
-          ]
-        },
-        {
-          "date": "2021",
-          "path": "/art/cinemacat2-slow-small.gif",
-          "width": "4",
-          "height": "1",
-          "fit": "cover",
-          "title": "CinemaCat",
-          "desc": "A Cinemagraph I made from my New Media class; I used a video of my cat and pictures of wildlife I took around Northern Virginia and compiled them in Photoshop.",
-          "tags": [
-            "cinemagraph",
-            "Skitty-Monina",
-            "cat",
-            "digital collage"
-          ]
-        },
-        {
-          "date": "2021",
-          "path": "/art/Summit ave ensmbl final 2.webp",
-          "width": "1",
-          "height": "1",
-          "fit": "cover",
-          "title": "Summit Avenue Ensemble and the Record Portal",
-          "desc": "I found a picture of these guys on the internet archive, recolored them, found some other images on Unsplash, and collaged them in photoshop over a picture I had taken of trains in Denver, Colorado.",
-          "thumbnail": "thumbnail/art/Summit ave ensmbl final 2.webp",
-          "tags": [
-            "digital collage",
-            "men",
-            "instruments",
-            "colorado",
-            "vinyl",
-            "mushrooms"
-          ]
-        },
-        {
-          "date": "2021",
-          "path": "",
-          "width": "6",
-          "height": "3",
-          "fit": "cover",
-          "title": "Absence: light, muted, blue, and dark",
-          "desc": "Four photomanips of my cat in her cat tree, differing only in the amount of contrast and color correction around the negative space of said cat.",
-          "type": "contained",
-          "html": " <div class=\"tumblr-post\" data-href=\"https://embed.tumblr.com/embed/post/lmBIK8pweh0TNh0gbQue7Q/704099497906667520\" data-did=\"9d8359464811f79ffd2f8c9ca28f90902b1d8180\"><a href=\"https://fiarfliart.tumblr.com/post/704099497906667520/absence-2021-i-made-this-for-a-project-in-my-new\">https://fiarfliart.tumblr.com/post/704099497906667520/absence-2021-i-made-this-for-a-project-in-my-new</a></div>  <script async src=\"https://assets.tumblr.com/post.js\"></script>",
-          "tags": [
-            "Skitty-Monina",
-            "cat"
-          ],
-          "hidden": true
-        }
-      ]
-    },
-    {
       "name": "Comics, Zines, & Inktober",
       "content": [
         {
@@ -823,6 +686,143 @@
             "traditional",
             "post-its",
             "inktober 2023"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Photomanips",
+      "content": [
+        {
+          "date": "2022",
+          "path": "/art/Flora.webp",
+          "width": "1",
+          "height": "1",
+          "fit": "cover",
+          "title": "Flora",
+          "desc": "Recolorized image found on the internet archive, masked over a photo I took in the woods by my parent's home.",
+          "thumbnail": "thumbnail/art/Flora.webp",
+          "tags": [
+            "digital collage",
+            "fairy"
+          ]
+        },
+        {
+          "date": "2021",
+          "path": "/art/cinemacat2-slow-small.gif",
+          "width": "4",
+          "height": "1",
+          "fit": "cover",
+          "title": "CinemaCat",
+          "desc": "A Cinemagraph I made from my New Media class; I used a video of my cat and pictures of wildlife I took around Northern Virginia and compiled them in Photoshop.",
+          "tags": [
+            "cinemagraph",
+            "Skitty-Monina",
+            "cat",
+            "digital collage"
+          ]
+        },
+        {
+          "date": "2021",
+          "path": "/art/Summit ave ensmbl final 2.webp",
+          "width": "1",
+          "height": "1",
+          "fit": "cover",
+          "title": "Summit Avenue Ensemble and the Record Portal",
+          "desc": "I found a picture of these guys on the internet archive, recolored them, found some other images on Unsplash, and collaged them in photoshop over a picture I had taken of trains in Denver, Colorado.",
+          "thumbnail": "thumbnail/art/Summit ave ensmbl final 2.webp",
+          "tags": [
+            "digital collage",
+            "men",
+            "instruments",
+            "colorado",
+            "vinyl",
+            "mushrooms"
+          ]
+        },
+        {
+          "date": "2021",
+          "path": "",
+          "width": "6",
+          "height": "3",
+          "fit": "cover",
+          "title": "Absence: light, muted, blue, and dark",
+          "desc": "Four photomanips of my cat in her cat tree, differing only in the amount of contrast and color correction around the negative space of said cat.",
+          "type": "contained",
+          "html": " <div class=\"tumblr-post\" data-href=\"https://embed.tumblr.com/embed/post/lmBIK8pweh0TNh0gbQue7Q/704099497906667520\" data-did=\"9d8359464811f79ffd2f8c9ca28f90902b1d8180\"><a href=\"https://fiarfliart.tumblr.com/post/704099497906667520/absence-2021-i-made-this-for-a-project-in-my-new\">https://fiarfliart.tumblr.com/post/704099497906667520/absence-2021-i-made-this-for-a-project-in-my-new</a></div>  <script async src=\"https://assets.tumblr.com/post.js\"></script>",
+          "tags": [
+            "Skitty-Monina",
+            "cat"
+          ],
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "name": "Demo Reel",
+      "content": [
+        {
+          "path": "/art/demo.mp4",
+          "date": "December 2021",
+          "width": "6",
+          "height": "2",
+          "fit": "cover",
+          "title": "Demo Reel 2021",
+          "desc": "Demo Reel 2021",
+          "tags": [
+            "animation",
+            "demo reel",
+            "demo reel 2021"
+          ]
+        },
+        {
+          "date": "2024-5-20",
+          "path": "/art/Blooming_in_Dungeon_color.gif",
+          "width": "3",
+          "height": "1",
+          "fit": "cover",
+          "title": "Blooming in Dungeon",
+          "desc": "",
+          "tags": [
+
+          ],
+          "hidden": false
+        },
+        {
+          "date": "2019",
+          "path": "/art/sperkle.gif",
+          "width": "3",
+          "height": "1",
+          "fit": "cover",
+          "title": "",
+          "desc": "A flourish of sparkles I animated as a transition between two scenes for a project in my undergrad",
+          "tags": [
+
+          ],
+          "hidden": true
+        },
+        {
+          "date": "2023",
+          "path": "/art/silly freed loop.gif",
+          "width": "2",
+          "height": "1",
+          "fit": "cover",
+          "title": "Silly freed",
+          "desc": "A cat stuck in a bottle gets a hand from a ghost",
+          "tags": [
+
+          ]
+        },
+        {
+          "date": "2024-01-29",
+          "path": "/art/Laughter! .mp4",
+          "width": "3",
+          "height": "1",
+          "fit": "cover",
+          "title": "Laughter",
+          "desc": "A woman tries to contain her laughter before laughing a lot, and then regain her composure; this animation loops! Part of a skill test for a job application.",
+          "tags": [
+
           ]
         }
       ]
