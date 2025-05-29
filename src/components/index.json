@@ -46,6 +46,20 @@
       "name": "Illustration",
       "content": [
         {
+          "date": "2025-5-27",
+          "path": "/art/Kitty.webp",
+          "width": "6",
+          "height": "1",
+          "fit": "cover",
+          "title": "",
+          "desc": "",
+          "tags": [
+            "Commission",
+            "Historical Romance Commission"
+          ],
+          "thumbnail": "thumbnail/art/Kitty.webp"
+        },
+        {
           "date": "2025-3-9",
           "path": "/art/buggachat inspired s6 scene redraw both with pg.webp",
           "width": "2",
@@ -60,19 +74,6 @@
           "thumbnail": "thumbnail/art/buggachat inspired s6 scene redraw both with pg.webp"
         },
         {
-          "date": "2024-7-13",
-          "path": "/art/riddelz2solve_Linx2.webp",
-          "width": "2",
-          "height": "1",
-          "fit": "cover",
-          "title": "",
-          "desc": "",
-          "tags": [
-            "Art Fight 2024"
-          ],
-          "thumbnail": "thumbnail/art/riddelz2solve_Linx2.webp"
-        },
-        {
           "date": "2024-7-29",
           "path": "/art/awk0kittens dulce.webp",
           "width": "2",
@@ -84,6 +85,22 @@
             "Art Fight 2024"
           ],
           "thumbnail": "thumbnail/art/awk0kittens dulce.webp"
+        },
+        {
+          "date": "2024-6-07",
+          "path": "/art/Fiarfli_Final_smallerFile.webp",
+          "width": "2",
+          "height": "1",
+          "fit": "cover",
+          "title": "Summer in Hisui",
+          "desc": "My illustration for a page in Trainersona: Summer Edition",
+          "tags": [
+            "Pokemon",
+            "Zine",
+            "fan art",
+            "blue"
+          ],
+          "thumbnail": "thumbnail/art/Fiarfli_Final_smallerFile.webp"
         },
         {
           "date": "2024-09-11",
@@ -112,22 +129,6 @@
             "SVA Residency"
           ],
           "thumbnail": "thumbnail/art/The Cat at Fresh Pond Road.webp"
-        },
-        {
-          "date": "2024-6-07",
-          "path": "/art/Fiarfli_Final_smallerFile.webp",
-          "width": "3",
-          "height": "1",
-          "fit": "cover",
-          "title": "Summer in Hisui",
-          "desc": "My illustration for a page in Trainersona: Summer Edition",
-          "tags": [
-            "Pokemon",
-            "Zine",
-            "fan art",
-            "blue"
-          ],
-          "thumbnail": "thumbnail/art/Fiarfli_Final_smallerFile.webp"
         },
         {
           "date": "2024-07",
@@ -169,7 +170,21 @@
           "tags": [
             "pink",
             "experimenting"
-          ]
+          ],
+          "hidden": true
+        },
+        {
+          "date": "2024-7-13",
+          "path": "/art/riddelz2solve_Linx2.webp",
+          "width": "1",
+          "height": "1",
+          "fit": "cover",
+          "title": "",
+          "desc": "",
+          "tags": [
+            "Art Fight 2024"
+          ],
+          "thumbnail": "thumbnail/art/riddelz2solve_Linx2.webp"
         },
         {
           "date": "2022-3-5",
@@ -198,22 +213,8 @@
             "colored pencil",
             "water color",
             "copic markers"
-          ]
-        },
-        {
-          "date": "2019-02-12",
-          "path": "/art/snowboardin' smol.webp",
-          "width": "1",
-          "height": "1",
-          "fit": "cover",
-          "title": "Snowboardin'",
-          "desc": "",
-          "tags": [
-            "poster",
-            "print"
           ],
-          "hidden": false,
-          "thumbnail": "thumbnail/art/snowboardin' smol.webp"
+          "hidden": true
         },
         {
           "date": "2023-11-27",
@@ -241,7 +242,8 @@
           "tags": [
             "cartoony",
             "bean the cat",
-            "cat"
+            "cat",
+            "Original Character"
           ]
         },
         {
@@ -257,6 +259,22 @@
             "experimenting"
           ],
           "hidden": true
+        },
+        {
+          "date": "2019-02-12",
+          "path": "/art/snowboardin' smol.webp",
+          "width": "2",
+          "height": "1",
+          "fit": "cover",
+          "title": "Snowboardin'",
+          "desc": "",
+          "tags": [
+            "poster",
+            "print",
+            "Original Character"
+          ],
+          "hidden": false,
+          "thumbnail": "thumbnail/art/snowboardin' smol.webp"
         },
         {
           "date": "2023-2-17",
@@ -372,7 +390,8 @@
           "date": "2021",
           "tags": [
 
-          ]
+          ],
+          "hidden": true
         },
         {
           "date": "2023-10-06",
