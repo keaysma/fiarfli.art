@@ -498,6 +498,20 @@
       "name": "Comics, Zines, & Inktober",
       "content": [
         {
+          "date": "2025-7-2",
+          "path": "",
+          "width": "6",
+          "height": "1",
+          "fit": "cover",
+          "title": "chocolate.",
+          "desc": "",
+          "tags": [
+
+          ],
+          "type": "contained",
+          "html": "<div class=\"tumblr-post\" data-href=\"https://embed.tumblr.com/embed/post/t:wqCO6ENLpg02W0l013_Ruw/787994325721219072/v2\" data-did=\"46225eccfbd39581be79a439766647c4f0f096cc\"  ><a href=\"https://www.tumblr.com/fiarfliart/787994325721219072/chocolate\">https://www.tumblr.com/fiarfliart/787994325721219072/chocolate</a></div><script async src=\"https://assets.tumblr.com/post.js?_v=38df9a6ca7436e6ca1b851b0543b9f51\"></script>"
+        },
+        {
           "date": "2024-01-31",
           "path": "/art/lap dragon.webp",
           "width": "6",
