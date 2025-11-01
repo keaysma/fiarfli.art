@@ -43,7 +43,7 @@
   },
   "blocks": [
     {
-      "name": "Anime is Reel",
+      "name": "Demo Reel",
       "content": [
         {
           "date": "2024-5-20",
@@ -188,6 +188,21 @@
             "blue"
           ],
           "thumbnail": "thumbnail/art/Fiarfli_Final_smallerFile.webp"
+        },
+        {
+          "date": "2024-09-11",
+          "path": "/art/MOLE INTEREST.webp",
+          "width": "1",
+          "height": "1",
+          "fit": "cover",
+          "title": "Mole Interest",
+          "desc": "Meme Art for Mole Interest Anniversary!",
+          "tags": [
+            "meme",
+            "mole interest"
+          ],
+          "thumbnail": "thumbnail/art/MOLE INTEREST.webp",
+          "hidden": true
         },
         {
           "date": "2024-7-13",
@@ -571,23 +586,8 @@
       ]
     },
     {
-      "name": "I wanna be a Mangaka sometimes",
+      "name": "Comics, Zines, & Inktober",
       "content": [
-        {
-          "date": "2024-09-11",
-          "path": "/art/MOLE INTEREST.webp",
-          "width": "1",
-          "height": "1",
-          "fit": "cover",
-          "title": "Mole Interest",
-          "desc": "Meme Art for Mole Interest Anniversary!",
-          "tags": [
-            "meme",
-            "mole interest"
-          ],
-          "thumbnail": "thumbnail/art/MOLE INTEREST.webp",
-          "hidden": true
-        },
         {
           "date": "2024-11-07",
           "path": "",
@@ -814,7 +814,7 @@
       ]
     },
     {
-      "name": "Photomanips- sorry no puns or fun here",
+      "name": "Photomanips",
       "content": [
         {
           "date": "2022",
@@ -882,7 +882,7 @@
       ]
     },
     {
-      "name": "STICKERSSS and stuff",
+      "name": "Graphics",
       "content": [
         {
           "date": "Fall 2019",
@@ -1116,19 +1116,6 @@
           "thumbnail": "thumbnail/art/merfrenchie_warm.webp"
         },
         {
-          "date": "2025-10-1",
-          "path": "/art/!tilefireflylong2.webp",
-          "width": "1",
-          "height": "1",
-          "fit": "cover",
-          "title": "",
-          "desc": "",
-          "tags": [
-
-          ],
-          "thumbnail": "thumbnail/art/!tilefireflylong2.webp"
-        },
-        {
           "date": "May 2021",
           "path": "/art/mushroom_symbol_zine.webp",
           "width": "1",
@@ -1157,25 +1144,10 @@
           "thumbnail": "thumbnail/art/jelly_symbol_zine.webp"
         },
         {
-          "date": "2021-8-31",
-          "path": "/art/snr proj fall 2021.webp",
-          "width": "2",
-          "height": "1",
-          "fit": "cover",
-          "title": "Senior Project Fall 2021 Discord",
-          "desc": "Icon I made for my senior project class' discord server!",
-          "thumbnail": "thumbnail/art/snr proj fall 2021.webp",
-          "tags": [
-            "discord server icon",
-            ""
-          ],
-          "hidden": false
-        },
-        {
           "date": "May 2021",
           "path": "/art/Inside front cover.webp",
           "thumbnail": "thumbnail/art/Inside front cover.webp",
-          "width": "1",
+          "width": "2",
           "height": "1",
           "fit": "cover",
           "title": "Show and Tell Artist Icons",
@@ -1200,11 +1172,26 @@
             "discord server icon"
           ],
           "hidden": false
+        },
+        {
+          "date": "2021-8-31",
+          "path": "/art/snr proj fall 2021.webp",
+          "width": "2",
+          "height": "1",
+          "fit": "cover",
+          "title": "Senior Project Fall 2021 Discord",
+          "desc": "Icon I made for my senior project class' discord server!",
+          "thumbnail": "thumbnail/art/snr proj fall 2021.webp",
+          "tags": [
+            "discord server icon",
+            ""
+          ],
+          "hidden": false
         }
       ]
     },
     {
-      "name": "Paint on Walls and sometimes Tarps",
+      "name": "Murals",
       "content": [
         {
           "date": "March 2021",
