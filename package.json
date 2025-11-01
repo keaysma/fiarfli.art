@@ -12,7 +12,6 @@
   "devDependencies": {
     "@types/markdown-it": "^13.0.7",
     "astro": "^2",
-    "node-sass": "^6.0.1",
     "sass-loader": "^12.3.0"
   },
   "dependencies": {
@@ -24,5 +23,6 @@
     "markdown-it": "^14.0.0",
     "sass": "^1.49.8",
     "vue": "^3.2.45"
-  }
+  },
+  "packageManager": "yarn@1.22.22+sha1.ac34549e6aa8e7ead463a7407e1c7390f61a6610"
 }
