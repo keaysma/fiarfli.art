@@ -110,7 +110,7 @@
           "tags": [
             "mp4"
           ],
-          "hidden": false
+          "hidden": true
         },
         {
           "date": "2025-11-2",
@@ -148,7 +148,7 @@
           "tags": [
 
           ],
-          "hidden": true
+          "hidden": false
         },
         {
           "path": "/art/demo-2021.mp4",
