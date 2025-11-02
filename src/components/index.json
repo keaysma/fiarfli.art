@@ -43,6 +43,144 @@
   },
   "blocks": [
     {
+      "name": "Animation",
+      "content": [
+        {
+          "path": "/art/demo-2025.mp4",
+          "date": "October 2025",
+          "width": "6",
+          "height": "2",
+          "fit": "cover",
+          "title": "Rough Animation 2025",
+          "desc": "A reel of my most recent (rough) animations!",
+          "tags": [
+            "animation",
+            "demo reel",
+            "demo reel 2025",
+            "rough animation"
+          ]
+        },
+        {
+          "date": "2024-5-20",
+          "path": "/art/Blooming_in_Dungeon_color.gif",
+          "width": "1",
+          "height": "1",
+          "fit": "cover",
+          "title": "Blooming in Dungeon",
+          "desc": "",
+          "tags": [
+            "fanart"
+          ],
+          "hidden": false
+        },
+        {
+          "date": "2023",
+          "path": "/art/silly freed loop.gif",
+          "width": "1",
+          "height": "1",
+          "fit": "cover",
+          "title": "Silly freed",
+          "desc": "A cat stuck in a bottle gets a hand from a ghost! \nInspired by catwheezie's \"the silliness has been contained\" linked below:\nhttps://emwheezie.tumblr.com/post/729270533355667456/the-silliness-has-been-contained",
+          "tags": [
+            "tumblr inspired"
+          ]
+        },
+        {
+          "date": "2024-05-01",
+          "path": "/art/maypril.gif",
+          "width": "1",
+          "height": "1",
+          "fit": "cover",
+          "title": "Maypril",
+          "desc": "Where'd the time go!?",
+          "tags": [
+            "gif",
+            "animation",
+            "self portrait"
+          ]
+        },
+        {
+          "date": "2025-03-31",
+          "path": "/art/balatro animatic.mp4",
+          "width": "1",
+          "height": "1",
+          "fit": "cover",
+          "title": "Balatro",
+          "desc": "Silly practice ",
+          "tags": [
+            "mp4"
+          ],
+          "hidden": false
+        },
+        {
+          "date": "2025-11-2",
+          "path": "/art/duckling sprite w ol.gif",
+          "width": "1",
+          "height": "1",
+          "fit": "cover",
+          "title": "Duckling ",
+          "desc": "",
+          "tags": [
+
+          ]
+        },
+        {
+          "date": "2024-11-23",
+          "path": "/art/loading blob.gif",
+          "width": "1",
+          "height": "1",
+          "fit": "cover",
+          "title": "Loading Blob",
+          "desc": "Loading! The only difference between the loading blob here and the placeholder used on this website is the text color.",
+          "tags": [
+            "gif",
+            "pixel art"
+          ]
+        },
+        {
+          "date": "2019",
+          "path": "/art/sperkle.gif",
+          "width": "1",
+          "height": "1",
+          "fit": "cover",
+          "title": "",
+          "desc": "A flourish of sparkles I animated as a transition between two scenes for a project in my undergrad",
+          "tags": [
+
+          ],
+          "hidden": true
+        },
+        {
+          "path": "/art/demo-2021.mp4",
+          "date": "December 2021",
+          "width": "6",
+          "height": "2",
+          "fit": "cover",
+          "title": "Demo Reel 2021",
+          "desc": "This reel highlights some school work I did 2018-2021; some information here is out of date...",
+          "tags": [
+            "animation",
+            "demo reel",
+            "demo reel 2021"
+          ],
+          "hidden": false
+        },
+        {
+          "date": "2024-01-29",
+          "path": "/art/Laughter! .mp4",
+          "width": "2",
+          "height": "1",
+          "fit": "cover",
+          "title": "Laughter",
+          "desc": "A woman tries to contain her laughter before laughing a lot, and then regain her composure; this animation loops! Part of a skill test for a job application.",
+          "tags": [
+
+          ],
+          "hidden": true
+        }
+      ]
+    },
+    {
       "name": "Illustration",
       "content": [
         {
@@ -777,90 +915,6 @@
       ]
     },
     {
-      "name": "Demo Reel",
-      "content": [
-        {
-          "path": "/art/demo-2025.mp4",
-          "date": "December 2025",
-          "width": "6",
-          "height": "2",
-          "fit": "cover",
-          "title": "Demo Reel 2025",
-          "desc": "Demo Reel 2025",
-          "tags": [
-            "animation",
-            "demo reel",
-            "demo reel 2025"
-          ]
-        },
-        {
-          "path": "/art/demo-2021.mp4",
-          "date": "December 2021",
-          "width": "6",
-          "height": "2",
-          "fit": "cover",
-          "title": "Demo Reel 2021",
-          "desc": "Demo Reel 2021",
-          "tags": [
-            "animation",
-            "demo reel",
-            "demo reel 2021"
-          ],
-          "hidden": true
-        },
-        {
-          "date": "2024-5-20",
-          "path": "/art/Blooming_in_Dungeon_color.gif",
-          "width": "3",
-          "height": "1",
-          "fit": "cover",
-          "title": "Blooming in Dungeon",
-          "desc": "",
-          "tags": [
-
-          ],
-          "hidden": false
-        },
-        {
-          "date": "2019",
-          "path": "/art/sperkle.gif",
-          "width": "3",
-          "height": "1",
-          "fit": "cover",
-          "title": "",
-          "desc": "A flourish of sparkles I animated as a transition between two scenes for a project in my undergrad",
-          "tags": [
-
-          ],
-          "hidden": true
-        },
-        {
-          "date": "2023",
-          "path": "/art/silly freed loop.gif",
-          "width": "2",
-          "height": "1",
-          "fit": "cover",
-          "title": "Silly freed",
-          "desc": "A cat stuck in a bottle gets a hand from a ghost",
-          "tags": [
-
-          ]
-        },
-        {
-          "date": "2024-01-29",
-          "path": "/art/Laughter! .mp4",
-          "width": "3",
-          "height": "1",
-          "fit": "cover",
-          "title": "Laughter",
-          "desc": "A woman tries to contain her laughter before laughing a lot, and then regain her composure; this animation loops! Part of a skill test for a job application.",
-          "tags": [
-
-          ]
-        }
-      ]
-    },
-    {
       "name": "Graphics",
       "content": [
         {
@@ -1101,7 +1155,7 @@
           "height": "1",
           "fit": "cover",
           "title": "Aekta symbol for Zine endpapers",
-          "desc": "",
+          "desc": "I made an icon for my classmate Aekta based on a photo she showed me of a mushroom.",
           "tags": [
             "zine"
           ],
@@ -1111,11 +1165,11 @@
         {
           "date": "May 2021",
           "path": "/art/jelly_symbol_zine.webp",
-          "width": "6",
+          "width": "1",
           "height": "1",
           "fit": "cover",
           "title": "Mintyfishuu symbol for Zine endpapers",
-          "desc": "",
+          "desc": "I made this jellyfish icon for my classmate mintyfishuu based on a photo of a jellyfish they showed me.",
           "tags": [
             "zine"
           ],
@@ -1129,8 +1183,8 @@
           "width": "2",
           "height": "1",
           "fit": "cover",
-          "title": "Show and Tell Artist Icons",
-          "desc": "Endpaper designs for the collaborative zine \"Show and Tell\" my classmates and I made in our AVT 340 class. Each icon represents a classmate; the final version in the book has slightly different colors as I had compiled the icons we made in Illustrator. The final endpapers are slightly different in the zine, but this was the first step to getting there.",
+          "title": "Show and Tell Endpaper Draft",
+          "desc": "A draft layout of endpaper designs for \"Show and Tell,\" the collaborative zine project for our Zine class, Spring 2021 AVT 340! My classmates all made our icons",
           "tags": [
             "zine",
             "design",
