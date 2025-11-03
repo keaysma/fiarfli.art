@@ -63,7 +63,7 @@
         {
           "date": "2024-5-20",
           "path": "/art/Blooming_in_Dungeon_color.gif",
-          "width": "1",
+          "width": "2",
           "height": "1",
           "fit": "cover",
           "title": "Blooming in Dungeon",
@@ -76,7 +76,7 @@
         {
           "date": "2023",
           "path": "/art/silly freed loop.gif",
-          "width": "1",
+          "width": "2",
           "height": "1",
           "fit": "cover",
           "title": "Silly freed",
@@ -97,7 +97,8 @@
             "gif",
             "animation",
             "self portrait"
-          ]
+          ],
+          "hidden": true
         },
         {
           "date": "2025-03-31",
@@ -123,7 +124,7 @@
           "tags": [
 
           ],
-          "hidden": false
+          "hidden": true
         },
         {
           "date": "2024-11-23",
@@ -136,12 +137,13 @@
           "tags": [
             "gif",
             "pixel art"
-          ]
+          ],
+          "hidden": true
         },
         {
           "date": "2019",
           "path": "/art/sperkle.gif",
-          "width": "1",
+          "width": "2",
           "height": "1",
           "fit": "cover",
           "title": "",
