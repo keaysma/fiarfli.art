@@ -63,7 +63,7 @@
         {
           "date": "2024-5-20",
           "path": "/art/Blooming_in_Dungeon_color.gif",
-          "width": "2",
+          "width": "1",
           "height": "1",
           "fit": "cover",
           "title": "Blooming in Dungeon",
@@ -71,19 +71,20 @@
           "tags": [
             "fanart"
           ],
-          "hidden": false
+          "hidden": true
         },
         {
           "date": "2023",
           "path": "/art/silly freed loop.gif",
-          "width": "2",
+          "width": "1",
           "height": "1",
           "fit": "cover",
           "title": "Silly freed",
           "desc": "A cat stuck in a bottle gets a hand from a ghost! \nInspired by catwheezie's \"the silliness has been contained\" linked below:\nhttps://emwheezie.tumblr.com/post/729270533355667456/the-silliness-has-been-contained",
           "tags": [
             "tumblr inspired"
-          ]
+          ],
+          "hidden": true
         },
         {
           "date": "2024-05-01",
@@ -143,7 +144,7 @@
         {
           "date": "2019",
           "path": "/art/sperkle.gif",
-          "width": "2",
+          "width": "1",
           "height": "1",
           "fit": "cover",
           "title": "",
@@ -151,7 +152,7 @@
           "tags": [
 
           ],
-          "hidden": false
+          "hidden": true
         },
         {
           "path": "/art/demo-2021.mp4",
