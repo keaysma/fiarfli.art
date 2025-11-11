@@ -22,8 +22,9 @@
                 <hr />
                 <p class="gallery-body">{{ currentContent.desc }}</p>
                 <br v-if="currentContent.desc">
-                <a>
-                    share
+                <a v-if="currentContent.title" @click="getShortcutLink(getShortcutFromTitle(currentContent.title))">
+                    <span v-if="!copied">share</span>
+                    <span v-else>copied to clipboard</span>
                 </a>
             </div>
         </div>
@@ -37,7 +38,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, onUnmounted, ref } from "vue";
+import { computed, onMounted, onUnmounted, ref, watch } from "vue";
 
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome"
 import {
@@ -78,36 +79,55 @@ const touchEnd = (touchEvent: TouchEvent) => {
 };
 
 const previous = () => {
-    const previousBlock = props.gallerySettings.blockIndex - 1;
-    const previousContent = props.gallerySettings.contentIndex - 1;
+    let nextBlockIndex = props.gallerySettings.blockIndex;
+    let nextContentIndex = props.gallerySettings.contentIndex - 1;
+    while (true) {
+        if (nextContentIndex < 0) {
+            nextBlockIndex -= 1;
+            if (nextBlockIndex < 0) {
+                nextBlockIndex = props.blocks.length - 1;
+            }
 
-    if (previousContent >= 0) {
-        props.gallerySettings.contentIndex = previousContent;
-        return;
+            nextContentIndex = props.blocks[nextBlockIndex].content.length - 1;
+        }
+
+        const currentContent = props.blocks[nextBlockIndex].content;
+        const nextContentItem = currentContent[nextContentIndex]
+        if (!nextContentItem.hidden) {
+            break;
+        }
+
+        nextContentIndex -= 1;
     }
 
-    if (previousBlock >= 0) {
-        props.gallerySettings.blockIndex = previousBlock;
-        props.gallerySettings.contentIndex = props.blocks[previousBlock].content.length - 1;
-        return;
-    }
-
-    props.gallerySettings.blockIndex = props.blocks.length - 1;
-    props.gallerySettings.contentIndex = props.blocks[props.gallerySettings.blockIndex].content.length - 1;
+    props.gallerySettings.contentIndex = nextContentIndex;
+    props.gallerySettings.blockIndex = nextBlockIndex;
 }
 
 const next = () => {
-    const nextBlock = props.gallerySettings.blockIndex + 1;
-    const nextContent = props.gallerySettings.contentIndex + 1;
+    let nextBlockIndex = props.gallerySettings.blockIndex;
+    let nextContentIndex = props.gallerySettings.contentIndex + 1;
+    while (true) {
+        if (nextContentIndex >= props.blocks[nextBlockIndex].content.length) {
+            nextContentIndex = 0;
+            nextBlockIndex += 1;
+        }
 
-    const currentContent = props.blocks[props.gallerySettings.blockIndex].content;
-    if (nextContent < currentContent.length) {
-        props.gallerySettings.contentIndex = nextContent;
-        return;
+        if (nextBlockIndex >= props.blocks.length) {
+            nextBlockIndex = 0;
+        }
+
+        const currentContent = props.blocks[nextBlockIndex].content;
+        const nextContentItem = currentContent[nextContentIndex]
+        if (!nextContentItem.hidden) {
+            break;
+        }
+
+        nextContentIndex += 1;
     }
 
-    props.gallerySettings.contentIndex = 0;
-    props.gallerySettings.blockIndex = nextBlock < props.blocks.length ? nextBlock : 0;
+    props.gallerySettings.contentIndex = nextContentIndex;
+    props.gallerySettings.blockIndex = nextBlockIndex;
 }
 
 const standardDate = (dateString: string): string => {
@@ -122,6 +142,16 @@ const standardDate = (dateString: string): string => {
 }
 
 // Gets the full path to a shortcut
+const copied = ref(false);
+watch(
+    () => [
+        props.gallerySettings.blockIndex,
+        props.gallerySettings.contentIndex,
+        props.gallerySettings.open,
+    ],
+    () => copied.value = false
+);
+
 const getShortcutLink = (shortcut: string) => {
     const shortcutUrl = `${location.host}/#${shortcut}`;
     console.debug(`getShortcutLink`, shortcutUrl);
@@ -133,7 +163,7 @@ const getShortcutLink = (shortcut: string) => {
 
     navigator.clipboard
         .writeText(shortcutUrl)
-        .then(() => console.debug("copied"));
+        .then(() => copied.value = true);
 }
 
 const keyboardListener = (e: KeyboardEvent) => {
@@ -281,7 +311,8 @@ onUnmounted(() => {
 
             cursor: pointer;
 
-            >img,>video {
+            >img,
+            >video {
                 height: 100%;
                 max-height: 100%;
                 object-fit: contain;
@@ -339,7 +370,7 @@ onUnmounted(() => {
 
             p {
                 line-height: 0.75em;
-                
+
                 color: #b1afab;
                 font-family: 'Architects Daughter';
                 letter-spacing: 0px;
@@ -353,6 +384,7 @@ onUnmounted(() => {
             a {
                 color: royalblue;
                 font-size: 0.75em;
+                cursor: pointer;
             }
         }
     }
