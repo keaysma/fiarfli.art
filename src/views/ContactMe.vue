@@ -29,10 +29,11 @@ const submitMessage = () => {
     if (submitState.value !== 'unsubmitted') return
 
     const payload = {
-        name, email, subject, body
+        name: name.value,
+        email: email.value,
+        subject: subject.value,
+        body: body.value
     }
-
-    console.debug(`/api/mail`, { ...payload })
 
     submitState.value = "submitted"
 
@@ -164,8 +165,10 @@ const submitMessage = () => {
     .social-links {
         display: inline;
         white-space: pre;
+
         &>* {
             margin-inline-start: 0.5em;
+
             &:first-child {
                 margin-left: 0;
             }
