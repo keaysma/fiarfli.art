@@ -161,13 +161,13 @@
           "height": "2",
           "fit": "cover",
           "title": "Demo Reel 2021",
-          "desc": "This reel highlights some school work I did 2018-2021; some information here is out of date...",
+          "desc": "This reel highlights animated coursework circa 2018-2021!",
           "tags": [
             "animation",
             "demo reel",
             "demo reel 2021"
           ],
-          "hidden": true
+          "hidden": false
         },
         {
           "date": "2024-01-29",
