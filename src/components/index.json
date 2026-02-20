@@ -43,6 +43,315 @@
   },
   "blocks": [
     {
+      "name": "Graphics",
+      "content": [
+        {
+          "date": "Fall 2019",
+          "path": "/art/honke sticker.webp",
+          "thumbnail": "thumbnail/art/honke sticker.webp",
+          "width": "2",
+          "height": "1",
+          "fit": "contain",
+          "title": "HOnkers for You!",
+          "desc": "Initially inspired by the Untitled Goose Game, I sold these stickers at GMU's artist alley Fall 2019, and at MoCCA fest in 2024. ",
+          "tags": [
+            "sticker",
+            "goose",
+            "honkers for you"
+          ],
+          "hidden": false
+        },
+        {
+          "path": "/art/Gaius and Skitty.webp",
+          "thumbnail": "thumbnail/art/Gaius and Skitty.webp",
+          "width": "4",
+          "height": "1",
+          "fit": "contain",
+          "title": "Gaius and Skitty",
+          "desc": "The back part of a design I did for a Christmas card in 2020!",
+          "date": "December 2020",
+          "tags": [
+            "card",
+            "cat",
+            "dog",
+            "crimmus",
+            "Skitty-Monina",
+            "personal",
+            "Gaius"
+          ]
+        },
+        {
+          "date": "2024-03-01",
+          "path": "/art/Spring Witch Dress B.webp",
+          "width": "1",
+          "height": "1",
+          "fit": "cover",
+          "title": "Spring Witchin' Sticker",
+          "desc": "",
+          "tags": [
+            "sticker",
+            "green",
+            "pink",
+            "spring witchin"
+          ],
+          "thumbnail": "thumbnail/art/Spring Witch Dress B.webp"
+        },
+        {
+          "date": "2024-03-01",
+          "path": "/art/Fall Witch VERSION 4.webp",
+          "width": "1",
+          "height": "1",
+          "fit": "cover",
+          "title": "Fall Witchin' Sticker",
+          "desc": "",
+          "tags": [
+
+          ],
+          "thumbnail": "thumbnail/art/Fall Witch VERSION 4.webp"
+        },
+        {
+          "date": "2019-10-10",
+          "path": "/art/fallwitchin sticker.webp",
+          "thumbnail": "thumbnail/art/fallwitchin sticker.webp",
+          "width": "1",
+          "height": "1",
+          "fit": "contain",
+          "title": "Fall Witchin'",
+          "desc": "A Sticker design I made for GMU artist alley in  2019",
+          "tags": [
+            "orange",
+            "witch",
+            "fall witchin",
+            "sticker"
+          ],
+          "hidden": true
+        },
+        {
+          "date": "2024-3-01",
+          "path": "/art/cloudsplashcat sticker.webp",
+          "width": "1",
+          "height": "1",
+          "fit": "cover",
+          "title": "Cloud Cat Sticker",
+          "desc": "",
+          "tags": [
+            "cat",
+            "sticker",
+            "cloud",
+            "cloud cat",
+            "blue"
+          ],
+          "thumbnail": "thumbnail/art/cloudsplashcat sticker.webp"
+        },
+        {
+          "date": "2024-3-5",
+          "path": "/art/shamrock_cat_button_realy.webp",
+          "width": "1",
+          "height": "1",
+          "fit": "cover",
+          "title": "Shamrock Cat Button",
+          "desc": "",
+          "tags": [
+            "cat",
+            "pin",
+            "pink",
+            "green"
+          ],
+          "thumbnail": "thumbnail/art/shamrock_cat_button_realy.webp"
+        },
+        {
+          "date": "2024-3-01",
+          "path": "/art/nanalan cat.webp",
+          "width": "1",
+          "height": "1",
+          "fit": "cover",
+          "title": "Ally Sticker",
+          "desc": "",
+          "tags": [
+            "sticker",
+            "cat",
+            "nana lan"
+          ],
+          "thumbnail": "thumbnail/art/nanalan cat.webp"
+        },
+        {
+          "date": "2024-3-01",
+          "path": "/art/nanalan mona.webp",
+          "width": "1",
+          "height": "1",
+          "fit": "cover",
+          "title": "Mona Sticker",
+          "desc": "",
+          "tags": [
+            "sticker",
+            "mona",
+            "nana lan"
+          ],
+          "thumbnail": "thumbnail/art/nanalan mona.webp"
+        },
+        {
+          "date": "2024-02-26",
+          "path": "/art/Froggo.webp",
+          "width": "1",
+          "height": "1",
+          "fit": "cover",
+          "title": "Froggo Sticker",
+          "desc": "",
+          "tags": [
+            "sticker",
+            "zine",
+            "frog",
+            "pink",
+            "firefly"
+          ],
+          "thumbnail": "thumbnail/art/Froggo.webp",
+          "hidden": false
+        },
+        {
+          "date": "Fall 2019",
+          "path": "/art/golden poison froggo.webp",
+          "thumbnail": "thumbnail/art/golden poison froggo.webp",
+          "width": "1",
+          "height": "1",
+          "fit": "cover",
+          "title": "Golden poison frog",
+          "desc": "Golden poison frog design",
+          "tags": [
+            "yellow",
+            "frog"
+          ],
+          "hidden": false
+        },
+        {
+          "date": "2024-3-5",
+          "path": "/art/moccafest_shamrock.webp",
+          "width": "1",
+          "height": "1",
+          "fit": "cover",
+          "title": "Shamrock Pin",
+          "desc": "It's a shamrock! A four leaf clover! I made pins with this design for MoCCA fest since it took place on the 16th and 17th of March.",
+          "tags": [
+            "pin",
+            "green"
+          ],
+          "thumbnail": "thumbnail/art/moccafest_shamrock.webp"
+        },
+        {
+          "date": "Fall 2018",
+          "path": "/art/a mural thing shirt design.webp",
+          "thumbnail": "thumbnail/art/a mural thing shirt design.webp",
+          "width": "1",
+          "height": "1",
+          "fit": "cover",
+          "title": "Mural Day Shirt Design",
+          "desc": "A design I made and stenciled on to vinyl for shirts- the design was inspired by artists whose murals were on campus for Murals at Mason Walls 2018 such as MARICAMA and Imani Shanklin Roberts ",
+          "tags": [
+            "shirt design"
+          ],
+          "hidden": false
+        },
+        {
+          "date": "2024-3-01",
+          "path": "/art/merfrenchie_cool.webp",
+          "width": "1",
+          "height": "1",
+          "fit": "cover",
+          "title": "Merfrenchie cool sticker",
+          "desc": "A blue merfrenchie, also known as a blue manapup. It has algae growing on its tail.",
+          "tags": [
+            "sticker"
+          ],
+          "thumbnail": "thumbnail/art/merfrenchie_cool.webp"
+        },
+        {
+          "date": "2024-3-01",
+          "path": "/art/merfrenchie_warm.webp",
+          "width": "1",
+          "height": "1",
+          "fit": "cover",
+          "title": "Merfrenchie warm sticker",
+          "desc": "An earthy merfrenchie, also known as an earthy manapup. It has algae growing on its tail.",
+          "tags": [
+            "sticker"
+          ],
+          "thumbnail": "thumbnail/art/merfrenchie_warm.webp"
+        },
+        {
+          "date": "May 2021",
+          "path": "/art/mushroom_symbol_zine.webp",
+          "width": "1",
+          "height": "1",
+          "fit": "cover",
+          "title": "Aekta symbol for Zine endpapers",
+          "desc": "I made an icon for my classmate Aekta based on a photo she showed me of a mushroom.",
+          "tags": [
+            "zine"
+          ],
+          "thumbnail": "thumbnail/art/mushroom_symbol_zine.webp",
+          "hidden": true
+        },
+        {
+          "date": "May 2021",
+          "path": "/art/jelly_symbol_zine.webp",
+          "width": "1",
+          "height": "1",
+          "fit": "cover",
+          "title": "Mintyfishuu symbol for Zine endpapers",
+          "desc": "I made this jellyfish icon for my classmate mintyfishuu based on a photo of a jellyfish they showed me.",
+          "tags": [
+            "zine"
+          ],
+          "hidden": true,
+          "thumbnail": "thumbnail/art/jelly_symbol_zine.webp"
+        },
+        {
+          "date": "May 2021",
+          "path": "/art/Inside front cover.webp",
+          "thumbnail": "thumbnail/art/Inside front cover.webp",
+          "width": "2",
+          "height": "1",
+          "fit": "cover",
+          "title": "Show and Tell Endpaper Draft",
+          "desc": "A draft layout of endpaper designs for \"Show and Tell,\" the collaborative zine project for our Zine class, Spring 2021 AVT 340! My classmates all made our icons",
+          "tags": [
+            "zine",
+            "design",
+            "endpapers"
+          ],
+          "hidden": false
+        },
+        {
+          "date": "2021-08-31",
+          "path": "/art/comics thumbnail.webp",
+          "width": "2",
+          "height": "1",
+          "fit": "cover",
+          "title": "Comics Fall 2021 Discord",
+          "desc": "The icon I made for my Comics class discord. For someone who doesn't have the best understanding of discord I set up a lot of discords for my classes towards the end of college XD",
+          "thumbnail": "thumbnail/art/comics thumbnail.webp",
+          "tags": [
+            "discord server icon"
+          ],
+          "hidden": false
+        },
+        {
+          "date": "2021-8-31",
+          "path": "/art/snr proj fall 2021.webp",
+          "width": "2",
+          "height": "1",
+          "fit": "cover",
+          "title": "Senior Project Fall 2021 Discord",
+          "desc": "Icon I made for my senior project class' discord server!",
+          "thumbnail": "thumbnail/art/snr proj fall 2021.webp",
+          "tags": [
+            "discord server icon",
+            ""
+          ],
+          "hidden": false
+        }
+      ]
+    },
+    {
       "name": "Animation",
       "content": [
         {
@@ -945,315 +1254,6 @@
             "cat"
           ],
           "hidden": true
-        }
-      ]
-    },
-    {
-      "name": "Graphics",
-      "content": [
-        {
-          "date": "Fall 2019",
-          "path": "/art/honke sticker.webp",
-          "thumbnail": "thumbnail/art/honke sticker.webp",
-          "width": "2",
-          "height": "1",
-          "fit": "contain",
-          "title": "HOnkers for You!",
-          "desc": "Initially inspired by the Untitled Goose Game, I sold these stickers at GMU's artist alley Fall 2019, and at MoCCA fest in 2024. ",
-          "tags": [
-            "sticker",
-            "goose",
-            "honkers for you"
-          ],
-          "hidden": false
-        },
-        {
-          "path": "/art/Gaius and Skitty.webp",
-          "thumbnail": "thumbnail/art/Gaius and Skitty.webp",
-          "width": "4",
-          "height": "1",
-          "fit": "contain",
-          "title": "Gaius and Skitty",
-          "desc": "The back part of a design I did for a Christmas card in 2020!",
-          "date": "December 2020",
-          "tags": [
-            "card",
-            "cat",
-            "dog",
-            "crimmus",
-            "Skitty-Monina",
-            "personal",
-            "Gaius"
-          ]
-        },
-        {
-          "date": "2024-03-01",
-          "path": "/art/Spring Witch Dress B.webp",
-          "width": "1",
-          "height": "1",
-          "fit": "cover",
-          "title": "Spring Witchin' Sticker",
-          "desc": "",
-          "tags": [
-            "sticker",
-            "green",
-            "pink",
-            "spring witchin"
-          ],
-          "thumbnail": "thumbnail/art/Spring Witch Dress B.webp"
-        },
-        {
-          "date": "2024-03-01",
-          "path": "/art/Fall Witch VERSION 4.webp",
-          "width": "1",
-          "height": "1",
-          "fit": "cover",
-          "title": "Fall Witchin' Sticker",
-          "desc": "",
-          "tags": [
-
-          ],
-          "thumbnail": "thumbnail/art/Fall Witch VERSION 4.webp"
-        },
-        {
-          "date": "2019-10-10",
-          "path": "/art/fallwitchin sticker.webp",
-          "thumbnail": "thumbnail/art/fallwitchin sticker.webp",
-          "width": "1",
-          "height": "1",
-          "fit": "contain",
-          "title": "Fall Witchin'",
-          "desc": "A Sticker design I made for GMU artist alley in  2019",
-          "tags": [
-            "orange",
-            "witch",
-            "fall witchin",
-            "sticker"
-          ],
-          "hidden": true
-        },
-        {
-          "date": "2024-3-01",
-          "path": "/art/cloudsplashcat sticker.webp",
-          "width": "1",
-          "height": "1",
-          "fit": "cover",
-          "title": "Cloud Cat Sticker",
-          "desc": "",
-          "tags": [
-            "cat",
-            "sticker",
-            "cloud",
-            "cloud cat",
-            "blue"
-          ],
-          "thumbnail": "thumbnail/art/cloudsplashcat sticker.webp"
-        },
-        {
-          "date": "2024-3-5",
-          "path": "/art/shamrock_cat_button_realy.webp",
-          "width": "1",
-          "height": "1",
-          "fit": "cover",
-          "title": "Shamrock Cat Button",
-          "desc": "",
-          "tags": [
-            "cat",
-            "pin",
-            "pink",
-            "green"
-          ],
-          "thumbnail": "thumbnail/art/shamrock_cat_button_realy.webp"
-        },
-        {
-          "date": "2024-3-01",
-          "path": "/art/nanalan cat.webp",
-          "width": "1",
-          "height": "1",
-          "fit": "cover",
-          "title": "Ally Sticker",
-          "desc": "",
-          "tags": [
-            "sticker",
-            "cat",
-            "nana lan"
-          ],
-          "thumbnail": "thumbnail/art/nanalan cat.webp"
-        },
-        {
-          "date": "2024-3-01",
-          "path": "/art/nanalan mona.webp",
-          "width": "1",
-          "height": "1",
-          "fit": "cover",
-          "title": "Mona Sticker",
-          "desc": "",
-          "tags": [
-            "sticker",
-            "mona",
-            "nana lan"
-          ],
-          "thumbnail": "thumbnail/art/nanalan mona.webp"
-        },
-        {
-          "date": "2024-02-26",
-          "path": "/art/Froggo.webp",
-          "width": "1",
-          "height": "1",
-          "fit": "cover",
-          "title": "Froggo Sticker",
-          "desc": "",
-          "tags": [
-            "sticker",
-            "zine",
-            "frog",
-            "pink",
-            "firefly"
-          ],
-          "thumbnail": "thumbnail/art/Froggo.webp",
-          "hidden": false
-        },
-        {
-          "date": "Fall 2019",
-          "path": "/art/golden poison froggo.webp",
-          "thumbnail": "thumbnail/art/golden poison froggo.webp",
-          "width": "1",
-          "height": "1",
-          "fit": "cover",
-          "title": "Golden poison frog",
-          "desc": "Golden poison frog design",
-          "tags": [
-            "yellow",
-            "frog"
-          ],
-          "hidden": false
-        },
-        {
-          "date": "2024-3-5",
-          "path": "/art/moccafest_shamrock.webp",
-          "width": "1",
-          "height": "1",
-          "fit": "cover",
-          "title": "Shamrock Pin",
-          "desc": "It's a shamrock! A four leaf clover! I made pins with this design for MoCCA fest since it took place on the 16th and 17th of March.",
-          "tags": [
-            "pin",
-            "green"
-          ],
-          "thumbnail": "thumbnail/art/moccafest_shamrock.webp"
-        },
-        {
-          "date": "Fall 2018",
-          "path": "/art/a mural thing shirt design.webp",
-          "thumbnail": "thumbnail/art/a mural thing shirt design.webp",
-          "width": "1",
-          "height": "1",
-          "fit": "cover",
-          "title": "Mural Day Shirt Design",
-          "desc": "A design I made and stenciled on to vinyl for shirts- the design was inspired by artists whose murals were on campus for Murals at Mason Walls 2018 such as MARICAMA and Imani Shanklin Roberts ",
-          "tags": [
-            "shirt design"
-          ],
-          "hidden": false
-        },
-        {
-          "date": "2024-3-01",
-          "path": "/art/merfrenchie_cool.webp",
-          "width": "1",
-          "height": "1",
-          "fit": "cover",
-          "title": "Merfrenchie cool sticker",
-          "desc": "A blue merfrenchie, also known as a blue manapup. It has algae growing on its tail.",
-          "tags": [
-            "sticker"
-          ],
-          "thumbnail": "thumbnail/art/merfrenchie_cool.webp"
-        },
-        {
-          "date": "2024-3-01",
-          "path": "/art/merfrenchie_warm.webp",
-          "width": "1",
-          "height": "1",
-          "fit": "cover",
-          "title": "Merfrenchie warm sticker",
-          "desc": "An earthy merfrenchie, also known as an earthy manapup. It has algae growing on its tail.",
-          "tags": [
-            "sticker"
-          ],
-          "thumbnail": "thumbnail/art/merfrenchie_warm.webp"
-        },
-        {
-          "date": "May 2021",
-          "path": "/art/mushroom_symbol_zine.webp",
-          "width": "1",
-          "height": "1",
-          "fit": "cover",
-          "title": "Aekta symbol for Zine endpapers",
-          "desc": "I made an icon for my classmate Aekta based on a photo she showed me of a mushroom.",
-          "tags": [
-            "zine"
-          ],
-          "thumbnail": "thumbnail/art/mushroom_symbol_zine.webp",
-          "hidden": true
-        },
-        {
-          "date": "May 2021",
-          "path": "/art/jelly_symbol_zine.webp",
-          "width": "1",
-          "height": "1",
-          "fit": "cover",
-          "title": "Mintyfishuu symbol for Zine endpapers",
-          "desc": "I made this jellyfish icon for my classmate mintyfishuu based on a photo of a jellyfish they showed me.",
-          "tags": [
-            "zine"
-          ],
-          "hidden": true,
-          "thumbnail": "thumbnail/art/jelly_symbol_zine.webp"
-        },
-        {
-          "date": "May 2021",
-          "path": "/art/Inside front cover.webp",
-          "thumbnail": "thumbnail/art/Inside front cover.webp",
-          "width": "2",
-          "height": "1",
-          "fit": "cover",
-          "title": "Show and Tell Endpaper Draft",
-          "desc": "A draft layout of endpaper designs for \"Show and Tell,\" the collaborative zine project for our Zine class, Spring 2021 AVT 340! My classmates all made our icons",
-          "tags": [
-            "zine",
-            "design",
-            "endpapers"
-          ],
-          "hidden": false
-        },
-        {
-          "date": "2021-08-31",
-          "path": "/art/comics thumbnail.webp",
-          "width": "2",
-          "height": "1",
-          "fit": "cover",
-          "title": "Comics Fall 2021 Discord",
-          "desc": "The icon I made for my Comics class discord. For someone who doesn't have the best understanding of discord I set up a lot of discords for my classes towards the end of college XD",
-          "thumbnail": "thumbnail/art/comics thumbnail.webp",
-          "tags": [
-            "discord server icon"
-          ],
-          "hidden": false
-        },
-        {
-          "date": "2021-8-31",
-          "path": "/art/snr proj fall 2021.webp",
-          "width": "2",
-          "height": "1",
-          "fit": "cover",
-          "title": "Senior Project Fall 2021 Discord",
-          "desc": "Icon I made for my senior project class' discord server!",
-          "thumbnail": "thumbnail/art/snr proj fall 2021.webp",
-          "tags": [
-            "discord server icon",
-            ""
-          ],
-          "hidden": false
         }
       ]
     },
